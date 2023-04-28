@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "emitDeclarationOnly": true,
+  },
+  "exclude": [
+    "src/mock-server",
+    "src/**/*.test.ts"
+  ]
+}

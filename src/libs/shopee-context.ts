@@ -10,11 +10,11 @@ export class ShopeeContext {
   shopId: number
 
   private constructor() {
-    this.partnerId = env.partnerId
-    this.partnerKey = env.partnerKey,
-    this.baseURL = env.baseURL,
+    this.partnerId = env.partnerId ?? 0
+    this.partnerKey = env.partnerKey ?? '',
+    this.baseURL = env.baseURL ?? '',
     this.accessToken = env.accessToken ?? ''
-    this.shopId = env.shopId
+    this.shopId = env.shopId ?? 0
   }
 
   static getInstance() {

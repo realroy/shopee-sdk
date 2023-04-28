@@ -46,7 +46,7 @@ const N = e.object({
   partnerKey: process.env.SHOPEE_SDK_PARTNER_KEY,
   baseURL: process.env.SHOPEE_SDK_APP_BASE_URL,
   accessToken: process.env.SHOPEE_SDK_APP_ACCESS_TOKEN,
-  shopId: process.env.SHOPEE_SDK_APP_SHOP_ID
+  shopId: process.env.SHOPEE_SDK1_APP_SHOP_ID
 });
 if (!S.success)
   throw new Error(S.error.message);
@@ -57,7 +57,7 @@ const d = S.data, E = class {
     a(this, "baseURL");
     a(this, "accessToken");
     a(this, "shopId");
-    this.partnerId = d.partnerId, this.partnerKey = d.partnerKey, this.baseURL = d.baseURL, this.accessToken = d.accessToken ?? "", this.shopId = d.shopId;
+    this.partnerId = d.partnerId ?? 0, this.partnerKey = d.partnerKey ?? "", this.baseURL = d.baseURL ?? "", this.accessToken = d.accessToken ?? "", this.shopId = d.shopId ?? 0;
   }
   static getInstance() {
     return this.instance ?? (this.instance = new E());
