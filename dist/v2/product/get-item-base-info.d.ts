@@ -1,15 +1,15 @@
 import { z } from "zod";
 export declare const API_V2_PRODUCT_GET_ITEM_BASE_INFO = "/api/v2/product/get_item_base_info";
 export declare const getItemBaseInfoRequestParametersSchema: z.ZodObject<{
-    item_id_list: z.ZodArray<z.ZodNumber, "many">;
+    item_id_list: z.ZodString;
     need_tax_info: z.ZodOptional<z.ZodBoolean>;
     need_complaint_policy: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
-    item_id_list: number[];
+    item_id_list: string;
     need_tax_info?: boolean | undefined;
     need_complaint_policy?: boolean | undefined;
 }, {
-    item_id_list: number[];
+    item_id_list: string;
     need_tax_info?: boolean | undefined;
     need_complaint_policy?: boolean | undefined;
 }>;
@@ -26,7 +26,7 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             item_sku: z.ZodString;
             create_time: z.ZodNumber;
             update_time: z.ZodNumber;
-            attribute_list: z.ZodArray<z.ZodObject<{
+            attribute_list: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 attribute_id: z.ZodNumber;
                 original_attribute_name: z.ZodString;
                 is_mandatory: z.ZodBoolean;
@@ -61,8 +61,8 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     original_value_name: string;
                     value_unit: string;
                 }[];
-            }>, "many">;
-            price_info: z.ZodArray<z.ZodObject<{
+            }>, "many">>;
+            price_info: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 currency: z.ZodString;
                 original_price: z.ZodNumber;
                 current_price: z.ZodNumber;
@@ -74,8 +74,8 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 currency: string;
                 original_price: number;
                 current_price: number;
-            }>, "many">;
-            stock_info_v2: z.ZodObject<{
+            }>, "many">>;
+            stock_info_v2: z.ZodOptional<z.ZodObject<{
                 summary_info: z.ZodObject<{
                     total_reserved_stock: z.ZodNumber;
                     total_available_stock: z.ZodNumber;
@@ -86,7 +86,7 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     total_reserved_stock: number;
                     total_available_stock: number;
                 }>;
-                seller_stock: z.ZodArray<z.ZodObject<{
+                seller_stock: z.ZodOptional<z.ZodArray<z.ZodObject<{
                     location_id: z.ZodString;
                     stock: z.ZodNumber;
                 }, "strip", z.ZodTypeAny, {
@@ -95,26 +95,26 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 }, {
                     location_id: string;
                     stock: number;
-                }>, "many">;
+                }>, "many">>;
             }, "strip", z.ZodTypeAny, {
                 summary_info: {
                     total_reserved_stock: number;
                     total_available_stock: number;
                 };
-                seller_stock: {
+                seller_stock?: {
                     location_id: string;
                     stock: number;
-                }[];
+                }[] | undefined;
             }, {
                 summary_info: {
                     total_reserved_stock: number;
                     total_available_stock: number;
                 };
-                seller_stock: {
+                seller_stock?: {
                     location_id: string;
                     stock: number;
-                }[];
-            }>;
+                }[] | undefined;
+            }>>;
             image: z.ZodObject<{
                 image_url_list: z.ZodArray<z.ZodString, "many">;
                 image_id_list: z.ZodArray<z.ZodString, "many">;
@@ -175,7 +175,7 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             size_chart: z.ZodString;
             item_status: z.ZodString;
             has_model: z.ZodBoolean;
-            promotion_id: z.ZodNumber;
+            promotion_id: z.ZodOptional<z.ZodNumber>;
             brand: z.ZodObject<{
                 brand_id: z.ZodNumber;
                 original_brand_name: z.ZodString;
@@ -186,7 +186,7 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 brand_id: number;
                 original_brand_name: string;
             }>;
-            tax_info: z.ZodObject<{
+            tax_info: z.ZodOptional<z.ZodObject<{
                 ncm: z.ZodNumber;
                 same_state_cfop: z.ZodNumber;
                 diff_state_cfop: z.ZodNumber;
@@ -204,7 +204,7 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 diff_state_cfop: number;
                 csosn: number;
                 origin: number;
-            }>;
+            }>>;
             description_type: z.ZodString;
             description_info: z.ZodObject<{
                 extended_description: z.ZodObject<{
@@ -286,31 +286,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             item_name: string;
             item_sku: string;
             create_time: number;
-            attribute_list: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
-                }[];
-            }[];
-            price_info: {
-                currency: string;
-                original_price: number;
-                current_price: number;
-            }[];
-            stock_info_v2: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
-                };
-                seller_stock: {
-                    location_id: string;
-                    stock: number;
-                }[];
-            };
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
@@ -336,17 +311,9 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             condition: string;
             size_chart: string;
             has_model: boolean;
-            promotion_id: number;
             brand: {
                 brand_id: number;
                 original_brand_name: string;
-            };
-            tax_info: {
-                ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
-                csosn: number;
-                origin: number;
             };
             description_type: string;
             description_info: {
@@ -361,6 +328,39 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     }[];
                 };
             };
+            attribute_list?: {
+                attribute_id: number;
+                original_attribute_name: string;
+                is_mandatory: boolean;
+                attribute_value_list: {
+                    value_id: number;
+                    original_value_name: string;
+                    value_unit: string;
+                }[];
+            }[] | undefined;
+            price_info?: {
+                currency: string;
+                original_price: number;
+                current_price: number;
+            }[] | undefined;
+            stock_info_v2?: {
+                summary_info: {
+                    total_reserved_stock: number;
+                    total_available_stock: number;
+                };
+                seller_stock?: {
+                    location_id: string;
+                    stock: number;
+                }[] | undefined;
+            } | undefined;
+            promotion_id?: number | undefined;
+            tax_info?: {
+                ncm: number;
+                same_state_cfop: number;
+                diff_state_cfop: number;
+                csosn: number;
+                origin: number;
+            } | undefined;
         }, {
             item_status: string;
             item_id: number;
@@ -369,31 +369,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             item_name: string;
             item_sku: string;
             create_time: number;
-            attribute_list: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
-                }[];
-            }[];
-            price_info: {
-                currency: string;
-                original_price: number;
-                current_price: number;
-            }[];
-            stock_info_v2: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
-                };
-                seller_stock: {
-                    location_id: string;
-                    stock: number;
-                }[];
-            };
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
@@ -419,17 +394,9 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             condition: string;
             size_chart: string;
             has_model: boolean;
-            promotion_id: number;
             brand: {
                 brand_id: number;
                 original_brand_name: string;
-            };
-            tax_info: {
-                ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
-                csosn: number;
-                origin: number;
             };
             description_type: string;
             description_info: {
@@ -444,6 +411,39 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     }[];
                 };
             };
+            attribute_list?: {
+                attribute_id: number;
+                original_attribute_name: string;
+                is_mandatory: boolean;
+                attribute_value_list: {
+                    value_id: number;
+                    original_value_name: string;
+                    value_unit: string;
+                }[];
+            }[] | undefined;
+            price_info?: {
+                currency: string;
+                original_price: number;
+                current_price: number;
+            }[] | undefined;
+            stock_info_v2?: {
+                summary_info: {
+                    total_reserved_stock: number;
+                    total_available_stock: number;
+                };
+                seller_stock?: {
+                    location_id: string;
+                    stock: number;
+                }[] | undefined;
+            } | undefined;
+            promotion_id?: number | undefined;
+            tax_info?: {
+                ncm: number;
+                same_state_cfop: number;
+                diff_state_cfop: number;
+                csosn: number;
+                origin: number;
+            } | undefined;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         item_list?: {
@@ -454,31 +454,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             item_name: string;
             item_sku: string;
             create_time: number;
-            attribute_list: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
-                }[];
-            }[];
-            price_info: {
-                currency: string;
-                original_price: number;
-                current_price: number;
-            }[];
-            stock_info_v2: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
-                };
-                seller_stock: {
-                    location_id: string;
-                    stock: number;
-                }[];
-            };
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
@@ -504,17 +479,9 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             condition: string;
             size_chart: string;
             has_model: boolean;
-            promotion_id: number;
             brand: {
                 brand_id: number;
                 original_brand_name: string;
-            };
-            tax_info: {
-                ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
-                csosn: number;
-                origin: number;
             };
             description_type: string;
             description_info: {
@@ -529,6 +496,39 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     }[];
                 };
             };
+            attribute_list?: {
+                attribute_id: number;
+                original_attribute_name: string;
+                is_mandatory: boolean;
+                attribute_value_list: {
+                    value_id: number;
+                    original_value_name: string;
+                    value_unit: string;
+                }[];
+            }[] | undefined;
+            price_info?: {
+                currency: string;
+                original_price: number;
+                current_price: number;
+            }[] | undefined;
+            stock_info_v2?: {
+                summary_info: {
+                    total_reserved_stock: number;
+                    total_available_stock: number;
+                };
+                seller_stock?: {
+                    location_id: string;
+                    stock: number;
+                }[] | undefined;
+            } | undefined;
+            promotion_id?: number | undefined;
+            tax_info?: {
+                ncm: number;
+                same_state_cfop: number;
+                diff_state_cfop: number;
+                csosn: number;
+                origin: number;
+            } | undefined;
         }[] | undefined;
     }, {
         item_list?: {
@@ -539,31 +539,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             item_name: string;
             item_sku: string;
             create_time: number;
-            attribute_list: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
-                }[];
-            }[];
-            price_info: {
-                currency: string;
-                original_price: number;
-                current_price: number;
-            }[];
-            stock_info_v2: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
-                };
-                seller_stock: {
-                    location_id: string;
-                    stock: number;
-                }[];
-            };
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
@@ -589,17 +564,9 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             condition: string;
             size_chart: string;
             has_model: boolean;
-            promotion_id: number;
             brand: {
                 brand_id: number;
                 original_brand_name: string;
-            };
-            tax_info: {
-                ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
-                csosn: number;
-                origin: number;
             };
             description_type: string;
             description_info: {
@@ -614,6 +581,39 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     }[];
                 };
             };
+            attribute_list?: {
+                attribute_id: number;
+                original_attribute_name: string;
+                is_mandatory: boolean;
+                attribute_value_list: {
+                    value_id: number;
+                    original_value_name: string;
+                    value_unit: string;
+                }[];
+            }[] | undefined;
+            price_info?: {
+                currency: string;
+                original_price: number;
+                current_price: number;
+            }[] | undefined;
+            stock_info_v2?: {
+                summary_info: {
+                    total_reserved_stock: number;
+                    total_available_stock: number;
+                };
+                seller_stock?: {
+                    location_id: string;
+                    stock: number;
+                }[] | undefined;
+            } | undefined;
+            promotion_id?: number | undefined;
+            tax_info?: {
+                ncm: number;
+                same_state_cfop: number;
+                diff_state_cfop: number;
+                csosn: number;
+                origin: number;
+            } | undefined;
         }[] | undefined;
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -627,31 +627,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             item_name: string;
             item_sku: string;
             create_time: number;
-            attribute_list: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
-                }[];
-            }[];
-            price_info: {
-                currency: string;
-                original_price: number;
-                current_price: number;
-            }[];
-            stock_info_v2: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
-                };
-                seller_stock: {
-                    location_id: string;
-                    stock: number;
-                }[];
-            };
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
@@ -677,17 +652,9 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             condition: string;
             size_chart: string;
             has_model: boolean;
-            promotion_id: number;
             brand: {
                 brand_id: number;
                 original_brand_name: string;
-            };
-            tax_info: {
-                ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
-                csosn: number;
-                origin: number;
             };
             description_type: string;
             description_info: {
@@ -702,6 +669,39 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     }[];
                 };
             };
+            attribute_list?: {
+                attribute_id: number;
+                original_attribute_name: string;
+                is_mandatory: boolean;
+                attribute_value_list: {
+                    value_id: number;
+                    original_value_name: string;
+                    value_unit: string;
+                }[];
+            }[] | undefined;
+            price_info?: {
+                currency: string;
+                original_price: number;
+                current_price: number;
+            }[] | undefined;
+            stock_info_v2?: {
+                summary_info: {
+                    total_reserved_stock: number;
+                    total_available_stock: number;
+                };
+                seller_stock?: {
+                    location_id: string;
+                    stock: number;
+                }[] | undefined;
+            } | undefined;
+            promotion_id?: number | undefined;
+            tax_info?: {
+                ncm: number;
+                same_state_cfop: number;
+                diff_state_cfop: number;
+                csosn: number;
+                origin: number;
+            } | undefined;
         }[] | undefined;
     };
     error: string;
@@ -718,31 +718,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             item_name: string;
             item_sku: string;
             create_time: number;
-            attribute_list: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
-                }[];
-            }[];
-            price_info: {
-                currency: string;
-                original_price: number;
-                current_price: number;
-            }[];
-            stock_info_v2: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
-                };
-                seller_stock: {
-                    location_id: string;
-                    stock: number;
-                }[];
-            };
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
@@ -768,17 +743,9 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             condition: string;
             size_chart: string;
             has_model: boolean;
-            promotion_id: number;
             brand: {
                 brand_id: number;
                 original_brand_name: string;
-            };
-            tax_info: {
-                ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
-                csosn: number;
-                origin: number;
             };
             description_type: string;
             description_info: {
@@ -793,6 +760,39 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     }[];
                 };
             };
+            attribute_list?: {
+                attribute_id: number;
+                original_attribute_name: string;
+                is_mandatory: boolean;
+                attribute_value_list: {
+                    value_id: number;
+                    original_value_name: string;
+                    value_unit: string;
+                }[];
+            }[] | undefined;
+            price_info?: {
+                currency: string;
+                original_price: number;
+                current_price: number;
+            }[] | undefined;
+            stock_info_v2?: {
+                summary_info: {
+                    total_reserved_stock: number;
+                    total_available_stock: number;
+                };
+                seller_stock?: {
+                    location_id: string;
+                    stock: number;
+                }[] | undefined;
+            } | undefined;
+            promotion_id?: number | undefined;
+            tax_info?: {
+                ncm: number;
+                same_state_cfop: number;
+                diff_state_cfop: number;
+                csosn: number;
+                origin: number;
+            } | undefined;
         }[] | undefined;
     };
     error: string;
@@ -802,7 +802,7 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
 export type GetItemBaseInfoResponse = z.infer<typeof getItemBaseInfoResponseSchema>;
 export type GetItemBaseInfoRequestParameters = z.infer<typeof getItemBaseInfoRequestParametersSchema>;
 export declare const getItemBaseInfo: (requestParameters: {
-    item_id_list: number[];
+    item_id_list: string;
     need_tax_info?: boolean | undefined;
     need_complaint_policy?: boolean | undefined;
 }) => Promise<{
@@ -816,31 +816,6 @@ export declare const getItemBaseInfo: (requestParameters: {
             item_name: string;
             item_sku: string;
             create_time: number;
-            attribute_list: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
-                }[];
-            }[];
-            price_info: {
-                currency: string;
-                original_price: number;
-                current_price: number;
-            }[];
-            stock_info_v2: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
-                };
-                seller_stock: {
-                    location_id: string;
-                    stock: number;
-                }[];
-            };
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
@@ -866,17 +841,9 @@ export declare const getItemBaseInfo: (requestParameters: {
             condition: string;
             size_chart: string;
             has_model: boolean;
-            promotion_id: number;
             brand: {
                 brand_id: number;
                 original_brand_name: string;
-            };
-            tax_info: {
-                ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
-                csosn: number;
-                origin: number;
             };
             description_type: string;
             description_info: {
@@ -891,6 +858,39 @@ export declare const getItemBaseInfo: (requestParameters: {
                     }[];
                 };
             };
+            attribute_list?: {
+                attribute_id: number;
+                original_attribute_name: string;
+                is_mandatory: boolean;
+                attribute_value_list: {
+                    value_id: number;
+                    original_value_name: string;
+                    value_unit: string;
+                }[];
+            }[] | undefined;
+            price_info?: {
+                currency: string;
+                original_price: number;
+                current_price: number;
+            }[] | undefined;
+            stock_info_v2?: {
+                summary_info: {
+                    total_reserved_stock: number;
+                    total_available_stock: number;
+                };
+                seller_stock?: {
+                    location_id: string;
+                    stock: number;
+                }[] | undefined;
+            } | undefined;
+            promotion_id?: number | undefined;
+            tax_info?: {
+                ncm: number;
+                same_state_cfop: number;
+                diff_state_cfop: number;
+                csosn: number;
+                origin: number;
+            } | undefined;
         }[] | undefined;
     };
     error: string;

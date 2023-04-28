@@ -1,14 +1,14 @@
-var K = Object.defineProperty;
-var q = (r, t, n) => t in r ? K(r, t, { enumerable: !0, configurable: !0, writable: !0, value: n }) : r[t] = n;
-var a = (r, t, n) => (q(r, typeof t != "symbol" ? t + "" : t, n), n);
-import B from "axios";
+var M = Object.defineProperty;
+var $ = (r, t, n) => t in r ? M(r, t, { enumerable: !0, configurable: !0, writable: !0, value: n }) : r[t] = n;
+var o = (r, t, n) => ($(r, typeof t != "symbol" ? t + "" : t, n), n);
+import G from "axios";
 import { z as e } from "zod";
-import { createHmac as N } from "crypto";
-const I = class {
+import { createHmac as H } from "crypto";
+const E = class {
   constructor() {
-    a(this, "axios");
-    a(this, "logger", console);
-    this.axios = B.create(), this.axios.interceptors.request.use(
+    o(this, "axios");
+    o(this, "logger", console);
+    this.axios = G.create(), this.axios.interceptors.request.use(
       (t) => (this.logger.log(`${t.url}`), t.data && this.logger.info(`[Body]: ${JSON.stringify(t.data, null, 4)}`), t),
       (t) => (this.logger.error(t), t)
     ), this.axios.interceptors.response.use(
@@ -17,14 +17,14 @@ const I = class {
         const {
           response: { status: n },
           message: s,
-          config: { method: c, url: m, data: g, params: p }
+          config: { method: c, url: p, data: g, params: m }
         } = t;
-        return this.logger.error({ status: n, message: s, method: c, url: m, data: g, params: p }), t;
+        return this.logger.error({ status: n, message: s, method: c, url: p, data: g, params: m }), t;
       }
     );
   }
   static getInstance() {
-    return this.instance ?? (this.instance = new I());
+    return this.instance ?? (this.instance = new E());
   }
   get(t, n) {
     return this.axios.get(t, { params: n });
@@ -33,15 +33,15 @@ const I = class {
     return this.axios.post(t, s, { params: n });
   }
 };
-let f = I;
-a(f, "instance");
-const M = e.object({
+let f = E;
+o(f, "instance");
+const z = e.object({
   partnerId: e.coerce.number().optional(),
   partnerKey: e.coerce.string().optional(),
   baseURL: e.coerce.string().url().optional(),
   accessToken: e.coerce.string().optional(),
   shopId: e.coerce.number().optional()
-}), S = M.safeParse({
+}), S = z.safeParse({
   partnerId: process.env.SHOPEE_SDK_PARTNER_ID,
   partnerKey: process.env.SHOPEE_SDK_PARTNER_KEY,
   baseURL: process.env.SHOPEE_SDK_BASE_URL,
@@ -50,17 +50,17 @@ const M = e.object({
 });
 if (!S.success)
   throw new Error(S.error.message);
-const b = S.data, E = class {
+const b = S.data, P = class {
   constructor() {
-    a(this, "partnerId");
-    a(this, "partnerKey");
-    a(this, "baseURL");
-    a(this, "accessToken");
-    a(this, "shopId");
+    o(this, "partnerId");
+    o(this, "partnerKey");
+    o(this, "baseURL");
+    o(this, "accessToken");
+    o(this, "shopId");
     this.partnerId = b.partnerId ?? 0, this.partnerKey = b.partnerKey ?? "", this.baseURL = b.baseURL ?? "", this.accessToken = b.accessToken ?? "", this.shopId = b.shopId ?? 0;
   }
   static getInstance() {
-    return this.instance ?? (this.instance = new E());
+    return this.instance ?? (this.instance = new P());
   }
   get value() {
     return {
@@ -72,77 +72,76 @@ const b = S.data, E = class {
     };
   }
 };
-let h = E;
-a(h, "instance");
-function H(r, ...t) {
-  const n = N("sha256", r);
+let h = P;
+o(h, "instance");
+function V(r, ...t) {
+  const n = H("sha256", r);
   return t.filter((s) => !!s).forEach((s) => n.update(s)), n.digest("hex");
 }
-function R(r) {
+function j(r) {
   const t = r ? r.getTime() : Date.now();
   return Math.round(t / 1e3).toString();
 }
-function $(r) {
+function C(r) {
   const {
     partner_id: t,
     partner_key: n,
     path: s,
     base_url: c,
-    access_token: m,
+    access_token: p,
     shop_id: g,
-    params: p = {}
-  } = r, u = t.toString(), i = {};
-  for (const d in p) {
-    const l = p[d];
+    params: m = {}
+  } = r, _ = t.toString(), u = g.toString(), i = {};
+  for (const d in m) {
+    const l = m[d];
     Array.isArray(l) ? i[d] = [
       l[0],
-      ...l.slice(1).map((O) => `&${d}=${O}`)
-    ].join("") : l instanceof Date ? i[d] = R(l) : i[d] = `${l}`;
+      ...l.slice(1).map((N) => `&${d}=${N}`)
+    ].join("") : l instanceof Date ? i[d] = j(l) : i[d] = `${l}`;
   }
-  const _ = R(), P = new URL(s, c), D = H(
+  const R = j(), T = new URL(s, c), B = V(
     n,
-    u,
-    s,
     _,
-    m,
-    g.toString()
+    s,
+    R,
+    p,
+    u
   );
-  return P.search = new URLSearchParams({
-    ...m && {
-      access_token: m
-    },
+  return T.search = new URLSearchParams({
     ...i,
-    sign: D,
-    partner_id: u,
-    timestamp: _
-  }).toString(), P.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
+    partner_id: _,
+    shop_id: u,
+    access_token: p,
+    sign: B,
+    timestamp: R
+  }).toString(), T.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
 }
-const T = f.getInstance();
-function j(r) {
+const k = f.getInstance();
+function I(r) {
   return async function(n) {
-    const s = r.transformRequestParameter ?? ((_) => _), c = await r.requestParameterSchema.transform(s).safeParseAsync(n);
+    const s = r.transformRequestParameter ?? ((i) => i), c = await r.requestParameterSchema.transform(s).safeParseAsync(n);
     if (!c.success)
       throw new Error(c.error.message);
-    const m = c.data, g = h.getInstance().value, p = $({
+    const p = c.data, g = h.getInstance().value, m = C({
       ...g,
       path: r.path,
-      params: m
+      params: p
     });
-    let u;
+    let _;
     if (r.method === "POST") {
-      const _ = await r.requestBodySchema.safeParseAsync(r.body);
-      if (!_.success)
-        throw new Error(_.error.message);
-      u = (await T.post(p, {}, r.body)).data;
+      const i = await r.requestBodySchema.safeParseAsync(r.body);
+      if (!i.success)
+        throw new Error(i.error.message);
+      _ = (await k.post(m, {}, r.body)).data;
     } else
-      u = (await T.get(p)).data;
-    const i = await r.responseSchema.safeParseAsync(u);
-    if (!i.success)
-      throw new Error(i.error.message);
-    return i.data;
+      _ = (await k.get(m)).data;
+    const u = await r.responseSchema.safeParseAsync(_);
+    if (!u.success)
+      throw new Error(u.error.message);
+    return u.data;
   };
 }
-const k = "/api/v2/product/get_item_list", y = ["NORMAL", "DELETED", "UNLIST", "BANNED"], w = e.object({
+const w = "/api/v2/product/get_item_list", y = ["NORMAL", "DELETED", "UNLIST", "BANNED"], x = e.object({
   offset: e.number().int().min(0).optional(),
   page_size: e.number().int().positive().max(100).optional(),
   update_time_from: e.date().optional(),
@@ -163,64 +162,64 @@ const k = "/api/v2/product/get_item_list", y = ["NORMAL", "DELETED", "UNLIST", "
   total_count: e.number().int().optional(),
   has_next_page: e.boolean().optional(),
   next_offset: e.number().int().optional()
-}), z = j({
+}), F = I({
   method: "GET",
-  path: k,
-  requestParameterSchema: w,
+  path: w,
+  requestParameterSchema: x,
   transformRequestParameter(r) {
     return r.update_time_from = r.update_time_from ?? /* @__PURE__ */ new Date("01/01/2022"), r.update_time_to = r.update_time_to ?? /* @__PURE__ */ new Date(), r;
   },
   responseSchema: L
-}), x = "/api/v2/product/get_item_base_info", U = e.object({
-  item_id_list: e.array(e.number().int()).min(1).max(50),
-  need_tax_info: e.boolean().optional(),
-  need_complaint_policy: e.boolean().optional()
-}), G = e.object({
+}), A = "/api/v2/product/get_item_base_info", O = e.object({
+  item_id_list: e.string(),
+  need_tax_info: e.coerce.boolean().optional(),
+  need_complaint_policy: e.coerce.boolean().optional()
+}), J = e.object({
   value_id: e.number(),
   original_value_name: e.string(),
   value_unit: e.string()
-}), V = e.object({
+}), X = e.object({
   attribute_id: e.number(),
   original_attribute_name: e.string(),
   is_mandatory: e.boolean(),
-  attribute_value_list: e.array(G)
-}), C = e.object({
+  attribute_value_list: e.array(J)
+}), Y = e.object({
   currency: e.string(),
   original_price: e.number(),
   current_price: e.number()
-}), F = e.object({
+}), Q = e.object({
   location_id: e.string(),
   stock: e.number()
-}), J = e.object({
+}), W = e.object({
   logistic_id: e.number(),
   logistic_name: e.string(),
   enabled: e.boolean(),
   shipping_fee: e.number().optional(),
   is_free: e.boolean(),
   estimated_shipping_fee: e.number().optional()
-}), Y = e.object({
+}), Z = e.object({
   field_type: e.string(),
   text: e.string().optional(),
   image_info: e.object({
     image_id: e.string(),
     image_url: e.string()
   }).optional()
-}), Q = e.object({
+}), ee = e.object({
   item_id: e.number(),
   category_id: e.number(),
   item_name: e.string(),
   item_sku: e.string(),
   create_time: e.number(),
   update_time: e.number(),
-  attribute_list: e.array(V),
-  price_info: e.array(C),
+  attribute_list: e.array(X).optional(),
+  price_info: e.array(Y).optional(),
   stock_info_v2: e.object({
     summary_info: e.object({
       total_reserved_stock: e.number(),
       total_available_stock: e.number()
     }),
-    seller_stock: e.array(F)
-  }),
+    seller_stock: e.array(Q).optional()
+  }).optional(),
   image: e.object({
     image_url_list: e.array(e.string()),
     image_id_list: e.array(e.string())
@@ -231,7 +230,7 @@ const k = "/api/v2/product/get_item_list", y = ["NORMAL", "DELETED", "UNLIST", "
     package_width: e.number(),
     package_height: e.number()
   }),
-  logistic_info: e.array(J),
+  logistic_info: e.array(W),
   pre_order: e.object({
     is_pre_order: e.boolean(),
     days_to_ship: e.number()
@@ -240,7 +239,7 @@ const k = "/api/v2/product/get_item_list", y = ["NORMAL", "DELETED", "UNLIST", "
   size_chart: e.string(),
   item_status: e.string(),
   has_model: e.boolean(),
-  promotion_id: e.number(),
+  promotion_id: e.number().optional(),
   brand: e.object({
     brand_id: e.number(),
     original_brand_name: e.string()
@@ -251,63 +250,92 @@ const k = "/api/v2/product/get_item_list", y = ["NORMAL", "DELETED", "UNLIST", "
     diff_state_cfop: e.number(),
     csosn: e.number(),
     origin: e.number()
-  }),
+  }).optional(),
   description_type: e.string(),
   description_info: e.object({
     extended_description: e.object({
-      field_list: e.array(Y)
+      field_list: e.array(Z)
     })
   })
-}), A = e.object({
+}), U = e.object({
   error: e.string(),
   message: e.string(),
   warning: e.string(),
   request_id: e.string(),
   response: e.object({
-    item_list: e.array(Q).optional()
+    item_list: e.array(ee).optional()
   })
-}), W = j({
+}), te = I({
   method: "GET",
-  path: x,
-  requestParameterSchema: U,
-  responseSchema: A
-}), X = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  path: A,
+  requestParameterSchema: O,
+  responseSchema: U,
+  transformRequestParameter(r) {
+    return r.need_tax_info = !!r.need_tax_info, r.need_complaint_policy = !!r.need_complaint_policy, r;
+  }
+}), q = "/api/v2/product/get_item_extra_info", D = e.object({
+  item_id_list: e.string()
+}), re = e.object({
+  item_id: e.number(),
+  sale: e.number(),
+  views: e.number(),
+  likes: e.number(),
+  rating_star: e.number(),
+  comment_count: e.number()
+}), K = e.object({
+  error: e.string(),
+  message: e.string(),
+  warning: e.string().optional(),
+  request_id: e.string(),
+  response: e.object({
+    item_list: e.array(re).optional()
+  }).optional()
+}), ne = I({
+  method: "GET",
+  path: q,
+  requestParameterSchema: D,
+  responseSchema: K
+}), se = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  API_V2_PRODUCT_GET_ITEM_BASE_INFO: x,
-  API_V2_PRODUCT_GET_ITEM_LIST: k,
+  API_V2_PRODUCT_GET_ITEM_BASE_INFO: A,
+  API_V2_PRODUCT_GET_ITEM_EXTRA_INFO: q,
+  API_V2_PRODUCT_GET_ITEM_LIST: w,
   ITEM_STATUS: y,
-  getItemBaseInfo: W,
-  getItemBaseInfoRequestParametersSchema: U,
-  getItemBaseInfoResponseSchema: A,
-  getItemList: z,
-  getItemListRequestParametersSchema: w,
+  getItemBaseInfo: te,
+  getItemBaseInfoRequestParametersSchema: O,
+  getItemBaseInfoResponseSchema: U,
+  getItemExtraInfo: ne,
+  getItemExtraInfoRequestParametersSchema: D,
+  getItemExtraInfoResponseSchema: K,
+  getItemList: F,
+  getItemListRequestParametersSchema: x,
   getItemListResponseSchema: L,
   itemSchema: v
-}, Symbol.toStringTag, { value: "Module" })), Z = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}, Symbol.toStringTag, { value: "Module" })), oe = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  product: X
-}, Symbol.toStringTag, { value: "Module" })), o = h.getInstance();
-class se {
+  product: se
+}, Symbol.toStringTag, { value: "Module" })), a = h.getInstance();
+class pe {
   constructor(t) {
-    a(this, "v2", Z);
-    o.accessToken = t.accessToken, o.baseURL = t.baseURL, o.partnerId = t.partnerId, o.partnerKey = t.partnerKey, o.accessToken = t.accessToken, o.shopId = t.shopId;
+    o(this, "v2", oe);
+    a.accessToken = t.accessToken, a.baseURL = t.baseURL, a.partnerId = t.partnerId, a.partnerKey = t.partnerKey, a.accessToken = t.accessToken, a.shopId = t.shopId;
   }
   setPartnerId(t) {
-    return o.partnerId = t, this;
+    return a.partnerId = t, this;
   }
   setBaseURL(t) {
-    return o.baseURL = t, this;
+    return a.baseURL = t, this;
   }
   setPartnerKey(t) {
-    return o.partnerKey = t, this;
+    return a.partnerKey = t, this;
   }
   setAccessToken(t) {
-    return o.accessToken = t, this;
+    return a.accessToken = t, this;
   }
   setShopId(t) {
-    return o.shopId = t, this;
+    return a.shopId = t, this;
   }
 }
 export {
-  se as ShopeeSdk
+  pe as ShopeeSdk
 };
