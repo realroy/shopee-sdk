@@ -43,44 +43,6 @@ export type GetItemListRequestParameters = z.infer<
   typeof getItemListRequestParametersSchema
 >;
 
-// export async function getItemList(
-//   requestParameters: GetItemListRequestParameters
-// ) {
-//   const parseRequestParameters = await getItemListRequestParametersSchema
-//     .transform(({ update_time_from, update_time_to, item_status, ...data }) => {
-//       return {
-//         ...data,
-//         update_time_from: update_time_from ?? new Date("01/01/2022"),
-//         update_time_to: update_time_to ?? new Date(),
-//         item_status: item_status ?? ItemStatus,
-//       };
-//     })
-//     .safeParseAsync(requestParameters);
-
-//   if (!parseRequestParameters.success) {
-//     throw new Error(parseRequestParameters.error.message);
-//   }
-
-//   const parsedRequestParameters = parseRequestParameters.data;
-//   const context = ShopeeContext.getInstance().value;
-
-//   const signedURL = signUrl({
-//     ...context,
-//     path: API_V2_PRODUCT_GET_ITEM_LIST,
-//     params: parsedRequestParameters,
-//   });
-
-//   const { data } = await HttpClient.getInstance().get(signedURL);
-
-//   const parseData = await getItemListResponseSchema.safeParseAsync(data);
-
-//   if (!parseData.success) {
-//     throw new Error(parseData.error.message);
-//   }
-
-//   return parseData.data;
-// }
-
 export const getItemList = buildApi({
   method: "GET",
   path: API_V2_PRODUCT_GET_ITEM_LIST,

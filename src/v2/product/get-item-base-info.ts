@@ -6,9 +6,9 @@ export const API_V2_PRODUCT_GET_ITEM_BASE_INFO =
   "/api/v2/product/get_item_base_info";
 
 export const getItemBaseInfoRequestParametersSchema = z.object({
-  item_id_list: z.array(z.number().int()).min(1).max(50),
-  need_tax_info: z.boolean().optional(),
-  need_complaint_policy: z.boolean().optional(),
+  item_id_list: z.string(),
+  need_tax_info: z.coerce.boolean().optional(),
+  need_complaint_policy: z.coerce.boolean().optional(),
 });
 
 const attributeValueSchema = z.object({
@@ -62,15 +62,16 @@ const getItemBaseInfoItemSchema = z.object({
   item_sku: z.string(),
   create_time: z.number(),
   update_time: z.number(),
-  attribute_list: z.array(attributeSchema),
-  price_info: z.array(priceInfoSchema),
+  attribute_list: z.array(attributeSchema).optional(),
+  price_info: z.array(priceInfoSchema).optional(),
   stock_info_v2: z.object({
-  summary_info: z.object({
-    total_reserved_stock: z.number(),
-    total_available_stock: z.number(),
-  }),
-  seller_stock: z.array(sellerStockSchema),
-}),
+    summary_info: z
+      .object({
+        total_reserved_stock: z.number(),
+        total_available_stock: z.number(),
+      }),
+    seller_stock: z.array(sellerStockSchema).optional(),
+  }).optional(),
   image: z.object({
     image_url_list: z.array(z.string()),
     image_id_list: z.array(z.string()),
@@ -90,18 +91,20 @@ const getItemBaseInfoItemSchema = z.object({
   size_chart: z.string(),
   item_status: z.string(),
   has_model: z.boolean(),
-  promotion_id: z.number(),
+  promotion_id: z.number().optional(),
   brand: z.object({
     brand_id: z.number(),
     original_brand_name: z.string(),
   }),
-  tax_info: z.object({
-    ncm: z.number(),
-    same_state_cfop: z.number(),
-    diff_state_cfop: z.number(),
-    csosn: z.number(),
-    origin: z.number(),
-  }),
+  tax_info: z
+    .object({
+      ncm: z.number(),
+      same_state_cfop: z.number(),
+      diff_state_cfop: z.number(),
+      csosn: z.number(),
+      origin: z.number(),
+    })
+    .optional(),
   description_type: z.string(),
   description_info: z.object({
     extended_description: z.object({
@@ -133,6 +136,12 @@ export const getItemBaseInfo = buildApi({
   path: API_V2_PRODUCT_GET_ITEM_BASE_INFO,
   requestParameterSchema: getItemBaseInfoRequestParametersSchema,
   responseSchema: getItemBaseInfoResponseSchema,
-})
+  transformRequestParameter(data) {
+    data.need_tax_info = Boolean(data.need_tax_info);
+    data.need_complaint_policy = Boolean(data.need_complaint_policy);
+
+    return data;
+  },
+});
 
 export default getItemBaseInfo;

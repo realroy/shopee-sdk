@@ -13,9 +13,9 @@ export type EnvSchema = z.infer<typeof envSchema>
 const parseEnv = envSchema.safeParse({
   partnerId: process.env.SHOPEE_SDK_PARTNER_ID,
   partnerKey: process.env.SHOPEE_SDK_PARTNER_KEY,
-  baseURL: process.env.SHOPEE_SDK_APP_BASE_URL,
-  accessToken: process.env.SHOPEE_SDK_APP_ACCESS_TOKEN,
-  shopId: process.env.SHOPEE_SDK1_APP_SHOP_ID,
+  baseURL: process.env.SHOPEE_SDK_BASE_URL,
+  accessToken: process.env.SHOPEE_SDK_ACCESS_TOKEN,
+  shopId: process.env.SHOPEE_SDK_SHOP_ID,
 })
 
 if (!parseEnv.success) {

@@ -15,10 +15,13 @@ export function signUrl(args: SignUrlArgs) {
     path,
     base_url,
     access_token,
+    shop_id,
     params = {},
   } = args;
   const parsedPartnerId = partner_id.toString();
+  const parsedShopId = shop_id.toString()
   const parsedParams = {} as Record<string, string>;
+  
   for (const key in params) {
     const value = params[key];
 
@@ -43,18 +46,16 @@ export function signUrl(args: SignUrlArgs) {
     parsedPartnerId,
     path,
     timestamp,
-    ...[parsedParams?.access_token, parsedParams?.shop_id].filter(
-      (s) => typeof s !== "undefined"
-    )
+    access_token,
+    parsedShopId
   );
 
   url.search = new URLSearchParams({
-    ...(access_token && {
-      access_token,
-    }),
     ...parsedParams,
-    sign,
     partner_id: parsedPartnerId,
+    shop_id: parsedShopId,
+    access_token,
+    sign,
     timestamp,
   }).toString();
 
