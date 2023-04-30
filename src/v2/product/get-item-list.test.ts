@@ -1,11 +1,15 @@
 import { describe, it, expect } from "vitest";
 
-import { getItemList } from "./get-item-list";
+import { ShopeeSdk } from "@/shopee-sdk";
 
 describe("getItemList", () => {
+  const shopeeSdk = new ShopeeSdk({
+    isMocked: true,
+  });
+
   it("should receive expected shape", async () => {
     expect(() =>
-      getItemList({
+      shopeeSdk.v2.product.getItemList({
         offset: 0,
         page_size: 10,
         item_status: ["NORMAL", "BANNED", "DELETED", "UNLIST"],
@@ -14,7 +18,7 @@ describe("getItemList", () => {
   });
 
   it("should receive successfully response", async () => {
-    const res = await getItemList({
+    const res = await shopeeSdk.v2.product.getItemList({
       offset: 0,
       page_size: 10,
       item_status: ["NORMAL", "BANNED", "DELETED", "UNLIST"],

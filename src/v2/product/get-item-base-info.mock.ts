@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { faker } from "@faker-js/faker";
+import { mockURL } from "@/utils";
 
 import { API_V2_PRODUCT_GET_ITEM_BASE_INFO } from "./get-item-base-info";
 
@@ -8,21 +9,30 @@ import type {
   GetItemBaseInfoRequestParameters,
   GetItemBaseInfoResponse,
 } from "./get-item-base-info";
+import { MOCKED_GET_ITEM_LIST_ITEMS } from "./get-item-list.mock";
 
-export function createGetItemBaseInfoItem(args?: GetItemBaseInfoItem) {
+export function createGetItemBaseInfoItem(args?: Partial<GetItemBaseInfoItem>) {
   return {
     item_id: args?.item_id ?? faker.datatype.number(),
     category_id: args?.category_id ?? faker.datatype.number(),
     item_name: args?.item_name ?? faker.commerce.productName(),
     item_sku: args?.item_sku ?? faker.random.alphaNumeric(8),
-    create_time: args?.create_time ?? faker.datatype.datetime().getTime(),
-    update_time: args?.update_time ?? faker.datatype.datetime().getTime(),
+    create_time:
+      args?.create_time ??
+      faker.datatype
+        .datetime({ min: new Date("01/01/2021").getTime(), max: Date.now() })
+        .getTime(),
+    update_time:
+      args?.update_time ??
+      faker.datatype
+        .datetime({ min: new Date("01/01/2021").getTime(), max: Date.now() })
+        .getTime(),
     attribute_list: args?.attribute_list ?? [],
     price_info: args?.price_info ?? [
       {
         currency: "THB",
-        original_price: faker.datatype.number(),
-        current_price: faker.datatype.number(),
+        original_price: +faker.commerce.price(),
+        current_price: +faker.commerce.price(),
       },
     ],
     stock_info_v2: args?.stock_info_v2 ?? {
@@ -38,7 +48,7 @@ export function createGetItemBaseInfoItem(args?: GetItemBaseInfoItem) {
       ],
     },
     image: args?.image ?? {
-      image_url_list: [faker.image.imageUrl()],
+      image_url_list: [faker.image.imageUrl(640, 480, "product")],
       image_id_list: [faker.datatype.uuid()],
     },
     weight: faker.datatype.number().toString(),
@@ -77,10 +87,10 @@ export function createGetItemBaseInfoItem(args?: GetItemBaseInfoItem) {
         field_list: [
           {
             field_type: faker.datatype.string(),
-            text: faker.datatype.string(),
+            text: faker.commerce.productDescription(),
             image_info: {
-              image_id: faker.datatype.string(),
-              image_url: faker.datatype.string(),
+              image_id: faker.datatype.number().toString(),
+              image_url: faker.image.imageUrl(640, 480, "food"),
             },
           },
         ],
@@ -101,19 +111,26 @@ export function createGetItemBaseInfoResponse(
   } satisfies GetItemBaseInfoResponse;
 }
 
+export const MOCKED_GET_ITEM_BASE_INFO_ITEMS = MOCKED_GET_ITEM_LIST_ITEMS.map(
+  ({ item_id }) => {
+    return createGetItemBaseInfoItem({ item_id });
+  }
+);
+
 export const getItemBaseInfoMockHandler = rest.get<
   {},
   Record<keyof GetItemBaseInfoRequestParameters, string[]>
->(API_V2_PRODUCT_GET_ITEM_BASE_INFO, (req, res, ctx) => {
-  const { item_id_list: itemIdList } = req.params;
-  console.log({ itemIdList });
+>(mockURL(API_V2_PRODUCT_GET_ITEM_BASE_INFO), (req, res, ctx) => {
+  const itemIdList = req.url.searchParams.get("item_id_list");
 
   return res(
     ctx.status(200),
     ctx.json(
       createGetItemBaseInfoResponse({
         response: {
-          item_list: [createGetItemBaseInfoItem()],
+          item_list: MOCKED_GET_ITEM_BASE_INFO_ITEMS.filter((item) =>
+            itemIdList?.includes(item.item_id.toString())
+          ),
         },
       })
     )

@@ -7,6 +7,28 @@ export declare const getItemExtraInfoRequestParametersSchema: z.ZodObject<{
 }, {
     item_id_list: string;
 }>;
+declare const itemSchema: z.ZodObject<{
+    item_id: z.ZodNumber;
+    sale: z.ZodNumber;
+    views: z.ZodNumber;
+    likes: z.ZodNumber;
+    rating_star: z.ZodNumber;
+    comment_count: z.ZodNumber;
+}, "strip", z.ZodTypeAny, {
+    item_id: number;
+    sale: number;
+    views: number;
+    likes: number;
+    rating_star: number;
+    comment_count: number;
+}, {
+    item_id: number;
+    sale: number;
+    views: number;
+    likes: number;
+    rating_star: number;
+    comment_count: number;
+}>;
 export declare const getItemExtraInfoResponseSchema: z.ZodObject<{
     error: z.ZodString;
     message: z.ZodString;
@@ -86,6 +108,7 @@ export declare const getItemExtraInfoResponseSchema: z.ZodObject<{
     } | undefined;
 }>;
 export type GetItemExtraInfoResponse = z.infer<typeof getItemExtraInfoResponseSchema>;
+export type GetItemExtraInfoItem = z.infer<typeof itemSchema>;
 export type GetItemExtraInfoRequestParameters = z.infer<typeof getItemExtraInfoRequestParametersSchema>;
 export declare const getItemExtraInfo: (requestParameters: {
     item_id_list: string;

@@ -31,10 +31,11 @@ export class HttpClient {
       },
       (error) => {
         const {
-          response: { status },
+          response,
           message,
           config: { method, url, data, params },
         } = error;
+        const status = response?.status;
         this.logger.error({ status, message, method, url, data, params });
         return error;
       }

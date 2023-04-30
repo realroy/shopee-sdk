@@ -20,7 +20,7 @@ export declare const getItemListRequestParametersSchema: z.ZodObject<{
     update_time_from?: Date | undefined;
     update_time_to?: Date | undefined;
 }>;
-export declare const itemSchema: z.ZodObject<{
+declare const itemSchema: z.ZodObject<{
     item_id: z.ZodNumber;
     item_status: z.ZodEnum<["NORMAL", "DELETED", "UNLIST", "BANNED"]>;
     update_time: z.ZodNumber;
@@ -99,7 +99,7 @@ export declare const getItemListResponseSchema: z.ZodObject<{
     has_next_page?: boolean | undefined;
     next_offset?: number | undefined;
 }>;
-export type Item = z.infer<typeof itemSchema>;
+export type GetItemListItem = z.infer<typeof itemSchema>;
 export type GetItemListResponse = z.infer<typeof getItemListResponseSchema>;
 export type GetItemListRequestParameters = z.infer<typeof getItemListRequestParametersSchema>;
 export declare const getItemList: (requestParameters: {

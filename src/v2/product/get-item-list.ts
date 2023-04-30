@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { buildApi } from "@/libs";
+import { buildApi } from "@/libs/build-api";
 
 export const API_V2_PRODUCT_GET_ITEM_LIST = "/api/v2/product/get_item_list";
 

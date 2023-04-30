@@ -16,13 +16,11 @@
   },
   "packageManager": "pnpm@8.1.1",
   "scripts": {
-    "build": "run-p build-vite build-ts",
+    "build": "run-s build-vite build-ts",
     "build-vite": "vite build",
-    "build-ts": "run-s build-declaration tsc-alias",
-    "build-declaration": "tsc --project ./tsconfig.build.json",
+    "build-ts": "tsc --project ./tsconfig.build.json && tsc-alias",
     "test": "vitest",
-    "coverage": "vitest run --coverage",
-    "tsc-alias": "tsc-alias"
+    "coverage": "vitest run --coverage"
   },
   "devDependencies": {
     "@tsconfig/node-lts": "18.12.1",

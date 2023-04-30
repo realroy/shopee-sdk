@@ -23,14 +23,18 @@ export const getItemExtraInfoResponseSchema = z.object({
   message: z.string(),
   warning: z.string().optional(),
   request_id: z.string(),
-  response: z.object({
-    item_list: z.array(itemSchema).optional(),
-  }).optional(),
+  response: z
+    .object({
+      item_list: z.array(itemSchema).optional(),
+    })
+    .optional(),
 });
 
 export type GetItemExtraInfoResponse = z.infer<
   typeof getItemExtraInfoResponseSchema
 >;
+
+export type GetItemExtraInfoItem = z.infer<typeof itemSchema>;
 
 export type GetItemExtraInfoRequestParameters = z.infer<
   typeof getItemExtraInfoRequestParametersSchema

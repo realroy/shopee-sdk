@@ -1,14 +1,13 @@
-import { setupServer } from "msw/node";
+import { setupServer, SetupServer } from "msw/node";
 
 import { ShopeeContext } from "./libs";
 import * as v2 from "./v2";
 import * as v2MockHandlers from "./v2/v2.mock-handler";
-
-import type { SetupServer } from "msw/node";
+import { env } from "./env";
 
 const shopeeContext = ShopeeContext.getInstance();
 
-export type ShopeeSdkArgs = Omit<typeof shopeeContext, "value"> & {
+export type ShopeeSdkArgs = typeof env & {
   isMocked?: boolean;
 };
 
@@ -19,12 +18,12 @@ export class ShopeeSdk {
   readonly v2: typeof v2;
 
   constructor(args: ShopeeSdkArgs) {
-    shopeeContext.accessToken = args.accessToken;
-    shopeeContext.baseURL = args.baseURL;
-    shopeeContext.partnerId = args.partnerId;
-    shopeeContext.partnerKey = args.partnerKey;
-    shopeeContext.accessToken = args.accessToken;
-    shopeeContext.shopId = args.shopId;
+    shopeeContext.accessToken = args.accessToken ?? env.accessToken;
+    shopeeContext.baseURL = args.baseURL ?? env.baseURL;
+    shopeeContext.partnerId = args.partnerId ?? env.partnerId;
+    shopeeContext.partnerKey = args.partnerKey ?? env.partnerKey;
+    shopeeContext.shopId = args.shopId ?? env.shopId;
+
     this.isMocked = args.isMocked ?? false;
 
     this.v2 = v2;

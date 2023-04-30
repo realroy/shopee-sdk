@@ -3,10 +3,10 @@ import { ShopeeContext } from "@/libs";
 import { generateHmac } from "./generate-hmac";
 import { toTimestamp } from "./to-timestamp";
 
-export type SignUrlArgs =  ShopeeContext["value"] & {
-    path: string;
-    params: Record<string, unknown>;
-  }
+export type SignUrlArgs = ShopeeContext["value"] & {
+  path: string;
+  params: Record<string, unknown>;
+};
 
 export function signUrl(args: SignUrlArgs) {
   const {
@@ -19,9 +19,9 @@ export function signUrl(args: SignUrlArgs) {
     params = {},
   } = args;
   const parsedPartnerId = partner_id.toString();
-  const parsedShopId = shop_id.toString()
+  const parsedShopId = shop_id.toString();
   const parsedParams = {} as Record<string, string>;
-  
+
   for (const key in params) {
     const value = params[key];
 
