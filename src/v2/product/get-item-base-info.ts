@@ -64,14 +64,15 @@ const getItemBaseInfoItemSchema = z.object({
   update_time: z.number(),
   attribute_list: z.array(attributeSchema).optional(),
   price_info: z.array(priceInfoSchema).optional(),
-  stock_info_v2: z.object({
-    summary_info: z
-      .object({
+  stock_info_v2: z
+    .object({
+      summary_info: z.object({
         total_reserved_stock: z.number(),
         total_available_stock: z.number(),
       }),
-    seller_stock: z.array(sellerStockSchema).optional(),
-  }).optional(),
+      seller_stock: z.array(sellerStockSchema).optional(),
+    })
+    .optional(),
   image: z.object({
     image_url_list: z.array(z.string()),
     image_id_list: z.array(z.string()),
@@ -126,6 +127,8 @@ export const getItemBaseInfoResponseSchema = z.object({
 export type GetItemBaseInfoResponse = z.infer<
   typeof getItemBaseInfoResponseSchema
 >;
+
+export type GetItemBaseInfoItem = z.infer<typeof getItemBaseInfoItemSchema>;
 
 export type GetItemBaseInfoRequestParameters = z.infer<
   typeof getItemBaseInfoRequestParametersSchema

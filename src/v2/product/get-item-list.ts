@@ -11,10 +11,10 @@ export const getItemListRequestParametersSchema = z.object({
   page_size: z.number().int().positive().max(100).optional(),
   update_time_from: z.date().optional(),
   update_time_to: z.date().optional(),
-  item_status: z.array(z.enum(ITEM_STATUS))
+  item_status: z.array(z.enum(ITEM_STATUS)),
 });
 
-export const itemSchema = z.object({
+const itemSchema = z.object({
   item_id: z.number().int(),
   item_status: z.enum(ITEM_STATUS),
   update_time: z.number().int(),
@@ -35,7 +35,7 @@ export const getItemListResponseSchema = z.object({
   next_offset: z.number().int().optional(),
 });
 
-export type Item = z.infer<typeof itemSchema>;
+export type GetItemListItem = z.infer<typeof itemSchema>;
 
 export type GetItemListResponse = z.infer<typeof getItemListResponseSchema>;
 
@@ -50,10 +50,10 @@ export const getItemList = buildApi({
   transformRequestParameter(data) {
     data.update_time_from = data.update_time_from ?? new Date("01/01/2022");
     data.update_time_to = data.update_time_to ?? new Date();
-    
-    return data
+
+    return data;
   },
   responseSchema: getItemListResponseSchema,
-})
+});
 
 export default getItemList;
