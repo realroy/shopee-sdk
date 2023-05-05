@@ -4,7 +4,7 @@ import { ShopeeSdk } from "@/shopee-sdk";
 
 describe("getItemList", () => {
   const shopeeSdk = new ShopeeSdk({
-    isMocked: true,
+    isMocked: process.env?.SHOPEE_SDK_IS_MOCKED === "true",
   });
 
   it("should receive expected shape", async () => {

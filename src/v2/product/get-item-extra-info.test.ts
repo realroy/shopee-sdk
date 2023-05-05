@@ -4,7 +4,7 @@ import ShopeeSdk from "@/shopee-sdk";
 
 describe("getItemExtraInfo", async () => {
   const shopeeSdk = new ShopeeSdk({
-    isMocked: true,
+    isMocked: process.env?.SHOPEE_SDK_IS_MOCKED === "true",
   });
 
   const itemList = await shopeeSdk.v2.product.getItemList({
