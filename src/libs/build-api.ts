@@ -3,7 +3,7 @@ import { z } from "zod";
 import { HttpClient } from "./http-client";
 import { ShopeeContext } from "./shopee-context";
 
-import { signUrl } from "@/utils";
+import { signURL } from "@/utils";
 
 const httpClient = HttpClient.getInstance();
 
@@ -58,7 +58,7 @@ export function buildApi<
     const parseRequestParameters = await args.requestParameterSchema
       .transform(transformRequestParameter)
       .safeParseAsync(requestParameters);
-
+  
     if (!parseRequestParameters.success) {
       throw new Error(parseRequestParameters.error.message);
     }
@@ -66,7 +66,7 @@ export function buildApi<
     const parsedRequestParameters = parseRequestParameters.data;
     const context = ShopeeContext.getInstance().value;
 
-    const signedURL = signUrl({
+    const signedURL = await signURL({
       ...context,
       path: args.path,
       params: parsedRequestParameters,

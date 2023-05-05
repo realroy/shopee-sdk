@@ -7,8 +7,8 @@ describe("authPartner", () => {
     isMocked: process.env?.SHOPEE_SDK_IS_MOCKED === "true",
   });
 
-  it("should return valid authPartner url", () => {
-    const actual = shopeeSdk.v2.shop.authPartner({
+  it("should return valid authPartner url", async () => {
+    const actual = await shopeeSdk.v2.shop.authPartner({
       redirectURL: "https://foo.bar",
       redirectSign: "123",
     });

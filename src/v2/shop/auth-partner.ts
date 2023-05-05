@@ -8,7 +8,7 @@ export type AuthPartnerRequestParams = {
   redirectSign: string;
 };
 
-export function authPartner({
+export async function authPartner({
   redirectURL,
   redirectSign,
 }: AuthPartnerRequestParams) {
@@ -21,7 +21,7 @@ export function authPartner({
 
   const timestamp = toTimestamp(new Date());
 
-  const sign = generateHmac(
+  const sign = await generateHmac(
     partnerKey,
     partnerId.toString(),
     API_V2_SHOP_AUTH_PARTNER,

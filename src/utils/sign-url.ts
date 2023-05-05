@@ -3,12 +3,12 @@ import { ShopeeContext } from "@/libs";
 import { generateHmac } from "./generate-hmac";
 import { toTimestamp } from "./to-timestamp";
 
-export type SignUrlArgs = ShopeeContext["value"] & {
+export type SignURLArgs = ShopeeContext["value"] & {
   path: string;
   params: Record<string, unknown>;
 };
 
-export function signUrl(args: SignUrlArgs) {
+export async function signURL(args: SignURLArgs) {
   const {
     partner_id,
     partner_key,
@@ -41,7 +41,7 @@ export function signUrl(args: SignUrlArgs) {
 
   const url = new URL(path, base_url);
 
-  const sign = generateHmac(
+  const sign = await generateHmac(
     partner_key,
     parsedPartnerId,
     path,
