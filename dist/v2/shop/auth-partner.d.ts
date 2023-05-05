@@ -3,4 +3,4 @@ export type AuthPartnerRequestParams = {
     redirectURL: string;
     redirectSign: string;
 };
-export declare function authPartner({ redirectURL, redirectSign, }: AuthPartnerRequestParams): string;
+export declare function authPartner({ redirectURL, redirectSign, }: AuthPartnerRequestParams): Promise<string>;

@@ -1,6 +1,6 @@
 import { ShopeeContext } from "../libs";
-export type SignUrlArgs = ShopeeContext["value"] & {
+export type SignURLArgs = ShopeeContext["value"] & {
     path: string;
     params: Record<string, unknown>;
 };
-export declare function signUrl(args: SignUrlArgs): string;
+export declare function signURL(args: SignURLArgs): Promise<string>;

@@ -58,9 +58,11 @@ export function buildApi<
     const parseRequestParameters = await args.requestParameterSchema
       .transform(transformRequestParameter)
       .safeParseAsync(requestParameters);
-  
+
     if (!parseRequestParameters.success) {
-      throw new Error(parseRequestParameters.error.message);
+      throw new Error(
+        `parse request parameters error: ${parseRequestParameters.error.message}`
+      );
     }
 
     const parsedRequestParameters = parseRequestParameters.data;
@@ -78,7 +80,9 @@ export function buildApi<
       const parseRequestBodySchema =
         await args.requestBodySchema.safeParseAsync(args.body);
       if (!parseRequestBodySchema.success) {
-        throw new Error(parseRequestBodySchema.error.message);
+        throw new Error(
+          `parse request body error: ${parseRequestBodySchema.error.message}`
+        );
       }
 
       data = (await httpClient.post(signedURL, {}, args.body)).data;
@@ -89,7 +93,7 @@ export function buildApi<
     const parseData = await args.responseSchema.safeParseAsync(data);
 
     if (!parseData.success) {
-      throw new Error(parseData.error.message);
+      throw new Error(`parse response error: ${parseData.error.message}`);
     }
 
     return parseData.data;

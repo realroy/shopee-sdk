@@ -1,6 +1,5 @@
 export async function generateHmac(key: string, ...data: string[]) {
   let digest: string
-
   if (typeof globalThis.crypto !== 'undefined') {
     digest = await generateHmacWithWebCryptoAPI(key, ...data)
   }
@@ -13,7 +12,7 @@ export async function generateHmac(key: string, ...data: string[]) {
 export async function generateHmacWithWebCryptoAPI(key: string, ...data: string[]) {
   const encoder = new TextEncoder();
   const keyUint8Array = encoder.encode(key);
-  let messageUint8Array: Uint8Array;
+  let messageUint8Array = new Uint8Array();
 
   data.forEach((datum) => {
     if (!datum) {
@@ -36,6 +35,7 @@ export async function generateHmacWithWebCryptoAPI(key: string, ...data: string[
     cryptoKey,
     messageUint8Array
   );
+
   const signatureArray = new Uint8Array(signature);
   const signatureHex = Array.from(signatureArray)
     .map((b) => b.toString(16).padStart(2, "0"))

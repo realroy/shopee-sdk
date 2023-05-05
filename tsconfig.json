@@ -1,11 +1,18 @@
 {
-  // "extends": "@tsconfig/node-lts/tsconfig.json",
   "compilerOptions": {
+    "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "target": "ES2015",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
     "baseUrl": "./",
     "declaration": true,
     "outDir": "dist",
     "paths": {
-      "@/*": ["src/*"],
+      "@/*": ["./src/*"],
     }
   },
   "include": ["src"]

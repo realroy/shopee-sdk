@@ -1,1 +1,3 @@
-export declare function generateHmac(key: string, ...data: string[]): string;
+export declare function generateHmac(key: string, ...data: string[]): Promise<string>;
+export declare function generateHmacWithWebCryptoAPI(key: string, ...data: string[]): Promise<string>;
+export declare function generateHmacWithNodeCrypto(key: string, ...data: string[]): Promise<string>;
