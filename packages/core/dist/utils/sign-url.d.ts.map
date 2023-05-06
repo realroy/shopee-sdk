@@ -1,0 +1,1 @@
+{"version":3,"file":"sign-url.d.ts","sourceRoot":"","sources":["../../src/utils/sign-url.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,aAAa,EAAE,MAAM,SAAS,CAAC;AAKxC,MAAM,MAAM,WAAW,GAAG,aAAa,CAAC,OAAO,CAAC,GAAG;IACjD,IAAI,EAAE,MAAM,CAAC;IACb,MAAM,EAAE,MAAM,CAAC,MAAM,EAAE,OAAO,CAAC,CAAC;CACjC,CAAC;AAEF,wBAAsB,OAAO,CAAC,IAAI,EAAE,WAAW,mBAuD9C"}
