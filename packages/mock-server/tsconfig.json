@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    // "lib": ["ESNext", "DOM"],
+    "module": "ESNext",
+    "target": "ES2015",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "composite": true,
+    "declaration": true,
+    "types": ["node"],
+    "outDir": "dist",
+    "paths": {
+      "@/*": ["./packages/mock-server/src/*"],
+    }
+  },
+  "include": ["./src"],
+}

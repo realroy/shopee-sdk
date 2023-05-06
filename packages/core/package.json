@@ -1,0 +1,41 @@
+{
+  "name": "@shopee-sdk/core",
+  "version": "0.0.3",
+  "repository": "https://github.com/realroy/shopee-sdk",
+  "license": "MIT",
+  "author": "realroy",
+  "type": "module",
+  "main": "./dist/shopee-sdk.umd.cjs",
+  "module": "./dist/shopee-sdk.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/shopee-sdk.js",
+      "require": "./dist/shopee-sdk.umd.cjs"
+    }
+  },
+  "packageManager": "pnpm@8.1.1",
+  "scripts": {
+    "build": "run-s clean build-vite build-ts",
+    "build-vite": "vite build",
+    "build-ts": "tsc --project ./tsconfig.build.json && tsc-alias",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "clean": "rm -rf ./dist"
+  },
+  "devDependencies": {
+    "@tsconfig/node-lts": "18.12.1",
+    "@types/node": "20.0.0",
+    "npm-run-all": "4.1.5",
+    "rollup-plugin-polyfill-node": "0.12.0",
+    "tsc-alias": "1.8.6",
+    "typescript": "5.0.2",
+    "vite": "4.3.2",
+    "vitest": "0.30.1"
+  },
+  "peerDependencies": {
+    "zod": "3.21.4",
+    "axios": "1.3.6",
+    "dotenv": "16.0.3"
+  }
+}

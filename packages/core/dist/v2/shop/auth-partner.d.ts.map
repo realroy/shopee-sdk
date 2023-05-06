@@ -1,0 +1,1 @@
+{"version":3,"file":"auth-partner.d.ts","sourceRoot":"","sources":["../../../src/v2/shop/auth-partner.ts"],"names":[],"mappings":"AAGA,eAAO,MAAM,wBAAwB,8BAA8B,CAAC;AAEpE,MAAM,MAAM,wBAAwB,GAAG;IACrC,WAAW,EAAE,MAAM,CAAC;IACpB,YAAY,EAAE,MAAM,CAAC;CACtB,CAAC;AAEF,wBAAsB,WAAW,CAAC,EAChC,WAAW,EACX,YAAY,GACb,EAAE,wBAAwB,mBA4B1B"}
