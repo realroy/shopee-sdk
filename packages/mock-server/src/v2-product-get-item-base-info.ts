@@ -2,17 +2,19 @@ import { rest } from "msw";
 import { faker } from "@faker-js/faker";
 import { API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH } from "@shopee-sdk/core";
 
-import { mockURL } from "@/utils";
+import { mockURL } from "./utils";
 
-import { MOCKED_GET_ITEM_LIST_ITEMS } from "./get-item-list";
+import { MOCKED_GET_ITEM_LIST_ITEMS } from "./v2-product-get-item-list";
 
 import type {
-  GetItemBaseInfoItem,
-  GetItemBaseInfoRequestParameters,
   GetItemBaseInfoResponse,
-} from "@shopee-sdk/core/src/v2/product/get-item-base-info";
+  GetItemBaseInfoResponseItem,
+  GetItemBaseInfoRequestParameters,
+} from "@shopee-sdk/core";
 
-export function createGetItemBaseInfoItem(args?: Partial<GetItemBaseInfoItem>) {
+export function createGetItemBaseInfoItem(
+  args?: Partial<GetItemBaseInfoResponseItem>
+) {
   return {
     item_id: args?.item_id ?? faker.datatype.number(),
     category_id: args?.category_id ?? faker.datatype.number(),
@@ -97,7 +99,7 @@ export function createGetItemBaseInfoItem(args?: Partial<GetItemBaseInfoItem>) {
         ],
       },
     },
-  } satisfies GetItemBaseInfoItem;
+  } satisfies GetItemBaseInfoResponseItem;
 }
 
 export function createGetItemBaseInfoResponse(

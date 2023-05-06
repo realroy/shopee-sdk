@@ -3,7 +3,7 @@ import { z } from "zod";
 import { HttpClient } from "./http-client";
 import { ShopeeContext } from "./shopee-context";
 
-import { signURL } from "@/utils";
+import { signURL } from "../utils";
 
 const httpClient = HttpClient.getInstance();
 

@@ -1,8 +1,7 @@
 import { describe, it, expect } from "vitest";
+import { ShopeeSdk } from "@shopee-sdk/core";
 
-import { ShopeeSdk } from "@/shopee-sdk";
-
-describe("getItemList", () => {
+describe("v2/product/getItemList", () => {
   const shopeeSdk = new ShopeeSdk({});
 
   it("should receive expected shape", async () => {

@@ -4,21 +4,15 @@ import { env } from "./env";
 
 const shopeeContext = ShopeeContext.getInstance();
 
-export type ShopeeSdkArgs = typeof env & {
-  isMocked?: boolean;
-};
+export type ShopeeSdkArgs = typeof env
 
 export class ShopeeSdk {
-  readonly v2: typeof v2;
-
   constructor(args: ShopeeSdkArgs) {
     shopeeContext.accessToken = args.accessToken ?? env.accessToken;
     shopeeContext.baseURL = args.baseURL ?? env.baseURL;
     shopeeContext.partnerId = args.partnerId ?? env.partnerId;
     shopeeContext.partnerKey = args.partnerKey ?? env.partnerKey;
     shopeeContext.shopId = args.shopId ?? env.shopId;
-
-    this.v2 = v2;
   }
 
   setPartnerId(partnerId: number) {
@@ -49,6 +43,10 @@ export class ShopeeSdk {
     shopeeContext.shopId = shopId;
 
     return this;
+  }
+
+  get v2() {
+    return v2
   }
 }
 

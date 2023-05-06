@@ -1,11 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { ShopeeSdk } from "@/shopee-sdk";
+import { ShopeeSdk } from "@shopee-sdk/core";
 
-describe("authPartner", () => {
-  const shopeeSdk = new ShopeeSdk({
-    isMocked: process.env?.SHOPEE_SDK_IS_MOCKED === "true",
-  });
+describe("v2/shop/authPartner", () => {
+  const shopeeSdk = new ShopeeSdk({});
 
   it("should return valid authPartner url", async () => {
     const actual = await shopeeSdk.v2.shop.authPartner({

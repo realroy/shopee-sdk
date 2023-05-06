@@ -7,9 +7,11 @@
   ],
   "version": "0.0.0",
   "description": "",
-  "scripts": {
-  },
+  "scripts": {},
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "nx": "16.1.1"
+  }
 }

@@ -1,12 +1,8 @@
-import { ShopeeContext } from "@/libs";
-import { generateHmac, toTimestamp } from "@/utils";
+import { ShopeeContext } from "./libs";
+import { generateHmac, toTimestamp } from "./utils";
+import { API_V2_SHOP_AUTH_PARTNER } from "./v2-shop.constant";
+import { AuthPartnerRequestParams } from "./v2-shop.type";
 
-export const API_V2_SHOP_AUTH_PARTNER = "/api/v2/shop/auth_partner";
-
-export type AuthPartnerRequestParams = {
-  redirectURL: string;
-  redirectSign: string;
-};
 
 export async function authPartner({
   redirectURL,

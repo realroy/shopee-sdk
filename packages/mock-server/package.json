@@ -31,8 +31,10 @@
     "vite": "4.3.2",
     "vitest": "0.30.1"
   },
+  "dependencies": {
+    "@shopee-sdk/core": "workspace:*"
+  },
   "peerDependencies": {
-    "@shopee-sdk/core": "workspace:*",
     "dotenv": "16.0.3",
     "msw": "1.2.1",
     "zod": "3.21.4"

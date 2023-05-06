@@ -9,7 +9,7 @@ export async function generateHmac(key: string, ...data: string[]) {
   return digest
 }
 
-export async function generateHmacWithWebCryptoAPI(key: string, ...data: string[]) {
+async function generateHmacWithWebCryptoAPI(key: string, ...data: string[]) {
   const encoder = new TextEncoder();
   const keyUint8Array = encoder.encode(key);
   let messageUint8Array = new Uint8Array();
@@ -44,7 +44,7 @@ export async function generateHmacWithWebCryptoAPI(key: string, ...data: string[
   return signatureHex;
 }
 
-export async function generateHmacWithNodeCrypto(key: string, ...data: string[]) {
+async function generateHmacWithNodeCrypto(key: string, ...data: string[]) {
   const { createHmac } = await import("crypto");
   const hmac = createHmac("sha256", key);
   data.filter((s) => !!s).forEach((s) => hmac.update(s));

@@ -1,0 +1,19 @@
+{
+  "name": "@shopee-sdk/core-e2e",
+  "version": "0.0.0",
+  "repository": "https://github.com/realroy/shopee-sdk",
+  "license": "MIT",
+  "author": "realroy",
+  "packageManager": "pnpm@8.1.1",
+  "scripts": {
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@shopee-sdk/core": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "5.0.2",
+    "vitest": "0.30.1"
+  }
+}

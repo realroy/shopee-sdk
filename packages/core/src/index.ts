@@ -1,5 +1,8 @@
-export * from "./constants";
 export * from "./utils";
 export * from "./shopee-sdk";
 
-export type * from './v2'
+export * from "./v2-product.constant";
+export * from "./v2-product.type";
+
+export * from './v2-shop.constant'
+export * from './v2-shop.type'

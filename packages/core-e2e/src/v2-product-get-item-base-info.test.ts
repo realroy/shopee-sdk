@@ -1,8 +1,7 @@
 import { describe, it, expect } from "vitest";
+import { ShopeeSdk } from "@shopee-sdk/core";
 
-import ShopeeSdk from "@/shopee-sdk";
-
-describe("getItemBaseInfo", async () => {
+describe("v2/product/getItemBaseInfo", async () => {
   const shopeeSdk = new ShopeeSdk({});
 
   const itemList = await shopeeSdk.v2.product.getItemList({

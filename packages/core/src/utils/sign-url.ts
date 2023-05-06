@@ -1,4 +1,4 @@
-import { ShopeeContext } from "@/libs";
+import { ShopeeContext } from "../libs";
 
 import { generateHmac } from "./generate-hmac";
 import { toTimestamp } from "./to-timestamp";

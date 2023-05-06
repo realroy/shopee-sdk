@@ -3,11 +3,6 @@ import { defineConfig } from "vite";
 import nodePolyfills from "rollup-plugin-polyfill-node";
 
 export default defineConfig({
-  resolve: {
-    alias: {
-      "@/": "/src/",
-    },
-  },
   build: {
     lib: {
       entry: resolve(__dirname, "src/index.ts"),

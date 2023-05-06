@@ -2,17 +2,17 @@ import { rest } from "msw";
 import { faker } from "@faker-js/faker";
 import { API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH } from "@shopee-sdk/core";
 
-import { mockURL } from "@/utils";
+import { mockURL } from "./utils";
 
-import { MOCKED_GET_ITEM_LIST_ITEMS } from "./get-item-list";
+import { MOCKED_GET_ITEM_LIST_ITEMS } from "./v2-product-get-item-list";
 
 import type {
-  GetItemExtraInfoItem,
+  GetItemExtraInfoResponseItem,
   GetItemExtraInfoResponse,
-} from "@shopee-sdk/core/src/v2/product/get-item-extra-info";
+} from "@shopee-sdk/core";
 
 export function createGetItemExtraInfoItem(
-  args?: Partial<GetItemExtraInfoItem>
+  args?: Partial<GetItemExtraInfoResponseItem>
 ) {
   return {
     item_id: args?.item_id ?? faker.datatype.number(),
@@ -21,7 +21,7 @@ export function createGetItemExtraInfoItem(
     likes: args?.likes ?? faker.datatype.number(),
     rating_star: args?.rating_star ?? faker.datatype.number(),
     comment_count: args?.comment_count ?? faker.datatype.number(),
-  } satisfies GetItemExtraInfoItem;
+  } satisfies GetItemExtraInfoResponseItem;
 }
 
 export function createGetItemBaseInfoResponse(

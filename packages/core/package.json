@@ -10,10 +10,16 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "import": "./dist/shopee-sdk.js",
       "require": "./dist/shopee-sdk.umd.cjs"
-    }
+    },
+    "./package.json": "./package.json"
   },
+  "files": [
+    "dist",
+    "src"
+  ],
   "packageManager": "pnpm@8.1.1",
   "scripts": {
     "build": "run-s clean build-vite build-ts",

@@ -137,6 +137,6 @@ export declare const apis: {
     }>;
 };
 export type * from './get-item-list';
-export type * from './get-item-base-info';
+export type * from '../../get-item-base-info';
 export type * from './get-item-extra-info';
 //# sourceMappingURL=index.d.ts.map

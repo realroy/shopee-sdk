@@ -1,9 +1,8 @@
 import { z } from "zod";
 
-import { buildApi } from "@/libs";
-import { API_V2_PRODUCT_GET_ITEM_LIST_PATH } from "@/constants";
+import { buildApi } from "./libs";
+import { API_V2_PRODUCT_GET_ITEM_LIST_PATH, ITEM_STATUS } from "./v2-product.constant";
 
-export const ITEM_STATUS = ["NORMAL", "DELETED", "UNLIST", "BANNED"] as const;
 
 export const getItemListRequestParametersSchema = z.object({
   offset: z.number().int().min(0).optional(),
@@ -13,12 +12,6 @@ export const getItemListRequestParametersSchema = z.object({
   item_status: z.array(z.enum(ITEM_STATUS)),
 });
 
-const itemSchema = z.object({
-  item_id: z.number().int(),
-  item_status: z.enum(ITEM_STATUS),
-  update_time: z.number().int(),
-});
-
 export const getItemListResponseSchema = z.object({
   error: z.string(),
   message: z.string().nullable().optional(),
@@ -26,7 +19,15 @@ export const getItemListResponseSchema = z.object({
   request_id: z.string(),
   response: z
     .object({
-      item: z.array(itemSchema.optional()).optional(),
+      item: z
+        .array(
+          z.object({
+            item_id: z.number().int(),
+            item_status: z.enum(ITEM_STATUS),
+            update_time: z.number().int(),
+          })
+        )
+        .optional(),
     })
     .optional(),
   total_count: z.number().int().optional(),
@@ -34,13 +35,7 @@ export const getItemListResponseSchema = z.object({
   next_offset: z.number().int().optional(),
 });
 
-export type GetItemListItem = z.infer<typeof itemSchema>;
 
-export type GetItemListResponse = z.infer<typeof getItemListResponseSchema>;
-
-export type GetItemListRequestParameters = z.infer<
-  typeof getItemListRequestParametersSchema
->;
 
 export const getItemList = buildApi({
   method: "GET",
@@ -54,5 +49,3 @@ export const getItemList = buildApi({
   },
   responseSchema: getItemListResponseSchema,
 });
-
-export default getItemList;
