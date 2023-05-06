@@ -2,17 +2,17 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "lib": ["ESNext", "DOM"],
-    // "module": "ESNext",
+    "module": "CommonJS",
     // "target": "ES2015",
     // "strict": true,
-    // "esModuleInterop": true,
+    "esModuleInterop": true,
     // "skipLibCheck": true,
     // "forceConsistentCasingInFileNames": true,
     // "moduleResolution": "node",
     // "composite": true,
     // "declaration": true,
     // "types": ["node"],
-    "outDir": "dist",
+    "outDir": "dist"
   },
-  "include": ["src"],
+  "include": ["src"]
 }
