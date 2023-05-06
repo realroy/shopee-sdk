@@ -34,8 +34,10 @@ export type GetItemBaseInfoRequestParameters = z.infer<
 export type GetItemBaseInfoResponseItem = NonNullable<GetItemBaseInfoResponse['response']['item_list']>[number]
 
 
-export type GetItemListResponse = z.infer<typeof getItemListResponseSchema>;
-
 export type GetItemListRequestParameters = z.infer<
   typeof getItemListRequestParametersSchema
 >;
+
+export type GetItemListResponse = z.infer<typeof getItemListResponseSchema>;
+
+export type GetItemListResponseItem = NonNullable<NonNullable<GetItemListResponse['response']>['item']>[number]

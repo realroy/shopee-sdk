@@ -1,15 +1,14 @@
 import { rest } from "msw";
 import { faker } from "@faker-js/faker";
-import { toTimestamp } from "@shopee-sdk/core";
-import { API_V2_PRODUCT_GET_ITEM_LIST_PATH } from "@shopee-sdk/core";
+import { toTimestamp, API_V2_PRODUCT_GET_ITEM_LIST_PATH } from "@shopee-sdk/core";
 
-import { mockURL } from '@/utils'
+import { mockURL } from './utils'
 
-import type { GetItemListItem, GetItemListResponse } from "@shopee-sdk/core";
+import type { GetItemListResponseItem, GetItemListResponse } from "@shopee-sdk/core";
 
 export function createGetItemListItem(
-  args?: Partial<GetItemListItem>
-): GetItemListItem {
+  args?: Partial<GetItemListResponseItem>
+): GetItemListResponseItem {
   return {
     item_id: args?.item_id ?? faker.datatype.number(),
     item_status:
