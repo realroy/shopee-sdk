@@ -4,7 +4,7 @@ import { buildApi } from "./libs";
 import { API_V2_PRODUCT_GET_MODEL_LIST_PATH } from "./v2-product.constant";
 
 export const getModelListRequestParametersSchema = z.object({
-  item_id_list: z.string(),
+  item_id: z.string(),
 });
 
 export const getModelListResponseSchema = z.object({

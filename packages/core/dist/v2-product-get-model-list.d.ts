@@ -1,10 +1,10 @@
 import { z } from "zod";
 export declare const getModelListRequestParametersSchema: z.ZodObject<{
-    item_id_list: z.ZodString;
+    item_id: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    item_id_list: string;
+    item_id: string;
 }, {
-    item_id_list: string;
+    item_id: string;
 }>;
 export declare const getModelListResponseSchema: z.ZodObject<{
     error: z.ZodString;
@@ -308,7 +308,7 @@ export declare const getModelListResponseSchema: z.ZodObject<{
     request_id: string;
 }>;
 export declare const getModelList: (requestParameters: {
-    item_id_list: string;
+    item_id: string;
 }) => Promise<{
     message: string;
     response: {

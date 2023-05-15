@@ -310,7 +310,7 @@ const U = "/api/v2/product/get_item_base_info", O = "/api/v2/product/get_item_ex
   },
   responseSchema: G
 }), V = e.object({
-  item_id_list: e.string()
+  item_id: e.string()
 }), F = e.object({
   error: e.string(),
   message: e.string(),
