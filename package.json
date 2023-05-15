@@ -7,7 +7,9 @@
   ],
   "version": "0.0.0",
   "description": "",
-  "scripts": {},
+  "scripts": {
+    "build:core": "nx build @shopee-sdk/core"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
