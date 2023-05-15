@@ -307,7 +307,7 @@ export declare const getModelListResponseSchema: z.ZodObject<{
     warning: string;
     request_id: string;
 }>;
-export declare const getItemList: (requestParameters: {
+export declare const getModelList: (requestParameters: {
     item_id_list: string;
 }) => Promise<{
     message: string;
