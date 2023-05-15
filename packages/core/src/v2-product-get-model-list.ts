@@ -59,7 +59,7 @@ export const getModelListResponseSchema = z.object({
   }),
 });
 
-export const getItemList = buildApi({
+export const getModelList = buildApi({
   method: "GET",
   path: API_V2_PRODUCT_GET_MODEL_LIST_PATH,
   requestParameterSchema: getModelListRequestParametersSchema,
