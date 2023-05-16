@@ -84,7 +84,7 @@ export const getItemBaseInfoResponseSchema = z.object({
               is_free: z.boolean(),
               estimated_shipping_fee: z.number().optional(),
             })
-          ),
+          ).optional(),
           pre_order: z.object({
             is_pre_order: z.boolean(),
             days_to_ship: z.number(),
