@@ -138,7 +138,7 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 package_width: number;
                 package_height: number;
             }>;
-            logistic_info: z.ZodArray<z.ZodObject<{
+            logistic_info: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 logistic_id: z.ZodNumber;
                 logistic_name: z.ZodString;
                 enabled: z.ZodBoolean;
@@ -159,7 +159,7 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 is_free: boolean;
                 shipping_fee?: number | undefined;
                 estimated_shipping_fee?: number | undefined;
-            }>, "many">;
+            }>, "many">>;
             pre_order: z.ZodObject<{
                 is_pre_order: z.ZodBoolean;
                 days_to_ship: z.ZodNumber;
@@ -294,14 +294,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 package_width: number;
                 package_height: number;
             };
-            logistic_info: {
-                logistic_id: number;
-                logistic_name: string;
-                enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
-            }[];
             pre_order: {
                 is_pre_order: boolean;
                 days_to_ship: number;
@@ -352,6 +344,14 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     stock: number;
                 }[] | undefined;
             } | undefined;
+            logistic_info?: {
+                logistic_id: number;
+                logistic_name: string;
+                enabled: boolean;
+                is_free: boolean;
+                shipping_fee?: number | undefined;
+                estimated_shipping_fee?: number | undefined;
+            }[] | undefined;
             promotion_id?: number | undefined;
             tax_info?: {
                 ncm: number;
@@ -377,14 +377,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 package_width: number;
                 package_height: number;
             };
-            logistic_info: {
-                logistic_id: number;
-                logistic_name: string;
-                enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
-            }[];
             pre_order: {
                 is_pre_order: boolean;
                 days_to_ship: number;
@@ -435,6 +427,14 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     stock: number;
                 }[] | undefined;
             } | undefined;
+            logistic_info?: {
+                logistic_id: number;
+                logistic_name: string;
+                enabled: boolean;
+                is_free: boolean;
+                shipping_fee?: number | undefined;
+                estimated_shipping_fee?: number | undefined;
+            }[] | undefined;
             promotion_id?: number | undefined;
             tax_info?: {
                 ncm: number;
@@ -462,14 +462,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 package_width: number;
                 package_height: number;
             };
-            logistic_info: {
-                logistic_id: number;
-                logistic_name: string;
-                enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
-            }[];
             pre_order: {
                 is_pre_order: boolean;
                 days_to_ship: number;
@@ -520,6 +512,14 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     stock: number;
                 }[] | undefined;
             } | undefined;
+            logistic_info?: {
+                logistic_id: number;
+                logistic_name: string;
+                enabled: boolean;
+                is_free: boolean;
+                shipping_fee?: number | undefined;
+                estimated_shipping_fee?: number | undefined;
+            }[] | undefined;
             promotion_id?: number | undefined;
             tax_info?: {
                 ncm: number;
@@ -547,14 +547,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 package_width: number;
                 package_height: number;
             };
-            logistic_info: {
-                logistic_id: number;
-                logistic_name: string;
-                enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
-            }[];
             pre_order: {
                 is_pre_order: boolean;
                 days_to_ship: number;
@@ -605,6 +597,14 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     stock: number;
                 }[] | undefined;
             } | undefined;
+            logistic_info?: {
+                logistic_id: number;
+                logistic_name: string;
+                enabled: boolean;
+                is_free: boolean;
+                shipping_fee?: number | undefined;
+                estimated_shipping_fee?: number | undefined;
+            }[] | undefined;
             promotion_id?: number | undefined;
             tax_info?: {
                 ncm: number;
@@ -635,14 +635,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 package_width: number;
                 package_height: number;
             };
-            logistic_info: {
-                logistic_id: number;
-                logistic_name: string;
-                enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
-            }[];
             pre_order: {
                 is_pre_order: boolean;
                 days_to_ship: number;
@@ -693,6 +685,14 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     stock: number;
                 }[] | undefined;
             } | undefined;
+            logistic_info?: {
+                logistic_id: number;
+                logistic_name: string;
+                enabled: boolean;
+                is_free: boolean;
+                shipping_fee?: number | undefined;
+                estimated_shipping_fee?: number | undefined;
+            }[] | undefined;
             promotion_id?: number | undefined;
             tax_info?: {
                 ncm: number;
@@ -726,14 +726,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 package_width: number;
                 package_height: number;
             };
-            logistic_info: {
-                logistic_id: number;
-                logistic_name: string;
-                enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
-            }[];
             pre_order: {
                 is_pre_order: boolean;
                 days_to_ship: number;
@@ -784,6 +776,14 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                     stock: number;
                 }[] | undefined;
             } | undefined;
+            logistic_info?: {
+                logistic_id: number;
+                logistic_name: string;
+                enabled: boolean;
+                is_free: boolean;
+                shipping_fee?: number | undefined;
+                estimated_shipping_fee?: number | undefined;
+            }[] | undefined;
             promotion_id?: number | undefined;
             tax_info?: {
                 ncm: number;
@@ -822,14 +822,6 @@ export declare const getItemBaseInfo: (requestParameters: {
                 package_width: number;
                 package_height: number;
             };
-            logistic_info: {
-                logistic_id: number;
-                logistic_name: string;
-                enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
-            }[];
             pre_order: {
                 is_pre_order: boolean;
                 days_to_ship: number;
@@ -880,6 +872,14 @@ export declare const getItemBaseInfo: (requestParameters: {
                     stock: number;
                 }[] | undefined;
             } | undefined;
+            logistic_info?: {
+                logistic_id: number;
+                logistic_name: string;
+                enabled: boolean;
+                is_free: boolean;
+                shipping_fee?: number | undefined;
+                estimated_shipping_fee?: number | undefined;
+            }[] | undefined;
             promotion_id?: number | undefined;
             tax_info?: {
                 ncm: number;

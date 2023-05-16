@@ -207,7 +207,7 @@ const U = "/api/v2/product/get_item_base_info", O = "/api/v2/product/get_item_ex
             is_free: e.boolean(),
             estimated_shipping_fee: e.number().optional()
           })
-        ),
+        ).optional(),
         pre_order: e.object({
           is_pre_order: e.boolean(),
           days_to_ship: e.number()
