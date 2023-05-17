@@ -3,7 +3,6 @@ import { generateHmac, toTimestamp } from "./utils";
 import { API_V2_SHOP_AUTH_PARTNER } from "./v2-shop.constant";
 import { AuthPartnerRequestParams } from "./v2-shop.type";
 
-
 export async function authPartner({
   redirectURL,
   redirectSign,
