@@ -6,13 +6,13 @@
     "packages/*"
   ],
   "exports": {
-    "shopee-sdk/core": {
+    "core": {
       "types": "./packages/dist/index.d.ts",
       "import": "./packages/dist/shopee-sdk.js",
       "require": "./packages/dist/shopee-sdk.umd.cjs"
     }
   },
-  "version": "0.0.9",
+  "version": "0.0.10",
   "description": "",
   "scripts": {
     "build:core": "nx build @shopee-sdk/core"
