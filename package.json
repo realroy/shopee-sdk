@@ -1,21 +1,12 @@
 {
   "name": "shopee-sdk",
-  "exports": {
-    "shopee-sdk/core": {
-      "types": "./packages/core/dist/index.d.ts",
-      "import": "./packages/core/dist/shopee-sdk.js",
-      "require": "./packages/core/dist/shopee-sdk.umd.cjs"
-    }
-  },
-  "files": [
-    "./packages"
-  ],
   "private": true,
+  "main": "./index.js",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "scripts": {
     "build:core": "nx build @shopee-sdk/core"
