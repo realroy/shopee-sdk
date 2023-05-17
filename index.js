@@ -1,1 +1,0 @@
-export * as core from './packages/core'
