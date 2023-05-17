@@ -14,7 +14,6 @@ describe("v2/shop/verifyCallback", async () => {
 
     const verifyCallback = () => shopeeSdk.v2.shop.verifyCallback(query);
 
-    console.log('shopee', shopeeSdk.v2.shop)
-    expect(() => {}).not.toThrowError();
+    expect(verifyCallback).not.toThrowError();
   });
 });
