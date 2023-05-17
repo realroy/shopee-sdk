@@ -1,11 +1,12 @@
 {
   "name": "shopee-sdk",
   "private": true,
+  "types": "./packages/core/dist/index.d.ts",
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "",
   "scripts": {
     "build:core": "nx build @shopee-sdk/core"
