@@ -1,10 +1,10 @@
-import v from "axios";
+import k from "axios";
 import { z as e } from "zod";
-async function j(r, ...t) {
+async function w(r, ...t) {
   let n;
-  return typeof globalThis.crypto < "u" && (n = await k(r, ...t)), n = await L(r, ...t), n;
+  return typeof globalThis.crypto < "u" && (n = await v(r, ...t)), n = await L(r, ...t), n;
 }
-async function k(r, ...t) {
+async function v(r, ...t) {
   const n = new TextEncoder(), o = n.encode(r);
   let s = new Uint8Array();
   t.forEach((_) => {
@@ -48,7 +48,7 @@ async function x(r) {
       ...l.slice(1).map((A) => `&${g}=${A}`)
     ].join("") : l instanceof Date ? u[g] = f(l) : u[g] = `${l}`;
   }
-  const I = f(), P = new URL(o, s), w = await j(
+  const I = f(), P = new URL(o, s), T = await w(
     n,
     a,
     o,
@@ -61,13 +61,13 @@ async function x(r) {
     partner_id: a,
     shop_id: _,
     access_token: i,
-    sign: w,
+    sign: T,
     timestamp: I
   }).toString(), P.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
 }
 class S {
   constructor() {
-    this.logger = console, this.axios = v.create(), this.axios.interceptors.request.use(
+    this.logger = console, this.axios = k.create(), this.axios.interceptors.request.use(
       (t) => (this.logger.log(`${t.url}`), t.data && this.logger.info(`[Body]: ${JSON.stringify(t.data, null, 4)}`), t),
       (t) => (this.logger.error(t), t)
     ), this.axios.interceptors.response.use(
@@ -137,7 +137,7 @@ function h(r) {
     return _.data;
   };
 }
-const U = "/api/v2/product/get_item_base_info", O = "/api/v2/product/get_item_extra_info", q = "/api/v2/product/get_item_list", D = "/api/v2/product/get_model_list", T = ["NORMAL", "DELETED", "UNLIST", "BANNED"], H = e.object({
+const U = "/api/v2/product/get_item_base_info", q = "/api/v2/product/get_item_extra_info", O = "/api/v2/product/get_item_list", D = "/api/v2/product/get_model_list", j = ["NORMAL", "DELETED", "UNLIST", "BANNED"], H = e.object({
   item_id_list: e.string(),
   need_tax_info: e.coerce.boolean().optional(),
   need_complaint_policy: e.coerce.boolean().optional()
@@ -254,9 +254,9 @@ const U = "/api/v2/product/get_item_base_info", O = "/api/v2/product/get_item_ex
   transformRequestParameter(r) {
     return r.need_tax_info = !!r.need_tax_info, r.need_complaint_policy = !!r.need_complaint_policy, r;
   }
-}), N = e.object({
+}), C = e.object({
   item_id_list: e.string()
-}), B = e.object({
+}), N = e.object({
   error: e.string(),
   message: e.string(),
   warning: e.string().optional(),
@@ -273,17 +273,17 @@ const U = "/api/v2/product/get_item_base_info", O = "/api/v2/product/get_item_ex
       })
     ).optional()
   }).optional()
-}), C = h({
+}), B = h({
   method: "GET",
-  path: O,
-  requestParameterSchema: N,
-  responseSchema: B
+  path: q,
+  requestParameterSchema: C,
+  responseSchema: N
 }), $ = e.object({
   offset: e.number().int().min(0).optional(),
   page_size: e.number().int().positive().max(100).optional(),
   update_time_from: e.date().optional(),
   update_time_to: e.date().optional(),
-  item_status: e.array(e.enum(T))
+  item_status: e.array(e.enum(j))
 }), G = e.object({
   error: e.string(),
   message: e.string().nullable().optional(),
@@ -293,7 +293,7 @@ const U = "/api/v2/product/get_item_base_info", O = "/api/v2/product/get_item_ex
     item: e.array(
       e.object({
         item_id: e.number().int(),
-        item_status: e.enum(T),
+        item_status: e.enum(j),
         update_time: e.number().int()
       })
     ).optional()
@@ -303,7 +303,7 @@ const U = "/api/v2/product/get_item_base_info", O = "/api/v2/product/get_item_ex
   next_offset: e.number().int().optional()
 }), z = h({
   method: "GET",
-  path: q,
+  path: O,
   requestParameterSchema: $,
   transformRequestParameter(r) {
     return r.update_time_from = r.update_time_from ?? /* @__PURE__ */ new Date("01/01/2022"), r.update_time_to = r.update_time_to ?? /* @__PURE__ */ new Date(), r;
@@ -369,18 +369,18 @@ const U = "/api/v2/product/get_item_base_info", O = "/api/v2/product/get_item_ex
 }), J = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   getItemBaseInfo: M,
-  getItemExtraInfo: C,
+  getItemExtraInfo: B,
   getItemList: z,
   getModelList: W
 }, Symbol.toStringTag, { value: "Module" })), R = "/api/v2/shop/auth_partner";
-async function X({
+async function Q({
   redirectURL: r,
   redirectSign: t
 }) {
   const { baseURL: n, partnerId: o, partnerKey: s } = b.getInstance();
   if (!s || !o)
     throw new Error("partnerKey is undefined");
-  const i = new URL(R, n), m = f(/* @__PURE__ */ new Date()), c = await j(
+  const i = new URL(R, n), m = f(/* @__PURE__ */ new Date()), c = await w(
     s,
     o.toString(),
     R,
@@ -393,20 +393,39 @@ async function X({
     sign: c
   }).toString(), i.toString();
 }
-const Y = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const X = e.object({
+  code: e.string(),
+  shopId: e.string(),
+  sign: e.string()
+});
+async function Y(r) {
+  const t = await X.safeParseAsync(r);
+  if (!t.success)
+    throw new Error(
+      `parse request parameters error: ${t.error.message}`
+    );
+  const { code: n, shopId: o, sign: s } = t.data;
+  return {
+    code: n,
+    shopId: o,
+    sign: s
+  };
+}
+const Z = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  authPartner: X
-}, Symbol.toStringTag, { value: "Module" })), Q = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  authPartner: Q,
+  verifyCallback: Y
+}, Symbol.toStringTag, { value: "Module" })), ee = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   product: J,
-  shop: Y
-}, Symbol.toStringTag, { value: "Module" })), Z = e.object({
+  shop: Z
+}, Symbol.toStringTag, { value: "Module" })), te = e.object({
   partnerId: e.coerce.number().optional(),
   partnerKey: e.coerce.string().optional(),
   baseURL: e.coerce.string().url().optional(),
   accessToken: e.coerce.string().optional(),
   shopId: e.coerce.number().optional()
-}), y = Z.safeParse({
+}), y = te.safeParse({
   partnerId: process.env.SHOPEE_SDK_PARTNER_ID,
   partnerKey: process.env.SHOPEE_SDK_PARTNER_KEY,
   baseURL: process.env.SHOPEE_SDK_BASE_URL,
@@ -416,7 +435,7 @@ const Y = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
 if (!y.success)
   throw new Error(y.error.message);
 const d = y.data, p = b.getInstance();
-class re {
+class oe {
   constructor(t) {
     p.accessToken = t.accessToken ?? d.accessToken, p.baseURL = t.baseURL ?? d.baseURL, p.partnerId = t.partnerId ?? d.partnerId, p.partnerKey = t.partnerKey ?? d.partnerKey, p.shopId = t.shopId ?? d.shopId;
   }
@@ -436,18 +455,18 @@ class re {
     return p.shopId = t, this;
   }
   get v2() {
-    return Q;
+    return ee;
   }
 }
 export {
   U as API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH,
-  O as API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH,
-  q as API_V2_PRODUCT_GET_ITEM_LIST_PATH,
+  q as API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH,
+  O as API_V2_PRODUCT_GET_ITEM_LIST_PATH,
   D as API_V2_PRODUCT_GET_MODEL_LIST_PATH,
   R as API_V2_SHOP_AUTH_PARTNER,
-  T as ITEM_STATUS,
-  re as ShopeeSdk,
-  j as generateHmac,
+  j as ITEM_STATUS,
+  oe as ShopeeSdk,
+  w as generateHmac,
   x as signURL,
   f as toTimestamp
 };

@@ -6,9 +6,10 @@
     "packages/*"
   ],
   "types": "./core.d.ts",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "",
   "scripts": {
+    "dev:playground": "nx dev @shopee-sdk/playground",
     "test:core-e2e": "nx test @shopee-sdk/core-e2e",
     "build:core": "nx build @shopee-sdk/core"
   },
