@@ -1,16 +1,16 @@
 import { z } from "zod";
 export declare const callbackRequestQuerySchema: z.ZodObject<{
     code: z.ZodString;
-    shopId: z.ZodString;
+    shop_id: z.ZodString;
     sign: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    shopId: string;
     code: string;
     sign: string;
+    shop_id: string;
 }, {
-    shopId: string;
     code: string;
     sign: string;
+    shop_id: string;
 }>;
 export declare function verifyCallback(requestQuery: unknown): Promise<{
     code: string;

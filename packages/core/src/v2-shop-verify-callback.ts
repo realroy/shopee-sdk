@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const callbackRequestQuerySchema = z.object({
   code: z.string(),
-  shopId: z.string(),
+  shop_id: z.string(),
   sign: z.string(),
 });
 
@@ -16,7 +16,7 @@ export async function verifyCallback(requestQuery: unknown) {
     );
   }
 
-  const { code, shopId, sign } = parseCallbackRequestQuerySchema.data;
+  const { code, shop_id: shopId, sign } = parseCallbackRequestQuerySchema.data;
 
   return {
     code,

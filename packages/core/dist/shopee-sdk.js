@@ -16,11 +16,11 @@ async function v(r, ...t) {
     { name: "HMAC", hash: "SHA-256" },
     !1,
     ["sign"]
-  ), m = await crypto.subtle.sign(
+  ), p = await crypto.subtle.sign(
     { name: "HMAC", hash: { name: "sha-256" } },
     i,
     s
-  ), c = new Uint8Array(m);
+  ), c = new Uint8Array(p);
   return Array.from(c).map((_) => _.toString(16).padStart(2, "0")).join("");
 }
 async function L(r, ...t) {
@@ -38,9 +38,9 @@ async function x(r) {
     path: o,
     base_url: s,
     access_token: i,
-    shop_id: m,
+    shop_id: p,
     params: c = {}
-  } = r, a = t.toString(), _ = m.toString(), u = {};
+  } = r, a = t.toString(), _ = p.toString(), u = {};
   for (const g in c) {
     const l = c[g];
     Array.isArray(l) ? u[g] = [
@@ -76,9 +76,9 @@ class S {
         const {
           response: n,
           message: o,
-          config: { method: s, url: i, data: m, params: c }
+          config: { method: s, url: i, data: p, params: c }
         } = t, a = n == null ? void 0 : n.status;
-        return this.logger.error({ status: a, message: o, method: s, url: i, data: m, params: c }), t;
+        return this.logger.error({ status: a, message: o, method: s, url: i, data: p, params: c }), t;
       }
     );
   }
@@ -116,8 +116,8 @@ function h(r) {
       throw new Error(
         `parse request parameters error: ${s.error.message}`
       );
-    const i = s.data, m = b.getInstance().value, c = await x({
-      ...m,
+    const i = s.data, p = b.getInstance().value, c = await x({
+      ...p,
       path: r.path,
       params: i
     });
@@ -380,22 +380,22 @@ async function Q({
   const { baseURL: n, partnerId: o, partnerKey: s } = b.getInstance();
   if (!s || !o)
     throw new Error("partnerKey is undefined");
-  const i = new URL(R, n), m = f(/* @__PURE__ */ new Date()), c = await w(
+  const i = new URL(R, n), p = f(/* @__PURE__ */ new Date()), c = await w(
     s,
     o.toString(),
     R,
-    m
+    p
   ), a = new URL(r);
   return a.searchParams.append("sign", t), i.search = new URLSearchParams({
     partner_id: o.toString(),
     redirect: a.toString(),
-    timestamp: m,
+    timestamp: p,
     sign: c
   }).toString(), i.toString();
 }
 const X = e.object({
   code: e.string(),
-  shopId: e.string(),
+  shop_id: e.string(),
   sign: e.string()
 });
 async function Y(r) {
@@ -404,7 +404,7 @@ async function Y(r) {
     throw new Error(
       `parse request parameters error: ${t.error.message}`
     );
-  const { code: n, shopId: o, sign: s } = t.data;
+  const { code: n, shop_id: o, sign: s } = t.data;
   return {
     code: n,
     shopId: o,
@@ -434,25 +434,25 @@ const Z = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
 });
 if (!y.success)
   throw new Error(y.error.message);
-const d = y.data, p = b.getInstance();
+const d = y.data, m = b.getInstance();
 class oe {
   constructor(t) {
-    p.accessToken = t.accessToken ?? d.accessToken, p.baseURL = t.baseURL ?? d.baseURL, p.partnerId = t.partnerId ?? d.partnerId, p.partnerKey = t.partnerKey ?? d.partnerKey, p.shopId = t.shopId ?? d.shopId;
+    m.accessToken = t.accessToken ?? d.accessToken, m.baseURL = t.baseURL ?? d.baseURL, m.partnerId = t.partnerId ?? d.partnerId, m.partnerKey = t.partnerKey ?? d.partnerKey, m.shopId = t.shopId ?? d.shopId;
   }
   setPartnerId(t) {
-    return p.partnerId = t, this;
+    return m.partnerId = t, this;
   }
   setBaseURL(t) {
-    return p.baseURL = t, this;
+    return m.baseURL = t, this;
   }
   setPartnerKey(t) {
-    return p.partnerKey = t, this;
+    return m.partnerKey = t, this;
   }
   setAccessToken(t) {
-    return p.accessToken = t, this;
+    return m.accessToken = t, this;
   }
   setShopId(t) {
-    return p.shopId = t, this;
+    return m.shopId = t, this;
   }
   get v2() {
     return ee;
