@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 
-import { buildApi } from "./build-api";
+import { buildQuery } from "./build-query";
 
-describe('buildApi', () => {
+describe('buildQuery', () => {
   it('should return a function', () => {
-    expect(typeof buildApi).toBe('function')
+    expect(typeof buildQuery).toBe('function')
   })
 })

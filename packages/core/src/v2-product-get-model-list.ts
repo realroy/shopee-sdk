@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { buildApi } from "./libs";
+import { buildQuery } from "./libs";
 import { API_V2_PRODUCT_GET_MODEL_LIST_PATH } from "./v2-product.constant";
 
 export const getModelListRequestParametersSchema = z.object({
@@ -59,8 +59,7 @@ export const getModelListResponseSchema = z.object({
   }),
 });
 
-export const getModelList = buildApi({
-  method: "GET",
+export const getModelList = buildQuery({
   path: API_V2_PRODUCT_GET_MODEL_LIST_PATH,
   requestParameterSchema: getModelListRequestParametersSchema,
   responseSchema: getModelListResponseSchema,

@@ -1,8 +1,7 @@
 import { z } from "zod";
 
-import { buildApi } from "./libs";
+import { buildQuery } from "./libs";
 import { API_V2_PRODUCT_GET_ITEM_LIST_PATH, ITEM_STATUS } from "./v2-product.constant";
-
 
 export const getItemListRequestParametersSchema = z.object({
   offset: z.number().int().min(0).optional(),
@@ -37,8 +36,7 @@ export const getItemListResponseSchema = z.object({
 
 
 
-export const getItemList = buildApi({
-  method: "GET",
+export const getItemList = buildQuery({
   path: API_V2_PRODUCT_GET_ITEM_LIST_PATH,
   requestParameterSchema: getItemListRequestParametersSchema,
   transformRequestParameter(data) {

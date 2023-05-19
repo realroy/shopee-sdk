@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { buildApi } from "./libs";
+import { buildQuery } from "./libs";
 import { API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH } from "./v2-product.constant";
 
 export const getItemExtraInfoRequestParametersSchema = z.object({
@@ -30,10 +30,7 @@ export const getItemExtraInfoResponseSchema = z.object({
     .optional(),
 });
 
-
-
-export const getItemExtraInfo = buildApi({
-  method: "GET",
+export const getItemExtraInfo = buildQuery({
   path: API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH,
   requestParameterSchema: getItemExtraInfoRequestParametersSchema,
   responseSchema: getItemExtraInfoResponseSchema,

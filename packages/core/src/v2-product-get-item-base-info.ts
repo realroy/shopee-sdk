@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { buildApi } from "./libs";
+import { buildQuery } from "./libs";
 import { API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH } from "./v2-product.constant";
 
 export const getItemBaseInfoRequestParametersSchema = z.object({
@@ -130,8 +130,7 @@ export const getItemBaseInfoResponseSchema = z.object({
   }),
 });
 
-export const getItemBaseInfo = buildApi({
-  method: "GET",
+export const getItemBaseInfo = buildQuery({
   path: API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH,
   requestParameterSchema: getItemBaseInfoRequestParametersSchema,
   responseSchema: getItemBaseInfoResponseSchema,

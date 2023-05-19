@@ -7,11 +7,10 @@ import { signURL } from "../utils";
 
 const httpClient = HttpClient.getInstance();
 
-export type BuildApiGetArgs<
+export type BuildQueryArgs<
   TRequestParameterSchema extends z.ZodRawShape,
   TResponseSchema extends z.ZodRawShape
 > = {
-  method: "GET";
   path: string;
   requestParameterSchema: z.ZodObject<TRequestParameterSchema>;
   responseSchema: z.ZodObject<TResponseSchema>;
@@ -20,36 +19,11 @@ export type BuildApiGetArgs<
   ) => typeof data;
 };
 
-export type BuildApiPostArgs<
+export function buildQuery<
   TRequestParameterSchema extends z.ZodRawShape,
-  TResponseSchema extends z.ZodRawShape,
-  TRequestBodySchema extends z.ZodRawShape
-> = {
-  method: "POST";
-  path: string;
-  body: object;
-  requestParameterSchema: z.ZodObject<TRequestParameterSchema>;
-  requestBodySchema: z.ZodObject<TRequestBodySchema>;
-  responseSchema: z.ZodObject<TResponseSchema>;
-  transformRequestParameter?: (
-    data: z.infer<z.ZodObject<TRequestParameterSchema>>
-  ) => typeof data;
-};
-
-export function buildApi<
-  TRequestParameterSchema extends z.ZodRawShape,
-  TResponseSchema extends z.ZodRawShape,
-  TRequestBodySchema extends z.ZodRawShape
->(
-  args:
-    | BuildApiGetArgs<TRequestParameterSchema, TResponseSchema>
-    | BuildApiPostArgs<
-        TRequestParameterSchema,
-        TResponseSchema,
-        TRequestBodySchema
-      >
-) {
-  return async function apiFunction(
+  TResponseSchema extends z.ZodRawShape
+>(args: BuildQueryArgs<TRequestParameterSchema, TResponseSchema>) {
+  return async function query(
     requestParameters: z.infer<typeof args.requestParameterSchema>
   ) {
     const transformRequestParameter =
@@ -74,21 +48,8 @@ export function buildApi<
       params: parsedRequestParameters,
     });
 
-    let data: unknown;
-
-    if (args.method === "POST") {
-      const parseRequestBodySchema =
-        await args.requestBodySchema.safeParseAsync(args.body);
-      if (!parseRequestBodySchema.success) {
-        throw new Error(
-          `parse request body error: ${parseRequestBodySchema.error.message}`
-        );
-      }
-
-      data = (await httpClient.post(signedURL, {}, args.body)).data;
-    } else {
-      data = (await httpClient.get(signedURL)).data;
-    }
+    const response = await httpClient.get(signedURL);
+    const data = response.data;
 
     const parseData = await args.responseSchema.safeParseAsync(data);
 
