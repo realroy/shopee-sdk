@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { buildMutation } from "./libs/build-mutation";
+import { buildMutation } from "./libs";
 import { API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH } from "./v2-public.constant";
 
 export const getAccessTokenRequestParametersSchema = z.object({
