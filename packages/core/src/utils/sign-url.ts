@@ -54,7 +54,7 @@ export async function signURL(args: SignURLArgs) {
     ...parsedParams,
     partner_id: parsedPartnerId,
     shop_id: parsedShopId,
-    access_token,
+    ...(!!access_token && { access_token }),
     sign,
     timestamp,
   }).toString();

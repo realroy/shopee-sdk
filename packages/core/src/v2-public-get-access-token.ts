@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { buildMutation } from "./libs";
+import { ShopeeContext, buildMutation } from "./libs";
 import { API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH } from "./v2-public.constant";
 
 export const getAccessTokenRequestParametersSchema = z.object({
@@ -24,4 +24,9 @@ export const getAccessToken = buildMutation({
   path: API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH,
   requestParameterSchema: getAccessTokenRequestParametersSchema,
   responseSchema: getAccessTokenResponseSchema,
+  transformRequestParameter(data) {
+    data.partner_id = data.partner_id ?? ShopeeContext.getInstance().partnerId;
+
+    return data
+  },
 });

@@ -12,6 +12,7 @@ import {
   getItemListRequestParametersSchema,
   getItemListResponseSchema,
 } from "./v2-product-get-item-list";
+import { getModelListResponseSchema } from "./v2-product-get-model-list";
 
 export type GetItemExtraInfoResponse = z.infer<
   typeof getItemExtraInfoResponseSchema
@@ -41,3 +42,9 @@ export type GetItemListRequestParameters = z.infer<
 export type GetItemListResponse = z.infer<typeof getItemListResponseSchema>;
 
 export type GetItemListResponseItem = NonNullable<NonNullable<GetItemListResponse['response']>['item']>[number]
+
+export type GetModelListResponse = z.infer<typeof getModelListResponseSchema>
+
+export type GetModelListResponseTierVariation = NonNullable<NonNullable<GetModelListResponse['response']>['tier_variation']>[number]
+
+export type GetModelListResponseModel = NonNullable<NonNullable<GetModelListResponse['response']>['model']>[number]

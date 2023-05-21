@@ -7,8 +7,8 @@ async function w(r, ...t) {
 async function L(r, ...t) {
   const n = new TextEncoder(), o = n.encode(r);
   let s = new Uint8Array();
-  t.forEach((i) => {
-    i && (s = n.encode(i));
+  t.forEach((_) => {
+    _ && (s = n.encode(_));
   });
   const a = await crypto.subtle.importKey(
     "raw",
@@ -16,12 +16,12 @@ async function L(r, ...t) {
     { name: "HMAC", hash: "SHA-256" },
     !1,
     ["sign"]
-  ), c = await crypto.subtle.sign(
+  ), i = await crypto.subtle.sign(
     { name: "HMAC", hash: { name: "sha-256" } },
     a,
     s
-  ), _ = new Uint8Array(c);
-  return Array.from(_).map((i) => i.toString(16).padStart(2, "0")).join("");
+  ), c = new Uint8Array(i);
+  return Array.from(c).map((_) => _.toString(16).padStart(2, "0")).join("");
 }
 async function x(r, ...t) {
   const { createHmac: n } = await import("crypto"), o = n("sha256", r);
@@ -38,15 +38,15 @@ async function j(r) {
     path: o,
     base_url: s,
     access_token: a,
-    shop_id: c,
-    params: _ = {}
-  } = r, p = t.toString(), i = c.toString(), m = {};
-  for (const d in _) {
-    const l = _[d];
-    Array.isArray(l) ? m[d] = [
-      l[0],
-      ...l.slice(1).map((v) => `&${d}=${v}`)
-    ].join("") : l instanceof Date ? m[d] = S(l) : m[d] = `${l}`;
+    shop_id: i,
+    params: c = {}
+  } = r, p = t.toString(), _ = i.toString(), m = {};
+  for (const d in c) {
+    const g = c[d];
+    Array.isArray(g) ? m[d] = [
+      g[0],
+      ...g.slice(1).map((v) => `&${d}=${v}`)
+    ].join("") : g instanceof Date ? m[d] = S(g) : m[d] = `${g}`;
   }
   const h = S(), I = new URL(o, s), k = await w(
     n,
@@ -54,13 +54,13 @@ async function j(r) {
     o,
     h,
     a,
-    i
+    _
   );
   return I.search = new URLSearchParams({
     ...m,
     partner_id: p,
-    shop_id: i,
-    access_token: a,
+    shop_id: _,
+    ...!!a && { access_token: a },
     sign: k,
     timestamp: h
   }).toString(), I.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
@@ -76,9 +76,9 @@ class f {
         const {
           response: n,
           message: o,
-          config: { method: s, url: a, data: c, params: _ }
+          config: { method: s, url: a, data: i, params: c }
         } = t, p = n == null ? void 0 : n.status;
-        return this.logger.error({ status: p, message: o, method: s, url: a, data: c, params: _ }), t;
+        return this.logger.error({ status: p, message: o, method: s, url: a, data: i, params: c }), t;
       }
     );
   }
@@ -92,11 +92,11 @@ class f {
     return this.axios.post(t, o, { params: n });
   }
 }
-class g {
+class l {
   constructor() {
   }
   static getInstance() {
-    return this.instance ?? (this.instance = new g());
+    return this.instance ?? (this.instance = new l());
   }
   get value() {
     return {
@@ -116,11 +116,11 @@ function y(r) {
       throw new Error(
         `parse request parameters error: ${s.error.message}`
       );
-    const a = s.data, c = g.getInstance().value, _ = await j({
-      ...c,
+    const a = s.data, i = l.getInstance().value, c = await j({
+      ...i,
       path: r.path,
       params: a
-    }), i = (await U.get(_)).data, m = await r.responseSchema.safeParseAsync(i);
+    }), _ = (await U.get(c)).data, m = await r.responseSchema.safeParseAsync(_);
     if (!m.success)
       throw new Error(`parse response error: ${m.error.message}`);
     return m.data;
@@ -134,14 +134,16 @@ function D(r) {
       throw new Error(
         `parse request parameters error: ${s.error.message}`
       );
-    const a = g.getInstance().value, c = await j({
+    const a = l.getInstance().value, i = await j({
       ...a,
       path: r.path,
       params: {}
-    }), _ = s.data, { data: p } = await O.post(c, {}, _), i = await r.responseSchema.safeParseAsync(p);
-    if (!i.success)
-      throw new Error(`parse response error: ${i.error.message}`);
-    return i.data;
+    }), c = s.data;
+    console.log(">>>", c, i);
+    const { data: p } = await O.post(i, {}, c), _ = await r.responseSchema.safeParseAsync(p);
+    if (!_.success)
+      throw new Error(`parse response error: ${_.error.message}`);
+    return _.data;
   };
 }
 const H = "/api/v2/product/get_item_base_info", K = "/api/v2/product/get_item_extra_info", C = "/api/v2/product/get_item_list", M = "/api/v2/product/get_model_list", E = ["NORMAL", "DELETED", "UNLIST", "BANNED"], N = e.object({
@@ -391,7 +393,10 @@ const H = "/api/v2/product/get_item_base_info", K = "/api/v2/product/get_item_ex
 }), te = D({
   path: ee,
   requestParameterSchema: T,
-  responseSchema: A
+  responseSchema: A,
+  transformRequestParameter(r) {
+    return r.partner_id = r.partner_id ?? l.getInstance().partnerId, r;
+  }
 }), re = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   getAccessToken: te,
@@ -402,20 +407,20 @@ async function ne({
   redirectURL: r,
   redirectSign: t
 }) {
-  const { baseURL: n, partnerId: o, partnerKey: s } = g.getInstance();
+  const { baseURL: n, partnerId: o, partnerKey: s } = l.getInstance();
   if (!s || !o)
     throw new Error("partnerKey is undefined");
-  const a = new URL(R, n), c = S(/* @__PURE__ */ new Date()), _ = await w(
+  const a = new URL(R, n), i = S(/* @__PURE__ */ new Date()), c = await w(
     s,
     o.toString(),
     R,
-    c
+    i
   ), p = new URL(r);
   return p.searchParams.append("sign", t), a.search = new URLSearchParams({
     partner_id: o.toString(),
     redirect: p.toString(),
-    timestamp: c,
-    sign: _
+    timestamp: i,
+    sign: c
   }).toString(), a.toString();
 }
 const se = e.object({
@@ -460,7 +465,7 @@ const ae = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
 });
 if (!P.success)
   throw new Error(P.error.message);
-const b = P.data, u = g.getInstance();
+const b = P.data, u = l.getInstance();
 class me {
   constructor(t) {
     u.accessToken = t.accessToken ?? b.accessToken, u.baseURL = t.baseURL ?? b.baseURL, u.partnerId = t.partnerId ?? b.partnerId, u.partnerKey = t.partnerKey ?? b.partnerKey, u.shopId = t.shopId ?? b.shopId;
