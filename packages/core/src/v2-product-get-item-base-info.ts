@@ -122,7 +122,7 @@ export const getItemBaseInfoResponseSchema = z.object({
                     .optional(),
                 })
               ),
-            }),
+            }).optional(),
           }),
         })
       )

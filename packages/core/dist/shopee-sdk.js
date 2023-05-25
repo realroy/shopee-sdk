@@ -7,8 +7,8 @@ async function w(r, ...t) {
 async function L(r, ...t) {
   const n = new TextEncoder(), o = n.encode(r);
   let s = new Uint8Array();
-  t.forEach((_) => {
-    _ && (s = n.encode(_));
+  t.forEach((i) => {
+    i && (s = n.encode(i));
   });
   const a = await crypto.subtle.importKey(
     "raw",
@@ -16,12 +16,12 @@ async function L(r, ...t) {
     { name: "HMAC", hash: "SHA-256" },
     !1,
     ["sign"]
-  ), i = await crypto.subtle.sign(
+  ), c = await crypto.subtle.sign(
     { name: "HMAC", hash: { name: "sha-256" } },
     a,
     s
-  ), c = new Uint8Array(i);
-  return Array.from(c).map((_) => _.toString(16).padStart(2, "0")).join("");
+  ), p = new Uint8Array(c);
+  return Array.from(p).map((i) => i.toString(16).padStart(2, "0")).join("");
 }
 async function x(r, ...t) {
   const { createHmac: n } = await import("crypto"), o = n("sha256", r);
@@ -38,11 +38,11 @@ async function j(r) {
     path: o,
     base_url: s,
     access_token: a,
-    shop_id: i,
-    params: c = {}
-  } = r, p = t.toString(), _ = i.toString(), m = {};
-  for (const d in c) {
-    const g = c[d];
+    shop_id: c,
+    params: p = {}
+  } = r, _ = t.toString(), i = c.toString(), m = {};
+  for (const d in p) {
+    const g = p[d];
     Array.isArray(g) ? m[d] = [
       g[0],
       ...g.slice(1).map((v) => `&${d}=${v}`)
@@ -50,16 +50,16 @@ async function j(r) {
   }
   const h = S(), I = new URL(o, s), k = await w(
     n,
-    p,
+    _,
     o,
     h,
     a,
-    _
+    i
   );
   return I.search = new URLSearchParams({
     ...m,
-    partner_id: p,
-    shop_id: _,
+    partner_id: _,
+    shop_id: i,
     ...!!a && { access_token: a },
     sign: k,
     timestamp: h
@@ -76,9 +76,9 @@ class f {
         const {
           response: n,
           message: o,
-          config: { method: s, url: a, data: i, params: c }
-        } = t, p = n == null ? void 0 : n.status;
-        return this.logger.error({ status: p, message: o, method: s, url: a, data: i, params: c }), t;
+          config: { method: s, url: a, data: c, params: p }
+        } = t, _ = n == null ? void 0 : n.status;
+        return this.logger.error({ status: _, message: o, method: s, url: a, data: c, params: p }), t;
       }
     );
   }
@@ -116,11 +116,11 @@ function y(r) {
       throw new Error(
         `parse request parameters error: ${s.error.message}`
       );
-    const a = s.data, i = l.getInstance().value, c = await j({
-      ...i,
+    const a = s.data, c = l.getInstance().value, p = await j({
+      ...c,
       path: r.path,
       params: a
-    }), _ = (await U.get(c)).data, m = await r.responseSchema.safeParseAsync(_);
+    }), i = (await U.get(p)).data, m = await r.responseSchema.safeParseAsync(i);
     if (!m.success)
       throw new Error(`parse response error: ${m.error.message}`);
     return m.data;
@@ -134,16 +134,14 @@ function D(r) {
       throw new Error(
         `parse request parameters error: ${s.error.message}`
       );
-    const a = l.getInstance().value, i = await j({
+    const a = l.getInstance().value, c = await j({
       ...a,
       path: r.path,
       params: {}
-    }), c = s.data;
-    console.log(">>>", c, i);
-    const { data: p } = await O.post(i, {}, c), _ = await r.responseSchema.safeParseAsync(p);
-    if (!_.success)
-      throw new Error(`parse response error: ${_.error.message}`);
-    return _.data;
+    }), p = s.data, { data: _ } = await O.post(c, {}, p), i = await r.responseSchema.safeParseAsync(_);
+    if (!i.success)
+      throw new Error(`parse response error: ${i.error.message}`);
+    return i.data;
   };
 }
 const H = "/api/v2/product/get_item_base_info", K = "/api/v2/product/get_item_extra_info", C = "/api/v2/product/get_item_list", M = "/api/v2/product/get_model_list", E = ["NORMAL", "DELETED", "UNLIST", "BANNED"], N = e.object({
@@ -250,7 +248,7 @@ const H = "/api/v2/product/get_item_base_info", K = "/api/v2/product/get_item_ex
                 }).optional()
               })
             )
-          })
+          }).optional()
         })
       })
     ).optional()
@@ -410,17 +408,17 @@ async function ne({
   const { baseURL: n, partnerId: o, partnerKey: s } = l.getInstance();
   if (!s || !o)
     throw new Error("partnerKey is undefined");
-  const a = new URL(R, n), i = S(/* @__PURE__ */ new Date()), c = await w(
+  const a = new URL(R, n), c = S(/* @__PURE__ */ new Date()), p = await w(
     s,
     o.toString(),
     R,
-    i
-  ), p = new URL(r);
-  return p.searchParams.append("sign", t), a.search = new URLSearchParams({
+    c
+  ), _ = new URL(r);
+  return _.searchParams.append("sign", t), a.search = new URLSearchParams({
     partner_id: o.toString(),
-    redirect: p.toString(),
-    timestamp: i,
-    sign: c
+    redirect: _.toString(),
+    timestamp: c,
+    sign: p
   }).toString(), a.toString();
 }
 const se = e.object({
