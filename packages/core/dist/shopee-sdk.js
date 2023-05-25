@@ -249,7 +249,7 @@ const H = "/api/v2/product/get_item_base_info", K = "/api/v2/product/get_item_ex
               })
             )
           }).optional()
-        })
+        }).optional()
       })
     ).optional()
   })

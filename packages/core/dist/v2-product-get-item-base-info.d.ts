@@ -205,7 +205,7 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 origin: number;
             }>>;
             description_type: z.ZodString;
-            description_info: z.ZodObject<{
+            description_info: z.ZodOptional<z.ZodObject<{
                 extended_description: z.ZodOptional<z.ZodObject<{
                     field_list: z.ZodArray<z.ZodObject<{
                         field_type: z.ZodString;
@@ -276,7 +276,7 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                         } | undefined;
                     }[];
                 } | undefined;
-            }>;
+            }>>;
         }, "strip", z.ZodTypeAny, {
             item_id: number;
             category_id: number;
@@ -307,18 +307,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 original_brand_name: string;
             };
             description_type: string;
-            description_info: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
-                        text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
-                        } | undefined;
-                    }[];
-                } | undefined;
-            };
             attribute_list?: {
                 attribute_id: number;
                 original_attribute_name: string;
@@ -359,6 +347,18 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 diff_state_cfop: number;
                 csosn: number;
                 origin: number;
+            } | undefined;
+            description_info?: {
+                extended_description?: {
+                    field_list: {
+                        field_type: string;
+                        text?: string | undefined;
+                        image_info?: {
+                            image_id: string;
+                            image_url: string;
+                        } | undefined;
+                    }[];
+                } | undefined;
             } | undefined;
         }, {
             item_id: number;
@@ -390,18 +390,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 original_brand_name: string;
             };
             description_type: string;
-            description_info: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
-                        text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
-                        } | undefined;
-                    }[];
-                } | undefined;
-            };
             attribute_list?: {
                 attribute_id: number;
                 original_attribute_name: string;
@@ -442,6 +430,18 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 diff_state_cfop: number;
                 csosn: number;
                 origin: number;
+            } | undefined;
+            description_info?: {
+                extended_description?: {
+                    field_list: {
+                        field_type: string;
+                        text?: string | undefined;
+                        image_info?: {
+                            image_id: string;
+                            image_url: string;
+                        } | undefined;
+                    }[];
+                } | undefined;
             } | undefined;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
@@ -475,18 +475,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 original_brand_name: string;
             };
             description_type: string;
-            description_info: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
-                        text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
-                        } | undefined;
-                    }[];
-                } | undefined;
-            };
             attribute_list?: {
                 attribute_id: number;
                 original_attribute_name: string;
@@ -527,6 +515,18 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 diff_state_cfop: number;
                 csosn: number;
                 origin: number;
+            } | undefined;
+            description_info?: {
+                extended_description?: {
+                    field_list: {
+                        field_type: string;
+                        text?: string | undefined;
+                        image_info?: {
+                            image_id: string;
+                            image_url: string;
+                        } | undefined;
+                    }[];
+                } | undefined;
             } | undefined;
         }[] | undefined;
     }, {
@@ -560,18 +560,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 original_brand_name: string;
             };
             description_type: string;
-            description_info: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
-                        text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
-                        } | undefined;
-                    }[];
-                } | undefined;
-            };
             attribute_list?: {
                 attribute_id: number;
                 original_attribute_name: string;
@@ -612,6 +600,18 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 diff_state_cfop: number;
                 csosn: number;
                 origin: number;
+            } | undefined;
+            description_info?: {
+                extended_description?: {
+                    field_list: {
+                        field_type: string;
+                        text?: string | undefined;
+                        image_info?: {
+                            image_id: string;
+                            image_url: string;
+                        } | undefined;
+                    }[];
+                } | undefined;
             } | undefined;
         }[] | undefined;
     }>;
@@ -648,18 +648,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 original_brand_name: string;
             };
             description_type: string;
-            description_info: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
-                        text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
-                        } | undefined;
-                    }[];
-                } | undefined;
-            };
             attribute_list?: {
                 attribute_id: number;
                 original_attribute_name: string;
@@ -700,6 +688,18 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 diff_state_cfop: number;
                 csosn: number;
                 origin: number;
+            } | undefined;
+            description_info?: {
+                extended_description?: {
+                    field_list: {
+                        field_type: string;
+                        text?: string | undefined;
+                        image_info?: {
+                            image_id: string;
+                            image_url: string;
+                        } | undefined;
+                    }[];
+                } | undefined;
             } | undefined;
         }[] | undefined;
     };
@@ -739,18 +739,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 original_brand_name: string;
             };
             description_type: string;
-            description_info: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
-                        text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
-                        } | undefined;
-                    }[];
-                } | undefined;
-            };
             attribute_list?: {
                 attribute_id: number;
                 original_attribute_name: string;
@@ -791,6 +779,18 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 diff_state_cfop: number;
                 csosn: number;
                 origin: number;
+            } | undefined;
+            description_info?: {
+                extended_description?: {
+                    field_list: {
+                        field_type: string;
+                        text?: string | undefined;
+                        image_info?: {
+                            image_id: string;
+                            image_url: string;
+                        } | undefined;
+                    }[];
+                } | undefined;
             } | undefined;
         }[] | undefined;
     };
@@ -835,18 +835,6 @@ export declare const getItemBaseInfo: (requestParameters: {
                 original_brand_name: string;
             };
             description_type: string;
-            description_info: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
-                        text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
-                        } | undefined;
-                    }[];
-                } | undefined;
-            };
             attribute_list?: {
                 attribute_id: number;
                 original_attribute_name: string;
@@ -887,6 +875,18 @@ export declare const getItemBaseInfo: (requestParameters: {
                 diff_state_cfop: number;
                 csosn: number;
                 origin: number;
+            } | undefined;
+            description_info?: {
+                extended_description?: {
+                    field_list: {
+                        field_type: string;
+                        text?: string | undefined;
+                        image_info?: {
+                            image_id: string;
+                            image_url: string;
+                        } | undefined;
+                    }[];
+                } | undefined;
             } | undefined;
         }[] | undefined;
     };
