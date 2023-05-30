@@ -58,11 +58,11 @@ export declare const getModelListResponseSchema: z.ZodObject<{
                 is_pre_order: z.ZodBoolean;
                 days_to_ship: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             }, {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             }>;
             stock_info_v2: z.ZodObject<{
                 summary_info: z.ZodObject<{
@@ -105,6 +105,9 @@ export declare const getModelListResponseSchema: z.ZodObject<{
                 }[];
             }>;
         }, "strip", z.ZodTypeAny, {
+            model_id: number;
+            model_sku: string;
+            promotion_id: number;
             price_info: {
                 original_price: number;
                 current_price: number;
@@ -122,15 +125,15 @@ export declare const getModelListResponseSchema: z.ZodObject<{
                 }[];
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
-            promotion_id: number;
-            model_id: number;
             model_status: string;
             tier_index: number[];
-            model_sku: string;
         }, {
+            model_id: number;
+            model_sku: string;
+            promotion_id: number;
             price_info: {
                 original_price: number;
                 current_price: number;
@@ -148,14 +151,11 @@ export declare const getModelListResponseSchema: z.ZodObject<{
                 }[];
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
-            promotion_id: number;
-            model_id: number;
             model_status: string;
             tier_index: number[];
-            model_sku: string;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         tier_variation: {
@@ -165,6 +165,9 @@ export declare const getModelListResponseSchema: z.ZodObject<{
             }[];
         }[];
         model: {
+            model_id: number;
+            model_sku: string;
+            promotion_id: number;
             price_info: {
                 original_price: number;
                 current_price: number;
@@ -182,14 +185,11 @@ export declare const getModelListResponseSchema: z.ZodObject<{
                 }[];
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
-            promotion_id: number;
-            model_id: number;
             model_status: string;
             tier_index: number[];
-            model_sku: string;
         }[];
     }, {
         tier_variation: {
@@ -199,6 +199,9 @@ export declare const getModelListResponseSchema: z.ZodObject<{
             }[];
         }[];
         model: {
+            model_id: number;
+            model_sku: string;
+            promotion_id: number;
             price_info: {
                 original_price: number;
                 current_price: number;
@@ -216,14 +219,11 @@ export declare const getModelListResponseSchema: z.ZodObject<{
                 }[];
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
-            promotion_id: number;
-            model_id: number;
             model_status: string;
             tier_index: number[];
-            model_sku: string;
         }[];
     }>;
 }, "strip", z.ZodTypeAny, {
@@ -236,6 +236,9 @@ export declare const getModelListResponseSchema: z.ZodObject<{
             }[];
         }[];
         model: {
+            model_id: number;
+            model_sku: string;
+            promotion_id: number;
             price_info: {
                 original_price: number;
                 current_price: number;
@@ -253,19 +256,16 @@ export declare const getModelListResponseSchema: z.ZodObject<{
                 }[];
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
-            promotion_id: number;
-            model_id: number;
             model_status: string;
             tier_index: number[];
-            model_sku: string;
         }[];
     };
     error: string;
-    warning: string;
     request_id: string;
+    warning: string;
 }, {
     message: string;
     response: {
@@ -276,6 +276,9 @@ export declare const getModelListResponseSchema: z.ZodObject<{
             }[];
         }[];
         model: {
+            model_id: number;
+            model_sku: string;
+            promotion_id: number;
             price_info: {
                 original_price: number;
                 current_price: number;
@@ -293,19 +296,16 @@ export declare const getModelListResponseSchema: z.ZodObject<{
                 }[];
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
-            promotion_id: number;
-            model_id: number;
             model_status: string;
             tier_index: number[];
-            model_sku: string;
         }[];
     };
     error: string;
-    warning: string;
     request_id: string;
+    warning: string;
 }>;
 export declare const getModelList: (requestParameters: {
     item_id: string;
@@ -319,6 +319,9 @@ export declare const getModelList: (requestParameters: {
             }[];
         }[];
         model: {
+            model_id: number;
+            model_sku: string;
+            promotion_id: number;
             price_info: {
                 original_price: number;
                 current_price: number;
@@ -336,18 +339,15 @@ export declare const getModelList: (requestParameters: {
                 }[];
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
-            promotion_id: number;
-            model_id: number;
             model_status: string;
             tier_index: number[];
-            model_sku: string;
         }[];
     };
     error: string;
-    warning: string;
     request_id: string;
+    warning: string;
 }>;
 //# sourceMappingURL=v2-product-get-model-list.d.ts.map

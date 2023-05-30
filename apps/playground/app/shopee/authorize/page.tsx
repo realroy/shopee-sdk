@@ -1,11 +1,11 @@
+import { Suspense } from "react";
 import Link from "next/link";
 import { Lock } from "lucide-react";
 import * as jwt from "jsonwebtoken";
 
-import { shopeeSdk } from "@/apps/playground/lib/shopeeSdk";
-import { env } from "@/apps/playground/env";
-import { Button, Card, Loader } from "@/apps/playground/components";
-import { Suspense } from "react";
+import { shopeeSdk } from "@/lib";
+import { env } from "@/env";
+import { Button, Card, Loader } from "@/components";
 
 export default async function ShopeeAuthorizePage() {
   return (

@@ -164,11 +164,11 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 is_pre_order: z.ZodBoolean;
                 days_to_ship: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             }, {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             }>;
             condition: z.ZodString;
             size_chart: z.ZodString;
@@ -214,25 +214,25 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                             image_id: z.ZodString;
                             image_url: z.ZodString;
                         }, "strip", z.ZodTypeAny, {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         }, {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         }>>;
                     }, "strip", z.ZodTypeAny, {
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }, {
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }>, "many">;
                 }, "strip", z.ZodTypeAny, {
@@ -240,8 +240,8 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }[];
                 }, {
@@ -249,8 +249,8 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }[];
                 }>>;
@@ -260,8 +260,8 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }[];
                 } | undefined;
@@ -271,32 +271,32 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }[];
                 } | undefined;
             }>>;
         }, "strip", z.ZodTypeAny, {
+            create_time: number;
             item_id: number;
-            category_id: number;
             item_name: string;
             item_sku: string;
-            create_time: number;
+            weight: string;
             update_time: number;
+            category_id: number;
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
             };
-            weight: string;
             dimension: {
                 package_length: number;
                 package_width: number;
                 package_height: number;
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
             condition: string;
             size_chart: string;
@@ -354,32 +354,32 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }[];
                 } | undefined;
             } | undefined;
         }, {
+            create_time: number;
             item_id: number;
-            category_id: number;
             item_name: string;
             item_sku: string;
-            create_time: number;
+            weight: string;
             update_time: number;
+            category_id: number;
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
             };
-            weight: string;
             dimension: {
                 package_length: number;
                 package_width: number;
                 package_height: number;
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
             condition: string;
             size_chart: string;
@@ -437,8 +437,8 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }[];
                 } | undefined;
@@ -446,25 +446,25 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         item_list?: {
+            create_time: number;
             item_id: number;
-            category_id: number;
             item_name: string;
             item_sku: string;
-            create_time: number;
+            weight: string;
             update_time: number;
+            category_id: number;
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
             };
-            weight: string;
             dimension: {
                 package_length: number;
                 package_width: number;
                 package_height: number;
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
             condition: string;
             size_chart: string;
@@ -522,8 +522,8 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }[];
                 } | undefined;
@@ -531,25 +531,25 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
         }[] | undefined;
     }, {
         item_list?: {
+            create_time: number;
             item_id: number;
-            category_id: number;
             item_name: string;
             item_sku: string;
-            create_time: number;
+            weight: string;
             update_time: number;
+            category_id: number;
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
             };
-            weight: string;
             dimension: {
                 package_length: number;
                 package_width: number;
                 package_height: number;
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
             condition: string;
             size_chart: string;
@@ -607,8 +607,8 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }[];
                 } | undefined;
@@ -619,25 +619,25 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
     message: string;
     response: {
         item_list?: {
+            create_time: number;
             item_id: number;
-            category_id: number;
             item_name: string;
             item_sku: string;
-            create_time: number;
+            weight: string;
             update_time: number;
+            category_id: number;
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
             };
-            weight: string;
             dimension: {
                 package_length: number;
                 package_width: number;
                 package_height: number;
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
             condition: string;
             size_chart: string;
@@ -695,8 +695,8 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }[];
                 } | undefined;
@@ -704,31 +704,31 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
         }[] | undefined;
     };
     error: string;
-    warning: string;
     request_id: string;
+    warning: string;
 }, {
     message: string;
     response: {
         item_list?: {
+            create_time: number;
             item_id: number;
-            category_id: number;
             item_name: string;
             item_sku: string;
-            create_time: number;
+            weight: string;
             update_time: number;
+            category_id: number;
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
             };
-            weight: string;
             dimension: {
                 package_length: number;
                 package_width: number;
                 package_height: number;
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
             condition: string;
             size_chart: string;
@@ -786,8 +786,8 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }[];
                 } | undefined;
@@ -795,8 +795,8 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
         }[] | undefined;
     };
     error: string;
-    warning: string;
     request_id: string;
+    warning: string;
 }>;
 export declare const getItemBaseInfo: (requestParameters: {
     item_id_list: string;
@@ -806,25 +806,25 @@ export declare const getItemBaseInfo: (requestParameters: {
     message: string;
     response: {
         item_list?: {
+            create_time: number;
             item_id: number;
-            category_id: number;
             item_name: string;
             item_sku: string;
-            create_time: number;
+            weight: string;
             update_time: number;
+            category_id: number;
             image: {
                 image_url_list: string[];
                 image_id_list: string[];
             };
-            weight: string;
             dimension: {
                 package_length: number;
                 package_width: number;
                 package_height: number;
             };
             pre_order: {
-                is_pre_order: boolean;
                 days_to_ship: number;
+                is_pre_order: boolean;
             };
             condition: string;
             size_chart: string;
@@ -882,8 +882,8 @@ export declare const getItemBaseInfo: (requestParameters: {
                         field_type: string;
                         text?: string | undefined;
                         image_info?: {
-                            image_id: string;
                             image_url: string;
+                            image_id: string;
                         } | undefined;
                     }[];
                 } | undefined;
@@ -891,7 +891,7 @@ export declare const getItemBaseInfo: (requestParameters: {
         }[] | undefined;
     };
     error: string;
-    warning: string;
     request_id: string;
+    warning: string;
 }>;
 //# sourceMappingURL=v2-product-get-item-base-info.d.ts.map
