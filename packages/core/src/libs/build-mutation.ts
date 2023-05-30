@@ -39,7 +39,10 @@ export function buildMutation<
       );
     }
 
-    const context = ShopeeContext.getInstance().value;
+    const contextInstance = ShopeeContext.getInstance()
+    const context = contextInstance.value;
+
+    httpClient.setLogEnabled(contextInstance.isLogEnabled)
 
     const signedURL = await signURL({
       ...context,

@@ -9,7 +9,7 @@ describe("v2/shop/verifyCallback", async () => {
     const query = {
       sign: "123",
       code: "456",
-      shopId: "789",
+      shop_id: "789",
     };
 
     const verifyCallback = () => shopeeSdk.v2.shop.verifyCallback(query);

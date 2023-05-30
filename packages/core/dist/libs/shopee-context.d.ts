@@ -5,6 +5,7 @@ export declare class ShopeeContext {
     baseURL?: string;
     accessToken?: string;
     shopId?: number;
+    isLogEnabled: boolean;
     private constructor();
     static getInstance(): ShopeeContext;
     get value(): {

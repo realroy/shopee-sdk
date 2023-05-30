@@ -7,9 +7,19 @@ export class HttpClient {
   private readonly axios: AxiosInstance;
   private readonly logger = console;
 
+  private isLogEnabled: boolean;
+  private logInterceptorIds: number[] = []
+
   private constructor() {
+    this.isLogEnabled = false;
     this.axios = Axios.create();
-    this.axios.interceptors.request.use(
+    if (this.isLogEnabled) {
+      this.addLogInterceptor();
+    }
+  }
+
+  private addLogInterceptor() {
+    const requestLogInterceptorId = this.axios.interceptors.request.use(
       (value) => {
         this.logger.log(`${value.url}`);
         if (value.data) {
@@ -20,11 +30,12 @@ export class HttpClient {
       },
       (error) => {
         this.logger.error(error);
-        return error;
+
+        throw error;
       }
     );
 
-    this.axios.interceptors.response.use(
+    const responseLogInterceptorId = this.axios.interceptors.response.use(
       (value) => {
         this.logger.log(`[Response]: ${JSON.stringify(value.data, null, 4)}`);
         return value;
@@ -40,10 +51,27 @@ export class HttpClient {
         throw error;
       }
     );
+
+    this.logInterceptorIds = [requestLogInterceptorId, responseLogInterceptorId]
+  }
+
+  private removeLogInterceptor() {
+    this.logInterceptorIds.forEach(this.axios.interceptors.request.eject)
   }
 
   static getInstance() {
     return this.instance ?? (this.instance = new HttpClient());
+  }
+
+  setLogEnabled(newValue: boolean) {
+    this.isLogEnabled = newValue;
+    if (this.isLogEnabled) {
+      this.addLogInterceptor()
+    } else {
+    this.removeLogInterceptor()
+    }
+
+    return this.isLogEnabled;
   }
 
   get(url: string, params?: object) {

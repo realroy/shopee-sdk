@@ -1,102 +1,115 @@
-import v from "axios";
+import q from "axios";
 import { z as e } from "zod";
-async function E(r, ...t) {
-  let n;
-  return typeof globalThis.crypto < "u" && (n = await L(r, ...t)), n = await q(r, ...t), n;
-}
 async function L(r, ...t) {
-  const n = new TextEncoder(), o = n.encode(r);
+  let o;
+  return typeof globalThis.crypto < "u" && (o = await D(r, ...t)), o = await x(r, ...t), o;
+}
+async function D(r, ...t) {
+  const o = new TextEncoder(), n = o.encode(r);
   let s = new Uint8Array();
-  t.forEach((i) => {
-    i && (s = n.encode(i));
+  t.forEach((p) => {
+    p && (s = o.encode(p));
   });
   const a = await crypto.subtle.importKey(
     "raw",
-    o,
+    n,
     { name: "HMAC", hash: "SHA-256" },
     !1,
     ["sign"]
-  ), c = await crypto.subtle.sign(
+  ), i = await crypto.subtle.sign(
     { name: "HMAC", hash: { name: "sha-256" } },
     a,
     s
-  ), _ = new Uint8Array(c);
-  return Array.from(_).map((i) => i.toString(16).padStart(2, "0")).join("");
+  ), c = new Uint8Array(i);
+  return Array.from(c).map((p) => p.toString(16).padStart(2, "0")).join("");
 }
-async function q(r, ...t) {
-  const { createHmac: n } = await import("crypto"), o = n("sha256", r);
-  return t.filter((s) => !!s).forEach((s) => o.update(s)), o.digest("hex");
+async function x(r, ...t) {
+  const { createHmac: o } = await import("crypto"), n = o("sha256", r);
+  return t.filter((s) => !!s).forEach((s) => n.update(s)), n.digest("hex");
 }
-function S(r) {
+function I(r) {
   const t = r ? r.getTime() : Date.now();
   return Math.round(t / 1e3).toString();
 }
-async function j(r) {
+async function T(r) {
   const {
     partner_id: t,
-    partner_key: n,
-    path: o,
+    partner_key: o,
+    path: n,
     base_url: s,
     access_token: a,
-    shop_id: c,
-    params: _ = {}
-  } = r, p = t.toString(), i = c.toString(), m = {};
-  for (const b in _) {
-    const g = _[b];
-    Array.isArray(g) ? m[b] = [
-      g[0],
-      ...g.slice(1).map((O) => `&${b}=${O}`)
-    ].join("") : g instanceof Date ? m[b] = S(g) : m[b] = `${g}`;
-  }
-  const f = S(), I = new URL(o, s), k = await E(
-    n,
-    p,
-    o,
-    f,
-    a,
-    i
-  );
-  return I.search = new URLSearchParams({
-    ...m,
-    partner_id: p,
     shop_id: i,
+    params: c = {}
+  } = r, _ = t.toString(), p = i.toString(), m = {};
+  for (const h in c) {
+    const d = c[h];
+    Array.isArray(d) ? m[h] = [
+      d[0],
+      ...d.slice(1).map((v) => `&${h}=${v}`)
+    ].join("") : d instanceof Date ? m[h] = I(d) : m[h] = `${d}`;
+  }
+  const l = I(), y = new URL(n, s), O = await L(
+    o,
+    _,
+    n,
+    l,
+    a,
+    p
+  );
+  return y.search = new URLSearchParams({
+    ...m,
+    partner_id: _,
+    shop_id: p,
     ...!!a && { access_token: a },
-    sign: k,
-    timestamp: f
-  }).toString(), I.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
+    sign: O,
+    timestamp: l
+  }).toString(), y.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
 }
-class y {
+class S {
   constructor() {
-    this.logger = console, this.axios = v.create(), this.axios.interceptors.request.use(
-      (t) => (this.logger.log(`${t.url}`), t.data && this.logger.info(`[Body]: ${JSON.stringify(t.data, null, 4)}`), t),
-      (t) => (this.logger.error(t), t)
-    ), this.axios.interceptors.response.use(
-      (t) => (this.logger.log(`[Response]: ${JSON.stringify(t.data, null, 4)}`), t),
-      (t) => {
+    this.logger = console, this.logInterceptorIds = [], this.isLogEnabled = !1, this.axios = q.create(), this.isLogEnabled && this.addLogInterceptor();
+  }
+  addLogInterceptor() {
+    const t = this.axios.interceptors.request.use(
+      (n) => (this.logger.log(`${n.url}`), n.data && this.logger.info(`[Body]: ${JSON.stringify(n.data, null, 4)}`), n),
+      (n) => {
+        throw this.logger.error(n), n;
+      }
+    ), o = this.axios.interceptors.response.use(
+      (n) => (this.logger.log(`[Response]: ${JSON.stringify(n.data, null, 4)}`), n),
+      (n) => {
         const {
-          response: n,
-          message: o,
-          config: { method: s, url: a, data: c, params: _ }
-        } = t, p = n == null ? void 0 : n.status;
-        throw this.logger.error({ status: p, message: o, method: s, url: a, data: c, params: _ }), t;
+          response: s,
+          message: a,
+          config: { method: i, url: c, data: _, params: p }
+        } = n, m = s == null ? void 0 : s.status;
+        throw this.logger.error({ status: m, message: a, method: i, url: c, data: _, params: p }), n;
       }
     );
+    this.logInterceptorIds = [t, o];
+  }
+  removeLogInterceptor() {
+    this.logInterceptorIds.forEach(this.axios.interceptors.request.eject);
   }
   static getInstance() {
-    return this.instance ?? (this.instance = new y());
+    return this.instance ?? (this.instance = new S());
   }
-  get(t, n) {
-    return this.axios.get(t, { params: n });
+  setLogEnabled(t) {
+    return this.isLogEnabled = t, this.isLogEnabled ? this.addLogInterceptor() : this.removeLogInterceptor(), this.isLogEnabled;
   }
-  post(t, n, o) {
-    return this.axios.post(t, o, { params: n });
+  get(t, o) {
+    return this.axios.get(t, { params: o });
+  }
+  post(t, o, n) {
+    return this.axios.post(t, n, { params: o });
   }
 }
-class l {
+class g {
   constructor() {
+    this.isLogEnabled = !1;
   }
   static getInstance() {
-    return this.instance ?? (this.instance = new l());
+    return this.instance ?? (this.instance = new g());
   }
   get value() {
     return {
@@ -108,40 +121,44 @@ class l {
     };
   }
 }
-const D = y.getInstance();
-function d(r) {
-  return async function(n) {
-    const o = r.transformRequestParameter ?? ((f) => f), s = await r.requestParameterSchema.transform(o).safeParseAsync(n);
+const P = S.getInstance();
+function b(r) {
+  return async function(o) {
+    const n = r.transformRequestParameter ?? ((y) => y), s = await r.requestParameterSchema.transform(n).safeParseAsync(o);
     if (!s.success)
       throw new Error(
         `parse request parameters error: ${s.error.message}`
       );
-    const a = s.data, c = l.getInstance().value, _ = await j({
+    const a = s.data, i = g.getInstance(), c = i.value;
+    P.setLogEnabled(i.isLogEnabled);
+    const _ = await T({
       ...c,
       path: r.path,
       params: a
-    }), i = (await D.get(_)).data, m = await r.responseSchema.safeParseAsync(i);
-    if (!m.success)
-      throw new Error(`parse response error: ${m.error.message}`);
-    return m.data;
+    }), m = (await P.get(_)).data, l = await r.responseSchema.safeParseAsync(m);
+    if (!l.success)
+      throw new Error(`parse response error: ${l.error.message}`);
+    return l.data;
   };
 }
-const x = y.getInstance();
+const R = S.getInstance();
 function U(r) {
-  return async function(n) {
-    const o = r.transformRequestParameter ?? ((m) => m), s = await r.requestParameterSchema.transform(o).safeParseAsync(n);
+  return async function(o) {
+    const n = r.transformRequestParameter ?? ((l) => l), s = await r.requestParameterSchema.transform(n).safeParseAsync(o);
     if (!s.success)
       throw new Error(
         `parse request parameters error: ${s.error.message}`
       );
-    const a = l.getInstance().value, c = await j({
-      ...a,
+    const a = g.getInstance(), i = a.value;
+    R.setLogEnabled(a.isLogEnabled);
+    const c = await T({
+      ...i,
       path: r.path,
       params: {}
-    }), _ = s.data, { data: p } = await x.post(c, {}, _), i = await r.responseSchema.safeParseAsync(p);
-    if (!i.success)
-      throw new Error(`parse response error: ${i.error.message}`);
-    return i.data;
+    }), _ = s.data, { data: p } = await R.post(c, {}, _), m = await r.responseSchema.safeParseAsync(p);
+    if (!m.success)
+      throw new Error(`parse response error: ${m.error.message}`);
+    return m.data;
   };
 }
 const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", N = [
@@ -188,7 +205,7 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
   "prescription_check_status"
 ], M = e.object({
   order_sn_list: e.array(e.string()),
-  response_optional_fields: e.enum(K).optional()
+  response_optional_fields: e.array(e.enum(K)).optional()
 }), $ = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
@@ -284,7 +301,7 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
     )
   }),
   request_id: e.string()
-}), B = d({
+}), B = b({
   path: C,
   requestParameterSchema: M,
   responseSchema: $
@@ -309,7 +326,7 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
     )
   }),
   request_id: e.string()
-}), G = d({
+}), G = b({
   path: H,
   requestParameterSchema: z,
   responseSchema: V
@@ -317,7 +334,7 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
   __proto__: null,
   getOrderDetail: B,
   getOrderList: G
-}, Symbol.toStringTag, { value: "Module" })), Q = "/api/v2/product/get_item_base_info", W = "/api/v2/product/get_item_extra_info", J = "/api/v2/product/get_item_list", Y = "/api/v2/product/get_model_list", T = ["NORMAL", "DELETED", "UNLIST", "BANNED"], X = e.object({
+}, Symbol.toStringTag, { value: "Module" })), Q = "/api/v2/product/get_item_base_info", W = "/api/v2/product/get_item_extra_info", J = "/api/v2/product/get_item_list", Y = "/api/v2/product/get_model_list", w = ["NORMAL", "DELETED", "UNLIST", "BANNED"], X = e.object({
   item_id_list: e.string(),
   need_tax_info: e.coerce.boolean().optional(),
   need_complaint_policy: e.coerce.boolean().optional()
@@ -426,7 +443,7 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
       })
     ).optional()
   })
-}), ee = d({
+}), ee = b({
   path: Q,
   requestParameterSchema: X,
   responseSchema: Z,
@@ -452,7 +469,7 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
       })
     ).optional()
   }).optional()
-}), ne = d({
+}), ne = b({
   path: W,
   requestParameterSchema: te,
   responseSchema: re
@@ -461,7 +478,7 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
   page_size: e.number().int().positive().max(100).optional(),
   update_time_from: e.date().optional(),
   update_time_to: e.date().optional(),
-  item_status: e.array(e.enum(T))
+  item_status: e.array(e.enum(w))
 }), oe = e.object({
   error: e.string(),
   message: e.string().nullable().optional(),
@@ -471,7 +488,7 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
     item: e.array(
       e.object({
         item_id: e.number().int(),
-        item_status: e.enum(T),
+        item_status: e.enum(w),
         update_time: e.number().int()
       })
     ).optional()
@@ -479,7 +496,7 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
   total_count: e.number().int().optional(),
   has_next_page: e.boolean().optional(),
   next_offset: e.number().int().optional()
-}), ae = d({
+}), ae = b({
   path: J,
   requestParameterSchema: se,
   transformRequestParameter(r) {
@@ -538,7 +555,7 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
       })
     )
   })
-}), _e = d({
+}), _e = b({
   path: Y,
   requestParameterSchema: ie,
   responseSchema: ce
@@ -548,12 +565,12 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
   getItemExtraInfo: ne,
   getItemList: ae,
   getModelList: _e
-}, Symbol.toStringTag, { value: "Module" })), me = "/api/v2/auth/token/get", w = e.object({
+}, Symbol.toStringTag, { value: "Module" })), me = "/api/v2/auth/token/get", A = e.object({
   code: e.string(),
   partner_id: e.number().optional(),
   shop_id: e.number().optional(),
   main_account_id: e.number().optional()
-}), A = e.object({
+}), k = e.object({
   access_token: e.string(),
   error: e.string(),
   expires_in: e.number(),
@@ -563,35 +580,35 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
   shop_id_list: e.array(e.number())
 }), ue = U({
   path: me,
-  requestParameterSchema: w,
-  responseSchema: A,
+  requestParameterSchema: A,
+  responseSchema: k,
   transformRequestParameter(r) {
-    return r.partner_id = r.partner_id ?? l.getInstance().partnerId, r;
+    return r.partner_id = r.partner_id ?? g.getInstance().partnerId, r;
   }
 }), le = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   getAccessToken: ue,
-  getAccessTokenRequestParametersSchema: w,
-  getAccessTokenResponseSchema: A
-}, Symbol.toStringTag, { value: "Module" })), R = "/api/v2/shop/auth_partner";
+  getAccessTokenRequestParametersSchema: A,
+  getAccessTokenResponseSchema: k
+}, Symbol.toStringTag, { value: "Module" })), j = "/api/v2/shop/auth_partner";
 async function ge({
   redirectURL: r,
   redirectSign: t
 }) {
-  const { baseURL: n, partnerId: o, partnerKey: s } = l.getInstance();
-  if (!s || !o)
+  const { baseURL: o, partnerId: n, partnerKey: s } = g.getInstance();
+  if (!s || !n)
     throw new Error("partnerKey is undefined");
-  const a = new URL(R, n), c = S(/* @__PURE__ */ new Date()), _ = await E(
+  const a = new URL(j, o), i = I(/* @__PURE__ */ new Date()), c = await L(
     s,
-    o.toString(),
-    R,
-    c
-  ), p = new URL(r);
-  return p.searchParams.append("sign", t), a.search = new URLSearchParams({
-    partner_id: o.toString(),
-    redirect: p.toString(),
-    timestamp: c,
-    sign: _
+    n.toString(),
+    j,
+    i
+  ), _ = new URL(r);
+  return _.searchParams.append("sign", t), a.search = new URLSearchParams({
+    partner_id: n.toString(),
+    redirect: _.toString(),
+    timestamp: i,
+    sign: c
   }).toString(), a.toString();
 }
 const de = e.object({
@@ -605,10 +622,10 @@ async function be(r) {
     throw new Error(
       `parse request parameters error: ${t.error.message}`
     );
-  const { code: n, shop_id: o, sign: s } = t.data;
+  const { code: o, shop_id: n, sign: s } = t.data;
   return {
-    code: n,
-    shopId: o,
+    code: o,
+    shopId: n,
     sign: s
   };
 }
@@ -628,19 +645,19 @@ const he = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   baseURL: e.coerce.string().url().optional(),
   accessToken: e.coerce.string().optional(),
   shopId: e.coerce.number().optional()
-}), P = ye.safeParse({
+}), E = ye.safeParse({
   partnerId: process.env.SHOPEE_SDK_PARTNER_ID,
   partnerKey: process.env.SHOPEE_SDK_PARTNER_KEY,
   baseURL: process.env.SHOPEE_SDK_BASE_URL,
   accessToken: process.env.SHOPEE_SDK_ACCESS_TOKEN,
   shopId: process.env.SHOPEE_SDK_SHOP_ID
 });
-if (!P.success)
-  throw new Error(P.error.message);
-const h = P.data, u = l.getInstance();
-class Ie {
+if (!E.success)
+  throw new Error(E.error.message);
+const f = E.data, u = g.getInstance();
+class Ee {
   constructor(t) {
-    u.accessToken = t.accessToken ?? h.accessToken, u.baseURL = t.baseURL ?? h.baseURL, u.partnerId = t.partnerId ?? h.partnerId, u.partnerKey = t.partnerKey ?? h.partnerKey, u.shopId = t.shopId ?? h.shopId;
+    u.accessToken = t.accessToken ?? f.accessToken, u.baseURL = t.baseURL ?? f.baseURL, u.partnerId = t.partnerId ?? f.partnerId, u.partnerKey = t.partnerKey ?? f.partnerKey, u.shopId = t.shopId ?? f.shopId, u.isLogEnabled = t.isLogEnabled ?? !1;
   }
   setPartnerId(t) {
     return u.partnerId = t, this;
@@ -657,6 +674,9 @@ class Ie {
   setShopId(t) {
     return u.shopId = t, this;
   }
+  setIsLogEnabled(t) {
+    return u.isLogEnabled = t, this;
+  }
   get v2() {
     return fe;
   }
@@ -669,12 +689,12 @@ export {
   J as API_V2_PRODUCT_GET_ITEM_LIST_PATH,
   Y as API_V2_PRODUCT_GET_MODEL_LIST_PATH,
   me as API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH,
-  R as API_V2_SHOP_AUTH_PARTNER,
-  T as ITEM_STATUS,
+  j as API_V2_SHOP_AUTH_PARTNER,
+  w as ITEM_STATUS,
   K as ORDER_RESPONSE_OPTIONAL_FIELDS,
   N as ORDER_STATUS,
-  Ie as ShopeeSdk,
-  E as generateHmac,
-  j as signURL,
-  S as toTimestamp
+  Ee as ShopeeSdk,
+  L as generateHmac,
+  T as signURL,
+  I as toTimestamp
 };

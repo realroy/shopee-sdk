@@ -6,8 +6,11 @@ export class ShopeeContext {
   baseURL?: string;
   accessToken?: string;
   shopId?: number;
+  isLogEnabled: boolean
 
-  private constructor() {}
+  private constructor() {
+    this.isLogEnabled = false
+  }
 
   static getInstance() {
     return this.instance ?? (this.instance = new ShopeeContext());
