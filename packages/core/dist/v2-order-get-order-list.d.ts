@@ -1,28 +1,28 @@
 import { z } from "zod";
 export declare const getOrderListRequestParametersSchema: z.ZodObject<{
     time_range_field: z.ZodEnum<["create_time", "update_time"]>;
-    time_from: z.ZodNumber;
-    time_to: z.ZodNumber;
+    time_from: z.ZodDate;
+    time_to: z.ZodDate;
     page_size: z.ZodNumber;
     cursor: z.ZodOptional<z.ZodString>;
     order_status: z.ZodOptional<z.ZodEnum<["UNPAID", "READY_TO_SHIP", "PROCESSED", "SHIPPED", "COMPLETED", "IN_CANCEL", "CANCELLED", "INVOICE_PENDING"]>>;
-    response_optional_fields: z.ZodOptional<z.ZodString>;
+    response_optional_fields: z.ZodDefault<z.ZodOptional<z.ZodEnum<["order_status"]>>>;
 }, "strip", z.ZodTypeAny, {
+    response_optional_fields: "order_status";
     time_range_field: "create_time" | "update_time";
-    time_from: number;
-    time_to: number;
+    time_from: Date;
+    time_to: Date;
     page_size: number;
     cursor?: string | undefined;
     order_status?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
-    response_optional_fields?: string | undefined;
 }, {
     time_range_field: "create_time" | "update_time";
-    time_from: number;
-    time_to: number;
+    time_from: Date;
+    time_to: Date;
     page_size: number;
     cursor?: string | undefined;
     order_status?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
-    response_optional_fields?: string | undefined;
+    response_optional_fields?: "order_status" | undefined;
 }>;
 export declare const getOrderListResponseSchema: z.ZodObject<{
     error: z.ZodOptional<z.ZodString>;
@@ -75,13 +75,13 @@ export declare const getOrderListResponseSchema: z.ZodObject<{
     message?: string | undefined;
 }>;
 export declare const getOrderList: (requestParameters: {
+    response_optional_fields: "order_status";
     time_range_field: "create_time" | "update_time";
-    time_from: number;
-    time_to: number;
+    time_from: Date;
+    time_to: Date;
     page_size: number;
     cursor?: string | undefined;
     order_status?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
-    response_optional_fields?: string | undefined;
 }) => Promise<{
     response: {
         order_list: {

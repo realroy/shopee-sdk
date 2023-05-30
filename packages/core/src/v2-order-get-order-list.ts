@@ -10,10 +10,10 @@ export const getOrderListRequestParametersSchema = z.object({
   time_range_field: z.enum(["create_time", "update_time"]),
   time_from: z.date(),
   time_to: z.date(),
-  page_size: z.number(),
+  page_size: z.number().min(1).max(100),
   cursor: z.string().optional(),
   order_status: z.enum(ORDER_STATUS).optional(),
-  response_optional_fields: z.string().optional(),
+  response_optional_fields: z.enum(['order_status']).optional().default('order_status'),
 });
 
 export const getOrderListResponseSchema = z.object({

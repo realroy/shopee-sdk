@@ -78,7 +78,7 @@ class y {
           message: o,
           config: { method: s, url: a, data: c, params: _ }
         } = t, p = n == null ? void 0 : n.status;
-        return this.logger.error({ status: p, message: o, method: s, url: a, data: c, params: _ }), t;
+        throw this.logger.error({ status: p, message: o, method: s, url: a, data: c, params: _ }), t;
       }
     );
   }
@@ -126,8 +126,8 @@ function d(r) {
     return m.data;
   };
 }
-const U = y.getInstance();
-function x(r) {
+const x = y.getInstance();
+function U(r) {
   return async function(n) {
     const o = r.transformRequestParameter ?? ((m) => m), s = await r.requestParameterSchema.transform(o).safeParseAsync(n);
     if (!s.success)
@@ -138,7 +138,7 @@ function x(r) {
       ...a,
       path: r.path,
       params: {}
-    }), _ = s.data, { data: p } = await U.post(c, {}, _), i = await r.responseSchema.safeParseAsync(p);
+    }), _ = s.data, { data: p } = await x.post(c, {}, _), i = await r.responseSchema.safeParseAsync(p);
     if (!i.success)
       throw new Error(`parse response error: ${i.error.message}`);
     return i.data;
@@ -290,12 +290,12 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
   responseSchema: $
 }), z = e.object({
   time_range_field: e.enum(["create_time", "update_time"]),
-  time_from: e.number(),
-  time_to: e.number(),
-  page_size: e.number(),
+  time_from: e.date(),
+  time_to: e.date(),
+  page_size: e.number().min(1).max(100),
   cursor: e.string().optional(),
   order_status: e.enum(N).optional(),
-  response_optional_fields: e.string().optional()
+  response_optional_fields: e.enum(["order_status"]).optional().default("order_status")
 }), V = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
@@ -561,7 +561,7 @@ const H = "/api/v2/order/get_order_list", C = "/api/v2/order/get_order_detail", 
   refresh_token: e.string(),
   request_id: e.string(),
   shop_id_list: e.array(e.number())
-}), ue = x({
+}), ue = U({
   path: me,
   requestParameterSchema: w,
   responseSchema: A,

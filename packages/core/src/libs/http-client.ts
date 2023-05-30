@@ -37,7 +37,7 @@ export class HttpClient {
         } = error;
         const status = response?.status;
         this.logger.error({ status, message, method, url, data, params });
-        return error;
+        throw error;
       }
     );
   }
