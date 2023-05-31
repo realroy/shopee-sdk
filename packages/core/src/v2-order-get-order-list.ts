@@ -27,7 +27,7 @@ export const getOrderListResponseSchema = z.object({
         order_sn: z.string(),
       })
     ),
-  }),
+  }).optional(),
   request_id: z.string(),
 });
 

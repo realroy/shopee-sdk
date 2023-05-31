@@ -1,0 +1,1 @@
+export { getShippingParameter } from './v2-logistic.get-shipping-parameter'

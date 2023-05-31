@@ -1,9 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { ShopeeSdk, ORDER_RESPONSE_OPTIONAL_FIELDS } from "@shopee-sdk/core";
+import { ShopeeSdk } from "@shopee-sdk/core";
 
-describe("v2/order/get-order-detail", async () => {
-  const shopeeSdk = new ShopeeSdk({ isLogEnabled: true });
+describe("v2/logistic/get-shipping-parameter", async () => {
+  const shopeeSdk = new ShopeeSdk({});
   const now = new Date();
+
   const getOrderListResponse = await shopeeSdk.v2.order.getOrderList({
     time_from: new Date(new Date().setDate(now.getDate() - 1)),
     time_to: now,
@@ -15,11 +16,10 @@ describe("v2/order/get-order-detail", async () => {
 
   it("should receive successfully response", async () => {
     const orderList = getOrderListResponse.response?.order_list
-    
-    const response = await shopeeSdk.v2.order.getOrderDetail({
-      order_sn_list: orderList?.map(order => order.order_sn) ?? [],
-      response_optional_fields: ORDER_RESPONSE_OPTIONAL_FIELDS.map(field => field)
-    });
+
+    const response = await shopeeSdk.v2.logistic.getShippingParameter({
+      orderSn: orderList?.[0]?.order_sn ?? ''
+    })
 
     expect(response.error).toHaveLength(0);
   });

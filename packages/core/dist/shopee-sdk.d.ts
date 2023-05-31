@@ -1,7 +1,7 @@
 import * as v2 from "./v2";
 import { env } from "./env";
 export type ShopeeSdkArgs = typeof env & {
-    isLogEnabled: boolean;
+    isLogEnabled?: boolean;
 };
 export declare class ShopeeSdk {
     constructor(args: ShopeeSdkArgs);

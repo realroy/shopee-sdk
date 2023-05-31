@@ -1,9 +1,11 @@
 import { z } from "zod";
+import _snakeCase from 'lodash/snakeCase'
+import _camelCase from 'lodash/camelCase'
 
 import { HttpClient } from "./http-client";
 import { ShopeeContext } from "./shopee-context";
 
-import { signURL } from "../utils";
+import { signURL, transformObjectKeys } from "../utils";
 
 const httpClient = HttpClient.getInstance();
 
@@ -17,6 +19,7 @@ export type BuildQueryArgs<
   transformRequestParameter?: (
     data: z.infer<z.ZodObject<TRequestParameterSchema>>
   ) => typeof data;
+  toCamelCase?: boolean
 };
 
 export function buildQuery<
@@ -39,7 +42,7 @@ export function buildQuery<
       );
     }
 
-    const parsedRequestParameters = parseRequestParameters.data;
+    const parsedRequestParameters = args.toCamelCase ? transformObjectKeys(parseRequestParameters.data, (key) => _snakeCase(key.toString())) : parseRequestParameters.data;
     const contextInstance = ShopeeContext.getInstance()
     const context = contextInstance.value;
 
@@ -52,7 +55,7 @@ export function buildQuery<
     });
 
     const response = await httpClient.get(signedURL);
-    const data = response.data;
+    const data = args.toCamelCase ? transformObjectKeys(response.data, key => _camelCase(key.toString())) : response.data;
 
     const parseData = await args.responseSchema.safeParseAsync(data);
 
@@ -60,6 +63,9 @@ export function buildQuery<
       throw new Error(`parse response error: ${parseData.error.message}`);
     }
 
-    return parseData.data;
+    const parsedData = parseData.data;
+
+    return parsedData
   };
 }
+

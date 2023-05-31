@@ -12,7 +12,7 @@ export declare const getOrderDetailRequestParametersSchema: z.ZodObject<{
 export declare const getOrderDetailResponseSchema: z.ZodObject<{
     error: z.ZodOptional<z.ZodString>;
     message: z.ZodOptional<z.ZodString>;
-    response: z.ZodObject<{
+    response: z.ZodOptional<z.ZodObject<{
         order_list: z.ZodArray<z.ZodObject<{
             checkout_shipping_carrier: z.ZodNull;
             reverse_shipping_fee: z.ZodNull;
@@ -164,23 +164,23 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 full_address: z.ZodString;
             }, "strip", z.ZodTypeAny, {
                 name: string;
-                phone: string;
-                town: string;
-                district: string;
-                city: string;
-                state: string;
                 region: string;
+                state: string;
+                city: string;
                 zipcode: string;
+                district: string;
+                town: string;
+                phone: string;
                 full_address: string;
             }, {
                 name: string;
-                phone: string;
-                town: string;
-                district: string;
-                city: string;
-                state: string;
                 region: string;
+                state: string;
+                city: string;
                 zipcode: string;
+                district: string;
+                town: string;
+                phone: string;
                 full_address: string;
             }>;
             region: z.ZodString;
@@ -190,18 +190,19 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             total_amount: z.ZodNumber;
             update_time: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
+            region: string;
             buyer_user_id: number;
             buyer_username: string;
             estimated_shipping_fee: number;
             recipient_address: {
                 name: string;
-                phone: string;
-                town: string;
-                district: string;
-                city: string;
-                state: string;
                 region: string;
+                state: string;
+                city: string;
                 zipcode: string;
+                district: string;
+                town: string;
+                phone: string;
                 full_address: string;
             };
             actual_shipping_fee: null;
@@ -266,22 +267,22 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             message_to_seller: string;
             order_sn: string;
             order_status: string;
-            region: string;
             ship_by_date: number;
             update_time: number;
         }, {
+            region: string;
             buyer_user_id: number;
             buyer_username: string;
             estimated_shipping_fee: number;
             recipient_address: {
                 name: string;
-                phone: string;
-                town: string;
-                district: string;
-                city: string;
-                state: string;
                 region: string;
+                state: string;
+                city: string;
                 zipcode: string;
+                district: string;
+                town: string;
+                phone: string;
                 full_address: string;
             };
             actual_shipping_fee: null;
@@ -346,24 +347,24 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             message_to_seller: string;
             order_sn: string;
             order_status: string;
-            region: string;
             ship_by_date: number;
             update_time: number;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         order_list: {
+            region: string;
             buyer_user_id: number;
             buyer_username: string;
             estimated_shipping_fee: number;
             recipient_address: {
                 name: string;
-                phone: string;
-                town: string;
-                district: string;
-                city: string;
-                state: string;
                 region: string;
+                state: string;
+                city: string;
                 zipcode: string;
+                district: string;
+                town: string;
+                phone: string;
                 full_address: string;
             };
             actual_shipping_fee: null;
@@ -428,24 +429,24 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             message_to_seller: string;
             order_sn: string;
             order_status: string;
-            region: string;
             ship_by_date: number;
             update_time: number;
         }[];
     }, {
         order_list: {
+            region: string;
             buyer_user_id: number;
             buyer_username: string;
             estimated_shipping_fee: number;
             recipient_address: {
                 name: string;
-                phone: string;
-                town: string;
-                district: string;
-                city: string;
-                state: string;
                 region: string;
+                state: string;
+                city: string;
                 zipcode: string;
+                district: string;
+                town: string;
+                phone: string;
                 full_address: string;
             };
             actual_shipping_fee: null;
@@ -510,27 +511,30 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             message_to_seller: string;
             order_sn: string;
             order_status: string;
-            region: string;
             ship_by_date: number;
             update_time: number;
         }[];
-    }>;
+    }>>;
     request_id: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    response: {
+    request_id: string;
+    error?: string | undefined;
+    message?: string | undefined;
+    response?: {
         order_list: {
+            region: string;
             buyer_user_id: number;
             buyer_username: string;
             estimated_shipping_fee: number;
             recipient_address: {
                 name: string;
-                phone: string;
-                town: string;
-                district: string;
-                city: string;
-                state: string;
                 region: string;
+                state: string;
+                city: string;
                 zipcode: string;
+                district: string;
+                town: string;
+                phone: string;
                 full_address: string;
             };
             actual_shipping_fee: null;
@@ -595,29 +599,29 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             message_to_seller: string;
             order_sn: string;
             order_status: string;
-            region: string;
             ship_by_date: number;
             update_time: number;
         }[];
-    };
-    request_id: string;
-    error?: string | undefined;
-    message?: string | undefined;
+    } | undefined;
 }, {
-    response: {
+    request_id: string;
+    error?: string | undefined;
+    message?: string | undefined;
+    response?: {
         order_list: {
+            region: string;
             buyer_user_id: number;
             buyer_username: string;
             estimated_shipping_fee: number;
             recipient_address: {
                 name: string;
-                phone: string;
-                town: string;
-                district: string;
-                city: string;
-                state: string;
                 region: string;
+                state: string;
+                city: string;
                 zipcode: string;
+                district: string;
+                town: string;
+                phone: string;
                 full_address: string;
             };
             actual_shipping_fee: null;
@@ -682,33 +686,33 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             message_to_seller: string;
             order_sn: string;
             order_status: string;
-            region: string;
             ship_by_date: number;
             update_time: number;
         }[];
-    };
-    request_id: string;
-    error?: string | undefined;
-    message?: string | undefined;
+    } | undefined;
 }>;
 export declare const getOrderDetail: (requestParameters: {
     order_sn_list: string[];
     response_optional_fields?: ("buyer_user_id" | "buyer_username" | "estimated_shipping_fee" | "recipient_address" | "actual_shipping_fee" | "goods_to_declare" | "note" | "note_update_time" | "item_list" | "pay_time" | "dropshipper" | "dropshipper_phone" | "split_up" | "buyer_cancel_reason" | "cancel_by" | "cancel_reason" | "actual_shipping_fee_confirmed" | "buyer_cpf_id" | "fulfillment_flag" | "pickup_done_time" | "package_list" | "shipping_carrier" | "payment_method" | "total_amount" | "invoice_data" | "checkout_shipping_carrier" | "reverse_shipping_fee" | "order_chargeable_weight_gram" | "edt" | "prescription_images" | "prescription_check_status")[] | undefined;
 }) => Promise<{
-    response: {
+    request_id: string;
+    error?: string | undefined;
+    message?: string | undefined;
+    response?: {
         order_list: {
+            region: string;
             buyer_user_id: number;
             buyer_username: string;
             estimated_shipping_fee: number;
             recipient_address: {
                 name: string;
-                phone: string;
-                town: string;
-                district: string;
-                city: string;
-                state: string;
                 region: string;
+                state: string;
+                city: string;
                 zipcode: string;
+                district: string;
+                town: string;
+                phone: string;
                 full_address: string;
             };
             actual_shipping_fee: null;
@@ -773,13 +777,9 @@ export declare const getOrderDetail: (requestParameters: {
             message_to_seller: string;
             order_sn: string;
             order_status: string;
-            region: string;
             ship_by_date: number;
             update_time: number;
         }[];
-    };
-    request_id: string;
-    error?: string | undefined;
-    message?: string | undefined;
+    } | undefined;
 }>;
 //# sourceMappingURL=v2-order-get-order-detail.d.ts.map

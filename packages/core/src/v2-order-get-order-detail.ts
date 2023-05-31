@@ -104,7 +104,7 @@ export const getOrderDetailResponseSchema = z.object({
         update_time: z.number(),
       })
     ),
-  }),
+  }).optional(),
   request_id: z.string(),
 });
 

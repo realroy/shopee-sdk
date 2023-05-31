@@ -4,7 +4,7 @@ import { env } from "./env";
 
 const shopeeContext = ShopeeContext.getInstance();
 
-export type ShopeeSdkArgs = typeof env & { isLogEnabled: boolean }
+export type ShopeeSdkArgs = typeof env & { isLogEnabled?: boolean }
 
 export class ShopeeSdk {
   constructor(args: ShopeeSdkArgs) {

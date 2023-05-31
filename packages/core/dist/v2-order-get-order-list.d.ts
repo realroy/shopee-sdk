@@ -27,7 +27,7 @@ export declare const getOrderListRequestParametersSchema: z.ZodObject<{
 export declare const getOrderListResponseSchema: z.ZodObject<{
     error: z.ZodOptional<z.ZodString>;
     message: z.ZodOptional<z.ZodString>;
-    response: z.ZodObject<{
+    response: z.ZodOptional<z.ZodObject<{
         more: z.ZodBoolean;
         next_cursor: z.ZodString;
         order_list: z.ZodArray<z.ZodObject<{
@@ -49,30 +49,30 @@ export declare const getOrderListResponseSchema: z.ZodObject<{
         }[];
         more: boolean;
         next_cursor: string;
-    }>;
+    }>>;
     request_id: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    response: {
+    request_id: string;
+    error?: string | undefined;
+    message?: string | undefined;
+    response?: {
         order_list: {
             order_sn: string;
         }[];
         more: boolean;
         next_cursor: string;
-    };
-    request_id: string;
-    error?: string | undefined;
-    message?: string | undefined;
+    } | undefined;
 }, {
-    response: {
+    request_id: string;
+    error?: string | undefined;
+    message?: string | undefined;
+    response?: {
         order_list: {
             order_sn: string;
         }[];
         more: boolean;
         next_cursor: string;
-    };
-    request_id: string;
-    error?: string | undefined;
-    message?: string | undefined;
+    } | undefined;
 }>;
 export declare const getOrderList: (requestParameters: {
     response_optional_fields: "order_status";
@@ -83,15 +83,15 @@ export declare const getOrderList: (requestParameters: {
     cursor?: string | undefined;
     order_status?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
 }) => Promise<{
-    response: {
+    request_id: string;
+    error?: string | undefined;
+    message?: string | undefined;
+    response?: {
         order_list: {
             order_sn: string;
         }[];
         more: boolean;
         next_cursor: string;
-    };
-    request_id: string;
-    error?: string | undefined;
-    message?: string | undefined;
+    } | undefined;
 }>;
 //# sourceMappingURL=v2-order-get-order-list.d.ts.map

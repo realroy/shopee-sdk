@@ -9,16 +9,16 @@ import {
   getOrderDetailResponseSchema,
 } from "./v2-order-get-order-detail";
 
-export type GetOrderListRequestParametersSchema = z.infer<
+export type GetOrderListRequestParameters = z.infer<
   typeof getOrderListRequestParametersSchema
 >;
-export type GetOrderListResponseSchema = z.infer<
+export type GetOrderListResponse = z.infer<
   typeof getOrderListResponseSchema
 >;
 
-export type GetOrderDetailRequestParametersSchema = z.infer<
+export type GetOrderDetailRequestParameters = z.infer<
   typeof getOrderDetailRequestParametersSchema
 >;
-export type GetOrderDetailResponseSchema = z.infer<
+export type GetOrderDetailResponse = z.infer<
   typeof getOrderDetailResponseSchema
 >;
