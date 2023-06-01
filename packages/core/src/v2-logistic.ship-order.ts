@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { buildQuery } from "./libs";
-import { API_V2_LOGISTIC_GET_SHIPPING_PARAMETER } from "./v2-logistic.constant";
+import { buildMutation } from "./libs";
+import { API_V2_LOGISTIC_SHIP_ORDER } from "./v2-logistic.constant";
 
 export const logisticShipOrderRequestParameterSchema = z.object({
   orderSn: z.string(),
@@ -34,9 +34,8 @@ export const logisticShipOrderResponseSchema = z.object({
   requestId: z.string(),
 });
 
-export const getShippingParameter = buildQuery({
-  path: API_V2_LOGISTIC_GET_SHIPPING_PARAMETER,
+export const shipOrder = buildMutation({
+  path: API_V2_LOGISTIC_SHIP_ORDER,
   requestParameterSchema: logisticShipOrderRequestParameterSchema,
   responseSchema: logisticShipOrderResponseSchema,
-  toCamelCase: true,
 });
