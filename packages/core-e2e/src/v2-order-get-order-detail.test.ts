@@ -5,20 +5,20 @@ describe("v2/order/get-order-detail", async () => {
   const shopeeSdk = new ShopeeSdk({ isLogEnabled: true });
   const now = new Date();
   const getOrderListResponse = await shopeeSdk.v2.order.getOrderList({
-    time_from: new Date(new Date().setDate(now.getDate() - 1)),
-    time_to: now,
-    page_size: 10,
-    order_status: "CANCELLED",
-    time_range_field: "create_time",
-    response_optional_fields: "order_status",
+    timeFrom: new Date(new Date().setDate(now.getDate() - 1)),
+    timeTo: now,
+    pageSize: 10,
+    orderStatus: "CANCELLED",
+    timeRangeField: "create_time",
+    responseOptionalFields: "order_status",
   });
 
   it("should receive successfully response", async () => {
-    const orderList = getOrderListResponse.response?.order_list
+    const orderList = getOrderListResponse.response?.orderList
     
     const response = await shopeeSdk.v2.order.getOrderDetail({
-      order_sn_list: orderList?.map(order => order.order_sn) ?? [],
-      response_optional_fields: ORDER_RESPONSE_OPTIONAL_FIELDS.map(field => field)
+      orderSnList: orderList?.map(order => order.orderSn) ?? [],
+      responseOptionalFields: ORDER_RESPONSE_OPTIONAL_FIELDS.map(field => field)
     });
 
     expect(response.error).toHaveLength(0);

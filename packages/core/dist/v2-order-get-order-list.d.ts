@@ -1,97 +1,97 @@
 import { z } from "zod";
 export declare const getOrderListRequestParametersSchema: z.ZodObject<{
-    time_range_field: z.ZodEnum<["create_time", "update_time"]>;
-    time_from: z.ZodDate;
-    time_to: z.ZodDate;
-    page_size: z.ZodNumber;
+    timeRangeField: z.ZodEnum<["create_time", "update_time"]>;
+    timeFrom: z.ZodDate;
+    timeTo: z.ZodDate;
+    pageSize: z.ZodNumber;
     cursor: z.ZodOptional<z.ZodString>;
-    order_status: z.ZodOptional<z.ZodEnum<["UNPAID", "READY_TO_SHIP", "PROCESSED", "SHIPPED", "COMPLETED", "IN_CANCEL", "CANCELLED", "INVOICE_PENDING"]>>;
-    response_optional_fields: z.ZodDefault<z.ZodOptional<z.ZodEnum<["order_status"]>>>;
+    orderStatus: z.ZodOptional<z.ZodEnum<["UNPAID", "READY_TO_SHIP", "PROCESSED", "SHIPPED", "COMPLETED", "IN_CANCEL", "CANCELLED", "INVOICE_PENDING"]>>;
+    responseOptionalFields: z.ZodDefault<z.ZodOptional<z.ZodEnum<["order_status"]>>>;
 }, "strip", z.ZodTypeAny, {
-    response_optional_fields: "order_status";
-    time_range_field: "create_time" | "update_time";
-    time_from: Date;
-    time_to: Date;
-    page_size: number;
+    timeRangeField: "create_time" | "update_time";
+    timeFrom: Date;
+    timeTo: Date;
+    pageSize: number;
+    responseOptionalFields: "order_status";
     cursor?: string | undefined;
-    order_status?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
+    orderStatus?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
 }, {
-    time_range_field: "create_time" | "update_time";
-    time_from: Date;
-    time_to: Date;
-    page_size: number;
+    timeRangeField: "create_time" | "update_time";
+    timeFrom: Date;
+    timeTo: Date;
+    pageSize: number;
     cursor?: string | undefined;
-    order_status?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
-    response_optional_fields?: "order_status" | undefined;
+    orderStatus?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
+    responseOptionalFields?: "order_status" | undefined;
 }>;
 export declare const getOrderListResponseSchema: z.ZodObject<{
     error: z.ZodOptional<z.ZodString>;
     message: z.ZodOptional<z.ZodString>;
     response: z.ZodOptional<z.ZodObject<{
         more: z.ZodBoolean;
-        next_cursor: z.ZodString;
-        order_list: z.ZodArray<z.ZodObject<{
-            order_sn: z.ZodString;
+        nextCursor: z.ZodString;
+        orderList: z.ZodArray<z.ZodObject<{
+            orderSn: z.ZodString;
         }, "strip", z.ZodTypeAny, {
-            order_sn: string;
+            orderSn: string;
         }, {
-            order_sn: string;
+            orderSn: string;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
-        order_list: {
-            order_sn: string;
-        }[];
         more: boolean;
-        next_cursor: string;
+        nextCursor: string;
+        orderList: {
+            orderSn: string;
+        }[];
     }, {
-        order_list: {
-            order_sn: string;
-        }[];
         more: boolean;
-        next_cursor: string;
+        nextCursor: string;
+        orderList: {
+            orderSn: string;
+        }[];
     }>>;
-    request_id: z.ZodString;
+    requestId: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    request_id: string;
+    requestId: string;
     error?: string | undefined;
     message?: string | undefined;
     response?: {
-        order_list: {
-            order_sn: string;
-        }[];
         more: boolean;
-        next_cursor: string;
+        nextCursor: string;
+        orderList: {
+            orderSn: string;
+        }[];
     } | undefined;
 }, {
-    request_id: string;
+    requestId: string;
     error?: string | undefined;
     message?: string | undefined;
     response?: {
-        order_list: {
-            order_sn: string;
-        }[];
         more: boolean;
-        next_cursor: string;
+        nextCursor: string;
+        orderList: {
+            orderSn: string;
+        }[];
     } | undefined;
 }>;
 export declare const getOrderList: (requestParameters: {
-    response_optional_fields: "order_status";
-    time_range_field: "create_time" | "update_time";
-    time_from: Date;
-    time_to: Date;
-    page_size: number;
+    timeRangeField: "create_time" | "update_time";
+    timeFrom: Date;
+    timeTo: Date;
+    pageSize: number;
+    responseOptionalFields: "order_status";
     cursor?: string | undefined;
-    order_status?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
+    orderStatus?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
 }) => Promise<{
-    request_id: string;
+    requestId: string;
     error?: string | undefined;
     message?: string | undefined;
     response?: {
-        order_list: {
-            order_sn: string;
-        }[];
         more: boolean;
-        next_cursor: string;
+        nextCursor: string;
+        orderList: {
+            orderSn: string;
+        }[];
     } | undefined;
 }>;
 //# sourceMappingURL=v2-order-get-order-list.d.ts.map

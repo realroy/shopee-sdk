@@ -8,12 +8,12 @@ describe('v2/order/get-order-list', () => {
     const now = new Date()
 
     const response = await shopeeSdk.v2.order.getOrderList({
-      time_from: new Date(new Date().setDate(now.getDate() - 1)),
-      time_to: now,
-      page_size: 10,
-      order_status: 'CANCELLED',
-      time_range_field: 'create_time',
-      response_optional_fields: "order_status"
+      timeFrom: new Date(new Date().setDate(now.getDate() - 1)),
+      timeTo: now,
+      pageSize: 10,
+      orderStatus: 'CANCELLED',
+      timeRangeField: 'create_time',
+      responseOptionalFields: "order_status"
     })
 
     expect(response.error).toHaveLength(0);
