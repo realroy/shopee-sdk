@@ -1,1 +1,1 @@
-{"version":3,"file":"v2-logistic.d.ts","sourceRoot":"","sources":["../src/v2-logistic.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,oBAAoB,EAAE,MAAM,sCAAsC,CAAA"}
+{"version":3,"file":"v2-logistic.d.ts","sourceRoot":"","sources":["../src/v2-logistic.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,oBAAoB,EAAE,MAAM,sCAAsC,CAAA;AAC3E,OAAO,EAAE,SAAS,EAAE,MAAM,0BAA0B,CAAA;AACpD,OAAO,EAAE,eAAe,EAAE,MAAM,iCAAiC,CAAA;AACjE,OAAO,EAAE,iBAAiB,EAAE,MAAM,mCAAmC,CAAA"}

@@ -1,92 +1,92 @@
-import Se from "axios";
+import Re from "axios";
 import { z as e } from "zod";
 async function W(r, ...t) {
   let n;
   return typeof globalThis.crypto < "u" && (n = await xe(r, ...t)), n = await ve(r, ...t), n;
 }
 async function xe(r, ...t) {
-  const n = new TextEncoder(), o = n.encode(r);
-  let a = new Uint8Array();
-  t.forEach((i) => {
-    i && (a = n.encode(i));
+  const n = new TextEncoder(), a = n.encode(r);
+  let o = new Uint8Array();
+  t.forEach((c) => {
+    c && (o = n.encode(c));
   });
-  const s = await crypto.subtle.importKey(
+  const i = await crypto.subtle.importKey(
     "raw",
-    o,
+    a,
     { name: "HMAC", hash: "SHA-256" },
     !1,
     ["sign"]
-  ), c = await crypto.subtle.sign(
+  ), u = await crypto.subtle.sign(
     { name: "HMAC", hash: { name: "sha-256" } },
-    s,
-    a
-  ), u = new Uint8Array(c);
-  return Array.from(u).map((i) => i.toString(16).padStart(2, "0")).join("");
+    i,
+    o
+  ), p = new Uint8Array(u);
+  return Array.from(p).map((c) => c.toString(16).padStart(2, "0")).join("");
 }
 async function ve(r, ...t) {
-  const { createHmac: n } = await import("crypto"), o = n("sha256", r);
-  return t.filter((a) => !!a).forEach((a) => o.update(a)), o.digest("hex");
+  const { createHmac: n } = await import("crypto"), a = n("sha256", r);
+  return t.filter((o) => !!o).forEach((o) => a.update(o)), a.digest("hex");
 }
-function T(r) {
+function j(r) {
   const t = r ? r.getTime() : Date.now();
   return Math.round(t / 1e3).toString();
 }
-async function F(r) {
+async function B(r) {
   const {
     partner_id: t,
     partner_key: n,
-    path: o,
-    base_url: a,
-    access_token: s,
-    shop_id: c,
-    params: u = {}
-  } = r, d = t.toString(), i = c.toString(), p = {};
-  for (const y in u) {
-    const f = u[y];
-    Array.isArray(f) ? p[y] = [
-      f[0],
-      ...f.slice(1).map((ye) => `&${y}=${ye}`)
-    ].join("") : f instanceof Date ? p[y] = T(f) : p[y] = `${f}`;
+    path: a,
+    base_url: o,
+    access_token: i,
+    shop_id: u,
+    params: p = {}
+  } = r, m = t.toString(), c = u.toString(), g = {};
+  for (const y in p) {
+    const h = p[y];
+    Array.isArray(h) ? g[y] = [
+      h[0],
+      ...h.slice(1).map((Ie) => `&${y}=${Ie}`)
+    ].join("") : h instanceof Date ? g[y] = j(h) : g[y] = `${h}`;
   }
-  const g = T(), j = new URL(o, a), m = await W(
+  const d = j(), P = new URL(a, o), b = await W(
     n,
+    m,
+    a,
     d,
-    o,
-    g,
-    s,
-    i
+    i,
+    c
   );
-  return j.search = new URLSearchParams({
-    ...p,
-    partner_id: d,
-    shop_id: i,
-    ...!!s && { access_token: s },
-    sign: m,
-    timestamp: g
-  }).toString(), j.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
+  return P.search = new URLSearchParams({
+    ...g,
+    partner_id: m,
+    shop_id: c,
+    ...!!i && { access_token: i },
+    sign: b,
+    timestamp: d
+  }).toString(), P.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
 }
 function E(r, t) {
   if (typeof r != "object" || Array.isArray(r) || r === null)
     return r;
   const n = {};
-  for (const [o, a] of Object.entries(r))
-    n[t(o)] = E(a, t);
+  for (const [a, o] of Object.entries(r))
+    n[t(a)] = E(o, t);
   return n;
 }
-var v = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Re(r, t, n, o) {
-  var a = -1, s = r == null ? 0 : r.length;
-  for (o && s && (n = r[++a]); ++a < s; )
-    n = t(n, r[a], a, r);
+var x = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function Te(r, t, n, a) {
+  var o = -1, i = r == null ? 0 : r.length;
+  for (a && i && (n = r[++o]); ++o < i; )
+    n = t(n, r[o], o, r);
   return n;
 }
-var Ie = Re;
+var Pe = Te;
 function je(r) {
   return function(t) {
     return r == null ? void 0 : r[t];
   };
 }
-var Te = je, Ee = Te, Pe = {
+var Ee = je, Ae = Ee, Oe = {
   // Latin-1 Supplement block.
   À: "A",
   Á: "A",
@@ -279,154 +279,154 @@ var Te = je, Ee = Te, Pe = {
   œ: "oe",
   ŉ: "'n",
   ſ: "s"
-}, Ae = Ee(Pe), Le = Ae, Oe = typeof v == "object" && v && v.Object === Object && v, $e = Oe, we = $e, Ce = typeof self == "object" && self && self.Object === Object && self, ke = we || Ce || Function("return this")(), Ue = ke, De = Ue, qe = De.Symbol, O = qe;
-function Me(r, t) {
-  for (var n = -1, o = r == null ? 0 : r.length, a = Array(o); ++n < o; )
-    a[n] = t(r[n], n, r);
-  return a;
+}, $e = Ae(Oe), ke = $e, Le = typeof x == "object" && x && x.Object === Object && x, Ce = Le, we = Ce, Ue = typeof self == "object" && self && self.Object === Object && self, De = we || Ue || Function("return this")(), Ne = De, qe = Ne, Me = qe.Symbol, k = Me;
+function He(r, t) {
+  for (var n = -1, a = r == null ? 0 : r.length, o = Array(a); ++n < a; )
+    o[n] = t(r[n], n, r);
+  return o;
 }
-var Ne = Me, He = Array.isArray, ze = He, $ = O, V = Object.prototype, Ge = V.hasOwnProperty, Ke = V.toString, S = $ ? $.toStringTag : void 0;
+var Ge = He, ze = Array.isArray, Fe = ze, C = k, Z = Object.prototype, Ke = Z.hasOwnProperty, Ve = Z.toString, I = C ? C.toStringTag : void 0;
 function We(r) {
-  var t = Ge.call(r, S), n = r[S];
+  var t = Ke.call(r, I), n = r[I];
   try {
-    r[S] = void 0;
-    var o = !0;
+    r[I] = void 0;
+    var a = !0;
   } catch {
   }
-  var a = Ke.call(r);
-  return o && (t ? r[S] = n : delete r[S]), a;
+  var o = Ve.call(r);
+  return a && (t ? r[I] = n : delete r[I]), o;
 }
-var Fe = We, Ve = Object.prototype, Be = Ve.toString;
-function Ze(r) {
-  return Be.call(r);
+var Be = We, Ze = Object.prototype, Je = Ze.toString;
+function Ye(r) {
+  return Je.call(r);
 }
-var Je = Ze, w = O, Ye = Fe, Qe = Je, Xe = "[object Null]", er = "[object Undefined]", C = w ? w.toStringTag : void 0;
-function rr(r) {
-  return r == null ? r === void 0 ? er : Xe : C && C in Object(r) ? Ye(r) : Qe(r);
-}
-var tr = rr;
+var Qe = Ye, w = k, Xe = Be, er = Qe, rr = "[object Null]", tr = "[object Undefined]", U = w ? w.toStringTag : void 0;
 function nr(r) {
+  return r == null ? r === void 0 ? tr : rr : U && U in Object(r) ? Xe(r) : er(r);
+}
+var ar = nr;
+function or(r) {
   return r != null && typeof r == "object";
 }
-var or = nr, ar = tr, sr = or, ir = "[object Symbol]";
-function cr(r) {
-  return typeof r == "symbol" || sr(r) && ar(r) == ir;
+var sr = or, ir = ar, cr = sr, ur = "[object Symbol]";
+function pr(r) {
+  return typeof r == "symbol" || cr(r) && ir(r) == ur;
 }
-var ur = cr, k = O, dr = Ne, pr = ze, _r = ur, gr = 1 / 0, U = k ? k.prototype : void 0, D = U ? U.toString : void 0;
-function B(r) {
+var mr = pr, D = k, gr = Ge, lr = Fe, dr = mr, _r = 1 / 0, N = D ? D.prototype : void 0, q = N ? N.toString : void 0;
+function J(r) {
   if (typeof r == "string")
     return r;
-  if (pr(r))
-    return dr(r, B) + "";
-  if (_r(r))
-    return D ? D.call(r) : "";
+  if (lr(r))
+    return gr(r, J) + "";
+  if (dr(r))
+    return q ? q.call(r) : "";
   var t = r + "";
-  return t == "0" && 1 / r == -gr ? "-0" : t;
+  return t == "0" && 1 / r == -_r ? "-0" : t;
 }
-var mr = B, lr = mr;
-function br(r) {
-  return r == null ? "" : lr(r);
+var br = J, fr = br;
+function hr(r) {
+  return r == null ? "" : fr(r);
 }
-var R = br, fr = Le, hr = R, yr = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, Sr = "\\u0300-\\u036f", xr = "\\ufe20-\\ufe2f", vr = "\\u20d0-\\u20ff", Rr = Sr + xr + vr, Ir = "[" + Rr + "]", jr = RegExp(Ir, "g");
-function Tr(r) {
-  return r = hr(r), r && r.replace(yr, fr).replace(jr, "");
+var v = hr, Sr = ke, yr = v, Ir = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, Rr = "\\u0300-\\u036f", xr = "\\ufe20-\\ufe2f", vr = "\\u20d0-\\u20ff", Tr = Rr + xr + vr, Pr = "[" + Tr + "]", jr = RegExp(Pr, "g");
+function Er(r) {
+  return r = yr(r), r && r.replace(Ir, Sr).replace(jr, "");
 }
-var Er = Tr, Pr = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
-function Ar(r) {
-  return r.match(Pr) || [];
-}
-var Lr = Ar, Or = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
+var Ar = Er, Or = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
 function $r(r) {
-  return Or.test(r);
+  return r.match(Or) || [];
 }
-var wr = $r, Z = "\\ud800-\\udfff", Cr = "\\u0300-\\u036f", kr = "\\ufe20-\\ufe2f", Ur = "\\u20d0-\\u20ff", Dr = Cr + kr + Ur, J = "\\u2700-\\u27bf", Y = "a-z\\xdf-\\xf6\\xf8-\\xff", qr = "\\xac\\xb1\\xd7\\xf7", Mr = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", Nr = "\\u2000-\\u206f", Hr = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", Q = "A-Z\\xc0-\\xd6\\xd8-\\xde", zr = "\\ufe0e\\ufe0f", X = qr + Mr + Nr + Hr, ee = "['’]", q = "[" + X + "]", Gr = "[" + Dr + "]", re = "\\d+", Kr = "[" + J + "]", te = "[" + Y + "]", ne = "[^" + Z + X + re + J + Y + Q + "]", Wr = "\\ud83c[\\udffb-\\udfff]", Fr = "(?:" + Gr + "|" + Wr + ")", Vr = "[^" + Z + "]", oe = "(?:\\ud83c[\\udde6-\\uddff]){2}", ae = "[\\ud800-\\udbff][\\udc00-\\udfff]", h = "[" + Q + "]", Br = "\\u200d", M = "(?:" + te + "|" + ne + ")", Zr = "(?:" + h + "|" + ne + ")", N = "(?:" + ee + "(?:d|ll|m|re|s|t|ve))?", H = "(?:" + ee + "(?:D|LL|M|RE|S|T|VE))?", se = Fr + "?", ie = "[" + zr + "]?", Jr = "(?:" + Br + "(?:" + [Vr, oe, ae].join("|") + ")" + ie + se + ")*", Yr = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", Qr = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", Xr = ie + se + Jr, et = "(?:" + [Kr, oe, ae].join("|") + ")" + Xr, rt = RegExp([
-  h + "?" + te + "+" + N + "(?=" + [q, h, "$"].join("|") + ")",
-  Zr + "+" + H + "(?=" + [q, h + M, "$"].join("|") + ")",
-  h + "?" + M + "+" + N,
-  h + "+" + H,
-  Qr,
-  Yr,
-  re,
-  et
+var kr = $r, Lr = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
+function Cr(r) {
+  return Lr.test(r);
+}
+var wr = Cr, Y = "\\ud800-\\udfff", Ur = "\\u0300-\\u036f", Dr = "\\ufe20-\\ufe2f", Nr = "\\u20d0-\\u20ff", qr = Ur + Dr + Nr, Q = "\\u2700-\\u27bf", X = "a-z\\xdf-\\xf6\\xf8-\\xff", Mr = "\\xac\\xb1\\xd7\\xf7", Hr = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", Gr = "\\u2000-\\u206f", zr = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", ee = "A-Z\\xc0-\\xd6\\xd8-\\xde", Fr = "\\ufe0e\\ufe0f", re = Mr + Hr + Gr + zr, te = "['’]", M = "[" + re + "]", Kr = "[" + qr + "]", ne = "\\d+", Vr = "[" + Q + "]", ae = "[" + X + "]", oe = "[^" + Y + re + ne + Q + X + ee + "]", Wr = "\\ud83c[\\udffb-\\udfff]", Br = "(?:" + Kr + "|" + Wr + ")", Zr = "[^" + Y + "]", se = "(?:\\ud83c[\\udde6-\\uddff]){2}", ie = "[\\ud800-\\udbff][\\udc00-\\udfff]", S = "[" + ee + "]", Jr = "\\u200d", H = "(?:" + ae + "|" + oe + ")", Yr = "(?:" + S + "|" + oe + ")", G = "(?:" + te + "(?:d|ll|m|re|s|t|ve))?", z = "(?:" + te + "(?:D|LL|M|RE|S|T|VE))?", ce = Br + "?", ue = "[" + Fr + "]?", Qr = "(?:" + Jr + "(?:" + [Zr, se, ie].join("|") + ")" + ue + ce + ")*", Xr = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", et = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", rt = ue + ce + Qr, tt = "(?:" + [Vr, se, ie].join("|") + ")" + rt, nt = RegExp([
+  S + "?" + ae + "+" + G + "(?=" + [M, S, "$"].join("|") + ")",
+  Yr + "+" + z + "(?=" + [M, S + H, "$"].join("|") + ")",
+  S + "?" + H + "+" + G,
+  S + "+" + z,
+  et,
+  Xr,
+  ne,
+  tt
 ].join("|"), "g");
-function tt(r) {
-  return r.match(rt) || [];
+function at(r) {
+  return r.match(nt) || [];
 }
-var nt = tt, ot = Lr, at = wr, st = R, it = nt;
-function ct(r, t, n) {
-  return r = st(r), t = n ? void 0 : t, t === void 0 ? at(r) ? it(r) : ot(r) : r.match(t) || [];
+var ot = at, st = kr, it = wr, ct = v, ut = ot;
+function pt(r, t, n) {
+  return r = ct(r), t = n ? void 0 : t, t === void 0 ? it(r) ? ut(r) : st(r) : r.match(t) || [];
 }
-var ut = ct, dt = Ie, pt = Er, _t = ut, gt = "['’]", mt = RegExp(gt, "g");
-function lt(r) {
+var mt = pt, gt = Pe, lt = Ar, dt = mt, _t = "['’]", bt = RegExp(_t, "g");
+function ft(r) {
   return function(t) {
-    return dt(_t(pt(t).replace(mt, "")), r, "");
+    return gt(dt(lt(t).replace(bt, "")), r, "");
   };
 }
-var ce = lt, bt = ce, ft = bt(function(r, t, n) {
+var pe = ft, ht = pe, St = ht(function(r, t, n) {
   return r + (n ? "_" : "") + t.toLowerCase();
-}), ht = ft;
-function yt(r, t, n) {
-  var o = -1, a = r.length;
-  t < 0 && (t = -t > a ? 0 : a + t), n = n > a ? a : n, n < 0 && (n += a), a = t > n ? 0 : n - t >>> 0, t >>>= 0;
-  for (var s = Array(a); ++o < a; )
-    s[o] = r[o + t];
-  return s;
+}), yt = St;
+function It(r, t, n) {
+  var a = -1, o = r.length;
+  t < 0 && (t = -t > o ? 0 : o + t), n = n > o ? o : n, n < 0 && (n += o), o = t > n ? 0 : n - t >>> 0, t >>>= 0;
+  for (var i = Array(o); ++a < o; )
+    i[a] = r[a + t];
+  return i;
 }
-var St = yt, xt = St;
+var Rt = It, xt = Rt;
 function vt(r, t, n) {
-  var o = r.length;
-  return n = n === void 0 ? o : n, !t && n >= o ? r : xt(r, t, n);
+  var a = r.length;
+  return n = n === void 0 ? a : n, !t && n >= a ? r : xt(r, t, n);
 }
-var Rt = vt, It = "\\ud800-\\udfff", jt = "\\u0300-\\u036f", Tt = "\\ufe20-\\ufe2f", Et = "\\u20d0-\\u20ff", Pt = jt + Tt + Et, At = "\\ufe0e\\ufe0f", Lt = "\\u200d", Ot = RegExp("[" + Lt + It + Pt + At + "]");
-function $t(r) {
-  return Ot.test(r);
+var Tt = vt, Pt = "\\ud800-\\udfff", jt = "\\u0300-\\u036f", Et = "\\ufe20-\\ufe2f", At = "\\u20d0-\\u20ff", Ot = jt + Et + At, $t = "\\ufe0e\\ufe0f", kt = "\\u200d", Lt = RegExp("[" + kt + Pt + Ot + $t + "]");
+function Ct(r) {
+  return Lt.test(r);
 }
-var ue = $t;
+var me = Ct;
 function wt(r) {
   return r.split("");
 }
-var Ct = wt, de = "\\ud800-\\udfff", kt = "\\u0300-\\u036f", Ut = "\\ufe20-\\ufe2f", Dt = "\\u20d0-\\u20ff", qt = kt + Ut + Dt, Mt = "\\ufe0e\\ufe0f", Nt = "[" + de + "]", P = "[" + qt + "]", A = "\\ud83c[\\udffb-\\udfff]", Ht = "(?:" + P + "|" + A + ")", pe = "[^" + de + "]", _e = "(?:\\ud83c[\\udde6-\\uddff]){2}", ge = "[\\ud800-\\udbff][\\udc00-\\udfff]", zt = "\\u200d", me = Ht + "?", le = "[" + Mt + "]?", Gt = "(?:" + zt + "(?:" + [pe, _e, ge].join("|") + ")" + le + me + ")*", Kt = le + me + Gt, Wt = "(?:" + [pe + P + "?", P, _e, ge, Nt].join("|") + ")", Ft = RegExp(A + "(?=" + A + ")|" + Wt + Kt, "g");
-function Vt(r) {
-  return r.match(Ft) || [];
+var Ut = wt, ge = "\\ud800-\\udfff", Dt = "\\u0300-\\u036f", Nt = "\\ufe20-\\ufe2f", qt = "\\u20d0-\\u20ff", Mt = Dt + Nt + qt, Ht = "\\ufe0e\\ufe0f", Gt = "[" + ge + "]", A = "[" + Mt + "]", O = "\\ud83c[\\udffb-\\udfff]", zt = "(?:" + A + "|" + O + ")", le = "[^" + ge + "]", de = "(?:\\ud83c[\\udde6-\\uddff]){2}", _e = "[\\ud800-\\udbff][\\udc00-\\udfff]", Ft = "\\u200d", be = zt + "?", fe = "[" + Ht + "]?", Kt = "(?:" + Ft + "(?:" + [le, de, _e].join("|") + ")" + fe + be + ")*", Vt = fe + be + Kt, Wt = "(?:" + [le + A + "?", A, de, _e, Gt].join("|") + ")", Bt = RegExp(O + "(?=" + O + ")|" + Wt + Vt, "g");
+function Zt(r) {
+  return r.match(Bt) || [];
 }
-var Bt = Vt, Zt = Ct, Jt = ue, Yt = Bt;
-function Qt(r) {
-  return Jt(r) ? Yt(r) : Zt(r);
+var Jt = Zt, Yt = Ut, Qt = me, Xt = Jt;
+function en(r) {
+  return Qt(r) ? Xt(r) : Yt(r);
 }
-var Xt = Qt, en = Rt, rn = ue, tn = Xt, nn = R;
-function on(r) {
+var rn = en, tn = Tt, nn = me, an = rn, on = v;
+function sn(r) {
   return function(t) {
-    t = nn(t);
-    var n = rn(t) ? tn(t) : void 0, o = n ? n[0] : t.charAt(0), a = n ? en(n, 1).join("") : t.slice(1);
-    return o[r]() + a;
+    t = on(t);
+    var n = nn(t) ? an(t) : void 0, a = n ? n[0] : t.charAt(0), o = n ? tn(n, 1).join("") : t.slice(1);
+    return a[r]() + o;
   };
 }
-var an = on, sn = an, cn = sn("toUpperCase"), un = cn, dn = R, pn = un;
-function _n(r) {
-  return pn(dn(r).toLowerCase());
+var cn = sn, un = cn, pn = un("toUpperCase"), mn = pn, gn = v, ln = mn;
+function dn(r) {
+  return ln(gn(r).toLowerCase());
 }
-var gn = _n, mn = gn, ln = ce, bn = ln(function(r, t, n) {
-  return t = t.toLowerCase(), r + (n ? mn(t) : t);
-}), fn = bn;
-class I {
+var _n = dn, bn = _n, fn = pe, hn = fn(function(r, t, n) {
+  return t = t.toLowerCase(), r + (n ? bn(t) : t);
+}), Sn = hn;
+class T {
   constructor() {
-    this.logger = console, this.logInterceptorIds = [], this.isLogEnabled = !1, this.axios = Se.create(), this.isLogEnabled && this.addLogInterceptor();
+    this.logger = console, this.logInterceptorIds = [], this.isLogEnabled = !1, this.axios = Re.create(), this.isLogEnabled && this.addLogInterceptor();
   }
   addLogInterceptor() {
     const t = this.axios.interceptors.request.use(
-      (o) => (this.logger.log(`${o.url}`), o.data && this.logger.info(`[Body]: ${JSON.stringify(o.data, null, 4)}`), o),
-      (o) => {
-        throw this.logger.error(o), o;
+      (a) => (this.logger.log(`${a.url}`), a.data && this.logger.info(`[Body]: ${JSON.stringify(a.data, null, 4)}`), a),
+      (a) => {
+        throw this.logger.error(a), a;
       }
     ), n = this.axios.interceptors.response.use(
-      (o) => (this.logger.log(`[Response]: ${JSON.stringify(o.data, null, 4)}`), o),
-      (o) => {
+      (a) => (this.logger.log(`[Response]: ${JSON.stringify(a.data, null, 4)}`), a),
+      (a) => {
         const {
-          response: a,
-          message: s,
-          config: { method: c, url: u, data: d, params: i }
-        } = o, p = a == null ? void 0 : a.status;
-        throw this.logger.error({ status: p, message: s, method: c, url: u, data: d, params: i }), o;
+          response: o,
+          message: i,
+          config: { method: u, url: p, data: m, params: c }
+        } = a, g = o == null ? void 0 : o.status;
+        throw this.logger.error({ status: g, message: i, method: u, url: p, data: m, params: c }), a;
       }
     );
     this.logInterceptorIds = [t, n];
@@ -435,7 +435,7 @@ class I {
     this.logInterceptorIds.forEach(this.axios.interceptors.request.eject);
   }
   static getInstance() {
-    return this.instance ?? (this.instance = new I());
+    return this.instance ?? (this.instance = new T());
   }
   setLogEnabled(t) {
     return this.isLogEnabled = t, this.isLogEnabled ? this.addLogInterceptor() : this.removeLogInterceptor(), this.isLogEnabled;
@@ -443,16 +443,16 @@ class I {
   get(t, n) {
     return this.axios.get(t, { params: n });
   }
-  post(t, n, o) {
-    return this.axios.post(t, o, { params: n });
+  post(t, n, a) {
+    return this.axios.post(t, a, { params: n });
   }
 }
-class l {
+class f {
   constructor() {
     this.isLogEnabled = !1;
   }
   static getInstance() {
-    return this.instance ?? (this.instance = new l());
+    return this.instance ?? (this.instance = new f());
   }
   get value() {
     return {
@@ -464,116 +464,188 @@ class l {
     };
   }
 }
-const z = I.getInstance();
-function b(r) {
+const F = T.getInstance();
+function _(r) {
   return async function(n) {
-    const o = r.transformRequestParameter ?? ((m) => m), a = await r.requestParameterSchema.transform(o).safeParseAsync(n);
-    if (!a.success)
+    const a = r.transformRequestParameter ?? ((b) => b), o = await r.requestParameterSchema.transform(a).safeParseAsync(n);
+    if (!o.success)
       throw new Error(
-        `parse request parameters error: ${a.error.message}`
+        `parse request parameters error: ${o.error.message}`
       );
-    const s = r.toCamelCase ? E(a.data, (m) => ht(m.toString())) : a.data, c = l.getInstance(), u = c.value;
-    z.setLogEnabled(c.isLogEnabled);
-    const d = await F({
+    const i = r.toCamelCase ? E(o.data, (b) => yt(b.toString())) : o.data, u = f.getInstance(), p = u.value;
+    F.setLogEnabled(u.isLogEnabled);
+    const m = await B({
+      ...p,
+      path: r.path,
+      params: i
+    }), c = await F.get(m), g = r.toCamelCase ? E(c.data, (b) => Sn(b.toString())) : c.data, d = await r.responseSchema.safeParseAsync(g);
+    if (!d.success)
+      throw new Error(`parse response error: ${d.error.message}`);
+    return d.data;
+  };
+}
+const K = T.getInstance();
+function L(r) {
+  return async function(n) {
+    const a = r.transformRequestParameter ?? ((d) => d), o = await r.requestParameterSchema.transform(a).safeParseAsync(n);
+    if (!o.success)
+      throw new Error(
+        `parse request parameters error: ${o.error.message}`
+      );
+    const i = f.getInstance(), u = i.value;
+    K.setLogEnabled(i.isLogEnabled);
+    const p = await B({
       ...u,
       path: r.path,
-      params: s
-    }), i = await z.get(d), p = r.toCamelCase ? E(i.data, (m) => fn(m.toString())) : i.data, g = await r.responseSchema.safeParseAsync(p);
+      params: {}
+    }), m = o.data, { data: c } = await K.post(p, {}, m), g = await r.responseSchema.safeParseAsync(c);
     if (!g.success)
       throw new Error(`parse response error: ${g.error.message}`);
     return g.data;
   };
 }
-const G = I.getInstance();
-function hn(r) {
-  return async function(n) {
-    const o = r.transformRequestParameter ?? ((g) => g), a = await r.requestParameterSchema.transform(o).safeParseAsync(n);
-    if (!a.success)
-      throw new Error(
-        `parse request parameters error: ${a.error.message}`
-      );
-    const s = l.getInstance(), c = s.value;
-    G.setLogEnabled(s.isLogEnabled);
-    const u = await F({
-      ...c,
-      path: r.path,
-      params: {}
-    }), d = a.data, { data: i } = await G.post(u, {}, d), p = await r.responseSchema.safeParseAsync(i);
-    if (!p.success)
-      throw new Error(`parse response error: ${p.error.message}`);
-    return p.data;
-  };
-}
-const yn = "/api/v2/logistic/get-shipping-parameter", Sn = e.object({
+const yn = "/api/v2/logistic/get_shipping_parameter", In = "/api/v2/logistic/ship_order", Rn = "/api/v2/logistics/update_shipping_order", xn = "/api/v2/logistics/get_tracking_number", vn = {
+  plp_number: "plp_number",
+  first_mile_tracking_number: "first_mile_tracking_number",
+  last_mile_tracking_number: "last_mile_tracking_number"
+}, Tn = e.object({
   orderSn: e.string(),
   packageNumber: e.number().optional()
-}), xn = e.object({
+}), Pn = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
   response: e.object({
-    requestId: e.string(),
-    error: e.string(),
-    message: e.string(),
-    response: e.object({
-      infoNeeded: e.object({
-        dropoff: e.array(e.string()),
-        pickup: e.array(e.string()),
-        nonIntegrated: e.array(e.string())
-      }),
-      dropoff: e.object({
-        branchList: e.array(
-          e.object({
-            branch_id: e.number(),
-            region: e.string(),
-            state: e.string(),
-            city: e.string(),
-            address: e.string(),
-            zipcode: e.string(),
-            district: e.string(),
-            town: e.string()
-          })
-        ),
-        slugList: e.array(
-          e.object({
-            slug: e.string(),
-            slugName: e.string()
-          })
-        )
-      }),
-      pickup: e.object({
-        addressList: e.array(
-          e.object({
-            addressId: e.number(),
-            region: e.string(),
-            state: e.string(),
-            city: e.string(),
-            district: e.string(),
-            town: e.string(),
-            address: e.string(),
-            zipcode: e.string(),
-            addressFlag: e.array(e.string())
-          })
-        ),
-        timeSlotList: e.array(
-          e.object({
-            date: e.number(),
-            timeText: e.string(),
-            pickupTimeId: e.string()
-          })
-        )
-      })
+    infoNeeded: e.object({
+      dropoff: e.array(e.string()),
+      pickup: e.array(e.string()),
+      nonIntegrated: e.array(e.string())
+    }),
+    dropoff: e.object({
+      branchList: e.array(
+        e.object({
+          branch_id: e.number(),
+          region: e.string(),
+          state: e.string(),
+          city: e.string(),
+          address: e.string(),
+          zipcode: e.string(),
+          district: e.string(),
+          town: e.string()
+        })
+      ),
+      slugList: e.array(
+        e.object({
+          slug: e.string(),
+          slugName: e.string()
+        })
+      )
+    }),
+    pickup: e.object({
+      addressList: e.array(
+        e.object({
+          addressId: e.number(),
+          region: e.string(),
+          state: e.string(),
+          city: e.string(),
+          district: e.string(),
+          town: e.string(),
+          address: e.string(),
+          zipcode: e.string(),
+          addressFlag: e.array(e.string())
+        })
+      ),
+      timeSlotList: e.array(
+        e.object({
+          date: e.number(),
+          timeText: e.string(),
+          pickupTimeId: e.string()
+        })
+      )
     })
   }).optional(),
   requestId: e.string()
-}), vn = b({
+}), jn = _({
   path: yn,
-  requestParameterSchema: Sn,
-  responseSchema: xn,
+  requestParameterSchema: Tn,
+  responseSchema: Pn,
   toCamelCase: !0
-}), Rn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), En = e.object({
+  orderSn: e.string(),
+  packageNumber: e.string().optional(),
+  pickup: e.object({
+    addressId: e.number().optional(),
+    pickupTimeId: e.string().optional(),
+    trackingNumber: e.string().optional()
+  }).optional(),
+  dropoff: e.object({
+    branchId: e.number().optional(),
+    senderRealName: e.string().optional(),
+    trackingNumber: e.string().optional(),
+    slug: e.string().optional()
+  }).optional(),
+  nonIntegrated: e.object({
+    trackingNumber: e.string().optional()
+  }).optional()
+}), An = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  requestId: e.string()
+}), On = L({
+  path: In,
+  requestParameterSchema: En,
+  responseSchema: An
+}), $n = e.object({
+  orderSn: e.string(),
+  packageNumber: e.string().optional(),
+  pickup: e.object({
+    addressId: e.number(),
+    pickupTimeId: e.string()
+  })
+}), kn = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  requestId: e.string()
+}), Ln = L({
+  path: Rn,
+  requestParameterSchema: $n,
+  responseSchema: kn
+}), s = vn, Cn = e.object({
+  orderSn: e.string(),
+  packageNumber: e.number().optional(),
+  responseOptionalFields: e.enum([
+    s.first_mile_tracking_number,
+    s.last_mile_tracking_number,
+    s.plp_number,
+    `${s.first_mile_tracking_number},${s.last_mile_tracking_number}`,
+    `${s.first_mile_tracking_number},${s.plp_number}`,
+    `${s.last_mile_tracking_number},${s.first_mile_tracking_number}`,
+    `${s.last_mile_tracking_number},${s.plp_number}`,
+    `${s.plp_number},${s.first_mile_tracking_number}`,
+    `${s.plp_number},${s.last_mile_tracking_number}`,
+    `${s.first_mile_tracking_number},${s.last_mile_tracking_number},${s.plp_number}`,
+    `${s.first_mile_tracking_number},${s.plp_number},${s.last_mile_tracking_number}`,
+    `${s.last_mile_tracking_number},${s.first_mile_tracking_number},${s.plp_number}`,
+    `${s.last_mile_tracking_number},${s.plp_number},${s.first_mile_tracking_number}`,
+    `${s.plp_number},${s.first_mile_tracking_number},${s.last_mile_tracking_number}`,
+    `${s.plp_number},${s.last_mile_tracking_number},${s.first_mile_tracking_number}`
+  ]).optional()
+}), wn = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  response: e.object({}).optional(),
+  requestId: e.string()
+}), Un = _({
+  path: xn,
+  requestParameterSchema: Cn,
+  responseSchema: wn,
+  toCamelCase: !0
+}), Dn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getShippingParameter: vn
-}, Symbol.toStringTag, { value: "Module" })), In = "/api/v2/order/get_order_list", jn = "/api/v2/order/get_order_detail", Tn = [
+  getShippingParameter: jn,
+  getTrackingNumber: Un,
+  shipOrder: On,
+  updateShipOrder: Ln
+}, Symbol.toStringTag, { value: "Module" })), Nn = "/api/v2/order/get_order_list", qn = "/api/v2/order/get_order_detail", Mn = [
   "UNPAID",
   "READY_TO_SHIP",
   "PROCESSED",
@@ -582,7 +654,7 @@ const yn = "/api/v2/logistic/get-shipping-parameter", Sn = e.object({
   "IN_CANCEL",
   "CANCELLED",
   "INVOICE_PENDING"
-], En = [
+], Hn = [
   "buyer_user_id",
   "buyer_username",
   "estimated_shipping_fee",
@@ -615,84 +687,84 @@ const yn = "/api/v2/logistic/get-shipping-parameter", Sn = e.object({
   "edt",
   "prescription_images",
   "prescription_check_status"
-], Pn = e.object({
-  order_sn_list: e.array(e.string()),
-  response_optional_fields: e.array(e.enum(En)).optional()
-}), An = e.object({
+], Gn = e.object({
+  orderSnList: e.array(e.string()),
+  responseOptionalFields: e.enum(Hn).optional()
+}), zn = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
   response: e.object({
-    order_list: e.array(
+    orderList: e.array(
       e.object({
-        checkout_shipping_carrier: e.null(),
-        reverse_shipping_fee: e.null(),
-        actual_shipping_fee: e.null(),
-        actual_shipping_fee_confirmed: e.boolean(),
-        buyer_cancel_reason: e.string(),
-        buyer_cpf_id: e.null(),
-        buyer_user_id: e.number(),
-        buyer_username: e.string(),
-        cancel_by: e.string(),
-        cancel_reason: e.string(),
+        checkoutShippingCarrier: e.null(),
+        reverseShippingFee: e.null(),
+        actualShippingFee: e.null(),
+        actualShippingFeeConfirmed: e.boolean(),
+        buyerCancelReason: e.string(),
+        buyerCpfId: e.null(),
+        buyerUserId: e.number(),
+        buyerUsername: e.string(),
+        cancelBy: e.string(),
+        cancelReason: e.string(),
         cod: e.boolean(),
-        create_time: e.number(),
+        createTime: e.number(),
         currency: e.string(),
-        days_to_ship: e.number(),
+        daysToShip: e.number(),
         dropshipper: e.string(),
-        dropshipper_phone: e.string(),
-        estimated_shipping_fee: e.number(),
-        fulfillment_flag: e.string(),
-        goods_to_declare: e.boolean(),
-        invoice_data: e.null(),
-        item_list: e.array(
+        dropshipperPhone: e.string(),
+        estimatedShipping_fee: e.number(),
+        fulfillmentFlag: e.string(),
+        goodsToDeclare: e.boolean(),
+        invoiceData: e.null(),
+        itemList: e.array(
           e.object({
-            item_id: e.number(),
-            item_name: e.string(),
-            item_sku: e.string(),
-            model_id: e.number(),
-            model_name: e.string(),
-            model_sku: e.string(),
-            model_quantity_purchased: e.number(),
-            model_original_price: e.number(),
-            model_discounted_price: e.number(),
+            itemId: e.number(),
+            itemName: e.string(),
+            itemSku: e.string(),
+            modelId: e.number(),
+            modelName: e.string(),
+            modelSku: e.string(),
+            modelQuantityPurchased: e.number(),
+            modelOriginalPrice: e.number(),
+            modelDiscountedPrice: e.number(),
             wholesale: e.boolean(),
             weight: e.number(),
-            add_on_deal: e.boolean(),
-            main_item: e.boolean(),
-            add_on_deal_id: e.number(),
-            promotion_type: e.string(),
-            promotion_id: e.number(),
-            order_item_id: e.number(),
-            promotion_group_id: e.number(),
-            image_info: e.object({
-              image_url: e.string()
+            addOnDeal: e.boolean(),
+            mainItem: e.boolean(),
+            addOnDealId: e.number(),
+            promotionType: e.string(),
+            promotionId: e.number(),
+            orderItemId: e.number(),
+            promotionGroupId: e.number(),
+            imageInfo: e.object({
+              imageUrl: e.string()
             }),
-            product_location_id: e.array(e.string())
+            productLocationId: e.array(e.string())
           })
         ),
-        message_to_seller: e.string(),
+        messageToSeller: e.string(),
         note: e.string(),
-        note_update_time: e.number(),
-        order_sn: e.string(),
-        order_status: e.string(),
-        package_list: e.array(
+        noteUpdateTime: e.number(),
+        orderSn: e.string(),
+        orderStatus: e.string(),
+        packageList: e.array(
           e.object({
-            package_number: e.string(),
-            logistics_status: e.string(),
-            shipping_carrier: e.string(),
-            item_list: e.array(
+            packageNumber: e.string(),
+            logisticsStatus: e.string(),
+            shippingCarrier: e.string(),
+            itemList: e.array(
               e.object({
-                item_id: e.number(),
-                model_id: e.number(),
-                model_quantity: e.number()
+                itemId: e.number(),
+                modelId: e.number(),
+                modelQuantity: e.number()
               })
             )
           })
         ),
-        pay_time: e.number(),
-        payment_method: e.string(),
-        pickup_done_time: e.number(),
-        recipient_address: e.object({
+        payTime: e.number(),
+        paymentMethod: e.string(),
+        pickupDoneTime: e.number(),
+        recipientAddress: e.object({
           name: e.string(),
           phone: e.string(),
           town: e.string(),
@@ -701,31 +773,31 @@ const yn = "/api/v2/logistic/get-shipping-parameter", Sn = e.object({
           state: e.string(),
           region: e.string(),
           zipcode: e.string(),
-          full_address: e.string()
+          fullAddress: e.string()
         }),
         region: e.string(),
-        ship_by_date: e.number(),
-        shipping_carrier: e.string(),
-        split_up: e.boolean(),
-        total_amount: e.number(),
-        update_time: e.number()
+        shipByDate: e.number(),
+        shippingCarrier: e.string(),
+        splitUp: e.boolean(),
+        totalAmount: e.number(),
+        updateTime: e.number()
       })
     )
   }).optional(),
-  request_id: e.string()
-}), Ln = b({
-  path: jn,
-  requestParameterSchema: Pn,
-  responseSchema: An
-}), On = e.object({
+  requestId: e.string()
+}), Fn = _({
+  path: qn,
+  requestParameterSchema: Gn,
+  responseSchema: zn
+}), Kn = e.object({
   timeRangeField: e.enum(["create_time", "update_time"]),
   timeFrom: e.date(),
   timeTo: e.date(),
   pageSize: e.number().min(1).max(100),
   cursor: e.string().optional(),
-  orderStatus: e.enum(Tn).optional(),
+  orderStatus: e.enum(Mn).optional(),
   responseOptionalFields: e.enum(["order_status"]).optional().default("order_status")
-}), $n = e.object({
+}), Vn = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
   response: e.object({
@@ -738,20 +810,20 @@ const yn = "/api/v2/logistic/get-shipping-parameter", Sn = e.object({
     )
   }).optional(),
   requestId: e.string()
-}), wn = b({
-  path: In,
-  requestParameterSchema: On,
-  responseSchema: $n,
+}), Wn = _({
+  path: Nn,
+  requestParameterSchema: Kn,
+  responseSchema: Vn,
   toCamelCase: !0
-}), Cn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), Bn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getOrderDetail: Ln,
-  getOrderList: wn
-}, Symbol.toStringTag, { value: "Module" })), kn = "/api/v2/product/get_item_base_info", Un = "/api/v2/product/get_item_extra_info", Dn = "/api/v2/product/get_item_list", qn = "/api/v2/product/get_model_list", be = ["NORMAL", "DELETED", "UNLIST", "BANNED"], Mn = e.object({
+  getOrderDetail: Fn,
+  getOrderList: Wn
+}, Symbol.toStringTag, { value: "Module" })), Zn = "/api/v2/product/get_item_base_info", Jn = "/api/v2/product/get_item_extra_info", Yn = "/api/v2/product/get_item_list", Qn = "/api/v2/product/get_model_list", he = ["NORMAL", "DELETED", "UNLIST", "BANNED"], Xn = e.object({
   item_id_list: e.string(),
   need_tax_info: e.coerce.boolean().optional(),
   need_complaint_policy: e.coerce.boolean().optional()
-}), Nn = e.object({
+}), ea = e.object({
   error: e.string(),
   message: e.string(),
   warning: e.string(),
@@ -856,16 +928,16 @@ const yn = "/api/v2/logistic/get-shipping-parameter", Sn = e.object({
       })
     ).optional()
   })
-}), Hn = b({
-  path: kn,
-  requestParameterSchema: Mn,
-  responseSchema: Nn,
+}), ra = _({
+  path: Zn,
+  requestParameterSchema: Xn,
+  responseSchema: ea,
   transformRequestParameter(r) {
     return r.need_tax_info = !!r.need_tax_info, r.need_complaint_policy = !!r.need_complaint_policy, r;
   }
-}), zn = e.object({
+}), ta = e.object({
   item_id_list: e.string()
-}), Gn = e.object({
+}), na = e.object({
   error: e.string(),
   message: e.string(),
   warning: e.string().optional(),
@@ -882,17 +954,17 @@ const yn = "/api/v2/logistic/get-shipping-parameter", Sn = e.object({
       })
     ).optional()
   }).optional()
-}), Kn = b({
-  path: Un,
-  requestParameterSchema: zn,
-  responseSchema: Gn
-}), Wn = e.object({
+}), aa = _({
+  path: Jn,
+  requestParameterSchema: ta,
+  responseSchema: na
+}), oa = e.object({
   offset: e.number().int().min(0).optional(),
   page_size: e.number().int().positive().max(100).optional(),
   update_time_from: e.date().optional(),
   update_time_to: e.date().optional(),
-  item_status: e.array(e.enum(be))
-}), Fn = e.object({
+  item_status: e.array(e.enum(he))
+}), sa = e.object({
   error: e.string(),
   message: e.string().nullable().optional(),
   warning: e.string().nullable().optional(),
@@ -901,7 +973,7 @@ const yn = "/api/v2/logistic/get-shipping-parameter", Sn = e.object({
     item: e.array(
       e.object({
         item_id: e.number().int(),
-        item_status: e.enum(be),
+        item_status: e.enum(he),
         update_time: e.number().int()
       })
     ).optional()
@@ -909,16 +981,16 @@ const yn = "/api/v2/logistic/get-shipping-parameter", Sn = e.object({
   total_count: e.number().int().optional(),
   has_next_page: e.boolean().optional(),
   next_offset: e.number().int().optional()
-}), Vn = b({
-  path: Dn,
-  requestParameterSchema: Wn,
+}), ia = _({
+  path: Yn,
+  requestParameterSchema: oa,
   transformRequestParameter(r) {
     return r.update_time_from = r.update_time_from ?? /* @__PURE__ */ new Date("01/01/2022"), r.update_time_to = r.update_time_to ?? /* @__PURE__ */ new Date(), r;
   },
-  responseSchema: Fn
-}), Bn = e.object({
+  responseSchema: sa
+}), ca = e.object({
   item_id: e.string()
-}), Zn = e.object({
+}), ua = e.object({
   error: e.string(),
   message: e.string(),
   warning: e.string(),
@@ -968,22 +1040,22 @@ const yn = "/api/v2/logistic/get-shipping-parameter", Sn = e.object({
       })
     )
   })
-}), Jn = b({
-  path: qn,
-  requestParameterSchema: Bn,
-  responseSchema: Zn
-}), Yn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), pa = _({
+  path: Qn,
+  requestParameterSchema: ca,
+  responseSchema: ua
+}), ma = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getItemBaseInfo: Hn,
-  getItemExtraInfo: Kn,
-  getItemList: Vn,
-  getModelList: Jn
-}, Symbol.toStringTag, { value: "Module" })), Qn = "/api/v2/auth/token/get", fe = e.object({
+  getItemBaseInfo: ra,
+  getItemExtraInfo: aa,
+  getItemList: ia,
+  getModelList: pa
+}, Symbol.toStringTag, { value: "Module" })), ga = "/api/v2/auth/token/get", Se = e.object({
   code: e.string(),
   partner_id: e.number().optional(),
   shop_id: e.number().optional(),
   main_account_id: e.number().optional()
-}), he = e.object({
+}), ye = e.object({
   access_token: e.string(),
   error: e.string(),
   expires_in: e.number(),
@@ -991,125 +1063,125 @@ const yn = "/api/v2/logistic/get-shipping-parameter", Sn = e.object({
   refresh_token: e.string(),
   request_id: e.string(),
   shop_id_list: e.array(e.number())
-}), Xn = hn({
-  path: Qn,
-  requestParameterSchema: fe,
-  responseSchema: he,
+}), la = L({
+  path: ga,
+  requestParameterSchema: Se,
+  responseSchema: ye,
   transformRequestParameter(r) {
-    return r.partner_id = r.partner_id ?? l.getInstance().partnerId, r;
+    return r.partner_id = r.partner_id ?? f.getInstance().partnerId, r;
   }
-}), eo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), da = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getAccessToken: Xn,
-  getAccessTokenRequestParametersSchema: fe,
-  getAccessTokenResponseSchema: he
-}, Symbol.toStringTag, { value: "Module" })), K = "/api/v2/shop/auth_partner";
-async function ro({
+  getAccessToken: la,
+  getAccessTokenRequestParametersSchema: Se,
+  getAccessTokenResponseSchema: ye
+}, Symbol.toStringTag, { value: "Module" })), V = "/api/v2/shop/auth_partner";
+async function _a({
   redirectURL: r,
   redirectSign: t
 }) {
-  const { baseURL: n, partnerId: o, partnerKey: a } = l.getInstance();
-  if (!a || !o)
+  const { baseURL: n, partnerId: a, partnerKey: o } = f.getInstance();
+  if (!o || !a)
     throw new Error("partnerKey is undefined");
-  const s = new URL(K, n), c = T(/* @__PURE__ */ new Date()), u = await W(
-    a,
-    o.toString(),
-    K,
-    c
-  ), d = new URL(r);
-  return d.searchParams.append("sign", t), s.search = new URLSearchParams({
-    partner_id: o.toString(),
-    redirect: d.toString(),
-    timestamp: c,
-    sign: u
-  }).toString(), s.toString();
+  const i = new URL(V, n), u = j(/* @__PURE__ */ new Date()), p = await W(
+    o,
+    a.toString(),
+    V,
+    u
+  ), m = new URL(r);
+  return m.searchParams.append("sign", t), i.search = new URLSearchParams({
+    partner_id: a.toString(),
+    redirect: m.toString(),
+    timestamp: u,
+    sign: p
+  }).toString(), i.toString();
 }
-const to = e.object({
+const ba = e.object({
   code: e.string(),
   shop_id: e.string(),
   sign: e.string()
 });
-async function no(r) {
-  const t = await to.safeParseAsync(r);
+async function fa(r) {
+  const t = await ba.safeParseAsync(r);
   if (!t.success)
     throw new Error(
       `parse request parameters error: ${t.error.message}`
     );
-  const { code: n, shop_id: o, sign: a } = t.data;
+  const { code: n, shop_id: a, sign: o } = t.data;
   return {
     code: n,
-    shopId: o,
-    sign: a
+    shopId: a,
+    sign: o
   };
 }
-const oo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const ha = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  authPartner: ro,
-  verifyCallback: no
-}, Symbol.toStringTag, { value: "Module" })), ao = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  authPartner: _a,
+  verifyCallback: fa
+}, Symbol.toStringTag, { value: "Module" })), Sa = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  logistic: Rn,
-  order: Cn,
-  product: Yn,
-  publicShopee: eo,
-  shop: oo
-}, Symbol.toStringTag, { value: "Module" })), so = e.object({
+  logistic: Dn,
+  order: Bn,
+  product: ma,
+  publicShopee: da,
+  shop: ha
+}, Symbol.toStringTag, { value: "Module" })), ya = e.object({
   partnerId: e.coerce.number().optional(),
   partnerKey: e.coerce.string().optional(),
   baseURL: e.coerce.string().url().optional(),
   accessToken: e.coerce.string().optional(),
   shopId: e.coerce.number().optional()
-}), L = so.safeParse({
+}), $ = ya.safeParse({
   partnerId: process.env.SHOPEE_SDK_PARTNER_ID,
   partnerKey: process.env.SHOPEE_SDK_PARTNER_KEY,
   baseURL: process.env.SHOPEE_SDK_BASE_URL,
   accessToken: process.env.SHOPEE_SDK_ACCESS_TOKEN,
   shopId: process.env.SHOPEE_SDK_SHOP_ID
 });
-if (!L.success)
-  throw new Error(L.error.message);
-const x = L.data, _ = l.getInstance();
-class uo {
+if (!$.success)
+  throw new Error($.error.message);
+const R = $.data, l = f.getInstance();
+class xa {
   constructor(t) {
-    _.accessToken = t.accessToken ?? x.accessToken, _.baseURL = t.baseURL ?? x.baseURL, _.partnerId = t.partnerId ?? x.partnerId, _.partnerKey = t.partnerKey ?? x.partnerKey, _.shopId = t.shopId ?? x.shopId, _.isLogEnabled = t.isLogEnabled ?? !1;
+    l.accessToken = t.accessToken ?? R.accessToken, l.baseURL = t.baseURL ?? R.baseURL, l.partnerId = t.partnerId ?? R.partnerId, l.partnerKey = t.partnerKey ?? R.partnerKey, l.shopId = t.shopId ?? R.shopId, l.isLogEnabled = t.isLogEnabled ?? !1;
   }
   setPartnerId(t) {
-    return _.partnerId = t, this;
+    return l.partnerId = t, this;
   }
   setBaseURL(t) {
-    return _.baseURL = t, this;
+    return l.baseURL = t, this;
   }
   setPartnerKey(t) {
-    return _.partnerKey = t, this;
+    return l.partnerKey = t, this;
   }
   setAccessToken(t) {
-    return _.accessToken = t, this;
+    return l.accessToken = t, this;
   }
   setShopId(t) {
-    return _.shopId = t, this;
+    return l.shopId = t, this;
   }
   setIsLogEnabled(t) {
-    return _.isLogEnabled = t, this;
+    return l.isLogEnabled = t, this;
   }
   get v2() {
-    return ao;
+    return Sa;
   }
 }
 export {
-  jn as API_V2_ORDER_GET_ORDER_DETAIL_PATH,
-  In as API_V2_ORDER_GET_ORDER_LIST_PATH,
-  kn as API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH,
-  Un as API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH,
-  Dn as API_V2_PRODUCT_GET_ITEM_LIST_PATH,
-  qn as API_V2_PRODUCT_GET_MODEL_LIST_PATH,
-  Qn as API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH,
-  K as API_V2_SHOP_AUTH_PARTNER,
-  be as ITEM_STATUS,
-  En as ORDER_RESPONSE_OPTIONAL_FIELDS,
-  Tn as ORDER_STATUS,
-  uo as ShopeeSdk,
+  qn as API_V2_ORDER_GET_ORDER_DETAIL_PATH,
+  Nn as API_V2_ORDER_GET_ORDER_LIST_PATH,
+  Zn as API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH,
+  Jn as API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH,
+  Yn as API_V2_PRODUCT_GET_ITEM_LIST_PATH,
+  Qn as API_V2_PRODUCT_GET_MODEL_LIST_PATH,
+  ga as API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH,
+  V as API_V2_SHOP_AUTH_PARTNER,
+  he as ITEM_STATUS,
+  Hn as ORDER_RESPONSE_OPTIONAL_FIELDS,
+  Mn as ORDER_STATUS,
+  xa as ShopeeSdk,
   W as generateHmac,
-  F as signURL,
-  T as toTimestamp,
+  B as signURL,
+  j as toTimestamp,
   E as transformObjectKeys
 };

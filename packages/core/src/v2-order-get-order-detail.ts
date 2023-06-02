@@ -8,7 +8,7 @@ import {
 
 export const getOrderDetailRequestParametersSchema = z.object({
   orderSnList: z.array(z.string()),
-  responseOptionalFields: z.array(z.enum(ORDER_RESPONSE_OPTIONAL_FIELDS)).optional(),
+  responseOptionalFields: z.enum(ORDER_RESPONSE_OPTIONAL_FIELDS).optional(),
 });
 
 export const getOrderDetailResponseSchema = z.object({

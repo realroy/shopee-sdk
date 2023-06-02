@@ -29,24 +29,24 @@ export declare const getItemListResponseSchema: z.ZodObject<{
             item_status: z.ZodEnum<["NORMAL", "DELETED", "UNLIST", "BANNED"]>;
             update_time: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
-            item_id: number;
             update_time: number;
+            item_id: number;
             item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
         }, {
-            item_id: number;
             update_time: number;
+            item_id: number;
             item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         item?: {
-            item_id: number;
             update_time: number;
+            item_id: number;
             item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
         }[] | undefined;
     }, {
         item?: {
-            item_id: number;
             update_time: number;
+            item_id: number;
             item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
         }[] | undefined;
     }>>;
@@ -60,8 +60,8 @@ export declare const getItemListResponseSchema: z.ZodObject<{
     warning?: string | null | undefined;
     response?: {
         item?: {
-            item_id: number;
             update_time: number;
+            item_id: number;
             item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
         }[] | undefined;
     } | undefined;
@@ -75,8 +75,8 @@ export declare const getItemListResponseSchema: z.ZodObject<{
     warning?: string | null | undefined;
     response?: {
         item?: {
-            item_id: number;
             update_time: number;
+            item_id: number;
             item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
         }[] | undefined;
     } | undefined;
@@ -97,8 +97,8 @@ export declare const getItemList: (requestParameters: {
     warning?: string | null | undefined;
     response?: {
         item?: {
-            item_id: number;
             update_time: number;
+            item_id: number;
             item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
         }[] | undefined;
     } | undefined;
