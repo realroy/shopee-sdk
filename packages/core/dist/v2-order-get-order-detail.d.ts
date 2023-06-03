@@ -1,25 +1,25 @@
 import { z } from "zod";
 export declare const getOrderDetailRequestParametersSchema: z.ZodObject<{
     orderSnList: z.ZodArray<z.ZodString, "many">;
-    responseOptionalFields: z.ZodOptional<z.ZodEnum<["buyer_user_id", "buyer_username", "estimated_shipping_fee", "recipient_address", "actual_shipping_fee", "goods_to_declare", "note", "note_update_time", "item_list", "pay_time", "dropshipper", "dropshipper_phone", "split_up", "buyer_cancel_reason", "cancel_by", "cancel_reason", "actual_shipping_fee_confirmed", "buyer_cpf_id", "fulfillment_flag", "pickup_done_time", "package_list", "shipping_carrier", "payment_method", "total_amount", "buyer_username", "invoice_data", "checkout_shipping_carrier", "reverse_shipping_fee", "order_chargeable_weight_gram", "edt", "prescription_images", "prescription_check_status"]>>;
+    responseOptionalFields: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     orderSnList: string[];
-    responseOptionalFields?: "buyer_user_id" | "buyer_username" | "estimated_shipping_fee" | "recipient_address" | "actual_shipping_fee" | "goods_to_declare" | "note" | "note_update_time" | "item_list" | "pay_time" | "dropshipper" | "dropshipper_phone" | "split_up" | "buyer_cancel_reason" | "cancel_by" | "cancel_reason" | "actual_shipping_fee_confirmed" | "buyer_cpf_id" | "fulfillment_flag" | "pickup_done_time" | "package_list" | "shipping_carrier" | "payment_method" | "total_amount" | "invoice_data" | "checkout_shipping_carrier" | "reverse_shipping_fee" | "order_chargeable_weight_gram" | "edt" | "prescription_images" | "prescription_check_status" | undefined;
+    responseOptionalFields?: string | undefined;
 }, {
     orderSnList: string[];
-    responseOptionalFields?: "buyer_user_id" | "buyer_username" | "estimated_shipping_fee" | "recipient_address" | "actual_shipping_fee" | "goods_to_declare" | "note" | "note_update_time" | "item_list" | "pay_time" | "dropshipper" | "dropshipper_phone" | "split_up" | "buyer_cancel_reason" | "cancel_by" | "cancel_reason" | "actual_shipping_fee_confirmed" | "buyer_cpf_id" | "fulfillment_flag" | "pickup_done_time" | "package_list" | "shipping_carrier" | "payment_method" | "total_amount" | "invoice_data" | "checkout_shipping_carrier" | "reverse_shipping_fee" | "order_chargeable_weight_gram" | "edt" | "prescription_images" | "prescription_check_status" | undefined;
+    responseOptionalFields?: string | undefined;
 }>;
 export declare const getOrderDetailResponseSchema: z.ZodObject<{
     error: z.ZodOptional<z.ZodString>;
     message: z.ZodOptional<z.ZodString>;
     response: z.ZodOptional<z.ZodObject<{
         orderList: z.ZodArray<z.ZodObject<{
-            checkoutShippingCarrier: z.ZodNull;
-            reverseShippingFee: z.ZodNull;
-            actualShippingFee: z.ZodNull;
+            checkoutShippingCarrier: z.ZodNullable<z.ZodString>;
+            reverseShippingFee: z.ZodNullable<z.ZodNumber>;
+            actualShippingFee: z.ZodNullable<z.ZodNumber>;
             actualShippingFeeConfirmed: z.ZodBoolean;
             buyerCancelReason: z.ZodString;
-            buyerCpfId: z.ZodNull;
+            buyerCpfId: z.ZodNullable<z.ZodString>;
             buyerUserId: z.ZodNumber;
             buyerUsername: z.ZodString;
             cancelBy: z.ZodString;
@@ -30,10 +30,34 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             daysToShip: z.ZodNumber;
             dropshipper: z.ZodString;
             dropshipperPhone: z.ZodString;
-            estimatedShipping_fee: z.ZodNumber;
+            estimatedShippingFee: z.ZodNumber;
             fulfillmentFlag: z.ZodString;
             goodsToDeclare: z.ZodBoolean;
-            invoiceData: z.ZodNull;
+            invoiceData: z.ZodNullable<z.ZodObject<{
+                number: z.ZodString;
+                seriesNumber: z.ZodString;
+                accessKey: z.ZodString;
+                issueDate: z.ZodNumber;
+                totalValue: z.ZodNumber;
+                productsTotalValue: z.ZodNumber;
+                taxCode: z.ZodString;
+            }, "strip", z.ZodTypeAny, {
+                number: string;
+                seriesNumber: string;
+                accessKey: string;
+                issueDate: number;
+                totalValue: number;
+                productsTotalValue: number;
+                taxCode: string;
+            }, {
+                number: string;
+                seriesNumber: string;
+                accessKey: string;
+                issueDate: number;
+                totalValue: number;
+                productsTotalValue: number;
+                taxCode: string;
+            }>>;
             itemList: z.ZodArray<z.ZodObject<{
                 itemId: z.ZodNumber;
                 itemName: z.ZodString;
@@ -108,6 +132,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }>, "many">;
+            prescriptionImages: z.ZodArray<z.ZodString, "many">;
+            prescriptionCheckStatus: z.ZodNumber;
+            edtFrom: z.ZodNumber;
+            edtTo: z.ZodNumber;
+            orderChargeableWeightGram: z.ZodNumber;
             messageToSeller: z.ZodString;
             note: z.ZodString;
             noteUpdateTime: z.ZodNumber;
@@ -130,6 +159,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                     modelId: number;
                     modelQuantity: number;
                 }>, "many">;
+                parcelChargeableWeightGram: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
                 packageNumber: string;
                 itemList: {
@@ -139,6 +169,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 }[];
                 logisticsStatus: string;
                 shippingCarrier: string;
+                parcelChargeableWeightGram: number;
             }, {
                 packageNumber: string;
                 itemList: {
@@ -148,6 +179,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 }[];
                 logisticsStatus: string;
                 shippingCarrier: string;
+                parcelChargeableWeightGram: number;
             }>, "many">;
             payTime: z.ZodNumber;
             paymentMethod: z.ZodString;
@@ -194,12 +226,12 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             region: string;
             note: string;
             dropshipper: string;
-            checkoutShippingCarrier: null;
-            reverseShippingFee: null;
-            actualShippingFee: null;
+            checkoutShippingCarrier: string | null;
+            reverseShippingFee: number | null;
+            actualShippingFee: number | null;
             actualShippingFeeConfirmed: boolean;
             buyerCancelReason: string;
-            buyerCpfId: null;
+            buyerCpfId: string | null;
             buyerUserId: number;
             buyerUsername: string;
             cancelBy: string;
@@ -209,10 +241,18 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             currency: string;
             daysToShip: number;
             dropshipperPhone: string;
-            estimatedShipping_fee: number;
+            estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
-            invoiceData: null;
+            invoiceData: {
+                number: string;
+                seriesNumber: string;
+                accessKey: string;
+                issueDate: number;
+                totalValue: number;
+                productsTotalValue: number;
+                taxCode: string;
+            } | null;
             itemList: {
                 itemId: number;
                 itemName: string;
@@ -237,6 +277,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }[];
+            prescriptionImages: string[];
+            prescriptionCheckStatus: number;
+            edtFrom: number;
+            edtTo: number;
+            orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
             orderStatus: string;
@@ -249,6 +294,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 }[];
                 logisticsStatus: string;
                 shippingCarrier: string;
+                parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
             payTime: number;
@@ -274,12 +320,12 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             region: string;
             note: string;
             dropshipper: string;
-            checkoutShippingCarrier: null;
-            reverseShippingFee: null;
-            actualShippingFee: null;
+            checkoutShippingCarrier: string | null;
+            reverseShippingFee: number | null;
+            actualShippingFee: number | null;
             actualShippingFeeConfirmed: boolean;
             buyerCancelReason: string;
-            buyerCpfId: null;
+            buyerCpfId: string | null;
             buyerUserId: number;
             buyerUsername: string;
             cancelBy: string;
@@ -289,10 +335,18 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             currency: string;
             daysToShip: number;
             dropshipperPhone: string;
-            estimatedShipping_fee: number;
+            estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
-            invoiceData: null;
+            invoiceData: {
+                number: string;
+                seriesNumber: string;
+                accessKey: string;
+                issueDate: number;
+                totalValue: number;
+                productsTotalValue: number;
+                taxCode: string;
+            } | null;
             itemList: {
                 itemId: number;
                 itemName: string;
@@ -317,6 +371,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }[];
+            prescriptionImages: string[];
+            prescriptionCheckStatus: number;
+            edtFrom: number;
+            edtTo: number;
+            orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
             orderStatus: string;
@@ -329,6 +388,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 }[];
                 logisticsStatus: string;
                 shippingCarrier: string;
+                parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
             payTime: number;
@@ -356,12 +416,12 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             region: string;
             note: string;
             dropshipper: string;
-            checkoutShippingCarrier: null;
-            reverseShippingFee: null;
-            actualShippingFee: null;
+            checkoutShippingCarrier: string | null;
+            reverseShippingFee: number | null;
+            actualShippingFee: number | null;
             actualShippingFeeConfirmed: boolean;
             buyerCancelReason: string;
-            buyerCpfId: null;
+            buyerCpfId: string | null;
             buyerUserId: number;
             buyerUsername: string;
             cancelBy: string;
@@ -371,10 +431,18 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             currency: string;
             daysToShip: number;
             dropshipperPhone: string;
-            estimatedShipping_fee: number;
+            estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
-            invoiceData: null;
+            invoiceData: {
+                number: string;
+                seriesNumber: string;
+                accessKey: string;
+                issueDate: number;
+                totalValue: number;
+                productsTotalValue: number;
+                taxCode: string;
+            } | null;
             itemList: {
                 itemId: number;
                 itemName: string;
@@ -399,6 +467,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }[];
+            prescriptionImages: string[];
+            prescriptionCheckStatus: number;
+            edtFrom: number;
+            edtTo: number;
+            orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
             orderStatus: string;
@@ -411,6 +484,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 }[];
                 logisticsStatus: string;
                 shippingCarrier: string;
+                parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
             payTime: number;
@@ -438,12 +512,12 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             region: string;
             note: string;
             dropshipper: string;
-            checkoutShippingCarrier: null;
-            reverseShippingFee: null;
-            actualShippingFee: null;
+            checkoutShippingCarrier: string | null;
+            reverseShippingFee: number | null;
+            actualShippingFee: number | null;
             actualShippingFeeConfirmed: boolean;
             buyerCancelReason: string;
-            buyerCpfId: null;
+            buyerCpfId: string | null;
             buyerUserId: number;
             buyerUsername: string;
             cancelBy: string;
@@ -453,10 +527,18 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             currency: string;
             daysToShip: number;
             dropshipperPhone: string;
-            estimatedShipping_fee: number;
+            estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
-            invoiceData: null;
+            invoiceData: {
+                number: string;
+                seriesNumber: string;
+                accessKey: string;
+                issueDate: number;
+                totalValue: number;
+                productsTotalValue: number;
+                taxCode: string;
+            } | null;
             itemList: {
                 itemId: number;
                 itemName: string;
@@ -481,6 +563,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }[];
+            prescriptionImages: string[];
+            prescriptionCheckStatus: number;
+            edtFrom: number;
+            edtTo: number;
+            orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
             orderStatus: string;
@@ -493,6 +580,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 }[];
                 logisticsStatus: string;
                 shippingCarrier: string;
+                parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
             payTime: number;
@@ -526,12 +614,12 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             region: string;
             note: string;
             dropshipper: string;
-            checkoutShippingCarrier: null;
-            reverseShippingFee: null;
-            actualShippingFee: null;
+            checkoutShippingCarrier: string | null;
+            reverseShippingFee: number | null;
+            actualShippingFee: number | null;
             actualShippingFeeConfirmed: boolean;
             buyerCancelReason: string;
-            buyerCpfId: null;
+            buyerCpfId: string | null;
             buyerUserId: number;
             buyerUsername: string;
             cancelBy: string;
@@ -541,10 +629,18 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             currency: string;
             daysToShip: number;
             dropshipperPhone: string;
-            estimatedShipping_fee: number;
+            estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
-            invoiceData: null;
+            invoiceData: {
+                number: string;
+                seriesNumber: string;
+                accessKey: string;
+                issueDate: number;
+                totalValue: number;
+                productsTotalValue: number;
+                taxCode: string;
+            } | null;
             itemList: {
                 itemId: number;
                 itemName: string;
@@ -569,6 +665,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }[];
+            prescriptionImages: string[];
+            prescriptionCheckStatus: number;
+            edtFrom: number;
+            edtTo: number;
+            orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
             orderStatus: string;
@@ -581,6 +682,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 }[];
                 logisticsStatus: string;
                 shippingCarrier: string;
+                parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
             payTime: number;
@@ -613,12 +715,12 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             region: string;
             note: string;
             dropshipper: string;
-            checkoutShippingCarrier: null;
-            reverseShippingFee: null;
-            actualShippingFee: null;
+            checkoutShippingCarrier: string | null;
+            reverseShippingFee: number | null;
+            actualShippingFee: number | null;
             actualShippingFeeConfirmed: boolean;
             buyerCancelReason: string;
-            buyerCpfId: null;
+            buyerCpfId: string | null;
             buyerUserId: number;
             buyerUsername: string;
             cancelBy: string;
@@ -628,10 +730,18 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             currency: string;
             daysToShip: number;
             dropshipperPhone: string;
-            estimatedShipping_fee: number;
+            estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
-            invoiceData: null;
+            invoiceData: {
+                number: string;
+                seriesNumber: string;
+                accessKey: string;
+                issueDate: number;
+                totalValue: number;
+                productsTotalValue: number;
+                taxCode: string;
+            } | null;
             itemList: {
                 itemId: number;
                 itemName: string;
@@ -656,6 +766,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }[];
+            prescriptionImages: string[];
+            prescriptionCheckStatus: number;
+            edtFrom: number;
+            edtTo: number;
+            orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
             orderStatus: string;
@@ -668,6 +783,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 }[];
                 logisticsStatus: string;
                 shippingCarrier: string;
+                parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
             payTime: number;
@@ -693,7 +809,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
 }>;
 export declare const getOrderDetail: (requestParameters: {
     orderSnList: string[];
-    responseOptionalFields?: "buyer_user_id" | "buyer_username" | "estimated_shipping_fee" | "recipient_address" | "actual_shipping_fee" | "goods_to_declare" | "note" | "note_update_time" | "item_list" | "pay_time" | "dropshipper" | "dropshipper_phone" | "split_up" | "buyer_cancel_reason" | "cancel_by" | "cancel_reason" | "actual_shipping_fee_confirmed" | "buyer_cpf_id" | "fulfillment_flag" | "pickup_done_time" | "package_list" | "shipping_carrier" | "payment_method" | "total_amount" | "invoice_data" | "checkout_shipping_carrier" | "reverse_shipping_fee" | "order_chargeable_weight_gram" | "edt" | "prescription_images" | "prescription_check_status" | undefined;
+    responseOptionalFields?: string | undefined;
 }) => Promise<{
     requestId: string;
     error?: string | undefined;
@@ -704,12 +820,12 @@ export declare const getOrderDetail: (requestParameters: {
             region: string;
             note: string;
             dropshipper: string;
-            checkoutShippingCarrier: null;
-            reverseShippingFee: null;
-            actualShippingFee: null;
+            checkoutShippingCarrier: string | null;
+            reverseShippingFee: number | null;
+            actualShippingFee: number | null;
             actualShippingFeeConfirmed: boolean;
             buyerCancelReason: string;
-            buyerCpfId: null;
+            buyerCpfId: string | null;
             buyerUserId: number;
             buyerUsername: string;
             cancelBy: string;
@@ -719,10 +835,18 @@ export declare const getOrderDetail: (requestParameters: {
             currency: string;
             daysToShip: number;
             dropshipperPhone: string;
-            estimatedShipping_fee: number;
+            estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
-            invoiceData: null;
+            invoiceData: {
+                number: string;
+                seriesNumber: string;
+                accessKey: string;
+                issueDate: number;
+                totalValue: number;
+                productsTotalValue: number;
+                taxCode: string;
+            } | null;
             itemList: {
                 itemId: number;
                 itemName: string;
@@ -747,6 +871,11 @@ export declare const getOrderDetail: (requestParameters: {
                 };
                 productLocationId: string[];
             }[];
+            prescriptionImages: string[];
+            prescriptionCheckStatus: number;
+            edtFrom: number;
+            edtTo: number;
+            orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
             orderStatus: string;
@@ -759,6 +888,7 @@ export declare const getOrderDetail: (requestParameters: {
                 }[];
                 logisticsStatus: string;
                 shippingCarrier: string;
+                parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
             payTime: number;

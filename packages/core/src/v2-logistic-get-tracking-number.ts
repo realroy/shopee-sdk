@@ -3,11 +3,11 @@ import { z } from "zod";
 import { buildQuery } from "./libs";
 import {
   API_V2_LOGISTIC_GET_TRACKING_NUMBER,
-  API_V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS,
+  V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP,
 } from "./v2-logistic.constant";
 
 const RESPONSE_FIELDS =
-  API_V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS;
+  V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP;
 
 export const logisticGetTrackingNumberRequestParameterSchema = z.object({
   orderSn: z.string(),

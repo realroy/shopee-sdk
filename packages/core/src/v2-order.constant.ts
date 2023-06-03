@@ -1,9 +1,11 @@
+import { createConstantsMap } from './utils'
+
 export const API_V2_ORDER_GET_ORDER_LIST_PATH = "/api/v2/order/get_order_list";
 
 export const API_V2_ORDER_GET_ORDER_DETAIL_PATH =
   "/api/v2/order/get_order_detail";
 
-export const ORDER_STATUS = [
+export const V2_ORDER_STATUS = [
   "UNPAID",
   "READY_TO_SHIP",
   "PROCESSED",
@@ -14,7 +16,9 @@ export const ORDER_STATUS = [
   "INVOICE_PENDING",
 ] as const;
 
-export const ORDER_RESPONSE_OPTIONAL_FIELDS = [
+export const V2_ORDER_STATUS_MAP = createConstantsMap(V2_ORDER_STATUS)
+
+export const V2_ORDER_RESPONSE_OPTIONAL_FIELDS = [
   "buyer_user_id",
   "buyer_username",
   "estimated_shipping_fee",
@@ -48,3 +52,5 @@ export const ORDER_RESPONSE_OPTIONAL_FIELDS = [
   "prescription_images",
   "prescription_check_status",
 ] as const;
+
+export const V2_ORDER_RESPONSE_OPTIONAL_FIELDS_MAP = createConstantsMap(V2_ORDER_RESPONSE_OPTIONAL_FIELDS)

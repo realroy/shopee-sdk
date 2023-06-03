@@ -3,7 +3,7 @@ import { z } from "zod";
 import { buildQuery } from "./libs";
 import {
   API_V2_ORDER_GET_ORDER_LIST_PATH,
-  ORDER_STATUS,
+  V2_ORDER_STATUS,
 } from "./v2-order.constant";
 
 export const getOrderListRequestParametersSchema = z.object({
@@ -12,7 +12,7 @@ export const getOrderListRequestParametersSchema = z.object({
   timeTo: z.date(),
   pageSize: z.number().min(1).max(100),
   cursor: z.string().optional(),
-  orderStatus: z.enum(ORDER_STATUS).optional(),
+  orderStatus: z.enum(V2_ORDER_STATUS).optional(),
   responseOptionalFields: z.enum(['order_status']).optional().default('order_status'),
 });
 
