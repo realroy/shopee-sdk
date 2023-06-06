@@ -4,6 +4,7 @@ import { logisticShipOrderRequestParameterSchema, logisticShipOrderResponseSchem
 import { logisticUpdateShipOrderRequestParameterSchema, logisticUpdateShipOrderResponseSchema } from "./v2-logistic.update-ship-order";
 import { logisticGetTrackingNumberRequestParameterSchema, logisticGetTrackingNumberResponseSchema } from "./v2-logistic-get-tracking-number";
 import { V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS } from "./v2-logistic.constant";
+import { logisticGetShippingDocumentParameterRequestParameterSchema, logisticGetShippingDocumentParameterResponseSchema } from "./v2-logistic-get-shipping-document-parameter";
 export type LogisticGetShippingParameterRequestParameter = z.infer<typeof logisticGetShippingParameterRequestParameterSchema>;
 export type LogisticGetShippingParameterResponse = z.infer<typeof logisticGetShippingParameterResponseSchema>;
 export type LogisticShipOrderRequestParameter = z.infer<typeof logisticShipOrderRequestParameterSchema>;
@@ -13,4 +14,6 @@ export type LogisticUpdateShipOrderResponse = z.infer<typeof logisticUpdateShipO
 export type LogisticGetTrackingNumberRequestParameter = z.infer<typeof logisticGetTrackingNumberRequestParameterSchema>;
 export type LogisticGetTrackingNumberResponse = z.infer<typeof logisticGetTrackingNumberResponseSchema>;
 export type LogisticGetTrackingNumberResponseOptionalFields = keyof typeof V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS;
+export type LogisticGetShippingDocumentParameterRequestParameter = z.infer<typeof logisticGetShippingDocumentParameterRequestParameterSchema>;
+export type LogisticGetShippingDocumentParameterResponse = z.infer<typeof logisticGetShippingDocumentParameterResponseSchema>;
 //# sourceMappingURL=v2-logistic.type.d.ts.map

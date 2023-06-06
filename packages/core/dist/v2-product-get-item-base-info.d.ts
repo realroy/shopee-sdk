@@ -278,10 +278,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 } | undefined;
             }>>;
         }, "strip", z.ZodTypeAny, {
-            brand: {
-                brand_id: number;
-                original_brand_name: string;
-            };
             weight: string;
             create_time: number;
             update_time: number;
@@ -306,6 +302,10 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             size_chart: string;
             item_status: string;
             has_model: boolean;
+            brand: {
+                brand_id: number;
+                original_brand_name: string;
+            };
             description_type: string;
             attribute_list?: {
                 attribute_id: number;
@@ -361,10 +361,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 } | undefined;
             } | undefined;
         }, {
-            brand: {
-                brand_id: number;
-                original_brand_name: string;
-            };
             weight: string;
             create_time: number;
             update_time: number;
@@ -389,6 +385,10 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             size_chart: string;
             item_status: string;
             has_model: boolean;
+            brand: {
+                brand_id: number;
+                original_brand_name: string;
+            };
             description_type: string;
             attribute_list?: {
                 attribute_id: number;
@@ -446,10 +446,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         item_list?: {
-            brand: {
-                brand_id: number;
-                original_brand_name: string;
-            };
             weight: string;
             create_time: number;
             update_time: number;
@@ -474,6 +470,10 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             size_chart: string;
             item_status: string;
             has_model: boolean;
+            brand: {
+                brand_id: number;
+                original_brand_name: string;
+            };
             description_type: string;
             attribute_list?: {
                 attribute_id: number;
@@ -531,10 +531,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
         }[] | undefined;
     }, {
         item_list?: {
-            brand: {
-                brand_id: number;
-                original_brand_name: string;
-            };
             weight: string;
             create_time: number;
             update_time: number;
@@ -559,6 +555,10 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             size_chart: string;
             item_status: string;
             has_model: boolean;
+            brand: {
+                brand_id: number;
+                original_brand_name: string;
+            };
             description_type: string;
             attribute_list?: {
                 attribute_id: number;
@@ -619,10 +619,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
     message: string;
     response: {
         item_list?: {
-            brand: {
-                brand_id: number;
-                original_brand_name: string;
-            };
             weight: string;
             create_time: number;
             update_time: number;
@@ -647,6 +643,10 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             size_chart: string;
             item_status: string;
             has_model: boolean;
+            brand: {
+                brand_id: number;
+                original_brand_name: string;
+            };
             description_type: string;
             attribute_list?: {
                 attribute_id: number;
@@ -710,10 +710,6 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
     message: string;
     response: {
         item_list?: {
-            brand: {
-                brand_id: number;
-                original_brand_name: string;
-            };
             weight: string;
             create_time: number;
             update_time: number;
@@ -738,6 +734,10 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             size_chart: string;
             item_status: string;
             has_model: boolean;
+            brand: {
+                brand_id: number;
+                original_brand_name: string;
+            };
             description_type: string;
             attribute_list?: {
                 attribute_id: number;
@@ -806,10 +806,6 @@ export declare const getItemBaseInfo: (requestParameters: {
     message: string;
     response: {
         item_list?: {
-            brand: {
-                brand_id: number;
-                original_brand_name: string;
-            };
             weight: string;
             create_time: number;
             update_time: number;
@@ -834,6 +830,10 @@ export declare const getItemBaseInfo: (requestParameters: {
             size_chart: string;
             item_status: string;
             has_model: boolean;
+            brand: {
+                brand_id: number;
+                original_brand_name: string;
+            };
             description_type: string;
             attribute_list?: {
                 attribute_id: number;

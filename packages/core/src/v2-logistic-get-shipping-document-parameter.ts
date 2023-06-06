@@ -1,60 +1,45 @@
 import { z } from "zod";
 
-import { buildQuery } from "./libs";
-import {
-  API_V2_LOGISTIC_GET_TRACKING_NUMBER,
-  V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP,
-} from "./v2-logistic.constant";
+import { buildMutation } from "./libs";
+import { API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_PARAMETER } from "./v2-logistic.constant";
 
-const RESPONSE_FIELDS =
-  V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP;
+export const logisticGetShippingDocumentParameterRequestParameterSchema =
+  z.object({
+    orderList: z
+      .array(
+        z.object({
+          orderSn: z.string(),
+          packageNumber: z.number().optional(),
+        })
+      )
+      .max(50),
+  });
 
-export const logisticGetTrackingNumberRequestParameterSchema = z.object({
-  orderSn: z.string(),
-  packageNumber: z.number().optional(),
-  responseOptionalFields: z
-    .enum([
-      RESPONSE_FIELDS.first_mile_tracking_number,
-      RESPONSE_FIELDS.last_mile_tracking_number,
-      RESPONSE_FIELDS.plp_number,
-
-      `${RESPONSE_FIELDS.first_mile_tracking_number},${RESPONSE_FIELDS.last_mile_tracking_number}`,
-      `${RESPONSE_FIELDS.first_mile_tracking_number},${RESPONSE_FIELDS.plp_number}`,
-
-      `${RESPONSE_FIELDS.last_mile_tracking_number},${RESPONSE_FIELDS.first_mile_tracking_number}`,
-
-      `${RESPONSE_FIELDS.last_mile_tracking_number},${RESPONSE_FIELDS.plp_number}`,
-
-      `${RESPONSE_FIELDS.plp_number},${RESPONSE_FIELDS.first_mile_tracking_number}`,
-
-      `${RESPONSE_FIELDS.plp_number},${RESPONSE_FIELDS.last_mile_tracking_number}`,
-
-      `${RESPONSE_FIELDS.first_mile_tracking_number},${RESPONSE_FIELDS.last_mile_tracking_number},${RESPONSE_FIELDS.plp_number}`,
-
-      `${RESPONSE_FIELDS.first_mile_tracking_number},${RESPONSE_FIELDS.plp_number},${RESPONSE_FIELDS.last_mile_tracking_number}`,
-
-      `${RESPONSE_FIELDS.last_mile_tracking_number},${RESPONSE_FIELDS.first_mile_tracking_number},${RESPONSE_FIELDS.plp_number}`,
-
-      `${RESPONSE_FIELDS.last_mile_tracking_number},${RESPONSE_FIELDS.plp_number},${RESPONSE_FIELDS.first_mile_tracking_number}`,
-
-      `${RESPONSE_FIELDS.plp_number},${RESPONSE_FIELDS.first_mile_tracking_number},${RESPONSE_FIELDS.last_mile_tracking_number}`,
-
-      `${RESPONSE_FIELDS.plp_number},${RESPONSE_FIELDS.last_mile_tracking_number},${RESPONSE_FIELDS.first_mile_tracking_number}`,
-    ])
-
-    .optional(),
-});
-
-export const logisticGetTrackingNumberResponseSchema = z.object({
+export const logisticGetShippingDocumentParameterResponseSchema = z.object({
   error: z.string().optional(),
   message: z.string().optional(),
-  response: z.object({}).optional(),
+  warning: z
+    .object({
+      orderSn: z.string(),
+      packageNumber: z.number().optional(),
+    })
+    .optional(),
+  response: z
+    .object({
+      orderSn: z.string(),
+      packageNumber: z.number().optional(),
+      suggestShippingDocumentType: z.string(),
+      selectableShippingDocumentType: z.array(z.string()),
+      failError: z.string(),
+      failMessage: z.string(),
+    })
+    .optional(),
   requestId: z.string(),
 });
 
-export const getTrackingNumber = buildQuery({
-  path: API_V2_LOGISTIC_GET_TRACKING_NUMBER,
-  requestParameterSchema: logisticGetTrackingNumberRequestParameterSchema,
-  responseSchema: logisticGetTrackingNumberResponseSchema,
-  toCamelCase: true,
+export const getShippingDocumentParameter = buildMutation({
+  path: API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_PARAMETER,
+  requestParameterSchema:
+    logisticGetShippingDocumentParameterRequestParameterSchema,
+  responseSchema: logisticGetShippingDocumentParameterResponseSchema,
 });

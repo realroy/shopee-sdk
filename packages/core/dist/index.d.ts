@@ -1,5 +1,7 @@
 export * from "./utils";
 export * from "./shopee-sdk";
+export * from './v2-logistic.constant';
+export * from './v2-logistic.type';
 export * from './v2-order.constant';
 export * from './v2-order.type';
 export * from "./v2-product.constant";

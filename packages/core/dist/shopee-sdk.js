@@ -5,32 +5,32 @@ function L(r) {
 }
 async function B(r, ...t) {
   let n;
-  return typeof globalThis.crypto < "u" && (n = await ve(r, ...t)), n = await Pe(r, ...t), n;
+  return typeof globalThis.crypto < "u" && (n = await ve(r, ...t)), n = await Ee(r, ...t), n;
 }
 async function ve(r, ...t) {
-  const n = new TextEncoder(), a = n.encode(r);
-  let o = new Uint8Array();
+  const n = new TextEncoder(), o = n.encode(r);
+  let a = new Uint8Array();
   t.forEach((c) => {
-    c && (o = n.encode(c));
+    c && (a = n.encode(c));
   });
-  const i = await crypto.subtle.importKey(
+  const s = await crypto.subtle.importKey(
     "raw",
-    a,
+    o,
     { name: "HMAC", hash: "SHA-256" },
     !1,
     ["sign"]
-  ), u = await crypto.subtle.sign(
+  ), p = await crypto.subtle.sign(
     { name: "HMAC", hash: { name: "sha-256" } },
-    i,
-    o
-  ), p = new Uint8Array(u);
-  return Array.from(p).map((c) => c.toString(16).padStart(2, "0")).join("");
+    s,
+    a
+  ), i = new Uint8Array(p);
+  return Array.from(i).map((c) => c.toString(16).padStart(2, "0")).join("");
 }
-async function Pe(r, ...t) {
-  const { createHmac: n } = await import("crypto"), a = n("sha256", r);
-  return t.filter((o) => !!o).forEach((o) => a.update(o)), a.digest("hex");
+async function Ee(r, ...t) {
+  const { createHmac: n } = await import("crypto"), o = n("sha256", r);
+  return t.filter((a) => !!a).forEach((a) => o.update(a)), o.digest("hex");
 }
-function E(r) {
+function v(r) {
   const t = r ? r.getTime() : Date.now();
   return Math.round(t / 1e3).toString();
 }
@@ -38,58 +38,58 @@ async function Z(r) {
   const {
     partner_id: t,
     partner_key: n,
-    path: a,
-    base_url: o,
-    access_token: i,
-    shop_id: u,
-    params: p = {}
-  } = r, m = t.toString(), c = u.toString(), g = {};
-  for (const y in p) {
-    const h = p[y];
-    Array.isArray(h) ? g[y] = [
+    path: o,
+    base_url: a,
+    access_token: s,
+    shop_id: p,
+    params: i = {}
+  } = r, g = t.toString(), c = p.toString(), u = {};
+  for (const d in i) {
+    const h = i[d];
+    Array.isArray(h) ? u[d] = [
       h[0],
-      ...h.slice(1).map((Te) => `&${y}=${Te}`)
-    ].join("") : h instanceof Date ? g[y] = E(h) : g[y] = `${h}`;
+      ...h.slice(1).map((Pe) => `&${d}=${Pe}`)
+    ].join("") : h instanceof Date ? u[d] = v(h) : u[d] = `${h}`;
   }
-  const d = E(), P = new URL(a, o), b = await B(
+  const b = v(), f = new URL(o, a), k = await B(
     n,
-    m,
-    a,
-    d,
-    i,
+    g,
+    o,
+    b,
+    s,
     c
   );
-  return P.search = new URLSearchParams({
-    ...g,
-    partner_id: m,
+  return f.search = new URLSearchParams({
+    ...u,
+    partner_id: g,
     shop_id: c,
-    ...!!i && { access_token: i },
-    sign: b,
-    timestamp: d
-  }).toString(), P.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
+    ...!!s && { access_token: s },
+    sign: k,
+    timestamp: b
+  }).toString(), f.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
 }
-function j(r, t) {
+function E(r, t) {
   if (typeof r != "object" || Array.isArray(r) || r === null)
     return r;
   const n = {};
-  for (const [a, o] of Object.entries(r))
-    n[t(a)] = j(o, t);
+  for (const [o, a] of Object.entries(r))
+    n[t(o)] = E(a, t);
   return n;
 }
-var T = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Ee(r, t, n, a) {
-  var o = -1, i = r == null ? 0 : r.length;
-  for (a && i && (n = r[++o]); ++o < i; )
-    n = t(n, r[o], o, r);
+var R = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function je(r, t, n, o) {
+  var a = -1, s = r == null ? 0 : r.length;
+  for (o && s && (n = r[++a]); ++a < s; )
+    n = t(n, r[a], a, r);
   return n;
 }
-var je = Ee;
-function Oe(r) {
+var Oe = je;
+function Ae(r) {
   return function(t) {
     return r == null ? void 0 : r[t];
   };
 }
-var Ae = Oe, $e = Ae, Le = {
+var Le = Ae, Ce = Le, ke = {
   // Latin-1 Supplement block.
   À: "A",
   Á: "A",
@@ -282,154 +282,154 @@ var Ae = Oe, $e = Ae, Le = {
   œ: "oe",
   ŉ: "'n",
   ſ: "s"
-}, ke = $e(Le), Ce = ke, we = typeof T == "object" && T && T.Object === Object && T, Ue = we, De = Ue, Ne = typeof self == "object" && self && self.Object === Object && self, qe = De || Ne || Function("return this")(), Me = qe, Ge = Me, He = Ge.Symbol, k = He;
+}, we = Ce(ke), $e = we, Ue = typeof R == "object" && R && R.Object === Object && R, De = Ue, Ne = De, qe = typeof self == "object" && self && self.Object === Object && self, Me = Ne || qe || Function("return this")(), Ge = Me, He = Ge, Fe = He.Symbol, C = Fe;
 function ze(r, t) {
-  for (var n = -1, a = r == null ? 0 : r.length, o = Array(a); ++n < a; )
-    o[n] = t(r[n], n, r);
-  return o;
+  for (var n = -1, o = r == null ? 0 : r.length, a = Array(o); ++n < o; )
+    a[n] = t(r[n], n, r);
+  return a;
 }
-var Fe = ze, Ve = Array.isArray, Ke = Ve, w = k, J = Object.prototype, We = J.hasOwnProperty, Be = J.toString, I = w ? w.toStringTag : void 0;
-function Ze(r) {
-  var t = We.call(r, I), n = r[I];
+var Ve = ze, Ke = Array.isArray, We = Ke, w = C, J = Object.prototype, Be = J.hasOwnProperty, Ze = J.toString, y = w ? w.toStringTag : void 0;
+function Je(r) {
+  var t = Be.call(r, y), n = r[y];
   try {
-    r[I] = void 0;
-    var a = !0;
+    r[y] = void 0;
+    var o = !0;
   } catch {
   }
-  var o = Be.call(r);
-  return a && (t ? r[I] = n : delete r[I]), o;
+  var a = Ze.call(r);
+  return o && (t ? r[y] = n : delete r[y]), a;
 }
-var Je = Ze, Ye = Object.prototype, Qe = Ye.toString;
-function Xe(r) {
-  return Qe.call(r);
+var Ye = Je, Qe = Object.prototype, Xe = Qe.toString;
+function er(r) {
+  return Xe.call(r);
 }
-var er = Xe, U = k, rr = Je, tr = er, nr = "[object Null]", ar = "[object Undefined]", D = U ? U.toStringTag : void 0;
-function or(r) {
-  return r == null ? r === void 0 ? ar : nr : D && D in Object(r) ? rr(r) : tr(r);
+var rr = er, $ = C, tr = Ye, nr = rr, or = "[object Null]", ar = "[object Undefined]", U = $ ? $.toStringTag : void 0;
+function sr(r) {
+  return r == null ? r === void 0 ? ar : or : U && U in Object(r) ? tr(r) : nr(r);
 }
-var sr = or;
-function ir(r) {
+var ir = sr;
+function cr(r) {
   return r != null && typeof r == "object";
 }
-var cr = ir, ur = sr, pr = cr, mr = "[object Symbol]";
-function gr(r) {
-  return typeof r == "symbol" || pr(r) && ur(r) == mr;
+var ur = cr, pr = ir, gr = ur, mr = "[object Symbol]";
+function dr(r) {
+  return typeof r == "symbol" || gr(r) && pr(r) == mr;
 }
-var lr = gr, N = k, dr = Fe, _r = Ke, br = lr, fr = 1 / 0, q = N ? N.prototype : void 0, M = q ? q.toString : void 0;
+var lr = dr, D = C, _r = Ve, br = We, fr = lr, hr = 1 / 0, N = D ? D.prototype : void 0, q = N ? N.toString : void 0;
 function Y(r) {
   if (typeof r == "string")
     return r;
-  if (_r(r))
-    return dr(r, Y) + "";
   if (br(r))
-    return M ? M.call(r) : "";
+    return _r(r, Y) + "";
+  if (fr(r))
+    return q ? q.call(r) : "";
   var t = r + "";
-  return t == "0" && 1 / r == -fr ? "-0" : t;
+  return t == "0" && 1 / r == -hr ? "-0" : t;
 }
-var hr = Y, Sr = hr;
-function yr(r) {
-  return r == null ? "" : Sr(r);
+var Sr = Y, yr = Sr;
+function Ir(r) {
+  return r == null ? "" : yr(r);
 }
-var x = yr, Ir = Ce, Rr = x, Tr = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, xr = "\\u0300-\\u036f", vr = "\\ufe20-\\ufe2f", Pr = "\\u20d0-\\u20ff", Er = xr + vr + Pr, jr = "[" + Er + "]", Or = RegExp(jr, "g");
-function Ar(r) {
-  return r = Rr(r), r && r.replace(Tr, Ir).replace(Or, "");
+var T = Ir, Rr = $e, Tr = T, Pr = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, xr = "\\u0300-\\u036f", vr = "\\ufe20-\\ufe2f", Er = "\\u20d0-\\u20ff", jr = xr + vr + Er, Or = "[" + jr + "]", Ar = RegExp(Or, "g");
+function Lr(r) {
+  return r = Tr(r), r && r.replace(Pr, Rr).replace(Ar, "");
 }
-var $r = Ar, Lr = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
-function kr(r) {
-  return r.match(Lr) || [];
+var Cr = Lr, kr = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+function wr(r) {
+  return r.match(kr) || [];
 }
-var Cr = kr, wr = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
-function Ur(r) {
-  return wr.test(r);
+var $r = wr, Ur = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
+function Dr(r) {
+  return Ur.test(r);
 }
-var Dr = Ur, Q = "\\ud800-\\udfff", Nr = "\\u0300-\\u036f", qr = "\\ufe20-\\ufe2f", Mr = "\\u20d0-\\u20ff", Gr = Nr + qr + Mr, X = "\\u2700-\\u27bf", ee = "a-z\\xdf-\\xf6\\xf8-\\xff", Hr = "\\xac\\xb1\\xd7\\xf7", zr = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", Fr = "\\u2000-\\u206f", Vr = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", re = "A-Z\\xc0-\\xd6\\xd8-\\xde", Kr = "\\ufe0e\\ufe0f", te = Hr + zr + Fr + Vr, ne = "['’]", G = "[" + te + "]", Wr = "[" + Gr + "]", ae = "\\d+", Br = "[" + X + "]", oe = "[" + ee + "]", se = "[^" + Q + te + ae + X + ee + re + "]", Zr = "\\ud83c[\\udffb-\\udfff]", Jr = "(?:" + Wr + "|" + Zr + ")", Yr = "[^" + Q + "]", ie = "(?:\\ud83c[\\udde6-\\uddff]){2}", ce = "[\\ud800-\\udbff][\\udc00-\\udfff]", S = "[" + re + "]", Qr = "\\u200d", H = "(?:" + oe + "|" + se + ")", Xr = "(?:" + S + "|" + se + ")", z = "(?:" + ne + "(?:d|ll|m|re|s|t|ve))?", F = "(?:" + ne + "(?:D|LL|M|RE|S|T|VE))?", ue = Jr + "?", pe = "[" + Kr + "]?", et = "(?:" + Qr + "(?:" + [Yr, ie, ce].join("|") + ")" + pe + ue + ")*", rt = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", tt = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", nt = pe + ue + et, at = "(?:" + [Br, ie, ce].join("|") + ")" + nt, ot = RegExp([
-  S + "?" + oe + "+" + z + "(?=" + [G, S, "$"].join("|") + ")",
-  Xr + "+" + F + "(?=" + [G, S + H, "$"].join("|") + ")",
-  S + "?" + H + "+" + z,
+var Nr = Dr, Q = "\\ud800-\\udfff", qr = "\\u0300-\\u036f", Mr = "\\ufe20-\\ufe2f", Gr = "\\u20d0-\\u20ff", Hr = qr + Mr + Gr, X = "\\u2700-\\u27bf", ee = "a-z\\xdf-\\xf6\\xf8-\\xff", Fr = "\\xac\\xb1\\xd7\\xf7", zr = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", Vr = "\\u2000-\\u206f", Kr = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", re = "A-Z\\xc0-\\xd6\\xd8-\\xde", Wr = "\\ufe0e\\ufe0f", te = Fr + zr + Vr + Kr, ne = "['’]", M = "[" + te + "]", Br = "[" + Hr + "]", oe = "\\d+", Zr = "[" + X + "]", ae = "[" + ee + "]", se = "[^" + Q + te + oe + X + ee + re + "]", Jr = "\\ud83c[\\udffb-\\udfff]", Yr = "(?:" + Br + "|" + Jr + ")", Qr = "[^" + Q + "]", ie = "(?:\\ud83c[\\udde6-\\uddff]){2}", ce = "[\\ud800-\\udbff][\\udc00-\\udfff]", S = "[" + re + "]", Xr = "\\u200d", G = "(?:" + ae + "|" + se + ")", et = "(?:" + S + "|" + se + ")", H = "(?:" + ne + "(?:d|ll|m|re|s|t|ve))?", F = "(?:" + ne + "(?:D|LL|M|RE|S|T|VE))?", ue = Yr + "?", pe = "[" + Wr + "]?", rt = "(?:" + Xr + "(?:" + [Qr, ie, ce].join("|") + ")" + pe + ue + ")*", tt = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", nt = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", ot = pe + ue + rt, at = "(?:" + [Zr, ie, ce].join("|") + ")" + ot, st = RegExp([
+  S + "?" + ae + "+" + H + "(?=" + [M, S, "$"].join("|") + ")",
+  et + "+" + F + "(?=" + [M, S + G, "$"].join("|") + ")",
+  S + "?" + G + "+" + H,
   S + "+" + F,
+  nt,
   tt,
-  rt,
-  ae,
+  oe,
   at
 ].join("|"), "g");
-function st(r) {
-  return r.match(ot) || [];
+function it(r) {
+  return r.match(st) || [];
 }
-var it = st, ct = Cr, ut = Dr, pt = x, mt = it;
-function gt(r, t, n) {
-  return r = pt(r), t = n ? void 0 : t, t === void 0 ? ut(r) ? mt(r) : ct(r) : r.match(t) || [];
+var ct = it, ut = $r, pt = Nr, gt = T, mt = ct;
+function dt(r, t, n) {
+  return r = gt(r), t = n ? void 0 : t, t === void 0 ? pt(r) ? mt(r) : ut(r) : r.match(t) || [];
 }
-var lt = gt, dt = je, _t = $r, bt = lt, ft = "['’]", ht = RegExp(ft, "g");
-function St(r) {
+var lt = dt, _t = Oe, bt = Cr, ft = lt, ht = "['’]", St = RegExp(ht, "g");
+function yt(r) {
   return function(t) {
-    return dt(bt(_t(t).replace(ht, "")), r, "");
+    return _t(ft(bt(t).replace(St, "")), r, "");
   };
 }
-var me = St, yt = me, It = yt(function(r, t, n) {
+var ge = yt, It = ge, Rt = It(function(r, t, n) {
   return r + (n ? "_" : "") + t.toLowerCase();
-}), Rt = It;
-function Tt(r, t, n) {
-  var a = -1, o = r.length;
-  t < 0 && (t = -t > o ? 0 : o + t), n = n > o ? o : n, n < 0 && (n += o), o = t > n ? 0 : n - t >>> 0, t >>>= 0;
-  for (var i = Array(o); ++a < o; )
-    i[a] = r[a + t];
-  return i;
-}
-var xt = Tt, vt = xt;
+}), Tt = Rt;
 function Pt(r, t, n) {
-  var a = r.length;
-  return n = n === void 0 ? a : n, !t && n >= a ? r : vt(r, t, n);
+  var o = -1, a = r.length;
+  t < 0 && (t = -t > a ? 0 : a + t), n = n > a ? a : n, n < 0 && (n += a), a = t > n ? 0 : n - t >>> 0, t >>>= 0;
+  for (var s = Array(a); ++o < a; )
+    s[o] = r[o + t];
+  return s;
 }
-var Et = Pt, jt = "\\ud800-\\udfff", Ot = "\\u0300-\\u036f", At = "\\ufe20-\\ufe2f", $t = "\\u20d0-\\u20ff", Lt = Ot + At + $t, kt = "\\ufe0e\\ufe0f", Ct = "\\u200d", wt = RegExp("[" + Ct + jt + Lt + kt + "]");
-function Ut(r) {
-  return wt.test(r);
+var xt = Pt, vt = xt;
+function Et(r, t, n) {
+  var o = r.length;
+  return n = n === void 0 ? o : n, !t && n >= o ? r : vt(r, t, n);
 }
-var ge = Ut;
+var jt = Et, Ot = "\\ud800-\\udfff", At = "\\u0300-\\u036f", Lt = "\\ufe20-\\ufe2f", Ct = "\\u20d0-\\u20ff", kt = At + Lt + Ct, wt = "\\ufe0e\\ufe0f", $t = "\\u200d", Ut = RegExp("[" + $t + Ot + kt + wt + "]");
 function Dt(r) {
+  return Ut.test(r);
+}
+var me = Dt;
+function Nt(r) {
   return r.split("");
 }
-var Nt = Dt, le = "\\ud800-\\udfff", qt = "\\u0300-\\u036f", Mt = "\\ufe20-\\ufe2f", Gt = "\\u20d0-\\u20ff", Ht = qt + Mt + Gt, zt = "\\ufe0e\\ufe0f", Ft = "[" + le + "]", O = "[" + Ht + "]", A = "\\ud83c[\\udffb-\\udfff]", Vt = "(?:" + O + "|" + A + ")", de = "[^" + le + "]", _e = "(?:\\ud83c[\\udde6-\\uddff]){2}", be = "[\\ud800-\\udbff][\\udc00-\\udfff]", Kt = "\\u200d", fe = Vt + "?", he = "[" + zt + "]?", Wt = "(?:" + Kt + "(?:" + [de, _e, be].join("|") + ")" + he + fe + ")*", Bt = he + fe + Wt, Zt = "(?:" + [de + O + "?", O, _e, be, Ft].join("|") + ")", Jt = RegExp(A + "(?=" + A + ")|" + Zt + Bt, "g");
-function Yt(r) {
-  return r.match(Jt) || [];
+var qt = Nt, de = "\\ud800-\\udfff", Mt = "\\u0300-\\u036f", Gt = "\\ufe20-\\ufe2f", Ht = "\\u20d0-\\u20ff", Ft = Mt + Gt + Ht, zt = "\\ufe0e\\ufe0f", Vt = "[" + de + "]", j = "[" + Ft + "]", O = "\\ud83c[\\udffb-\\udfff]", Kt = "(?:" + j + "|" + O + ")", le = "[^" + de + "]", _e = "(?:\\ud83c[\\udde6-\\uddff]){2}", be = "[\\ud800-\\udbff][\\udc00-\\udfff]", Wt = "\\u200d", fe = Kt + "?", he = "[" + zt + "]?", Bt = "(?:" + Wt + "(?:" + [le, _e, be].join("|") + ")" + he + fe + ")*", Zt = he + fe + Bt, Jt = "(?:" + [le + j + "?", j, _e, be, Vt].join("|") + ")", Yt = RegExp(O + "(?=" + O + ")|" + Jt + Zt, "g");
+function Qt(r) {
+  return r.match(Yt) || [];
 }
-var Qt = Yt, Xt = Nt, en = ge, rn = Qt;
-function tn(r) {
-  return en(r) ? rn(r) : Xt(r);
+var Xt = Qt, en = qt, rn = me, tn = Xt;
+function nn(r) {
+  return rn(r) ? tn(r) : en(r);
 }
-var nn = tn, an = Et, on = ge, sn = nn, cn = x;
-function un(r) {
+var on = nn, an = jt, sn = me, cn = on, un = T;
+function pn(r) {
   return function(t) {
-    t = cn(t);
-    var n = on(t) ? sn(t) : void 0, a = n ? n[0] : t.charAt(0), o = n ? an(n, 1).join("") : t.slice(1);
-    return a[r]() + o;
+    t = un(t);
+    var n = sn(t) ? cn(t) : void 0, o = n ? n[0] : t.charAt(0), a = n ? an(n, 1).join("") : t.slice(1);
+    return o[r]() + a;
   };
 }
-var pn = un, mn = pn, gn = mn("toUpperCase"), ln = gn, dn = x, _n = ln;
-function bn(r) {
-  return _n(dn(r).toLowerCase());
+var gn = pn, mn = gn, dn = mn("toUpperCase"), ln = dn, _n = T, bn = ln;
+function fn(r) {
+  return bn(_n(r).toLowerCase());
 }
-var fn = bn, hn = fn, Sn = me, yn = Sn(function(r, t, n) {
-  return t = t.toLowerCase(), r + (n ? hn(t) : t);
-}), In = yn;
-class v {
+var hn = fn, Sn = hn, yn = ge, In = yn(function(r, t, n) {
+  return t = t.toLowerCase(), r + (n ? Sn(t) : t);
+}), Rn = In;
+class P {
   constructor() {
     this.logger = console, this.logInterceptorIds = [], this.isLogEnabled = !1, this.axios = xe.create(), this.isLogEnabled && this.addLogInterceptor();
   }
   addLogInterceptor() {
     const t = this.axios.interceptors.request.use(
-      (a) => (this.logger.log(`${a.url}`), a.data && this.logger.info(`[Body]: ${JSON.stringify(a.data, null, 4)}`), a),
-      (a) => {
-        throw this.logger.error(a), a;
+      (o) => (this.logger.log(`${o.url}`), o.data && this.logger.info(`[Body]: ${JSON.stringify(o.data, null, 4)}`), o),
+      (o) => {
+        throw this.logger.error(o), o;
       }
     ), n = this.axios.interceptors.response.use(
-      (a) => (this.logger.log(`[Response]: ${JSON.stringify(a.data, null, 4)}`), a),
-      (a) => {
+      (o) => (this.logger.log(`[Response]: ${JSON.stringify(o.data, null, 4)}`), o),
+      (o) => {
         const {
-          response: o,
-          message: i,
-          config: { method: u, url: p, data: m, params: c }
-        } = a, g = o == null ? void 0 : o.status;
-        throw this.logger.error({ status: g, message: i, method: u, url: p, data: m, params: c }), a;
+          response: a,
+          message: s,
+          config: { method: p, url: i, data: g, params: c }
+        } = o, u = a == null ? void 0 : a.status;
+        throw this.logger.error({ status: u, message: s, method: p, url: i, data: g, params: c }), o;
       }
     );
     this.logInterceptorIds = [t, n];
@@ -438,7 +438,7 @@ class v {
     this.logInterceptorIds.forEach(this.axios.interceptors.request.eject);
   }
   static getInstance() {
-    return this.instance ?? (this.instance = new v());
+    return this.instance ?? (this.instance = new P());
   }
   setLogEnabled(t) {
     return this.isLogEnabled = t, this.isLogEnabled ? this.addLogInterceptor() : this.removeLogInterceptor(), this.isLogEnabled;
@@ -446,16 +446,16 @@ class v {
   get(t, n) {
     return this.axios.get(t, { params: n });
   }
-  post(t, n, a) {
-    return this.axios.post(t, a, { params: n });
+  post(t, n, o) {
+    return this.axios.post(t, o, { params: n });
   }
 }
-class f {
+class _ {
   constructor() {
     this.isLogEnabled = !1;
   }
   static getInstance() {
-    return this.instance ?? (this.instance = new f());
+    return this.instance ?? (this.instance = new _());
   }
   get value() {
     return {
@@ -467,54 +467,123 @@ class f {
     };
   }
 }
-const V = v.getInstance();
-function _(r) {
-  return async function(n) {
-    const a = r.transformRequestParameter ?? ((b) => b), o = await r.requestParameterSchema.transform(a).safeParseAsync(n);
-    if (!o.success)
+const z = P.getInstance();
+function l(r) {
+  async function t(n) {
+    if (!r.transformRequestParameter)
+      return n;
+    const o = r.transformRequestParameter(n);
+    if (!r.transformRequestParameterSchema)
+      return n;
+    const a = await r.transformRequestParameterSchema.safeParseAsync(
+      o
+    );
+    if (!a.success)
       throw new Error(
-        `parse request parameters error: ${o.error.message}`
+        `transform request parameters error: ${a.error.message}`
       );
-    const i = r.toCamelCase ? j(o.data, (b) => Rt(b.toString())) : o.data, u = f.getInstance(), p = u.value;
-    V.setLogEnabled(u.isLogEnabled);
-    const m = await Z({
+    return a.data;
+  }
+  return async function(o) {
+    const a = await r.requestParameterSchema.safeParseAsync(o);
+    if (!a.success)
+      throw new Error(
+        `parse request parameters error: ${a.error.message}`
+      );
+    const s = await t(a.data), p = r.toCamelCase ? E(
+      s,
+      (d) => Tt(d.toString())
+    ) : s, i = _.getInstance(), g = i.value;
+    z.setLogEnabled(i.isLogEnabled);
+    const c = await Z({
+      ...g,
+      path: r.path,
+      params: p
+    }), u = await z.get(c), b = r.toCamelCase ? E(u.data, (d) => Rn(d.toString())) : u.data, f = await r.responseSchema.safeParseAsync(b);
+    if (!f.success)
+      throw new Error(`parse response error: ${f.error.message}`);
+    return f.data;
+  };
+}
+const V = P.getInstance();
+function x(r) {
+  return async function(n) {
+    const o = r.transformRequestParameter ?? ((b) => b), a = await r.requestParameterSchema.transform(o).safeParseAsync(n);
+    if (!a.success)
+      throw new Error(
+        `parse request parameters error: ${a.error.message}`
+      );
+    const s = _.getInstance(), p = s.value;
+    V.setLogEnabled(s.isLogEnabled);
+    const i = await Z({
       ...p,
       path: r.path,
-      params: i
-    }), c = await V.get(m), g = r.toCamelCase ? j(c.data, (b) => In(b.toString())) : c.data, d = await r.responseSchema.safeParseAsync(g);
-    if (!d.success)
-      throw new Error(`parse response error: ${d.error.message}`);
-    return d.data;
-  };
-}
-const K = v.getInstance();
-function C(r) {
-  return async function(n) {
-    const a = r.transformRequestParameter ?? ((d) => d), o = await r.requestParameterSchema.transform(a).safeParseAsync(n);
-    if (!o.success)
-      throw new Error(
-        `parse request parameters error: ${o.error.message}`
-      );
-    const i = f.getInstance(), u = i.value;
-    K.setLogEnabled(i.isLogEnabled);
-    const p = await Z({
-      ...u,
-      path: r.path,
       params: {}
-    }), m = o.data, { data: c } = await K.post(p, {}, m), g = await r.responseSchema.safeParseAsync(c);
-    if (!g.success)
-      throw new Error(`parse response error: ${g.error.message}`);
-    return g.data;
+    }), g = a.data, { data: c } = await V.post(i, {}, g), u = await r.responseSchema.safeParseAsync(c);
+    if (!u.success)
+      throw new Error(`parse response error: ${u.error.message}`);
+    return u.data;
   };
 }
-const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/ship_order", xn = "/api/v2/logistics/update_shipping_order", vn = "/api/v2/logistics/get_tracking_number", Pn = [
+const Tn = "/api/v2/logistic/get_shipping_parameter", Pn = "/api/v2/logistic/ship_order", xn = "/api/v2/logistics/update_shipping_order", vn = "/api/v2/logistics/get_tracking_number", En = "/api/v2/logistic/get_shipping_document_parameter", Se = [
   "plp_number",
   "first_mile_tracking_number",
   "last_mile_tracking_number"
-], En = L(Pn), jn = e.object({
+], jo = L(Se), jn = e.object({
+  orderList: e.array(
+    e.object({
+      orderSn: e.string(),
+      packageNumber: e.number().optional()
+    })
+  ).max(50)
+}), On = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  warning: e.object({
+    orderSn: e.string(),
+    packageNumber: e.number().optional()
+  }).optional(),
+  response: e.object({
+    orderSn: e.string(),
+    packageNumber: e.number().optional(),
+    suggestShippingDocumentType: e.string(),
+    selectableShippingDocumentType: e.array(e.string()),
+    failError: e.string(),
+    failMessage: e.string()
+  }).optional(),
+  requestId: e.string()
+}), An = x({
+  path: En,
+  requestParameterSchema: jn,
+  responseSchema: On
+}), K = e.object({
+  orderSn: e.string(),
+  packageNumber: e.number().optional(),
+  responseOptionalFields: e.array(e.enum(Se)).optional()
+}), Ln = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  response: e.object({}).optional(),
+  requestId: e.string()
+}), Cn = l({
+  path: vn,
+  requestParameterSchema: K,
+  responseSchema: Ln,
+  transformRequestParameterSchema: K.extend({
+    responseOptionalFields: e.string().optional()
+  }),
+  transformRequestParameter(r) {
+    var t;
+    return {
+      ...r,
+      responseOptionalFields: (t = r.responseOptionalFields) == null ? void 0 : t.join(",")
+    };
+  },
+  toCamelCase: !0
+}), kn = e.object({
   orderSn: e.string(),
   packageNumber: e.number().optional()
-}), On = e.object({
+}), wn = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
   response: e.object({
@@ -567,12 +636,12 @@ const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/shi
     })
   }).optional(),
   requestId: e.string()
-}), An = _({
-  path: Rn,
-  requestParameterSchema: jn,
-  responseSchema: On,
+}), $n = l({
+  path: Tn,
+  requestParameterSchema: kn,
+  responseSchema: wn,
   toCamelCase: !0
-}), $n = e.object({
+}), Un = e.object({
   orderSn: e.string(),
   packageNumber: e.string().optional(),
   pickup: e.object({
@@ -589,66 +658,37 @@ const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/shi
   nonIntegrated: e.object({
     trackingNumber: e.string().optional()
   }).optional()
-}), Ln = e.object({
+}), Dn = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
   requestId: e.string()
-}), kn = C({
-  path: Tn,
-  requestParameterSchema: $n,
-  responseSchema: Ln
-}), Cn = e.object({
+}), Nn = x({
+  path: Pn,
+  requestParameterSchema: Un,
+  responseSchema: Dn
+}), qn = e.object({
   orderSn: e.string(),
   packageNumber: e.string().optional(),
   pickup: e.object({
     addressId: e.number(),
     pickupTimeId: e.string()
   })
-}), wn = e.object({
+}), Mn = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
   requestId: e.string()
-}), Un = C({
+}), Gn = x({
   path: xn,
-  requestParameterSchema: Cn,
-  responseSchema: wn
-}), s = En, Dn = e.object({
-  orderSn: e.string(),
-  packageNumber: e.number().optional(),
-  responseOptionalFields: e.enum([
-    s.first_mile_tracking_number,
-    s.last_mile_tracking_number,
-    s.plp_number,
-    `${s.first_mile_tracking_number},${s.last_mile_tracking_number}`,
-    `${s.first_mile_tracking_number},${s.plp_number}`,
-    `${s.last_mile_tracking_number},${s.first_mile_tracking_number}`,
-    `${s.last_mile_tracking_number},${s.plp_number}`,
-    `${s.plp_number},${s.first_mile_tracking_number}`,
-    `${s.plp_number},${s.last_mile_tracking_number}`,
-    `${s.first_mile_tracking_number},${s.last_mile_tracking_number},${s.plp_number}`,
-    `${s.first_mile_tracking_number},${s.plp_number},${s.last_mile_tracking_number}`,
-    `${s.last_mile_tracking_number},${s.first_mile_tracking_number},${s.plp_number}`,
-    `${s.last_mile_tracking_number},${s.plp_number},${s.first_mile_tracking_number}`,
-    `${s.plp_number},${s.first_mile_tracking_number},${s.last_mile_tracking_number}`,
-    `${s.plp_number},${s.last_mile_tracking_number},${s.first_mile_tracking_number}`
-  ]).optional()
-}), Nn = e.object({
-  error: e.string().optional(),
-  message: e.string().optional(),
-  response: e.object({}).optional(),
-  requestId: e.string()
-}), qn = _({
-  path: vn,
-  requestParameterSchema: Dn,
-  responseSchema: Nn,
-  toCamelCase: !0
-}), Mn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  requestParameterSchema: qn,
+  responseSchema: Mn
+}), Hn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getShippingParameter: An,
-  getTrackingNumber: qn,
-  shipOrder: kn,
-  updateShipOrder: Un
-}, Symbol.toStringTag, { value: "Module" })), Gn = "/api/v2/order/get_order_list", Hn = "/api/v2/order/get_order_detail", Se = [
+  getShippingDocumentParameter: An,
+  getShippingParameter: $n,
+  getTrackingNumber: Cn,
+  shipOrder: Nn,
+  updateShipOrder: Gn
+}, Symbol.toStringTag, { value: "Module" })), Fn = "/api/v2/order/get_order_list", zn = "/api/v2/order/get_order_detail", ye = [
   "UNPAID",
   "READY_TO_SHIP",
   "PROCESSED",
@@ -657,7 +697,7 @@ const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/shi
   "IN_CANCEL",
   "CANCELLED",
   "INVOICE_PENDING"
-], va = L(Se), zn = [
+], Oo = L(ye), Vn = [
   "buyer_user_id",
   "buyer_username",
   "estimated_shipping_fee",
@@ -690,10 +730,10 @@ const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/shi
   "edt",
   "prescription_images",
   "prescription_check_status"
-], Pa = L(zn), Fn = e.object({
+], Ao = L(Vn), Kn = e.object({
   orderSnList: e.array(e.string()),
   responseOptionalFields: e.string().optional()
-}), Vn = e.object({
+}), Wn = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
   response: e.object({
@@ -802,19 +842,19 @@ const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/shi
     )
   }).optional(),
   requestId: e.string()
-}), Kn = _({
-  path: Hn,
-  requestParameterSchema: Fn,
-  responseSchema: Vn
-}), Wn = e.object({
+}), Bn = l({
+  path: zn,
+  requestParameterSchema: Kn,
+  responseSchema: Wn
+}), Zn = e.object({
   timeRangeField: e.enum(["create_time", "update_time"]),
   timeFrom: e.date(),
   timeTo: e.date(),
   pageSize: e.number().min(1).max(100),
   cursor: e.string().optional(),
-  orderStatus: e.enum(Se).optional(),
+  orderStatus: e.enum(ye).optional(),
   responseOptionalFields: e.enum(["order_status"]).optional().default("order_status")
-}), Bn = e.object({
+}), Jn = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
   response: e.object({
@@ -827,20 +867,20 @@ const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/shi
     )
   }).optional(),
   requestId: e.string()
-}), Zn = _({
-  path: Gn,
-  requestParameterSchema: Wn,
-  responseSchema: Bn,
+}), Yn = l({
+  path: Fn,
+  requestParameterSchema: Zn,
+  responseSchema: Jn,
   toCamelCase: !0
-}), Jn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), Qn = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getOrderDetail: Kn,
-  getOrderList: Zn
-}, Symbol.toStringTag, { value: "Module" })), Yn = "/api/v2/product/get_item_base_info", Qn = "/api/v2/product/get_item_extra_info", Xn = "/api/v2/product/get_item_list", ea = "/api/v2/product/get_model_list", ye = ["NORMAL", "DELETED", "UNLIST", "BANNED"], ra = e.object({
+  getOrderDetail: Bn,
+  getOrderList: Yn
+}, Symbol.toStringTag, { value: "Module" })), Xn = "/api/v2/product/get_item_base_info", eo = "/api/v2/product/get_item_extra_info", ro = "/api/v2/product/get_item_list", to = "/api/v2/product/get_model_list", Ie = ["NORMAL", "DELETED", "UNLIST", "BANNED"], no = e.object({
   item_id_list: e.string(),
   need_tax_info: e.coerce.boolean().optional(),
   need_complaint_policy: e.coerce.boolean().optional()
-}), ta = e.object({
+}), oo = e.object({
   error: e.string(),
   message: e.string(),
   warning: e.string(),
@@ -945,16 +985,16 @@ const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/shi
       })
     ).optional()
   })
-}), na = _({
-  path: Yn,
-  requestParameterSchema: ra,
-  responseSchema: ta,
+}), ao = l({
+  path: Xn,
+  requestParameterSchema: no,
+  responseSchema: oo,
   transformRequestParameter(r) {
     return r.need_tax_info = !!r.need_tax_info, r.need_complaint_policy = !!r.need_complaint_policy, r;
   }
-}), aa = e.object({
+}), so = e.object({
   item_id_list: e.string()
-}), oa = e.object({
+}), io = e.object({
   error: e.string(),
   message: e.string(),
   warning: e.string().optional(),
@@ -971,17 +1011,17 @@ const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/shi
       })
     ).optional()
   }).optional()
-}), sa = _({
-  path: Qn,
-  requestParameterSchema: aa,
-  responseSchema: oa
-}), ia = e.object({
+}), co = l({
+  path: eo,
+  requestParameterSchema: so,
+  responseSchema: io
+}), uo = e.object({
   offset: e.number().int().min(0).optional(),
   page_size: e.number().int().positive().max(100).optional(),
   update_time_from: e.date().optional(),
   update_time_to: e.date().optional(),
-  item_status: e.array(e.enum(ye))
-}), ca = e.object({
+  item_status: e.array(e.enum(Ie))
+}), po = e.object({
   error: e.string(),
   message: e.string().nullable().optional(),
   warning: e.string().nullable().optional(),
@@ -990,7 +1030,7 @@ const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/shi
     item: e.array(
       e.object({
         item_id: e.number().int(),
-        item_status: e.enum(ye),
+        item_status: e.enum(Ie),
         update_time: e.number().int()
       })
     ).optional()
@@ -998,16 +1038,16 @@ const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/shi
   total_count: e.number().int().optional(),
   has_next_page: e.boolean().optional(),
   next_offset: e.number().int().optional()
-}), ua = _({
-  path: Xn,
-  requestParameterSchema: ia,
+}), go = l({
+  path: ro,
+  requestParameterSchema: uo,
   transformRequestParameter(r) {
     return r.update_time_from = r.update_time_from ?? /* @__PURE__ */ new Date("01/01/2022"), r.update_time_to = r.update_time_to ?? /* @__PURE__ */ new Date(), r;
   },
-  responseSchema: ca
-}), pa = e.object({
+  responseSchema: po
+}), mo = e.object({
   item_id: e.string()
-}), ma = e.object({
+}), lo = e.object({
   error: e.string(),
   message: e.string(),
   warning: e.string(),
@@ -1057,22 +1097,22 @@ const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/shi
       })
     )
   })
-}), ga = _({
-  path: ea,
-  requestParameterSchema: pa,
-  responseSchema: ma
-}), la = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), _o = l({
+  path: to,
+  requestParameterSchema: mo,
+  responseSchema: lo
+}), bo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getItemBaseInfo: na,
-  getItemExtraInfo: sa,
-  getItemList: ua,
-  getModelList: ga
-}, Symbol.toStringTag, { value: "Module" })), da = "/api/v2/auth/token/get", Ie = e.object({
+  getItemBaseInfo: ao,
+  getItemExtraInfo: co,
+  getItemList: go,
+  getModelList: _o
+}, Symbol.toStringTag, { value: "Module" })), fo = "/api/v2/auth/token/get", Re = e.object({
   code: e.string(),
   partner_id: e.number().optional(),
   shop_id: e.number().optional(),
   main_account_id: e.number().optional()
-}), Re = e.object({
+}), Te = e.object({
   access_token: e.string(),
   error: e.string(),
   expires_in: e.number(),
@@ -1080,128 +1120,135 @@ const Rn = "/api/v2/logistic/get_shipping_parameter", Tn = "/api/v2/logistic/shi
   refresh_token: e.string(),
   request_id: e.string(),
   shop_id_list: e.array(e.number())
-}), _a = C({
-  path: da,
-  requestParameterSchema: Ie,
-  responseSchema: Re,
+}), ho = x({
+  path: fo,
+  requestParameterSchema: Re,
+  responseSchema: Te,
   transformRequestParameter(r) {
-    return r.partner_id = r.partner_id ?? f.getInstance().partnerId, r;
+    return r.partner_id = r.partner_id ?? _.getInstance().partnerId, r;
   }
-}), ba = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), So = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getAccessToken: _a,
-  getAccessTokenRequestParametersSchema: Ie,
-  getAccessTokenResponseSchema: Re
+  getAccessToken: ho,
+  getAccessTokenRequestParametersSchema: Re,
+  getAccessTokenResponseSchema: Te
 }, Symbol.toStringTag, { value: "Module" })), W = "/api/v2/shop/auth_partner";
-async function fa({
+async function yo({
   redirectURL: r,
   redirectSign: t
 }) {
-  const { baseURL: n, partnerId: a, partnerKey: o } = f.getInstance();
-  if (!o || !a)
+  const { baseURL: n, partnerId: o, partnerKey: a } = _.getInstance();
+  if (!a || !o)
     throw new Error("partnerKey is undefined");
-  const i = new URL(W, n), u = E(/* @__PURE__ */ new Date()), p = await B(
-    o,
-    a.toString(),
+  const s = new URL(W, n), p = v(/* @__PURE__ */ new Date()), i = await B(
+    a,
+    o.toString(),
     W,
-    u
-  ), m = new URL(r);
-  return m.searchParams.append("sign", t), i.search = new URLSearchParams({
-    partner_id: a.toString(),
-    redirect: m.toString(),
-    timestamp: u,
-    sign: p
-  }).toString(), i.toString();
+    p
+  ), g = new URL(r);
+  return g.searchParams.append("sign", t), s.search = new URLSearchParams({
+    partner_id: o.toString(),
+    redirect: g.toString(),
+    timestamp: p,
+    sign: i
+  }).toString(), s.toString();
 }
-const ha = e.object({
+const Io = e.object({
   code: e.string(),
   shop_id: e.string(),
   sign: e.string()
 });
-async function Sa(r) {
-  const t = await ha.safeParseAsync(r);
+async function Ro(r) {
+  const t = await Io.safeParseAsync(r);
   if (!t.success)
     throw new Error(
       `parse request parameters error: ${t.error.message}`
     );
-  const { code: n, shop_id: a, sign: o } = t.data;
+  const { code: n, shop_id: o, sign: a } = t.data;
   return {
     code: n,
-    shopId: a,
-    sign: o
+    shopId: o,
+    sign: a
   };
 }
-const ya = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const To = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  authPartner: fa,
-  verifyCallback: Sa
-}, Symbol.toStringTag, { value: "Module" })), Ia = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  authPartner: yo,
+  verifyCallback: Ro
+}, Symbol.toStringTag, { value: "Module" })), Po = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  logistic: Mn,
-  order: Jn,
-  product: la,
-  publicShopee: ba,
-  shop: ya
-}, Symbol.toStringTag, { value: "Module" })), Ra = e.object({
+  logistic: Hn,
+  order: Qn,
+  product: bo,
+  publicShopee: So,
+  shop: To
+}, Symbol.toStringTag, { value: "Module" })), xo = e.object({
   partnerId: e.coerce.number().optional(),
   partnerKey: e.coerce.string().optional(),
   baseURL: e.coerce.string().url().optional(),
   accessToken: e.coerce.string().optional(),
   shopId: e.coerce.number().optional()
-}), $ = Ra.safeParse({
+}), A = xo.safeParse({
   partnerId: process.env.SHOPEE_SDK_PARTNER_ID,
   partnerKey: process.env.SHOPEE_SDK_PARTNER_KEY,
   baseURL: process.env.SHOPEE_SDK_BASE_URL,
   accessToken: process.env.SHOPEE_SDK_ACCESS_TOKEN,
   shopId: process.env.SHOPEE_SDK_SHOP_ID
 });
-if (!$.success)
-  throw new Error($.error.message);
-const R = $.data, l = f.getInstance();
-class Ea {
+if (!A.success)
+  throw new Error(A.error.message);
+const I = A.data, m = _.getInstance();
+class Lo {
   constructor(t) {
-    l.accessToken = t.accessToken ?? R.accessToken, l.baseURL = t.baseURL ?? R.baseURL, l.partnerId = t.partnerId ?? R.partnerId, l.partnerKey = t.partnerKey ?? R.partnerKey, l.shopId = t.shopId ?? R.shopId, l.isLogEnabled = t.isLogEnabled ?? !1;
+    m.accessToken = t.accessToken ?? I.accessToken, m.baseURL = t.baseURL ?? I.baseURL, m.partnerId = t.partnerId ?? I.partnerId, m.partnerKey = t.partnerKey ?? I.partnerKey, m.shopId = t.shopId ?? I.shopId, m.isLogEnabled = t.isLogEnabled ?? !1;
   }
   setPartnerId(t) {
-    return l.partnerId = t, this;
+    return m.partnerId = t, this;
   }
   setBaseURL(t) {
-    return l.baseURL = t, this;
+    return m.baseURL = t, this;
   }
   setPartnerKey(t) {
-    return l.partnerKey = t, this;
+    return m.partnerKey = t, this;
   }
   setAccessToken(t) {
-    return l.accessToken = t, this;
+    return m.accessToken = t, this;
   }
   setShopId(t) {
-    return l.shopId = t, this;
+    return m.shopId = t, this;
   }
   setIsLogEnabled(t) {
-    return l.isLogEnabled = t, this;
+    return m.isLogEnabled = t, this;
   }
   get v2() {
-    return Ia;
+    return Po;
   }
 }
 export {
-  Hn as API_V2_ORDER_GET_ORDER_DETAIL_PATH,
-  Gn as API_V2_ORDER_GET_ORDER_LIST_PATH,
-  Yn as API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH,
-  Qn as API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH,
-  Xn as API_V2_PRODUCT_GET_ITEM_LIST_PATH,
-  ea as API_V2_PRODUCT_GET_MODEL_LIST_PATH,
-  da as API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH,
+  En as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_PARAMETER,
+  Tn as API_V2_LOGISTIC_GET_SHIPPING_PARAMETER,
+  vn as API_V2_LOGISTIC_GET_TRACKING_NUMBER,
+  Pn as API_V2_LOGISTIC_SHIP_ORDER,
+  xn as API_V2_LOGISTIC_UPDATE_SHIP_ORDER,
+  zn as API_V2_ORDER_GET_ORDER_DETAIL_PATH,
+  Fn as API_V2_ORDER_GET_ORDER_LIST_PATH,
+  Xn as API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH,
+  eo as API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH,
+  ro as API_V2_PRODUCT_GET_ITEM_LIST_PATH,
+  to as API_V2_PRODUCT_GET_MODEL_LIST_PATH,
+  fo as API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH,
   W as API_V2_SHOP_AUTH_PARTNER,
-  ye as ITEM_STATUS,
-  Ea as ShopeeSdk,
-  zn as V2_ORDER_RESPONSE_OPTIONAL_FIELDS,
-  Pa as V2_ORDER_RESPONSE_OPTIONAL_FIELDS_MAP,
-  Se as V2_ORDER_STATUS,
-  va as V2_ORDER_STATUS_MAP,
+  Ie as ITEM_STATUS,
+  Lo as ShopeeSdk,
+  Se as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS,
+  jo as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP,
+  Vn as V2_ORDER_RESPONSE_OPTIONAL_FIELDS,
+  Ao as V2_ORDER_RESPONSE_OPTIONAL_FIELDS_MAP,
+  ye as V2_ORDER_STATUS,
+  Oo as V2_ORDER_STATUS_MAP,
   L as createConstantsMap,
   B as generateHmac,
   Z as signURL,
-  E as toTimestamp,
-  j as transformObjectKeys
+  v as toTimestamp,
+  E as transformObjectKeys
 };

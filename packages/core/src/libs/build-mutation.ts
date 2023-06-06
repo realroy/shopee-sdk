@@ -13,7 +13,7 @@ export type BuildMutationArgs<
 > = {
   path: string;
   requestParameterSchema: z.ZodObject<TRequestParameterSchema>;
-  responseSchema: z.ZodObject<TResponseSchema>;
+  responseSchema: z.ZodObject<TResponseSchema> | z.ZodAny;
   transformRequestParameter?: (
     data: z.infer<z.ZodObject<TRequestParameterSchema>>
   ) => typeof data;

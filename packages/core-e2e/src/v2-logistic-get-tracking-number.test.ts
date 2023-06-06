@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { ShopeeSdk } from "@shopee-sdk/core";
+import { ShopeeSdk, V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS } from "@shopee-sdk/core";
 
-describe("v2/logistic/get-shipping-parameter", async () => {
+describe("v2/logistic/get-tracking-number", async () => {
   const shopeeSdk = new ShopeeSdk({ isLogEnabled: true });
   const now = new Date();
 
@@ -15,12 +15,13 @@ describe("v2/logistic/get-shipping-parameter", async () => {
   });
 
   it("should receive successfully response", async () => {
-    const orderList = getOrderListResponse.response?.orderList;
+    const orderList = getOrderListResponse.response?.orderList
     const orderSn = orderList?.[0]?.orderSn as string;
 
-    const response = await shopeeSdk.v2.logistic.getShippingParameter({
+    const response = await shopeeSdk.v2.logistic.getTrackingNumber({
       orderSn,
-    });
+      responseOptionalFields: [...V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS]
+    })
 
     expect(response.error).toHaveLength(0);
   });

@@ -1,41 +1,115 @@
 import { z } from "zod";
-export declare const logisticGetTrackingNumberRequestParameterSchema: z.ZodObject<{
-    orderSn: z.ZodString;
-    packageNumber: z.ZodOptional<z.ZodNumber>;
-    responseOptionalFields: z.ZodOptional<z.ZodEnum<["plp_number" | "first_mile_tracking_number" | "last_mile_tracking_number", "plp_number" | "first_mile_tracking_number" | "last_mile_tracking_number", "plp_number" | "first_mile_tracking_number" | "last_mile_tracking_number", "plp_number,plp_number" | "plp_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number", "plp_number,plp_number" | "plp_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number", "plp_number,plp_number" | "plp_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number", "plp_number,plp_number" | "plp_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number", "plp_number,plp_number" | "plp_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number", "plp_number,plp_number" | "plp_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number", "plp_number,plp_number,plp_number" | "plp_number,plp_number,first_mile_tracking_number" | "plp_number,plp_number,last_mile_tracking_number" | "plp_number,first_mile_tracking_number,plp_number" | "plp_number,first_mile_tracking_number,first_mile_tracking_number" | "plp_number,first_mile_tracking_number,last_mile_tracking_number" | "plp_number,last_mile_tracking_number,plp_number" | "plp_number,last_mile_tracking_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number,plp_number" | "first_mile_tracking_number,plp_number,first_mile_tracking_number" | "first_mile_tracking_number,plp_number,last_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,plp_number" | "first_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number,plp_number" | "last_mile_tracking_number,plp_number,first_mile_tracking_number" | "last_mile_tracking_number,plp_number,last_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,plp_number" | "last_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number", "plp_number,plp_number,plp_number" | "plp_number,plp_number,first_mile_tracking_number" | "plp_number,plp_number,last_mile_tracking_number" | "plp_number,first_mile_tracking_number,plp_number" | "plp_number,first_mile_tracking_number,first_mile_tracking_number" | "plp_number,first_mile_tracking_number,last_mile_tracking_number" | "plp_number,last_mile_tracking_number,plp_number" | "plp_number,last_mile_tracking_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number,plp_number" | "first_mile_tracking_number,plp_number,first_mile_tracking_number" | "first_mile_tracking_number,plp_number,last_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,plp_number" | "first_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number,plp_number" | "last_mile_tracking_number,plp_number,first_mile_tracking_number" | "last_mile_tracking_number,plp_number,last_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,plp_number" | "last_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number", "plp_number,plp_number,plp_number" | "plp_number,plp_number,first_mile_tracking_number" | "plp_number,plp_number,last_mile_tracking_number" | "plp_number,first_mile_tracking_number,plp_number" | "plp_number,first_mile_tracking_number,first_mile_tracking_number" | "plp_number,first_mile_tracking_number,last_mile_tracking_number" | "plp_number,last_mile_tracking_number,plp_number" | "plp_number,last_mile_tracking_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number,plp_number" | "first_mile_tracking_number,plp_number,first_mile_tracking_number" | "first_mile_tracking_number,plp_number,last_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,plp_number" | "first_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number,plp_number" | "last_mile_tracking_number,plp_number,first_mile_tracking_number" | "last_mile_tracking_number,plp_number,last_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,plp_number" | "last_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number", "plp_number,plp_number,plp_number" | "plp_number,plp_number,first_mile_tracking_number" | "plp_number,plp_number,last_mile_tracking_number" | "plp_number,first_mile_tracking_number,plp_number" | "plp_number,first_mile_tracking_number,first_mile_tracking_number" | "plp_number,first_mile_tracking_number,last_mile_tracking_number" | "plp_number,last_mile_tracking_number,plp_number" | "plp_number,last_mile_tracking_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number,plp_number" | "first_mile_tracking_number,plp_number,first_mile_tracking_number" | "first_mile_tracking_number,plp_number,last_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,plp_number" | "first_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number,plp_number" | "last_mile_tracking_number,plp_number,first_mile_tracking_number" | "last_mile_tracking_number,plp_number,last_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,plp_number" | "last_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number", "plp_number,plp_number,plp_number" | "plp_number,plp_number,first_mile_tracking_number" | "plp_number,plp_number,last_mile_tracking_number" | "plp_number,first_mile_tracking_number,plp_number" | "plp_number,first_mile_tracking_number,first_mile_tracking_number" | "plp_number,first_mile_tracking_number,last_mile_tracking_number" | "plp_number,last_mile_tracking_number,plp_number" | "plp_number,last_mile_tracking_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number,plp_number" | "first_mile_tracking_number,plp_number,first_mile_tracking_number" | "first_mile_tracking_number,plp_number,last_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,plp_number" | "first_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number,plp_number" | "last_mile_tracking_number,plp_number,first_mile_tracking_number" | "last_mile_tracking_number,plp_number,last_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,plp_number" | "last_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number", "plp_number,plp_number,plp_number" | "plp_number,plp_number,first_mile_tracking_number" | "plp_number,plp_number,last_mile_tracking_number" | "plp_number,first_mile_tracking_number,plp_number" | "plp_number,first_mile_tracking_number,first_mile_tracking_number" | "plp_number,first_mile_tracking_number,last_mile_tracking_number" | "plp_number,last_mile_tracking_number,plp_number" | "plp_number,last_mile_tracking_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number,plp_number" | "first_mile_tracking_number,plp_number,first_mile_tracking_number" | "first_mile_tracking_number,plp_number,last_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,plp_number" | "first_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number,plp_number" | "last_mile_tracking_number,plp_number,first_mile_tracking_number" | "last_mile_tracking_number,plp_number,last_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,plp_number" | "last_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number"]>>;
+export declare const logisticGetShippingDocumentParameterRequestParameterSchema: z.ZodObject<{
+    orderList: z.ZodArray<z.ZodObject<{
+        orderSn: z.ZodString;
+        packageNumber: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        orderSn: string;
+        packageNumber?: number | undefined;
+    }, {
+        orderSn: string;
+        packageNumber?: number | undefined;
+    }>, "many">;
 }, "strip", z.ZodTypeAny, {
-    orderSn: string;
-    packageNumber?: number | undefined;
-    responseOptionalFields?: "plp_number" | "first_mile_tracking_number" | "last_mile_tracking_number" | "plp_number,plp_number" | "plp_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number" | "plp_number,plp_number,plp_number" | "plp_number,plp_number,first_mile_tracking_number" | "plp_number,plp_number,last_mile_tracking_number" | "plp_number,first_mile_tracking_number,plp_number" | "plp_number,first_mile_tracking_number,first_mile_tracking_number" | "plp_number,first_mile_tracking_number,last_mile_tracking_number" | "plp_number,last_mile_tracking_number,plp_number" | "plp_number,last_mile_tracking_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number,plp_number" | "first_mile_tracking_number,plp_number,first_mile_tracking_number" | "first_mile_tracking_number,plp_number,last_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,plp_number" | "first_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number,plp_number" | "last_mile_tracking_number,plp_number,first_mile_tracking_number" | "last_mile_tracking_number,plp_number,last_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,plp_number" | "last_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number" | undefined;
+    orderList: {
+        orderSn: string;
+        packageNumber?: number | undefined;
+    }[];
 }, {
-    orderSn: string;
-    packageNumber?: number | undefined;
-    responseOptionalFields?: "plp_number" | "first_mile_tracking_number" | "last_mile_tracking_number" | "plp_number,plp_number" | "plp_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number" | "plp_number,plp_number,plp_number" | "plp_number,plp_number,first_mile_tracking_number" | "plp_number,plp_number,last_mile_tracking_number" | "plp_number,first_mile_tracking_number,plp_number" | "plp_number,first_mile_tracking_number,first_mile_tracking_number" | "plp_number,first_mile_tracking_number,last_mile_tracking_number" | "plp_number,last_mile_tracking_number,plp_number" | "plp_number,last_mile_tracking_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number,plp_number" | "first_mile_tracking_number,plp_number,first_mile_tracking_number" | "first_mile_tracking_number,plp_number,last_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,plp_number" | "first_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number,plp_number" | "last_mile_tracking_number,plp_number,first_mile_tracking_number" | "last_mile_tracking_number,plp_number,last_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,plp_number" | "last_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number" | undefined;
+    orderList: {
+        orderSn: string;
+        packageNumber?: number | undefined;
+    }[];
 }>;
-export declare const logisticGetTrackingNumberResponseSchema: z.ZodObject<{
+export declare const logisticGetShippingDocumentParameterResponseSchema: z.ZodObject<{
     error: z.ZodOptional<z.ZodString>;
     message: z.ZodOptional<z.ZodString>;
-    response: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
+    warning: z.ZodOptional<z.ZodObject<{
+        orderSn: z.ZodString;
+        packageNumber: z.ZodOptional<z.ZodNumber>;
+    }, "strip", z.ZodTypeAny, {
+        orderSn: string;
+        packageNumber?: number | undefined;
+    }, {
+        orderSn: string;
+        packageNumber?: number | undefined;
+    }>>;
+    response: z.ZodOptional<z.ZodObject<{
+        orderSn: z.ZodString;
+        packageNumber: z.ZodOptional<z.ZodNumber>;
+        suggestShippingDocumentType: z.ZodString;
+        selectableShippingDocumentType: z.ZodArray<z.ZodString, "many">;
+        failError: z.ZodString;
+        failMessage: z.ZodString;
+    }, "strip", z.ZodTypeAny, {
+        orderSn: string;
+        suggestShippingDocumentType: string;
+        selectableShippingDocumentType: string[];
+        failError: string;
+        failMessage: string;
+        packageNumber?: number | undefined;
+    }, {
+        orderSn: string;
+        suggestShippingDocumentType: string;
+        selectableShippingDocumentType: string[];
+        failError: string;
+        failMessage: string;
+        packageNumber?: number | undefined;
+    }>>;
     requestId: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     requestId: string;
     error?: string | undefined;
     message?: string | undefined;
-    response?: {} | undefined;
+    warning?: {
+        orderSn: string;
+        packageNumber?: number | undefined;
+    } | undefined;
+    response?: {
+        orderSn: string;
+        suggestShippingDocumentType: string;
+        selectableShippingDocumentType: string[];
+        failError: string;
+        failMessage: string;
+        packageNumber?: number | undefined;
+    } | undefined;
 }, {
     requestId: string;
     error?: string | undefined;
     message?: string | undefined;
-    response?: {} | undefined;
+    warning?: {
+        orderSn: string;
+        packageNumber?: number | undefined;
+    } | undefined;
+    response?: {
+        orderSn: string;
+        suggestShippingDocumentType: string;
+        selectableShippingDocumentType: string[];
+        failError: string;
+        failMessage: string;
+        packageNumber?: number | undefined;
+    } | undefined;
 }>;
-export declare const getTrackingNumber: (requestParameters: {
-    orderSn: string;
-    packageNumber?: number | undefined;
-    responseOptionalFields?: "plp_number" | "first_mile_tracking_number" | "last_mile_tracking_number" | "plp_number,plp_number" | "plp_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number" | "plp_number,plp_number,plp_number" | "plp_number,plp_number,first_mile_tracking_number" | "plp_number,plp_number,last_mile_tracking_number" | "plp_number,first_mile_tracking_number,plp_number" | "plp_number,first_mile_tracking_number,first_mile_tracking_number" | "plp_number,first_mile_tracking_number,last_mile_tracking_number" | "plp_number,last_mile_tracking_number,plp_number" | "plp_number,last_mile_tracking_number,first_mile_tracking_number" | "plp_number,last_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,plp_number,plp_number" | "first_mile_tracking_number,plp_number,first_mile_tracking_number" | "first_mile_tracking_number,plp_number,last_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,plp_number" | "first_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,plp_number" | "first_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "first_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,plp_number,plp_number" | "last_mile_tracking_number,plp_number,first_mile_tracking_number" | "last_mile_tracking_number,plp_number,last_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,plp_number" | "last_mile_tracking_number,first_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,first_mile_tracking_number,last_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,plp_number" | "last_mile_tracking_number,last_mile_tracking_number,first_mile_tracking_number" | "last_mile_tracking_number,last_mile_tracking_number,last_mile_tracking_number" | undefined;
+export declare const getShippingDocumentParameter: (requestParameters: {
+    orderList: {
+        orderSn: string;
+        packageNumber?: number | undefined;
+    }[];
 }) => Promise<{
     requestId: string;
     error?: string | undefined;
     message?: string | undefined;
-    response?: {} | undefined;
+    warning?: {
+        orderSn: string;
+        packageNumber?: number | undefined;
+    } | undefined;
+    response?: {
+        orderSn: string;
+        suggestShippingDocumentType: string;
+        selectableShippingDocumentType: string[];
+        failError: string;
+        failMessage: string;
+        packageNumber?: number | undefined;
+    } | undefined;
 }>;
 //# sourceMappingURL=v2-logistic-get-shipping-document-parameter.d.ts.map
