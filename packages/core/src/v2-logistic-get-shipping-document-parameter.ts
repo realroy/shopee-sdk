@@ -12,6 +12,7 @@ export const logisticGetShippingDocumentParameterRequestParameterSchema =
           packageNumber: z.number().optional(),
         })
       )
+      .min(1)
       .max(50),
   });
 

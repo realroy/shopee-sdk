@@ -37,5 +37,5 @@ export const logisticShipOrderResponseSchema = z.object({
 export const shipOrder = buildMutation({
   path: API_V2_LOGISTIC_SHIP_ORDER,
   requestParameterSchema: logisticShipOrderRequestParameterSchema,
-  responseSchema: logisticShipOrderResponseSchema,
+  responseSchema: logisticShipOrderResponseSchema
 });

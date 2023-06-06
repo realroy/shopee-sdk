@@ -18,6 +18,7 @@ export const logisticCreateShippingDocumentRequestParameterSchema = z.object({
           .optional(),
       })
     )
+    .min(1)
     .max(50),
 });
 
@@ -27,15 +28,13 @@ export const logisticCreateShippingDocumentResponseSchema = z.object({
   warning: z
     .object({
       orderSn: z.string(),
-      packageNumber: z.number().optional(),
+      packageNumber: z.string().optional(),
     })
     .optional(),
   response: z
     .object({
       orderSn: z.string(),
-      packageNumber: z.number().optional(),
-      suggestShippingDocumentType: z.string(),
-      selectableShippingDocumentType: z.array(z.string()),
+      packageNumber: z.string().optional(),
       failError: z.string(),
       failMessage: z.string(),
     })

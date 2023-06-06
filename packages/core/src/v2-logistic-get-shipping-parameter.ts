@@ -5,7 +5,7 @@ import { API_V2_LOGISTIC_GET_SHIPPING_PARAMETER } from "./v2-logistic.constant";
 
 export const logisticGetShippingParameterRequestParameterSchema = z.object({
   orderSn: z.string(),
-  packageNumber: z.number().optional(),
+  packageNumber: z.string().optional(),
 });
 
 export const logisticGetShippingParameterResponseSchema = z.object({
