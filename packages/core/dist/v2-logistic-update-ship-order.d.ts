@@ -48,4 +48,4 @@ export declare const updateShipOrder: (requestParameters: {
     };
     packageNumber?: string | undefined;
 }) => Promise<any>;
-//# sourceMappingURL=v2-logistic.update-ship-order.d.ts.map
+//# sourceMappingURL=v2-logistic-update-ship-order.d.ts.map

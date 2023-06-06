@@ -36,35 +36,29 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
     message: z.ZodOptional<z.ZodString>;
     warning: z.ZodOptional<z.ZodObject<{
         orderSn: z.ZodString;
-        packageNumber: z.ZodOptional<z.ZodNumber>;
+        packageNumber: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
         orderSn: string;
-        packageNumber?: number | undefined;
+        packageNumber?: string | undefined;
     }, {
         orderSn: string;
-        packageNumber?: number | undefined;
+        packageNumber?: string | undefined;
     }>>;
     response: z.ZodOptional<z.ZodObject<{
         orderSn: z.ZodString;
-        packageNumber: z.ZodOptional<z.ZodNumber>;
-        suggestShippingDocumentType: z.ZodString;
-        selectableShippingDocumentType: z.ZodArray<z.ZodString, "many">;
+        packageNumber: z.ZodOptional<z.ZodString>;
         failError: z.ZodString;
         failMessage: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         orderSn: string;
-        suggestShippingDocumentType: string;
-        selectableShippingDocumentType: string[];
         failError: string;
         failMessage: string;
-        packageNumber?: number | undefined;
+        packageNumber?: string | undefined;
     }, {
         orderSn: string;
-        suggestShippingDocumentType: string;
-        selectableShippingDocumentType: string[];
         failError: string;
         failMessage: string;
-        packageNumber?: number | undefined;
+        packageNumber?: string | undefined;
     }>>;
     requestId: z.ZodString;
 }, "strip", z.ZodTypeAny, {
@@ -73,15 +67,13 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
     message?: string | undefined;
     warning?: {
         orderSn: string;
-        packageNumber?: number | undefined;
+        packageNumber?: string | undefined;
     } | undefined;
     response?: {
         orderSn: string;
-        suggestShippingDocumentType: string;
-        selectableShippingDocumentType: string[];
         failError: string;
         failMessage: string;
-        packageNumber?: number | undefined;
+        packageNumber?: string | undefined;
     } | undefined;
 }, {
     requestId: string;
@@ -89,15 +81,13 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
     message?: string | undefined;
     warning?: {
         orderSn: string;
-        packageNumber?: number | undefined;
+        packageNumber?: string | undefined;
     } | undefined;
     response?: {
         orderSn: string;
-        suggestShippingDocumentType: string;
-        selectableShippingDocumentType: string[];
         failError: string;
         failMessage: string;
-        packageNumber?: number | undefined;
+        packageNumber?: string | undefined;
     } | undefined;
 }>;
 export declare const createShippingDocument: (requestParameters: {

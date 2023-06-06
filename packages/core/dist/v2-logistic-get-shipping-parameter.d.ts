@@ -1,13 +1,13 @@
 import { z } from "zod";
 export declare const logisticGetShippingParameterRequestParameterSchema: z.ZodObject<{
     orderSn: z.ZodString;
-    packageNumber: z.ZodOptional<z.ZodNumber>;
+    packageNumber: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     orderSn: string;
-    packageNumber?: number | undefined;
+    packageNumber?: string | undefined;
 }, {
     orderSn: string;
-    packageNumber?: number | undefined;
+    packageNumber?: string | undefined;
 }>;
 export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
     error: z.ZodOptional<z.ZodString>;
@@ -351,7 +351,7 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
 }>;
 export declare const getShippingParameter: (requestParameters: {
     orderSn: string;
-    packageNumber?: number | undefined;
+    packageNumber?: string | undefined;
 }) => Promise<{
     requestId: string;
     error?: string | undefined;
@@ -398,4 +398,4 @@ export declare const getShippingParameter: (requestParameters: {
         };
     } | undefined;
 }>;
-//# sourceMappingURL=v2-logistic.get-shipping-parameter.d.ts.map
+//# sourceMappingURL=v2-logistic-get-shipping-parameter.d.ts.map

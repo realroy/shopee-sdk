@@ -104,4 +104,4 @@ export declare const shipOrder: (requestParameters: {
         trackingNumber?: string | undefined;
     } | undefined;
 }) => Promise<any>;
-//# sourceMappingURL=v2-logistic.ship-order.d.ts.map
+//# sourceMappingURL=v2-logistic-ship-order.d.ts.map

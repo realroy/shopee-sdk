@@ -18,7 +18,7 @@ export const V2_ORDER_STATUS = [
 
 export const V2_ORDER_STATUS_MAP = createConstantsMap(V2_ORDER_STATUS)
 
-export const V2_ORDER_RESPONSE_OPTIONAL_FIELDS = [
+export const V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS = [
   "buyer_user_id",
   "buyer_username",
   "estimated_shipping_fee",
@@ -53,4 +53,4 @@ export const V2_ORDER_RESPONSE_OPTIONAL_FIELDS = [
   "prescription_check_status",
 ] as const;
 
-export const V2_ORDER_RESPONSE_OPTIONAL_FIELDS_MAP = createConstantsMap(V2_ORDER_RESPONSE_OPTIONAL_FIELDS)
+export const V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS_MAP = createConstantsMap(V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS)

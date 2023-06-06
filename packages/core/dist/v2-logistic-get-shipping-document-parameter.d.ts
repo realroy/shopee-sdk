@@ -43,17 +43,17 @@ export declare const logisticGetShippingDocumentParameterResponseSchema: z.ZodOb
         failMessage: z.ZodString;
     }, "strip", z.ZodTypeAny, {
         orderSn: string;
-        suggestShippingDocumentType: string;
-        selectableShippingDocumentType: string[];
         failError: string;
         failMessage: string;
+        suggestShippingDocumentType: string;
+        selectableShippingDocumentType: string[];
         packageNumber?: number | undefined;
     }, {
         orderSn: string;
-        suggestShippingDocumentType: string;
-        selectableShippingDocumentType: string[];
         failError: string;
         failMessage: string;
+        suggestShippingDocumentType: string;
+        selectableShippingDocumentType: string[];
         packageNumber?: number | undefined;
     }>>;
     requestId: z.ZodString;
@@ -67,10 +67,10 @@ export declare const logisticGetShippingDocumentParameterResponseSchema: z.ZodOb
     } | undefined;
     response?: {
         orderSn: string;
-        suggestShippingDocumentType: string;
-        selectableShippingDocumentType: string[];
         failError: string;
         failMessage: string;
+        suggestShippingDocumentType: string;
+        selectableShippingDocumentType: string[];
         packageNumber?: number | undefined;
     } | undefined;
 }, {
@@ -83,10 +83,10 @@ export declare const logisticGetShippingDocumentParameterResponseSchema: z.ZodOb
     } | undefined;
     response?: {
         orderSn: string;
-        suggestShippingDocumentType: string;
-        selectableShippingDocumentType: string[];
         failError: string;
         failMessage: string;
+        suggestShippingDocumentType: string;
+        selectableShippingDocumentType: string[];
         packageNumber?: number | undefined;
     } | undefined;
 }>;

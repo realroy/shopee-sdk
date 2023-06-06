@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { logisticGetShippingParameterRequestParameterSchema, logisticGetShippingParameterResponseSchema } from "./v2-logistic.get-shipping-parameter";
-import { logisticShipOrderRequestParameterSchema, logisticShipOrderResponseSchema } from "./v2-logistic.ship-order";
+import { logisticGetShippingParameterRequestParameterSchema, logisticGetShippingParameterResponseSchema } from "./v2-logistic-get-shipping-parameter";
+import { logisticShipOrderRequestParameterSchema, logisticShipOrderResponseSchema } from "./v2-logistic-ship-order";
 import { logisticUpdateShipOrderRequestParameterSchema, logisticUpdateShipOrderResponseSchema } from "./v2-logistic-update-ship-order";
 import { logisticGetTrackingNumberRequestParameterSchema, logisticGetTrackingNumberResponseSchema } from "./v2-logistic-get-tracking-number";
 import { V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS } from "./v2-logistic.constant";

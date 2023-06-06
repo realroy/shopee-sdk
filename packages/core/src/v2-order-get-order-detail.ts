@@ -3,11 +3,14 @@ import { z } from "zod";
 import { buildQuery } from "./libs";
 import {
   API_V2_ORDER_GET_ORDER_DETAIL_PATH,
+  V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS,
 } from "./v2-order.constant";
 
 export const getOrderDetailRequestParametersSchema = z.object({
   orderSnList: z.array(z.string()),
-  responseOptionalFields: z.string().optional(),
+  responseOptionalFields: z
+    .array(z.enum(V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS))
+    .optional(),
 });
 
 export const getOrderDetailResponseSchema = z.object({
@@ -128,5 +131,14 @@ export const getOrderDetailResponseSchema = z.object({
 export const getOrderDetail = buildQuery({
   path: API_V2_ORDER_GET_ORDER_DETAIL_PATH,
   requestParameterSchema: getOrderDetailRequestParametersSchema,
+  transformRequestParameterSchema: getOrderDetailRequestParametersSchema.extend(
+    { responseOptionalFields: z.string().optional() }
+  ),
+  transformRequestParameter(data) {
+    return {
+      ...data,
+      responseOptionalFields: data.responseOptionalFields?.join(","),
+    };
+  },
   responseSchema: getOrderDetailResponseSchema,
 });
