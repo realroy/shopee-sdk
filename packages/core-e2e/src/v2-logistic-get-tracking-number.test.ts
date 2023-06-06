@@ -9,7 +9,7 @@ describe("v2/logistic/get-tracking-number", async () => {
     timeFrom: new Date(new Date().setDate(now.getDate() - 1)),
     timeTo: now,
     pageSize: 10,
-    orderStatus: "CANCELLED",
+    orderStatus: 'PROCESSED',
     timeRangeField: "create_time",
     responseOptionalFields: "order_status",
   });

@@ -8,7 +8,7 @@ describe("v2/order/get-order-detail", async () => {
     timeFrom: new Date(new Date().setDate(now.getDate() - 1)),
     timeTo: now,
     pageSize: 10,
-    orderStatus: "CANCELLED",
+    orderStatus: 'PROCESSED',
     timeRangeField: "create_time",
     responseOptionalFields: "order_status",
   });

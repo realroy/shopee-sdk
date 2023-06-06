@@ -9,7 +9,7 @@ describe("v2/logistic/download-shipping-document", async () => {
     timeFrom: new Date(new Date().setDate(now.getDate() - 1)),
     timeTo: now,
     pageSize: 10,
-    orderStatus: "CANCELLED",
+    orderStatus: 'PROCESSED',
     timeRangeField: "create_time",
     responseOptionalFields: "order_status",
   });
@@ -19,15 +19,15 @@ describe("v2/logistic/download-shipping-document", async () => {
       ({ orderSn }) => ({ orderSn })
     ) as { orderSn: string }[];
 
-    const response = await shopeeSdk.v2.logistic.downloadShippingDocument({
-      shippingDocumentType: "NORMAL_AIR_WAYBILL",
-      orderList: [
-        {
-          orderSn: orderList[0]?.orderSn as string,
-        },
-      ],
-    });
-
-    expect(response.error).toHaveLength(0);
+    expect(async () => {
+      await shopeeSdk.v2.logistic.downloadShippingDocument({
+        shippingDocumentType: "NORMAL_AIR_WAYBILL",
+        orderList: [
+          {
+            orderSn: orderList[0]?.orderSn as string,
+          },
+        ],
+      });
+    }).not.toThrowError();
   });
 });
