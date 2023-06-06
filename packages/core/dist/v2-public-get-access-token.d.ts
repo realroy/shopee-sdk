@@ -45,13 +45,5 @@ export declare const getAccessToken: (requestParameters: {
     partner_id?: number | undefined;
     shop_id?: number | undefined;
     main_account_id?: number | undefined;
-}) => Promise<{
-    message: string;
-    access_token: string;
-    error: string;
-    request_id: string;
-    expires_in: number;
-    refresh_token: string;
-    shop_id_list: number[];
-}>;
+}) => Promise<any>;
 //# sourceMappingURL=v2-public-get-access-token.d.ts.map
