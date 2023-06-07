@@ -13,7 +13,7 @@ export type BuildMutationArgs<
 > = {
   path: string;
   requestParameterSchema: z.ZodObject<TRequestParameterSchema>;
-  responseSchema: z.ZodObject<TResponseSchema> | z.ZodAny;
+  responseSchema?: z.ZodObject<TResponseSchema> | z.ZodAny;
   transformRequestParameter?: (
     data: z.infer<z.ZodObject<TRequestParameterSchema>>
   ) => typeof data;
@@ -54,7 +54,11 @@ export function buildMutation<
 
     const { data } = await httpClient.post(signedURL, {}, body);
 
-    const parseData = await args.responseSchema.safeParseAsync(data);
+    if (args.responseSchema === undefined) {
+      return data
+    }
+
+    const parseData = await (args.responseSchema as z.ZodObject<TResponseSchema>).safeParseAsync(data);
 
     if (!parseData.success) {
       throw new Error(`parse response error: ${parseData.error.message}`);
