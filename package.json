@@ -6,7 +6,7 @@
     "packages/*"
   ],
   "types": "./core.d.ts",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "",
   "scripts": {
     "dev:playground": "nx dev @shopee-sdk/playground",

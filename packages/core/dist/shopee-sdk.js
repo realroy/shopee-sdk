@@ -10,8 +10,8 @@ async function Y(r, ...t) {
 async function je(r, ...t) {
   const n = new TextEncoder(), o = n.encode(r);
   let a = new Uint8Array();
-  t.forEach((c) => {
-    c && (a = n.encode(c));
+  t.forEach((i) => {
+    i && (a = n.encode(i));
   });
   const s = await crypto.subtle.importKey(
     "raw",
@@ -23,8 +23,8 @@ async function je(r, ...t) {
     { name: "HMAC", hash: { name: "sha-256" } },
     s,
     a
-  ), i = new Uint8Array(p);
-  return Array.from(i).map((c) => c.toString(16).padStart(2, "0")).join("");
+  ), c = new Uint8Array(p);
+  return Array.from(c).map((i) => i.toString(16).padStart(2, "0")).join("");
 }
 async function ve(r, ...t) {
   const { createHmac: n } = await import("crypto"), o = n("sha256", r);
@@ -42,10 +42,10 @@ async function J(r) {
     base_url: a,
     access_token: s,
     shop_id: p,
-    params: i = {}
-  } = r, g = t.toString(), c = p.toString(), u = {};
-  for (const l in i) {
-    const S = i[l];
+    params: c = {}
+  } = r, g = t.toString(), i = p.toString(), u = {};
+  for (const l in c) {
+    const S = c[l];
     Array.isArray(S) ? u[l] = [
       S[0],
       ...S.slice(1).map((Ae) => `&${l}=${Ae}`)
@@ -57,12 +57,12 @@ async function J(r) {
     o,
     f,
     s,
-    c
+    i
   );
   return h.search = new URLSearchParams({
     ...u,
     partner_id: g,
-    shop_id: c,
+    shop_id: i,
     ...!!s && { access_token: s },
     sign: D,
     timestamp: f
@@ -427,9 +427,9 @@ class E {
         const {
           response: a,
           message: s,
-          config: { method: p, url: i, data: g, params: c }
+          config: { method: p, url: c, data: g, params: i }
         } = o, u = a == null ? void 0 : a.status;
-        throw this.logger.error({ status: u, message: s, method: p, url: i, data: g, params: c }), o;
+        throw this.logger.error({ status: u, message: s, method: p, url: c, data: g, params: i }), o;
       }
     );
     this.logInterceptorIds = [t, n];
@@ -493,13 +493,13 @@ function d(r) {
     const s = await t(a.data), p = r.toCamelCase ? A(
       s,
       (l) => xt(l.toString())
-    ) : s, i = _.getInstance(), g = i.value;
-    z.setLogEnabled(i.isLogEnabled);
-    const c = await J({
+    ) : s, c = _.getInstance(), g = c.value;
+    z.setLogEnabled(c.isLogEnabled);
+    const i = await J({
       ...g,
       path: r.path,
       params: p
-    }), u = await z.get(c), f = r.toCamelCase ? A(u.data, (l) => En(l.toString())) : u.data, h = await r.responseSchema.safeParseAsync(f);
+    }), u = await z.get(i), f = r.toCamelCase ? A(u.data, (l) => En(l.toString())) : u.data, h = await r.responseSchema.safeParseAsync(f);
     if (!h.success)
       throw new Error(`parse response error: ${h.error.message}`);
     return h.data;
@@ -515,11 +515,14 @@ function b(r) {
       );
     const s = _.getInstance(), p = s.value;
     K.setLogEnabled(s.isLogEnabled);
-    const i = await J({
+    const c = await J({
       ...p,
       path: r.path,
       params: {}
-    }), g = a.data, { data: c } = await K.post(i, {}, g), u = await r.responseSchema.safeParseAsync(c);
+    }), g = a.data, { data: i } = await K.post(c, {}, g);
+    if (r.responseSchema === void 0)
+      return i;
+    const u = await r.responseSchema.safeParseAsync(i);
     if (!u.success)
       throw new Error(`parse response error: ${u.error.message}`);
     return u.data;
@@ -1224,7 +1227,7 @@ async function Do({
   const { baseURL: n, partnerId: o, partnerKey: a } = _.getInstance();
   if (!a || !o)
     throw new Error("partnerKey is undefined");
-  const s = new URL(Z, n), p = x(/* @__PURE__ */ new Date()), i = await Y(
+  const s = new URL(Z, n), p = x(/* @__PURE__ */ new Date()), c = await Y(
     a,
     o.toString(),
     Z,
@@ -1234,7 +1237,7 @@ async function Do({
     partner_id: o.toString(),
     redirect: g.toString(),
     timestamp: p,
-    sign: i
+    sign: c
   }).toString(), s.toString();
 }
 const wo = e.object({
