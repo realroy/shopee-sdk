@@ -5,46 +5,57 @@ import {
   API_V2_PRODUCT_GET_ITEM_LIST_PATH,
   ITEM_STATUS,
 } from "./v2-product.constant";
+import { toTimestamp } from "./utils";
 
 export const getItemListRequestParametersSchema = z.object({
   offset: z.number().int().min(0).optional(),
-  page_size: z.number().int().positive().max(100).optional(),
-  update_time_from: z.date().optional(),
-  update_time_to: z.date().optional(),
-  item_status: z.array(z.enum(ITEM_STATUS)),
+  pageSize: z.number().int().positive().max(100).optional(),
+  updateTimeFrom: z.date().optional(),
+  updateTimeTo: z.date().optional(),
+  itemStatus: z.array(z.enum(ITEM_STATUS)),
 });
 
 export const getItemListResponseSchema = z.object({
-  error: z.string(),
+  error: z.string().optional(),
   message: z.string().nullable().optional(),
   warning: z.string().nullable().optional(),
-  request_id: z.string(),
+  requestId: z.string(),
   response: z
     .object({
       item: z
         .array(
           z.object({
-            item_id: z.number().int(),
-            item_status: z.enum(ITEM_STATUS),
-            update_time: z.number().int(),
+            itemId: z.number().int(),
+            itemStatus: z.enum(ITEM_STATUS),
+            updateTime: z.number().int().optional(),
           })
         )
         .optional(),
     })
     .optional(),
-  total_count: z.number().int().optional(),
-  has_next_page: z.boolean().optional(),
-  next_offset: z.number().int().optional(),
+  totalCount: z.number().int().optional(),
+  hasNextPage: z.boolean().optional(),
+  nextOffset: z.number().int().optional(),
 });
 
 export const getItemList = buildQuery({
   path: API_V2_PRODUCT_GET_ITEM_LIST_PATH,
   requestParameterSchema: getItemListRequestParametersSchema,
+  transformRequestParameterSchema: getItemListRequestParametersSchema.extend({
+    // itemStatus: z.string(),
+    updateTimeFrom: z.string(),
+    updateTimeTo: z.string(),
+  }),
   transformRequestParameter(data) {
-    data.update_time_from = data.update_time_from ?? new Date("01/01/2022");
-    data.update_time_to = data.update_time_to ?? new Date();
-
-    return data;
+    return {
+      ...data,
+      // itemStatus: data.itemStatus.join(","),
+      updateTimeFrom: toTimestamp(
+        data.updateTimeFrom ?? new Date("01/01/2022")
+      ),
+      updateTimeTo: toTimestamp(data.updateTimeTo ?? new Date()),
+    };
   },
+  toCamelCase: true,
   responseSchema: getItemListResponseSchema,
 });

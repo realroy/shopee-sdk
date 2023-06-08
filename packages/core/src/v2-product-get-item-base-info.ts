@@ -4,61 +4,61 @@ import { buildQuery } from "./libs";
 import { API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH } from "./v2-product.constant";
 
 export const getItemBaseInfoRequestParametersSchema = z.object({
-  item_id_list: z.string(),
-  need_tax_info: z.coerce.boolean().optional(),
-  need_complaint_policy: z.coerce.boolean().optional(),
+  itemIdList: z.string(),
+  needTaxInfo: z.coerce.boolean().optional(),
+  needComplaintPolicy: z.coerce.boolean().optional(),
 });
 
 export const getItemBaseInfoResponseSchema = z.object({
   error: z.string(),
   message: z.string(),
   warning: z.string(),
-  request_id: z.string(),
+  requestId: z.string(),
   response: z.object({
-    item_list: z
+    itemList: z
       .array(
         z.object({
-          item_id: z.number(),
-          category_id: z.number(),
-          item_name: z.string(),
-          item_sku: z.string(),
-          create_time: z.number(),
-          update_time: z.number(),
-          attribute_list: z
+          itemId: z.number(),
+          categoryId: z.number(),
+          itemName: z.string(),
+          itemSku: z.string(),
+          createTime: z.number(),
+          updateTime: z.number(),
+          attributeList: z
             .array(
               z.object({
-                attribute_id: z.number(),
-                original_attribute_name: z.string(),
-                is_mandatory: z.boolean(),
-                attribute_value_list: z.array(
+                attributeId: z.number(),
+                originalAttributeName: z.string(),
+                isMandatory: z.boolean(),
+                attributeValueList: z.array(
                   z.object({
-                    value_id: z.number(),
-                    original_value_name: z.string(),
-                    value_unit: z.string(),
+                    valueId: z.number(),
+                    originalValueName: z.string(),
+                    valueUnit: z.string(),
                   })
                 ),
               })
             )
             .optional(),
-          price_info: z
+          priceInfo: z
             .array(
               z.object({
                 currency: z.string(),
-                original_price: z.number(),
-                current_price: z.number(),
+                originalPrice: z.number(),
+                currentPrice: z.number(),
               })
             )
             .optional(),
-          stock_info_v2: z
+          stockInfoV2: z
             .object({
-              summary_info: z.object({
-                total_reserved_stock: z.number(),
-                total_available_stock: z.number(),
+              summaryInfo: z.object({
+                totalReservedStock: z.number(),
+                totalAvailableStock: z.number(),
               }),
-              seller_stock: z
+              sellerStock: z
                 .array(
                   z.object({
-                    location_id: z.string(),
+                    locationId: z.string(),
                     stock: z.number(),
                   })
                 )
@@ -66,64 +66,70 @@ export const getItemBaseInfoResponseSchema = z.object({
             })
             .optional(),
           image: z.object({
-            image_url_list: z.array(z.string()),
-            image_id_list: z.array(z.string()),
+            imageUrlList: z.array(z.string()),
+            imageIdList: z.array(z.string()),
           }),
           weight: z.string(),
           dimension: z.object({
-            package_length: z.number(),
-            package_width: z.number(),
-            package_height: z.number(),
+            packageLength: z.number(),
+            packageWidth: z.number(),
+            packageHeight: z.number(),
           }),
-          logistic_info: z.array(
-            z.object({
-              logistic_id: z.number(),
-              logistic_name: z.string(),
-              enabled: z.boolean(),
-              shipping_fee: z.number().optional(),
-              is_free: z.boolean(),
-              estimated_shipping_fee: z.number().optional(),
-            })
-          ).optional(),
-          pre_order: z.object({
-            is_pre_order: z.boolean(),
-            days_to_ship: z.number(),
+          logisticInfo: z
+            .array(
+              z.object({
+                logisticId: z.number(),
+                logisticName: z.string(),
+                enabled: z.boolean(),
+                shippingFee: z.number().optional(),
+                isFree: z.boolean(),
+                estimatedShippingFee: z.number().optional(),
+              })
+            )
+            .optional(),
+          preOrder: z.object({
+            isPreOrder: z.boolean(),
+            daysToShip: z.number(),
           }),
           condition: z.string(),
-          size_chart: z.string(),
-          item_status: z.string(),
-          has_model: z.boolean(),
-          promotion_id: z.number().optional(),
+          sizeChart: z.string(),
+          itemStatus: z.string(),
+          hasModel: z.boolean(),
+          promotionId: z.number().optional(),
           brand: z.object({
-            brand_id: z.number(),
-            original_brand_name: z.string(),
+            brandId: z.number(),
+            originalBrandName: z.string(),
           }),
-          tax_info: z
+          taxInfo: z
             .object({
               ncm: z.number(),
-              same_state_cfop: z.number(),
-              diff_state_cfop: z.number(),
+              sameStateCfop: z.number(),
+              diffStateCfop: z.number(),
               csosn: z.number(),
               origin: z.number(),
             })
             .optional(),
-          description_type: z.string(),
-          description_info: z.object({
-            extended_description: z.object({
-              field_list: z.array(
-                z.object({
-                  field_type: z.string(),
-                  text: z.string().optional(),
-                  image_info: z
-                    .object({
-                      image_id: z.string(),
-                      image_url: z.string(),
+          descriptionType: z.string(),
+          descriptionInfo: z
+            .object({
+              extendedDescription: z
+                .object({
+                  fieldList: z.array(
+                    z.object({
+                      fieldType: z.string(),
+                      text: z.string().optional(),
+                      imageInfo: z
+                        .object({
+                          imageId: z.string(),
+                          imageUrl: z.string(),
+                        })
+                        .optional(),
                     })
-                    .optional(),
+                  ),
                 })
-              ),
-            }).optional(),
-          }).optional(),
+                .optional(),
+            })
+            .optional(),
         })
       )
       .optional(),
@@ -135,8 +141,8 @@ export const getItemBaseInfo = buildQuery({
   requestParameterSchema: getItemBaseInfoRequestParametersSchema,
   responseSchema: getItemBaseInfoResponseSchema,
   transformRequestParameter(data) {
-    data.need_tax_info = Boolean(data.need_tax_info);
-    data.need_complaint_policy = Boolean(data.need_complaint_policy);
+    data.needTaxInfo = Boolean(data.needTaxInfo);
+    data.needComplaintPolicy = Boolean(data.needComplaintPolicy);
 
     return data;
   },

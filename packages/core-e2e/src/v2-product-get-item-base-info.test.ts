@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { ShopeeSdk } from "@shopee-sdk/core";
 
 describe("v2/product/getItemBaseInfo", async () => {
-  const shopeeSdk = new ShopeeSdk({});
+  const shopeeSdk = new ShopeeSdk({ isLogEnabled: true });
 
   const itemList = await shopeeSdk.v2.product.getItemList({
     page_size: 10,

@@ -5,14 +5,14 @@ describe("v2/product/getItemExtraInfo", async () => {
   const shopeeSdk = new ShopeeSdk({});
 
   const itemList = await shopeeSdk.v2.product.getItemList({
-    page_size: 10,
+    pageSize: 10,
     offset: 0,
-    item_status: ["NORMAL"],
+    itemStatus: ["NORMAL"],
   });
 
   const itemIds =
     (itemList.response?.item
-      ?.map((item) => item?.item_id)
+      ?.map((item) => item?.itemId)
       ?.filter?.((itemId) => Number.isInteger(itemId)) as number[]) ??
     ([] as number[]);
 

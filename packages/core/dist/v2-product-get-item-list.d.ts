@@ -1,109 +1,109 @@
 import { z } from "zod";
 export declare const getItemListRequestParametersSchema: z.ZodObject<{
     offset: z.ZodOptional<z.ZodNumber>;
-    page_size: z.ZodOptional<z.ZodNumber>;
-    update_time_from: z.ZodOptional<z.ZodDate>;
-    update_time_to: z.ZodOptional<z.ZodDate>;
-    item_status: z.ZodArray<z.ZodEnum<["NORMAL", "DELETED", "UNLIST", "BANNED"]>, "many">;
+    pageSize: z.ZodOptional<z.ZodNumber>;
+    updateTimeFrom: z.ZodOptional<z.ZodDate>;
+    updateTimeTo: z.ZodOptional<z.ZodDate>;
+    itemStatus: z.ZodArray<z.ZodEnum<["NORMAL", "DELETED", "UNLIST", "BANNED"]>, "many">;
 }, "strip", z.ZodTypeAny, {
-    item_status: ("NORMAL" | "DELETED" | "UNLIST" | "BANNED")[];
+    itemStatus: ("NORMAL" | "DELETED" | "UNLIST" | "BANNED")[];
     offset?: number | undefined;
-    page_size?: number | undefined;
-    update_time_from?: Date | undefined;
-    update_time_to?: Date | undefined;
+    pageSize?: number | undefined;
+    updateTimeFrom?: Date | undefined;
+    updateTimeTo?: Date | undefined;
 }, {
-    item_status: ("NORMAL" | "DELETED" | "UNLIST" | "BANNED")[];
+    itemStatus: ("NORMAL" | "DELETED" | "UNLIST" | "BANNED")[];
     offset?: number | undefined;
-    page_size?: number | undefined;
-    update_time_from?: Date | undefined;
-    update_time_to?: Date | undefined;
+    pageSize?: number | undefined;
+    updateTimeFrom?: Date | undefined;
+    updateTimeTo?: Date | undefined;
 }>;
 export declare const getItemListResponseSchema: z.ZodObject<{
-    error: z.ZodString;
+    error: z.ZodOptional<z.ZodString>;
     message: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     warning: z.ZodOptional<z.ZodNullable<z.ZodString>>;
-    request_id: z.ZodString;
+    requestId: z.ZodString;
     response: z.ZodOptional<z.ZodObject<{
         item: z.ZodOptional<z.ZodArray<z.ZodObject<{
-            item_id: z.ZodNumber;
-            item_status: z.ZodEnum<["NORMAL", "DELETED", "UNLIST", "BANNED"]>;
-            update_time: z.ZodNumber;
+            itemId: z.ZodNumber;
+            itemStatus: z.ZodEnum<["NORMAL", "DELETED", "UNLIST", "BANNED"]>;
+            updateTime: z.ZodOptional<z.ZodNumber>;
         }, "strip", z.ZodTypeAny, {
-            update_time: number;
-            item_id: number;
-            item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            itemId: number;
+            itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            updateTime?: number | undefined;
         }, {
-            update_time: number;
-            item_id: number;
-            item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            itemId: number;
+            itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            updateTime?: number | undefined;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         item?: {
-            update_time: number;
-            item_id: number;
-            item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            itemId: number;
+            itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            updateTime?: number | undefined;
         }[] | undefined;
     }, {
         item?: {
-            update_time: number;
-            item_id: number;
-            item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            itemId: number;
+            itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            updateTime?: number | undefined;
         }[] | undefined;
     }>>;
-    total_count: z.ZodOptional<z.ZodNumber>;
-    has_next_page: z.ZodOptional<z.ZodBoolean>;
-    next_offset: z.ZodOptional<z.ZodNumber>;
+    totalCount: z.ZodOptional<z.ZodNumber>;
+    hasNextPage: z.ZodOptional<z.ZodBoolean>;
+    nextOffset: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    error: string;
-    request_id: string;
+    requestId: string;
+    error?: string | undefined;
     message?: string | null | undefined;
     warning?: string | null | undefined;
     response?: {
         item?: {
-            update_time: number;
-            item_id: number;
-            item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            itemId: number;
+            itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            updateTime?: number | undefined;
         }[] | undefined;
     } | undefined;
-    total_count?: number | undefined;
-    has_next_page?: boolean | undefined;
-    next_offset?: number | undefined;
+    totalCount?: number | undefined;
+    hasNextPage?: boolean | undefined;
+    nextOffset?: number | undefined;
 }, {
-    error: string;
-    request_id: string;
+    requestId: string;
+    error?: string | undefined;
     message?: string | null | undefined;
     warning?: string | null | undefined;
     response?: {
         item?: {
-            update_time: number;
-            item_id: number;
-            item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            itemId: number;
+            itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            updateTime?: number | undefined;
         }[] | undefined;
     } | undefined;
-    total_count?: number | undefined;
-    has_next_page?: boolean | undefined;
-    next_offset?: number | undefined;
+    totalCount?: number | undefined;
+    hasNextPage?: boolean | undefined;
+    nextOffset?: number | undefined;
 }>;
 export declare const getItemList: (requestParameters: {
-    item_status: ("NORMAL" | "DELETED" | "UNLIST" | "BANNED")[];
+    itemStatus: ("NORMAL" | "DELETED" | "UNLIST" | "BANNED")[];
     offset?: number | undefined;
-    page_size?: number | undefined;
-    update_time_from?: Date | undefined;
-    update_time_to?: Date | undefined;
+    pageSize?: number | undefined;
+    updateTimeFrom?: Date | undefined;
+    updateTimeTo?: Date | undefined;
 }) => Promise<{
-    error: string;
-    request_id: string;
+    requestId: string;
+    error?: string | undefined;
     message?: string | null | undefined;
     warning?: string | null | undefined;
     response?: {
         item?: {
-            update_time: number;
-            item_id: number;
-            item_status: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            itemId: number;
+            itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
+            updateTime?: number | undefined;
         }[] | undefined;
     } | undefined;
-    total_count?: number | undefined;
-    has_next_page?: boolean | undefined;
-    next_offset?: number | undefined;
+    totalCount?: number | undefined;
+    hasNextPage?: boolean | undefined;
+    nextOffset?: number | undefined;
 }>;
 //# sourceMappingURL=v2-product-get-item-list.d.ts.map

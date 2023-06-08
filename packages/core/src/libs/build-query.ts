@@ -81,6 +81,7 @@ export function buildQuery<
           _snakeCase(key.toString())
         )
       : transformRequestParametersData;
+
     const contextInstance = ShopeeContext.getInstance();
     const context = contextInstance.value;
 
