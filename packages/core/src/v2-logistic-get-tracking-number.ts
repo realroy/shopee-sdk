@@ -35,5 +35,4 @@ export const getTrackingNumber = buildQuery({
       responseOptionalFields: data.responseOptionalFields?.join(","),
     };
   },
-  toCamelCase: true,
 });

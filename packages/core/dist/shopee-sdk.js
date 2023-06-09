@@ -659,8 +659,7 @@ const xn = "/api/v2/logistic/get_shipping_parameter", An = "/api/v2/logistic/shi
       ...r,
       responseOptionalFields: (t = r.responseOptionalFields) == null ? void 0 : t.join(",")
     };
-  },
-  toCamelCase: !0
+  }
 }), Yn = e.object({
   orderSn: e.string(),
   packageNumber: e.string().optional()
@@ -720,8 +719,7 @@ const xn = "/api/v2/logistic/get_shipping_parameter", An = "/api/v2/logistic/shi
 }), Qn = l({
   path: xn,
   requestParameterSchema: Yn,
-  responseSchema: Jn,
-  toCamelCase: !0
+  responseSchema: Jn
 }), Xn = e.object({
   orderSn: e.string(),
   packageNumber: e.string().optional(),

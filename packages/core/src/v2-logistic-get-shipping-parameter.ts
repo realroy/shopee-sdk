@@ -69,5 +69,4 @@ export const getShippingParameter = buildQuery({
   path: API_V2_LOGISTIC_GET_SHIPPING_PARAMETER,
   requestParameterSchema: logisticGetShippingParameterRequestParameterSchema,
   responseSchema: logisticGetShippingParameterResponseSchema,
-  toCamelCase: true,
 });

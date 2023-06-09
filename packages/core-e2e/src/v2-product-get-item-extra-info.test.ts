@@ -18,7 +18,7 @@ describe("v2/product/getItemExtraInfo", async () => {
 
   it("should receive successfully response", async () => {
     const response = await shopeeSdk.v2.product.getItemExtraInfo({
-      item_id_list: itemIds.join(),
+      itemIdList: itemIds.join(),
     });
 
     expect(response.error).toHaveLength(0);
