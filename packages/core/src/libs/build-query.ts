@@ -21,7 +21,6 @@ export type BuildQueryArgs<
   transformRequestParameter?: (
     data: z.infer<z.ZodObject<TRequestParameterSchema>>
   ) => z.infer<z.ZodObject<TTransformedRequestParameterSchema>>;
-  toCamelCase?: boolean;
 };
 
 export function buildQuery<
@@ -76,11 +75,10 @@ export function buildQuery<
     const transformRequestParametersData =
       await transformParsedRequestParameters(parseRequestParameters.data);
 
-    const parsedRequestParameters = args.toCamelCase
-      ? transformObjectKeys(transformRequestParametersData, (key) =>
-          _snakeCase(key.toString())
-        )
-      : transformRequestParametersData;
+    const parsedRequestParameters = transformObjectKeys(
+      transformRequestParametersData,
+      (key) => _snakeCase(key.toString())
+    );
 
     const contextInstance = ShopeeContext.getInstance();
     const context = contextInstance.value;
@@ -94,9 +92,9 @@ export function buildQuery<
     });
 
     const response = await httpClient.get(signedURL);
-    const data = args.toCamelCase
-      ? transformObjectKeys(response.data, (key) => _camelCase(key.toString()))
-      : response.data;
+    const data = transformObjectKeys(response.data, (key) =>
+      _camelCase(key.toString())
+    );
 
     const parseData = await args.responseSchema.safeParseAsync(data);
 

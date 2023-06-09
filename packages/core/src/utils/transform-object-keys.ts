@@ -1,10 +1,12 @@
 type TransformFunction<TKey, TResult> = (key: TKey) => TResult;
 
-// @ts-ignore
 export function transformObjectKeys<
   T extends object,
   TTransformedKey extends string
->(obj: T, transformFunction: TransformFunction<T, TTransformedKey>) {
+>(
+  obj: T,
+  transformFunction: TransformFunction<T, TTransformedKey>
+): Record<TTransformedKey, T[keyof T]> {
   type TObjKey = keyof T;
 
   if (typeof obj !== "object" || obj === null) {
@@ -12,19 +14,12 @@ export function transformObjectKeys<
   }
 
   if (Array.isArray(obj)) {
-    const result = [];
-    for (const k of obj) {
-      if (k === undefined) {
-        continue;
-      }
+    // @ts-ignore
+    const result = obj.map((i) =>
+      transformObjectKeys(obj[i], transformFunction)
+    );
 
-      // @ts-ignore
-      const transformed = transformObjectKeys(k, transformFunction);
-
-      result.push(transformed);
-    }
-
-    return result;
+    return result as unknown as Record<TTransformedKey, T[TObjKey]>;
   }
 
   const result = {} as Record<TTransformedKey, T[TObjKey]>;

@@ -56,6 +56,5 @@ export const getItemList = buildQuery({
       updateTimeTo: toTimestamp(data.updateTimeTo ?? new Date()),
     };
   },
-  toCamelCase: true,
   responseSchema: getItemListResponseSchema,
 });

@@ -4,25 +4,25 @@ import { buildQuery } from "./libs";
 import { API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH } from "./v2-product.constant";
 
 export const getItemExtraInfoRequestParametersSchema = z.object({
-  item_id_list: z.string(),
+  itemIdList: z.string(),
 });
 
 export const getItemExtraInfoResponseSchema = z.object({
   error: z.string(),
   message: z.string(),
   warning: z.string().optional(),
-  request_id: z.string(),
+  requestId: z.string(),
   response: z
     .object({
-      item_list: z
+      itemList: z
         .array(
           z.object({
-            item_id: z.number(),
+            itemId: z.number(),
             sale: z.number(),
             views: z.number(),
             likes: z.number(),
-            rating_star: z.number(),
-            comment_count: z.number(),
+            ratingStar: z.number(),
+            commentCount: z.number(),
           })
         )
         .optional(),

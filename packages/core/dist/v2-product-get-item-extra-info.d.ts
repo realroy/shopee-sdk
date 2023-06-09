@@ -1,104 +1,104 @@
 import { z } from "zod";
 export declare const getItemExtraInfoRequestParametersSchema: z.ZodObject<{
-    item_id_list: z.ZodString;
+    itemIdList: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    item_id_list: string;
+    itemIdList: string;
 }, {
-    item_id_list: string;
+    itemIdList: string;
 }>;
 export declare const getItemExtraInfoResponseSchema: z.ZodObject<{
     error: z.ZodString;
     message: z.ZodString;
     warning: z.ZodOptional<z.ZodString>;
-    request_id: z.ZodString;
+    requestId: z.ZodString;
     response: z.ZodOptional<z.ZodObject<{
-        item_list: z.ZodOptional<z.ZodArray<z.ZodObject<{
-            item_id: z.ZodNumber;
+        itemList: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            itemId: z.ZodNumber;
             sale: z.ZodNumber;
             views: z.ZodNumber;
             likes: z.ZodNumber;
-            rating_star: z.ZodNumber;
-            comment_count: z.ZodNumber;
+            ratingStar: z.ZodNumber;
+            commentCount: z.ZodNumber;
         }, "strip", z.ZodTypeAny, {
-            item_id: number;
+            itemId: number;
             sale: number;
             views: number;
             likes: number;
-            rating_star: number;
-            comment_count: number;
+            ratingStar: number;
+            commentCount: number;
         }, {
-            item_id: number;
+            itemId: number;
             sale: number;
             views: number;
             likes: number;
-            rating_star: number;
-            comment_count: number;
+            ratingStar: number;
+            commentCount: number;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
-        item_list?: {
-            item_id: number;
+        itemList?: {
+            itemId: number;
             sale: number;
             views: number;
             likes: number;
-            rating_star: number;
-            comment_count: number;
+            ratingStar: number;
+            commentCount: number;
         }[] | undefined;
     }, {
-        item_list?: {
-            item_id: number;
+        itemList?: {
+            itemId: number;
             sale: number;
             views: number;
             likes: number;
-            rating_star: number;
-            comment_count: number;
+            ratingStar: number;
+            commentCount: number;
         }[] | undefined;
     }>>;
 }, "strip", z.ZodTypeAny, {
     message: string;
     error: string;
-    request_id: string;
+    requestId: string;
     warning?: string | undefined;
     response?: {
-        item_list?: {
-            item_id: number;
+        itemList?: {
+            itemId: number;
             sale: number;
             views: number;
             likes: number;
-            rating_star: number;
-            comment_count: number;
+            ratingStar: number;
+            commentCount: number;
         }[] | undefined;
     } | undefined;
 }, {
     message: string;
     error: string;
-    request_id: string;
+    requestId: string;
     warning?: string | undefined;
     response?: {
-        item_list?: {
-            item_id: number;
+        itemList?: {
+            itemId: number;
             sale: number;
             views: number;
             likes: number;
-            rating_star: number;
-            comment_count: number;
+            ratingStar: number;
+            commentCount: number;
         }[] | undefined;
     } | undefined;
 }>;
 export declare const getItemExtraInfo: (requestParameters: {
-    item_id_list: string;
+    itemIdList: string;
 }) => Promise<{
     message: string;
     error: string;
-    request_id: string;
+    requestId: string;
     warning?: string | undefined;
     response?: {
-        item_list?: {
-            item_id: number;
+        itemList?: {
+            itemId: number;
             sale: number;
             views: number;
             likes: number;
-            rating_star: number;
-            comment_count: number;
+            ratingStar: number;
+            commentCount: number;
         }[] | undefined;
     } | undefined;
 }>;

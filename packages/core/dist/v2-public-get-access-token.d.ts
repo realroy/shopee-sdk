@@ -27,17 +27,17 @@ export declare const getAccessTokenResponseSchema: z.ZodObject<{
     message: string;
     access_token: string;
     error: string;
-    request_id: string;
     expires_in: number;
     refresh_token: string;
+    request_id: string;
     shop_id_list: number[];
 }, {
     message: string;
     access_token: string;
     error: string;
-    request_id: string;
     expires_in: number;
     refresh_token: string;
+    request_id: string;
     shop_id_list: number[];
 }>;
 export declare const getAccessToken: (requestParameters: {

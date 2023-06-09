@@ -11,12 +11,14 @@ export const getModelListResponseSchema = z.object({
   error: z.string(),
   message: z.string(),
   warning: z.string(),
-  request_id: z.string(),
+  requestId: z.string(), // changed from request_id
   response: z.object({
-    tier_variation: z.array(
+    tierVariation: z.array(
+      // changed from tier_variation
       z.object({
         name: z.string(),
-        option_list: z.array(
+        optionList: z.array(
+          // changed from option_list
           z.object({
             option: z.string(),
           })
@@ -25,31 +27,36 @@ export const getModelListResponseSchema = z.object({
     ),
     model: z.array(
       z.object({
-        model_id: z.number(),
-        model_status: z.string(),
-        promotion_id: z.number(),
-        tier_index: z.array(z.number()),
-        price_info: z.array(
+        modelId: z.number(), // changed from model_id
+        modelStatus: z.string(), // changed from model_status
+        promotionId: z.number(), // changed from promotion_id
+        tierIndex: z.array(z.number()), // changed from tier_index
+        priceInfo: z.array(
+          // changed from price_info
           z.object({
-            current_price: z.number(),
-            original_price: z.number(),
-            inflated_price_of_current_price: z.number(),
-            inflated_price_of_original_price: z.number(),
+            currentPrice: z.number(), // changed from current_price
+            originalPrice: z.number(), // changed from original_price
+            inflatedPriceOfCurrentPrice: z.number(), // changed from inflated_price_of_current_price
+            inflatedPriceOfOriginalPrice: z.number(), // changed from inflated_price_of_original_price
           })
         ),
-        model_sku: z.string(),
-        pre_order: z.object({
-          is_pre_order: z.boolean(),
-          days_to_ship: z.number(),
+        modelSku: z.string(), // changed from model_sku
+        preOrder: z.object({
+          // changed from pre_order
+          isPreOrder: z.boolean(), // changed from is_pre_order
+          daysToShip: z.number(), // changed from days_to_ship
         }),
-        stock_info_v2: z.object({
-          summary_info: z.object({
-            total_reserved_stock: z.number(),
-            total_available_stock: z.number(),
+        stockInfoV2: z.object({
+          // changed from stock_info_v2
+          summaryInfo: z.object({
+            // changed from summary_info
+            totalReservedStock: z.number(), // changed from total_reserved_stock
+            totalAvailableStock: z.number(), // changed from total_available_stock
           }),
-          seller_stock: z.array(
+          sellerStock: z.array(
+            // changed from seller_stock
             z.object({
-              location_id: z.string(),
+              locationId: z.string(), // changed from location_id
               stock: z.number(),
             })
           ),
@@ -64,4 +71,3 @@ export const getModelList = buildQuery({
   requestParameterSchema: getModelListRequestParametersSchema,
   responseSchema: getModelListResponseSchema,
 });
-

@@ -1,614 +1,614 @@
 import { z } from "zod";
 export declare const getItemBaseInfoRequestParametersSchema: z.ZodObject<{
-    item_id_list: z.ZodString;
-    need_tax_info: z.ZodOptional<z.ZodBoolean>;
-    need_complaint_policy: z.ZodOptional<z.ZodBoolean>;
+    itemIdList: z.ZodString;
+    needTaxInfo: z.ZodOptional<z.ZodBoolean>;
+    needComplaintPolicy: z.ZodOptional<z.ZodBoolean>;
 }, "strip", z.ZodTypeAny, {
-    item_id_list: string;
-    need_tax_info?: boolean | undefined;
-    need_complaint_policy?: boolean | undefined;
+    itemIdList: string;
+    needTaxInfo?: boolean | undefined;
+    needComplaintPolicy?: boolean | undefined;
 }, {
-    item_id_list: string;
-    need_tax_info?: boolean | undefined;
-    need_complaint_policy?: boolean | undefined;
+    itemIdList: string;
+    needTaxInfo?: boolean | undefined;
+    needComplaintPolicy?: boolean | undefined;
 }>;
 export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
     error: z.ZodString;
     message: z.ZodString;
     warning: z.ZodString;
-    request_id: z.ZodString;
+    requestId: z.ZodString;
     response: z.ZodObject<{
-        item_list: z.ZodOptional<z.ZodArray<z.ZodObject<{
-            item_id: z.ZodNumber;
-            category_id: z.ZodNumber;
-            item_name: z.ZodString;
-            item_sku: z.ZodString;
-            create_time: z.ZodNumber;
-            update_time: z.ZodNumber;
-            attribute_list: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                attribute_id: z.ZodNumber;
-                original_attribute_name: z.ZodString;
-                is_mandatory: z.ZodBoolean;
-                attribute_value_list: z.ZodArray<z.ZodObject<{
-                    value_id: z.ZodNumber;
-                    original_value_name: z.ZodString;
-                    value_unit: z.ZodString;
+        itemList: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            itemId: z.ZodNumber;
+            categoryId: z.ZodNumber;
+            itemName: z.ZodString;
+            itemSku: z.ZodString;
+            createTime: z.ZodNumber;
+            updateTime: z.ZodNumber;
+            attributeList: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                attributeId: z.ZodNumber;
+                originalAttributeName: z.ZodString;
+                isMandatory: z.ZodBoolean;
+                attributeValueList: z.ZodArray<z.ZodObject<{
+                    valueId: z.ZodNumber;
+                    originalValueName: z.ZodString;
+                    valueUnit: z.ZodString;
                 }, "strip", z.ZodTypeAny, {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
+                    valueId: number;
+                    originalValueName: string;
+                    valueUnit: string;
                 }, {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
+                    valueId: number;
+                    originalValueName: string;
+                    valueUnit: string;
                 }>, "many">;
             }, "strip", z.ZodTypeAny, {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
+                attributeId: number;
+                originalAttributeName: string;
+                isMandatory: boolean;
+                attributeValueList: {
+                    valueId: number;
+                    originalValueName: string;
+                    valueUnit: string;
                 }[];
             }, {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
+                attributeId: number;
+                originalAttributeName: string;
+                isMandatory: boolean;
+                attributeValueList: {
+                    valueId: number;
+                    originalValueName: string;
+                    valueUnit: string;
                 }[];
             }>, "many">>;
-            price_info: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            priceInfo: z.ZodOptional<z.ZodArray<z.ZodObject<{
                 currency: z.ZodString;
-                original_price: z.ZodNumber;
-                current_price: z.ZodNumber;
+                originalPrice: z.ZodNumber;
+                currentPrice: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
                 currency: string;
-                original_price: number;
-                current_price: number;
+                originalPrice: number;
+                currentPrice: number;
             }, {
                 currency: string;
-                original_price: number;
-                current_price: number;
+                originalPrice: number;
+                currentPrice: number;
             }>, "many">>;
-            stock_info_v2: z.ZodOptional<z.ZodObject<{
-                summary_info: z.ZodObject<{
-                    total_reserved_stock: z.ZodNumber;
-                    total_available_stock: z.ZodNumber;
+            stockInfoV2: z.ZodOptional<z.ZodObject<{
+                summaryInfo: z.ZodObject<{
+                    totalReservedStock: z.ZodNumber;
+                    totalAvailableStock: z.ZodNumber;
                 }, "strip", z.ZodTypeAny, {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
+                    totalReservedStock: number;
+                    totalAvailableStock: number;
                 }, {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
+                    totalReservedStock: number;
+                    totalAvailableStock: number;
                 }>;
-                seller_stock: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                    location_id: z.ZodString;
+                sellerStock: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    locationId: z.ZodString;
                     stock: z.ZodNumber;
                 }, "strip", z.ZodTypeAny, {
-                    location_id: string;
+                    locationId: string;
                     stock: number;
                 }, {
-                    location_id: string;
+                    locationId: string;
                     stock: number;
                 }>, "many">>;
             }, "strip", z.ZodTypeAny, {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
+                summaryInfo: {
+                    totalReservedStock: number;
+                    totalAvailableStock: number;
                 };
-                seller_stock?: {
-                    location_id: string;
+                sellerStock?: {
+                    locationId: string;
                     stock: number;
                 }[] | undefined;
             }, {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
+                summaryInfo: {
+                    totalReservedStock: number;
+                    totalAvailableStock: number;
                 };
-                seller_stock?: {
-                    location_id: string;
+                sellerStock?: {
+                    locationId: string;
                     stock: number;
                 }[] | undefined;
             }>>;
             image: z.ZodObject<{
-                image_url_list: z.ZodArray<z.ZodString, "many">;
-                image_id_list: z.ZodArray<z.ZodString, "many">;
+                imageUrlList: z.ZodArray<z.ZodString, "many">;
+                imageIdList: z.ZodArray<z.ZodString, "many">;
             }, "strip", z.ZodTypeAny, {
-                image_url_list: string[];
-                image_id_list: string[];
+                imageUrlList: string[];
+                imageIdList: string[];
             }, {
-                image_url_list: string[];
-                image_id_list: string[];
+                imageUrlList: string[];
+                imageIdList: string[];
             }>;
             weight: z.ZodString;
             dimension: z.ZodObject<{
-                package_length: z.ZodNumber;
-                package_width: z.ZodNumber;
-                package_height: z.ZodNumber;
+                packageLength: z.ZodNumber;
+                packageWidth: z.ZodNumber;
+                packageHeight: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
-                package_length: number;
-                package_width: number;
-                package_height: number;
+                packageLength: number;
+                packageWidth: number;
+                packageHeight: number;
             }, {
-                package_length: number;
-                package_width: number;
-                package_height: number;
+                packageLength: number;
+                packageWidth: number;
+                packageHeight: number;
             }>;
-            logistic_info: z.ZodOptional<z.ZodArray<z.ZodObject<{
-                logistic_id: z.ZodNumber;
-                logistic_name: z.ZodString;
+            logisticInfo: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                logisticId: z.ZodNumber;
+                logisticName: z.ZodString;
                 enabled: z.ZodBoolean;
-                shipping_fee: z.ZodOptional<z.ZodNumber>;
-                is_free: z.ZodBoolean;
-                estimated_shipping_fee: z.ZodOptional<z.ZodNumber>;
+                shippingFee: z.ZodOptional<z.ZodNumber>;
+                isFree: z.ZodBoolean;
+                estimatedShippingFee: z.ZodOptional<z.ZodNumber>;
             }, "strip", z.ZodTypeAny, {
-                logistic_id: number;
-                logistic_name: string;
+                logisticId: number;
+                logisticName: string;
                 enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
+                isFree: boolean;
+                shippingFee?: number | undefined;
+                estimatedShippingFee?: number | undefined;
             }, {
-                logistic_id: number;
-                logistic_name: string;
+                logisticId: number;
+                logisticName: string;
                 enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
+                isFree: boolean;
+                shippingFee?: number | undefined;
+                estimatedShippingFee?: number | undefined;
             }>, "many">>;
-            pre_order: z.ZodObject<{
-                is_pre_order: z.ZodBoolean;
-                days_to_ship: z.ZodNumber;
+            preOrder: z.ZodObject<{
+                isPreOrder: z.ZodBoolean;
+                daysToShip: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
-                is_pre_order: boolean;
-                days_to_ship: number;
+                daysToShip: number;
+                isPreOrder: boolean;
             }, {
-                is_pre_order: boolean;
-                days_to_ship: number;
+                daysToShip: number;
+                isPreOrder: boolean;
             }>;
             condition: z.ZodString;
-            size_chart: z.ZodString;
-            item_status: z.ZodString;
-            has_model: z.ZodBoolean;
-            promotion_id: z.ZodOptional<z.ZodNumber>;
+            sizeChart: z.ZodString;
+            itemStatus: z.ZodString;
+            hasModel: z.ZodBoolean;
+            promotionId: z.ZodOptional<z.ZodNumber>;
             brand: z.ZodObject<{
-                brand_id: z.ZodNumber;
-                original_brand_name: z.ZodString;
+                brandId: z.ZodNumber;
+                originalBrandName: z.ZodString;
             }, "strip", z.ZodTypeAny, {
-                brand_id: number;
-                original_brand_name: string;
+                brandId: number;
+                originalBrandName: string;
             }, {
-                brand_id: number;
-                original_brand_name: string;
+                brandId: number;
+                originalBrandName: string;
             }>;
-            tax_info: z.ZodOptional<z.ZodObject<{
+            taxInfo: z.ZodOptional<z.ZodObject<{
                 ncm: z.ZodNumber;
-                same_state_cfop: z.ZodNumber;
-                diff_state_cfop: z.ZodNumber;
+                sameStateCfop: z.ZodNumber;
+                diffStateCfop: z.ZodNumber;
                 csosn: z.ZodNumber;
                 origin: z.ZodNumber;
             }, "strip", z.ZodTypeAny, {
                 ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
+                sameStateCfop: number;
+                diffStateCfop: number;
                 csosn: number;
                 origin: number;
             }, {
                 ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
+                sameStateCfop: number;
+                diffStateCfop: number;
                 csosn: number;
                 origin: number;
             }>>;
-            description_type: z.ZodString;
-            description_info: z.ZodOptional<z.ZodObject<{
-                extended_description: z.ZodOptional<z.ZodObject<{
-                    field_list: z.ZodArray<z.ZodObject<{
-                        field_type: z.ZodString;
+            descriptionType: z.ZodString;
+            descriptionInfo: z.ZodOptional<z.ZodObject<{
+                extendedDescription: z.ZodOptional<z.ZodObject<{
+                    fieldList: z.ZodArray<z.ZodObject<{
+                        fieldType: z.ZodString;
                         text: z.ZodOptional<z.ZodString>;
-                        image_info: z.ZodOptional<z.ZodObject<{
-                            image_id: z.ZodString;
-                            image_url: z.ZodString;
+                        imageInfo: z.ZodOptional<z.ZodObject<{
+                            imageId: z.ZodString;
+                            imageUrl: z.ZodString;
                         }, "strip", z.ZodTypeAny, {
-                            image_id: string;
-                            image_url: string;
+                            imageUrl: string;
+                            imageId: string;
                         }, {
-                            image_id: string;
-                            image_url: string;
+                            imageUrl: string;
+                            imageId: string;
                         }>>;
                     }, "strip", z.ZodTypeAny, {
-                        field_type: string;
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }, {
-                        field_type: string;
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }>, "many">;
                 }, "strip", z.ZodTypeAny, {
-                    field_list: {
-                        field_type: string;
+                    fieldList: {
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }[];
                 }, {
-                    field_list: {
-                        field_type: string;
+                    fieldList: {
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }[];
                 }>>;
             }, "strip", z.ZodTypeAny, {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
+                extendedDescription?: {
+                    fieldList: {
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }[];
                 } | undefined;
             }, {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
+                extendedDescription?: {
+                    fieldList: {
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }[];
                 } | undefined;
             }>>;
         }, "strip", z.ZodTypeAny, {
+            createTime: number;
+            itemId: number;
+            itemName: string;
+            itemSku: string;
             weight: string;
-            create_time: number;
-            update_time: number;
-            item_id: number;
-            category_id: number;
-            item_name: string;
-            item_sku: string;
+            updateTime: number;
+            categoryId: number;
             image: {
-                image_url_list: string[];
-                image_id_list: string[];
+                imageUrlList: string[];
+                imageIdList: string[];
             };
             dimension: {
-                package_length: number;
-                package_width: number;
-                package_height: number;
+                packageLength: number;
+                packageWidth: number;
+                packageHeight: number;
             };
-            pre_order: {
-                is_pre_order: boolean;
-                days_to_ship: number;
+            preOrder: {
+                daysToShip: number;
+                isPreOrder: boolean;
             };
             condition: string;
-            size_chart: string;
-            item_status: string;
-            has_model: boolean;
+            sizeChart: string;
+            itemStatus: string;
+            hasModel: boolean;
             brand: {
-                brand_id: number;
-                original_brand_name: string;
+                brandId: number;
+                originalBrandName: string;
             };
-            description_type: string;
-            attribute_list?: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
+            descriptionType: string;
+            attributeList?: {
+                attributeId: number;
+                originalAttributeName: string;
+                isMandatory: boolean;
+                attributeValueList: {
+                    valueId: number;
+                    originalValueName: string;
+                    valueUnit: string;
                 }[];
             }[] | undefined;
-            price_info?: {
+            priceInfo?: {
                 currency: string;
-                original_price: number;
-                current_price: number;
+                originalPrice: number;
+                currentPrice: number;
             }[] | undefined;
-            stock_info_v2?: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
+            stockInfoV2?: {
+                summaryInfo: {
+                    totalReservedStock: number;
+                    totalAvailableStock: number;
                 };
-                seller_stock?: {
-                    location_id: string;
+                sellerStock?: {
+                    locationId: string;
                     stock: number;
                 }[] | undefined;
             } | undefined;
-            logistic_info?: {
-                logistic_id: number;
-                logistic_name: string;
+            logisticInfo?: {
+                logisticId: number;
+                logisticName: string;
                 enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
+                isFree: boolean;
+                shippingFee?: number | undefined;
+                estimatedShippingFee?: number | undefined;
             }[] | undefined;
-            promotion_id?: number | undefined;
-            tax_info?: {
+            promotionId?: number | undefined;
+            taxInfo?: {
                 ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
+                sameStateCfop: number;
+                diffStateCfop: number;
                 csosn: number;
                 origin: number;
             } | undefined;
-            description_info?: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
+            descriptionInfo?: {
+                extendedDescription?: {
+                    fieldList: {
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }[];
                 } | undefined;
             } | undefined;
         }, {
+            createTime: number;
+            itemId: number;
+            itemName: string;
+            itemSku: string;
             weight: string;
-            create_time: number;
-            update_time: number;
-            item_id: number;
-            category_id: number;
-            item_name: string;
-            item_sku: string;
+            updateTime: number;
+            categoryId: number;
             image: {
-                image_url_list: string[];
-                image_id_list: string[];
+                imageUrlList: string[];
+                imageIdList: string[];
             };
             dimension: {
-                package_length: number;
-                package_width: number;
-                package_height: number;
+                packageLength: number;
+                packageWidth: number;
+                packageHeight: number;
             };
-            pre_order: {
-                is_pre_order: boolean;
-                days_to_ship: number;
+            preOrder: {
+                daysToShip: number;
+                isPreOrder: boolean;
             };
             condition: string;
-            size_chart: string;
-            item_status: string;
-            has_model: boolean;
+            sizeChart: string;
+            itemStatus: string;
+            hasModel: boolean;
             brand: {
-                brand_id: number;
-                original_brand_name: string;
+                brandId: number;
+                originalBrandName: string;
             };
-            description_type: string;
-            attribute_list?: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
+            descriptionType: string;
+            attributeList?: {
+                attributeId: number;
+                originalAttributeName: string;
+                isMandatory: boolean;
+                attributeValueList: {
+                    valueId: number;
+                    originalValueName: string;
+                    valueUnit: string;
                 }[];
             }[] | undefined;
-            price_info?: {
+            priceInfo?: {
                 currency: string;
-                original_price: number;
-                current_price: number;
+                originalPrice: number;
+                currentPrice: number;
             }[] | undefined;
-            stock_info_v2?: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
+            stockInfoV2?: {
+                summaryInfo: {
+                    totalReservedStock: number;
+                    totalAvailableStock: number;
                 };
-                seller_stock?: {
-                    location_id: string;
+                sellerStock?: {
+                    locationId: string;
                     stock: number;
                 }[] | undefined;
             } | undefined;
-            logistic_info?: {
-                logistic_id: number;
-                logistic_name: string;
+            logisticInfo?: {
+                logisticId: number;
+                logisticName: string;
                 enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
+                isFree: boolean;
+                shippingFee?: number | undefined;
+                estimatedShippingFee?: number | undefined;
             }[] | undefined;
-            promotion_id?: number | undefined;
-            tax_info?: {
+            promotionId?: number | undefined;
+            taxInfo?: {
                 ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
+                sameStateCfop: number;
+                diffStateCfop: number;
                 csosn: number;
                 origin: number;
             } | undefined;
-            description_info?: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
+            descriptionInfo?: {
+                extendedDescription?: {
+                    fieldList: {
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }[];
                 } | undefined;
             } | undefined;
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
-        item_list?: {
+        itemList?: {
+            createTime: number;
+            itemId: number;
+            itemName: string;
+            itemSku: string;
             weight: string;
-            create_time: number;
-            update_time: number;
-            item_id: number;
-            category_id: number;
-            item_name: string;
-            item_sku: string;
+            updateTime: number;
+            categoryId: number;
             image: {
-                image_url_list: string[];
-                image_id_list: string[];
+                imageUrlList: string[];
+                imageIdList: string[];
             };
             dimension: {
-                package_length: number;
-                package_width: number;
-                package_height: number;
+                packageLength: number;
+                packageWidth: number;
+                packageHeight: number;
             };
-            pre_order: {
-                is_pre_order: boolean;
-                days_to_ship: number;
+            preOrder: {
+                daysToShip: number;
+                isPreOrder: boolean;
             };
             condition: string;
-            size_chart: string;
-            item_status: string;
-            has_model: boolean;
+            sizeChart: string;
+            itemStatus: string;
+            hasModel: boolean;
             brand: {
-                brand_id: number;
-                original_brand_name: string;
+                brandId: number;
+                originalBrandName: string;
             };
-            description_type: string;
-            attribute_list?: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
+            descriptionType: string;
+            attributeList?: {
+                attributeId: number;
+                originalAttributeName: string;
+                isMandatory: boolean;
+                attributeValueList: {
+                    valueId: number;
+                    originalValueName: string;
+                    valueUnit: string;
                 }[];
             }[] | undefined;
-            price_info?: {
+            priceInfo?: {
                 currency: string;
-                original_price: number;
-                current_price: number;
+                originalPrice: number;
+                currentPrice: number;
             }[] | undefined;
-            stock_info_v2?: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
+            stockInfoV2?: {
+                summaryInfo: {
+                    totalReservedStock: number;
+                    totalAvailableStock: number;
                 };
-                seller_stock?: {
-                    location_id: string;
+                sellerStock?: {
+                    locationId: string;
                     stock: number;
                 }[] | undefined;
             } | undefined;
-            logistic_info?: {
-                logistic_id: number;
-                logistic_name: string;
+            logisticInfo?: {
+                logisticId: number;
+                logisticName: string;
                 enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
+                isFree: boolean;
+                shippingFee?: number | undefined;
+                estimatedShippingFee?: number | undefined;
             }[] | undefined;
-            promotion_id?: number | undefined;
-            tax_info?: {
+            promotionId?: number | undefined;
+            taxInfo?: {
                 ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
+                sameStateCfop: number;
+                diffStateCfop: number;
                 csosn: number;
                 origin: number;
             } | undefined;
-            description_info?: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
+            descriptionInfo?: {
+                extendedDescription?: {
+                    fieldList: {
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }[];
                 } | undefined;
             } | undefined;
         }[] | undefined;
     }, {
-        item_list?: {
+        itemList?: {
+            createTime: number;
+            itemId: number;
+            itemName: string;
+            itemSku: string;
             weight: string;
-            create_time: number;
-            update_time: number;
-            item_id: number;
-            category_id: number;
-            item_name: string;
-            item_sku: string;
+            updateTime: number;
+            categoryId: number;
             image: {
-                image_url_list: string[];
-                image_id_list: string[];
+                imageUrlList: string[];
+                imageIdList: string[];
             };
             dimension: {
-                package_length: number;
-                package_width: number;
-                package_height: number;
+                packageLength: number;
+                packageWidth: number;
+                packageHeight: number;
             };
-            pre_order: {
-                is_pre_order: boolean;
-                days_to_ship: number;
+            preOrder: {
+                daysToShip: number;
+                isPreOrder: boolean;
             };
             condition: string;
-            size_chart: string;
-            item_status: string;
-            has_model: boolean;
+            sizeChart: string;
+            itemStatus: string;
+            hasModel: boolean;
             brand: {
-                brand_id: number;
-                original_brand_name: string;
+                brandId: number;
+                originalBrandName: string;
             };
-            description_type: string;
-            attribute_list?: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
+            descriptionType: string;
+            attributeList?: {
+                attributeId: number;
+                originalAttributeName: string;
+                isMandatory: boolean;
+                attributeValueList: {
+                    valueId: number;
+                    originalValueName: string;
+                    valueUnit: string;
                 }[];
             }[] | undefined;
-            price_info?: {
+            priceInfo?: {
                 currency: string;
-                original_price: number;
-                current_price: number;
+                originalPrice: number;
+                currentPrice: number;
             }[] | undefined;
-            stock_info_v2?: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
+            stockInfoV2?: {
+                summaryInfo: {
+                    totalReservedStock: number;
+                    totalAvailableStock: number;
                 };
-                seller_stock?: {
-                    location_id: string;
+                sellerStock?: {
+                    locationId: string;
                     stock: number;
                 }[] | undefined;
             } | undefined;
-            logistic_info?: {
-                logistic_id: number;
-                logistic_name: string;
+            logisticInfo?: {
+                logisticId: number;
+                logisticName: string;
                 enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
+                isFree: boolean;
+                shippingFee?: number | undefined;
+                estimatedShippingFee?: number | undefined;
             }[] | undefined;
-            promotion_id?: number | undefined;
-            tax_info?: {
+            promotionId?: number | undefined;
+            taxInfo?: {
                 ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
+                sameStateCfop: number;
+                diffStateCfop: number;
                 csosn: number;
                 origin: number;
             } | undefined;
-            description_info?: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
+            descriptionInfo?: {
+                extendedDescription?: {
+                    fieldList: {
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }[];
                 } | undefined;
@@ -618,85 +618,85 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     message: string;
     response: {
-        item_list?: {
+        itemList?: {
+            createTime: number;
+            itemId: number;
+            itemName: string;
+            itemSku: string;
             weight: string;
-            create_time: number;
-            update_time: number;
-            item_id: number;
-            category_id: number;
-            item_name: string;
-            item_sku: string;
+            updateTime: number;
+            categoryId: number;
             image: {
-                image_url_list: string[];
-                image_id_list: string[];
+                imageUrlList: string[];
+                imageIdList: string[];
             };
             dimension: {
-                package_length: number;
-                package_width: number;
-                package_height: number;
+                packageLength: number;
+                packageWidth: number;
+                packageHeight: number;
             };
-            pre_order: {
-                is_pre_order: boolean;
-                days_to_ship: number;
+            preOrder: {
+                daysToShip: number;
+                isPreOrder: boolean;
             };
             condition: string;
-            size_chart: string;
-            item_status: string;
-            has_model: boolean;
+            sizeChart: string;
+            itemStatus: string;
+            hasModel: boolean;
             brand: {
-                brand_id: number;
-                original_brand_name: string;
+                brandId: number;
+                originalBrandName: string;
             };
-            description_type: string;
-            attribute_list?: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
+            descriptionType: string;
+            attributeList?: {
+                attributeId: number;
+                originalAttributeName: string;
+                isMandatory: boolean;
+                attributeValueList: {
+                    valueId: number;
+                    originalValueName: string;
+                    valueUnit: string;
                 }[];
             }[] | undefined;
-            price_info?: {
+            priceInfo?: {
                 currency: string;
-                original_price: number;
-                current_price: number;
+                originalPrice: number;
+                currentPrice: number;
             }[] | undefined;
-            stock_info_v2?: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
+            stockInfoV2?: {
+                summaryInfo: {
+                    totalReservedStock: number;
+                    totalAvailableStock: number;
                 };
-                seller_stock?: {
-                    location_id: string;
+                sellerStock?: {
+                    locationId: string;
                     stock: number;
                 }[] | undefined;
             } | undefined;
-            logistic_info?: {
-                logistic_id: number;
-                logistic_name: string;
+            logisticInfo?: {
+                logisticId: number;
+                logisticName: string;
                 enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
+                isFree: boolean;
+                shippingFee?: number | undefined;
+                estimatedShippingFee?: number | undefined;
             }[] | undefined;
-            promotion_id?: number | undefined;
-            tax_info?: {
+            promotionId?: number | undefined;
+            taxInfo?: {
                 ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
+                sameStateCfop: number;
+                diffStateCfop: number;
                 csosn: number;
                 origin: number;
             } | undefined;
-            description_info?: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
+            descriptionInfo?: {
+                extendedDescription?: {
+                    fieldList: {
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }[];
                 } | undefined;
@@ -705,89 +705,89 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
     };
     error: string;
     warning: string;
-    request_id: string;
+    requestId: string;
 }, {
     message: string;
     response: {
-        item_list?: {
+        itemList?: {
+            createTime: number;
+            itemId: number;
+            itemName: string;
+            itemSku: string;
             weight: string;
-            create_time: number;
-            update_time: number;
-            item_id: number;
-            category_id: number;
-            item_name: string;
-            item_sku: string;
+            updateTime: number;
+            categoryId: number;
             image: {
-                image_url_list: string[];
-                image_id_list: string[];
+                imageUrlList: string[];
+                imageIdList: string[];
             };
             dimension: {
-                package_length: number;
-                package_width: number;
-                package_height: number;
+                packageLength: number;
+                packageWidth: number;
+                packageHeight: number;
             };
-            pre_order: {
-                is_pre_order: boolean;
-                days_to_ship: number;
+            preOrder: {
+                daysToShip: number;
+                isPreOrder: boolean;
             };
             condition: string;
-            size_chart: string;
-            item_status: string;
-            has_model: boolean;
+            sizeChart: string;
+            itemStatus: string;
+            hasModel: boolean;
             brand: {
-                brand_id: number;
-                original_brand_name: string;
+                brandId: number;
+                originalBrandName: string;
             };
-            description_type: string;
-            attribute_list?: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
+            descriptionType: string;
+            attributeList?: {
+                attributeId: number;
+                originalAttributeName: string;
+                isMandatory: boolean;
+                attributeValueList: {
+                    valueId: number;
+                    originalValueName: string;
+                    valueUnit: string;
                 }[];
             }[] | undefined;
-            price_info?: {
+            priceInfo?: {
                 currency: string;
-                original_price: number;
-                current_price: number;
+                originalPrice: number;
+                currentPrice: number;
             }[] | undefined;
-            stock_info_v2?: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
+            stockInfoV2?: {
+                summaryInfo: {
+                    totalReservedStock: number;
+                    totalAvailableStock: number;
                 };
-                seller_stock?: {
-                    location_id: string;
+                sellerStock?: {
+                    locationId: string;
                     stock: number;
                 }[] | undefined;
             } | undefined;
-            logistic_info?: {
-                logistic_id: number;
-                logistic_name: string;
+            logisticInfo?: {
+                logisticId: number;
+                logisticName: string;
                 enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
+                isFree: boolean;
+                shippingFee?: number | undefined;
+                estimatedShippingFee?: number | undefined;
             }[] | undefined;
-            promotion_id?: number | undefined;
-            tax_info?: {
+            promotionId?: number | undefined;
+            taxInfo?: {
                 ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
+                sameStateCfop: number;
+                diffStateCfop: number;
                 csosn: number;
                 origin: number;
             } | undefined;
-            description_info?: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
+            descriptionInfo?: {
+                extendedDescription?: {
+                    fieldList: {
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }[];
                 } | undefined;
@@ -796,94 +796,94 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
     };
     error: string;
     warning: string;
-    request_id: string;
+    requestId: string;
 }>;
 export declare const getItemBaseInfo: (requestParameters: {
-    item_id_list: string;
-    need_tax_info?: boolean | undefined;
-    need_complaint_policy?: boolean | undefined;
+    itemIdList: string;
+    needTaxInfo?: boolean | undefined;
+    needComplaintPolicy?: boolean | undefined;
 }) => Promise<{
     message: string;
     response: {
-        item_list?: {
+        itemList?: {
+            createTime: number;
+            itemId: number;
+            itemName: string;
+            itemSku: string;
             weight: string;
-            create_time: number;
-            update_time: number;
-            item_id: number;
-            category_id: number;
-            item_name: string;
-            item_sku: string;
+            updateTime: number;
+            categoryId: number;
             image: {
-                image_url_list: string[];
-                image_id_list: string[];
+                imageUrlList: string[];
+                imageIdList: string[];
             };
             dimension: {
-                package_length: number;
-                package_width: number;
-                package_height: number;
+                packageLength: number;
+                packageWidth: number;
+                packageHeight: number;
             };
-            pre_order: {
-                is_pre_order: boolean;
-                days_to_ship: number;
+            preOrder: {
+                daysToShip: number;
+                isPreOrder: boolean;
             };
             condition: string;
-            size_chart: string;
-            item_status: string;
-            has_model: boolean;
+            sizeChart: string;
+            itemStatus: string;
+            hasModel: boolean;
             brand: {
-                brand_id: number;
-                original_brand_name: string;
+                brandId: number;
+                originalBrandName: string;
             };
-            description_type: string;
-            attribute_list?: {
-                attribute_id: number;
-                original_attribute_name: string;
-                is_mandatory: boolean;
-                attribute_value_list: {
-                    value_id: number;
-                    original_value_name: string;
-                    value_unit: string;
+            descriptionType: string;
+            attributeList?: {
+                attributeId: number;
+                originalAttributeName: string;
+                isMandatory: boolean;
+                attributeValueList: {
+                    valueId: number;
+                    originalValueName: string;
+                    valueUnit: string;
                 }[];
             }[] | undefined;
-            price_info?: {
+            priceInfo?: {
                 currency: string;
-                original_price: number;
-                current_price: number;
+                originalPrice: number;
+                currentPrice: number;
             }[] | undefined;
-            stock_info_v2?: {
-                summary_info: {
-                    total_reserved_stock: number;
-                    total_available_stock: number;
+            stockInfoV2?: {
+                summaryInfo: {
+                    totalReservedStock: number;
+                    totalAvailableStock: number;
                 };
-                seller_stock?: {
-                    location_id: string;
+                sellerStock?: {
+                    locationId: string;
                     stock: number;
                 }[] | undefined;
             } | undefined;
-            logistic_info?: {
-                logistic_id: number;
-                logistic_name: string;
+            logisticInfo?: {
+                logisticId: number;
+                logisticName: string;
                 enabled: boolean;
-                is_free: boolean;
-                shipping_fee?: number | undefined;
-                estimated_shipping_fee?: number | undefined;
+                isFree: boolean;
+                shippingFee?: number | undefined;
+                estimatedShippingFee?: number | undefined;
             }[] | undefined;
-            promotion_id?: number | undefined;
-            tax_info?: {
+            promotionId?: number | undefined;
+            taxInfo?: {
                 ncm: number;
-                same_state_cfop: number;
-                diff_state_cfop: number;
+                sameStateCfop: number;
+                diffStateCfop: number;
                 csosn: number;
                 origin: number;
             } | undefined;
-            description_info?: {
-                extended_description?: {
-                    field_list: {
-                        field_type: string;
+            descriptionInfo?: {
+                extendedDescription?: {
+                    fieldList: {
+                        fieldType: string;
                         text?: string | undefined;
-                        image_info?: {
-                            image_id: string;
-                            image_url: string;
+                        imageInfo?: {
+                            imageUrl: string;
+                            imageId: string;
                         } | undefined;
                     }[];
                 } | undefined;
@@ -892,6 +892,6 @@ export declare const getItemBaseInfo: (requestParameters: {
     };
     error: string;
     warning: string;
-    request_id: string;
+    requestId: string;
 }>;
 //# sourceMappingURL=v2-product-get-item-base-info.d.ts.map
