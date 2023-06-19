@@ -4,7 +4,7 @@ export type ShopeeSdkArgs = typeof env & {
     isLogEnabled?: boolean;
 };
 export declare class ShopeeSdk {
-    constructor(args: ShopeeSdkArgs);
+    constructor(args?: ShopeeSdkArgs);
     setPartnerId(partnerId: number): this;
     setBaseURL(baseURL: string): this;
     setPartnerKey(partnerKey: string): this;

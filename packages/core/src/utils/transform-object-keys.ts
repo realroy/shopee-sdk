@@ -14,8 +14,7 @@ export function transformObjectKeys<
   }
 
   if (Array.isArray(obj)) {
-    // @ts-ignore
-    const result = obj.map((i) =>
+    const result = obj.map((_, i) =>
       transformObjectKeys(obj[i], transformFunction)
     );
 

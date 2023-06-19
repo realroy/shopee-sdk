@@ -24,7 +24,13 @@ export declare const logisticDownloadShippingDocumentRequestParameterSchema: z.Z
     }[];
     shippingDocumentType?: "NORMAL_AIR_WAYBILL" | "THERMAL_AIR_WAYBILL" | "NORMAL_JOB_AIR_WAYBILL" | "THERMAL_JOB_AIR_WAYBILL" | undefined;
 }>;
-export declare const logisticDownloadShippingDocumentResponseSchema: z.ZodAny;
+export declare const logisticDownloadShippingDocumentResponseSchema: z.ZodObject<{
+    data: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    data: string;
+}, {
+    data: string;
+}>;
 export declare const downloadShippingDocument: (requestParameters: {
     orderList: {
         orderSn: string;

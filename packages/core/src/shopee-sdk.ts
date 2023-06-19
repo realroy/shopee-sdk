@@ -4,16 +4,16 @@ import { env } from "./env";
 
 const shopeeContext = ShopeeContext.getInstance();
 
-export type ShopeeSdkArgs = typeof env & { isLogEnabled?: boolean }
+export type ShopeeSdkArgs = typeof env & { isLogEnabled?: boolean };
 
 export class ShopeeSdk {
-  constructor(args: ShopeeSdkArgs) {
+  constructor(args: ShopeeSdkArgs = {}) {
     shopeeContext.accessToken = args.accessToken ?? env.accessToken;
     shopeeContext.baseURL = args.baseURL ?? env.baseURL;
     shopeeContext.partnerId = args.partnerId ?? env.partnerId;
     shopeeContext.partnerKey = args.partnerKey ?? env.partnerKey;
     shopeeContext.shopId = args.shopId ?? env.shopId;
-    shopeeContext.isLogEnabled = args.isLogEnabled ?? false
+    shopeeContext.isLogEnabled = args.isLogEnabled ?? false;
   }
 
   setPartnerId(partnerId: number) {
@@ -47,13 +47,13 @@ export class ShopeeSdk {
   }
 
   setIsLogEnabled(isLogEnabled: boolean) {
-    shopeeContext.isLogEnabled = isLogEnabled
+    shopeeContext.isLogEnabled = isLogEnabled;
 
-    return this
+    return this;
   }
 
   get v2() {
-    return v2
+    return v2;
   }
 }
 

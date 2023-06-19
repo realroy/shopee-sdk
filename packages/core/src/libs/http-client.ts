@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-import type { AxiosInstance } from "axios";
+import type { AxiosInstance, ResponseType } from "axios";
 
 export class HttpClient {
   private static instance: HttpClient;
@@ -8,7 +8,7 @@ export class HttpClient {
   private readonly logger = console;
 
   private isLogEnabled: boolean;
-  private logInterceptorIds: number[] = []
+  private logInterceptorIds: number[] = [];
 
   private constructor() {
     this.isLogEnabled = false;
@@ -52,11 +52,14 @@ export class HttpClient {
       }
     );
 
-    this.logInterceptorIds = [requestLogInterceptorId, responseLogInterceptorId]
+    this.logInterceptorIds = [
+      requestLogInterceptorId,
+      responseLogInterceptorId,
+    ];
   }
 
   private removeLogInterceptor() {
-    this.logInterceptorIds.forEach(this.axios.interceptors.request.eject)
+    this.logInterceptorIds.forEach(this.axios.interceptors.request.eject);
   }
 
   static getInstance() {
@@ -66,9 +69,9 @@ export class HttpClient {
   setLogEnabled(newValue: boolean) {
     this.isLogEnabled = newValue;
     if (this.isLogEnabled) {
-      this.addLogInterceptor()
+      this.addLogInterceptor();
     } else {
-    this.removeLogInterceptor()
+      this.removeLogInterceptor();
     }
 
     return this.isLogEnabled;
@@ -78,7 +81,15 @@ export class HttpClient {
     return this.axios.get(url, { params });
   }
 
-  post(url: string, params?: object, body?: object) {
-    return this.axios.post(url, body, { params });
+  post(
+    url: string,
+    params?: object,
+    body?: object,
+    responseType?: ResponseType
+  ) {
+    return this.axios.post(url, body, {
+      params,
+      ...(responseType && { responseType }),
+    });
   }
 }

@@ -18,10 +18,14 @@ export const logisticDownloadShippingDocumentRequestParameterSchema = z.object({
     .max(50),
 });
 
-export const logisticDownloadShippingDocumentResponseSchema = z.any();
+export const logisticDownloadShippingDocumentResponseSchema = z.object({
+  data: z.string(),
+});
+
 export const downloadShippingDocument = buildMutation({
   path: API_V2_LOGISTIC_DOWNLOAD_SHIPPING_DOCUMENT,
   requestParameterSchema:
     logisticDownloadShippingDocumentRequestParameterSchema,
   responseSchema: logisticDownloadShippingDocumentResponseSchema,
+  responseType: "stream",
 });

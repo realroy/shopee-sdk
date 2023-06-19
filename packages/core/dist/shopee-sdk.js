@@ -8,27 +8,27 @@ async function J(r, ...t) {
   return typeof globalThis.crypto < "u" && (n = await je(r, ...t)), n = await ve(r, ...t), n;
 }
 async function je(r, ...t) {
-  const n = new TextEncoder(), o = n.encode(r);
-  let a = new Uint8Array();
+  const n = new TextEncoder(), a = n.encode(r);
+  let o = new Uint8Array();
   t.forEach((i) => {
-    i && (a = n.encode(i));
+    i && (o = n.encode(i));
   });
   const s = await crypto.subtle.importKey(
     "raw",
-    o,
+    a,
     { name: "HMAC", hash: "SHA-256" },
     !1,
     ["sign"]
   ), u = await crypto.subtle.sign(
     { name: "HMAC", hash: { name: "sha-256" } },
     s,
-    a
+    o
   ), c = new Uint8Array(u);
   return Array.from(c).map((i) => i.toString(16).padStart(2, "0")).join("");
 }
 async function ve(r, ...t) {
-  const { createHmac: n } = await import("crypto"), o = n("sha256", r);
-  return t.filter((a) => !!a).forEach((a) => o.update(a)), o.digest("hex");
+  const { createHmac: n } = await import("crypto"), a = n("sha256", r);
+  return t.filter((o) => !!o).forEach((o) => a.update(o)), a.digest("hex");
 }
 function R(r) {
   const t = r ? r.getTime() : Date.now();
@@ -38,8 +38,8 @@ async function Q(r) {
   const {
     partner_id: t,
     partner_key: n,
-    path: o,
-    base_url: a,
+    path: a,
+    base_url: o,
     access_token: s,
     shop_id: u,
     params: c = {}
@@ -51,10 +51,10 @@ async function Q(r) {
       ...S.slice(1).map((Ae) => `&${d}=${Ae}`)
     ].join("") : S instanceof Date ? g[d] = R(S) : g[d] = `${S}`;
   }
-  const _ = R(), h = new URL(o, a), D = await J(
+  const _ = R(), h = new URL(a, o), D = await J(
     n,
     p,
-    o,
+    a,
     _,
     s,
     i
@@ -73,18 +73,18 @@ function E(r, t) {
     return r;
   if (Array.isArray(r))
     return r.map(
-      (a) => E(r[a], t)
+      (o, s) => E(r[s], t)
     );
   const n = {};
-  for (const [o, a] of Object.entries(r))
-    o !== void 0 && (n[t(o)] = E(a, t));
+  for (const [a, o] of Object.entries(r))
+    a !== void 0 && (n[t(a)] = E(o, t));
   return n;
 }
 var P = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function Ce(r, t, n, o) {
-  var a = -1, s = r == null ? 0 : r.length;
-  for (o && s && (n = r[++a]); ++a < s; )
-    n = t(n, r[a], a, r);
+function Ce(r, t, n, a) {
+  var o = -1, s = r == null ? 0 : r.length;
+  for (a && s && (n = r[++o]); ++o < s; )
+    n = t(n, r[o], o, r);
   return n;
 }
 var ke = Ce;
@@ -288,20 +288,20 @@ var Ne = De, we = Ne, $e = {
   ſ: "s"
 }, Ue = we($e), qe = Ue, Me = typeof P == "object" && P && P.Object === Object && P, Ge = Me, He = Ge, Fe = typeof self == "object" && self && self.Object === Object && self, Ve = He || Fe || Function("return this")(), ze = Ve, We = ze, Ke = We.Symbol, C = Ke;
 function Be(r, t) {
-  for (var n = -1, o = r == null ? 0 : r.length, a = Array(o); ++n < o; )
-    a[n] = t(r[n], n, r);
-  return a;
+  for (var n = -1, a = r == null ? 0 : r.length, o = Array(a); ++n < a; )
+    o[n] = t(r[n], n, r);
+  return o;
 }
 var Ze = Be, Ye = Array.isArray, Je = Ye, N = C, X = Object.prototype, Qe = X.hasOwnProperty, Xe = X.toString, y = N ? N.toStringTag : void 0;
 function er(r) {
   var t = Qe.call(r, y), n = r[y];
   try {
     r[y] = void 0;
-    var o = !0;
+    var a = !0;
   } catch {
   }
-  var a = Xe.call(r);
-  return o && (t ? r[y] = n : delete r[y]), a;
+  var o = Xe.call(r);
+  return a && (t ? r[y] = n : delete r[y]), o;
 }
 var rr = er, tr = Object.prototype, nr = tr.toString;
 function or(r) {
@@ -373,16 +373,16 @@ var le = Pt, Et = le, Ot = Et(function(r, t, n) {
   return r + (n ? "_" : "") + t.toLowerCase();
 }), xt = Ot;
 function At(r, t, n) {
-  var o = -1, a = r.length;
-  t < 0 && (t = -t > a ? 0 : a + t), n = n > a ? a : n, n < 0 && (n += a), a = t > n ? 0 : n - t >>> 0, t >>>= 0;
-  for (var s = Array(a); ++o < a; )
-    s[o] = r[o + t];
+  var a = -1, o = r.length;
+  t < 0 && (t = -t > o ? 0 : o + t), n = n > o ? o : n, n < 0 && (n += o), o = t > n ? 0 : n - t >>> 0, t >>>= 0;
+  for (var s = Array(o); ++a < o; )
+    s[a] = r[a + t];
   return s;
 }
 var Lt = At, jt = Lt;
 function vt(r, t, n) {
-  var o = r.length;
-  return n = n === void 0 ? o : n, !t && n >= o ? r : jt(r, t, n);
+  var a = r.length;
+  return n = n === void 0 ? a : n, !t && n >= a ? r : jt(r, t, n);
 }
 var Ct = vt, kt = "\\ud800-\\udfff", Dt = "\\u0300-\\u036f", Nt = "\\ufe20-\\ufe2f", wt = "\\u20d0-\\u20ff", $t = Dt + Nt + wt, Ut = "\\ufe0e\\ufe0f", qt = "\\u200d", Mt = RegExp("[" + qt + kt + $t + Ut + "]");
 function Gt(r) {
@@ -404,8 +404,8 @@ var un = cn, pn = Ct, gn = be, mn = un, dn = O;
 function ln(r) {
   return function(t) {
     t = dn(t);
-    var n = gn(t) ? mn(t) : void 0, o = n ? n[0] : t.charAt(0), a = n ? pn(n, 1).join("") : t.slice(1);
-    return o[r]() + a;
+    var n = gn(t) ? mn(t) : void 0, a = n ? n[0] : t.charAt(0), o = n ? pn(n, 1).join("") : t.slice(1);
+    return a[r]() + o;
   };
 }
 var bn = ln, fn = bn, _n = fn("toUpperCase"), hn = _n, Sn = O, In = hn;
@@ -421,22 +421,25 @@ class x {
   }
   addLogInterceptor() {
     const t = this.axios.interceptors.request.use(
-      (o) => (this.logger.log(`${o.url}`), o.data && this.logger.info(`[Body]: ${JSON.stringify(o.data, null, 4)}`), o),
-      (o) => {
-        throw this.logger.error(o), o;
+      (a) => (this.logger.log(`${a.url}`), a.data && this.logger.info(`[Body]: ${JSON.stringify(a.data, null, 4)}`), a),
+      (a) => {
+        throw this.logger.error(a), a;
       }
     ), n = this.axios.interceptors.response.use(
-      (o) => (this.logger.log(`[Response]: ${JSON.stringify(o.data, null, 4)}`), o),
-      (o) => {
+      (a) => (this.logger.log(`[Response]: ${JSON.stringify(a.data, null, 4)}`), a),
+      (a) => {
         const {
-          response: a,
+          response: o,
           message: s,
           config: { method: u, url: c, data: p, params: i }
-        } = o, g = a == null ? void 0 : a.status;
-        throw this.logger.error({ status: g, message: s, method: u, url: c, data: p, params: i }), o;
+        } = a, g = o == null ? void 0 : o.status;
+        throw this.logger.error({ status: g, message: s, method: u, url: c, data: p, params: i }), a;
       }
     );
-    this.logInterceptorIds = [t, n];
+    this.logInterceptorIds = [
+      t,
+      n
+    ];
   }
   removeLogInterceptor() {
     this.logInterceptorIds.forEach(this.axios.interceptors.request.eject);
@@ -450,8 +453,11 @@ class x {
   get(t, n) {
     return this.axios.get(t, { params: n });
   }
-  post(t, n, o) {
-    return this.axios.post(t, o, { params: n });
+  post(t, n, a, o) {
+    return this.axios.post(t, a, {
+      params: n,
+      ...o && { responseType: o }
+    });
   }
 }
 class b {
@@ -476,25 +482,25 @@ function l(r) {
   async function t(n) {
     if (!r.transformRequestParameter)
       return n;
-    const o = r.transformRequestParameter(n);
+    const a = r.transformRequestParameter(n);
     if (!r.transformRequestParameterSchema)
       return n;
-    const a = await r.transformRequestParameterSchema.safeParseAsync(
-      o
+    const o = await r.transformRequestParameterSchema.safeParseAsync(
+      a
     );
-    if (!a.success)
+    if (!o.success)
       throw new Error(
-        `transform request parameters error: ${a.error.message}`
+        `transform request parameters error: ${o.error.message}`
       );
-    return a.data;
+    return o.data;
   }
-  return async function(o) {
-    const a = await r.requestParameterSchema.safeParseAsync(o);
-    if (!a.success)
+  return async function(a) {
+    const o = await r.requestParameterSchema.safeParseAsync(a);
+    if (!o.success)
       throw new Error(
-        `parse request parameters error: ${a.error.message}`
+        `parse request parameters error: ${o.error.message}`
       );
-    const s = await t(a.data), u = E(
+    const s = await t(o.data), u = E(
       s,
       (d) => xt(d.toString())
     ), c = b.getInstance(), p = c.value;
@@ -515,10 +521,10 @@ function l(r) {
 const W = x.getInstance();
 function f(r) {
   return async function(n) {
-    const o = r.transformRequestParameter ?? ((_) => _), a = await r.requestParameterSchema.transform(o).safeParseAsync(n);
-    if (!a.success)
+    const a = r.transformRequestParameter ?? ((_) => _), o = await r.requestParameterSchema.transform(a).safeParseAsync(n);
+    if (!o.success)
       throw new Error(
-        `parse request parameters error: ${a.error.message}`
+        `parse request parameters error: ${o.error.message}`
       );
     const s = b.getInstance(), u = s.value;
     W.setLogEnabled(s.isLogEnabled);
@@ -526,7 +532,12 @@ function f(r) {
       ...u,
       path: r.path,
       params: {}
-    }), p = a.data, { data: i } = await W.post(c, {}, p);
+    }), p = o.data, { data: i } = await W.post(
+      c,
+      {},
+      p,
+      r.responseType
+    );
     if (r.responseSchema === void 0)
       return i;
     const g = await r.responseSchema.safeParseAsync(i);
@@ -579,10 +590,13 @@ const xn = "/api/v2/logistic/get_shipping_parameter", An = "/api/v2/logistic/shi
       packageNumber: e.string().optional()
     })
   ).max(50)
-}), Mn = e.any(), Gn = f({
+}), Mn = e.object({
+  data: e.string()
+}), Gn = f({
   path: Dn,
   requestParameterSchema: qn,
-  responseSchema: Mn
+  responseSchema: Mn,
+  responseType: "stream"
 }), Hn = e.object({
   orderList: e.array(
     e.object({
@@ -1133,14 +1147,12 @@ const xn = "/api/v2/logistic/get_shipping_parameter", An = "/api/v2/logistic/shi
   path: _o,
   requestParameterSchema: Z,
   transformRequestParameterSchema: Z.extend({
-    // itemStatus: z.string(),
     updateTimeFrom: e.string(),
     updateTimeTo: e.string()
   }),
   transformRequestParameter(r) {
     return {
       ...r,
-      // itemStatus: data.itemStatus.join(","),
       updateTimeFrom: R(
         r.updateTimeFrom ?? /* @__PURE__ */ new Date("01/01/2022")
       ),
@@ -1262,17 +1274,17 @@ async function Do({
   redirectURL: r,
   redirectSign: t
 }) {
-  const { baseURL: n, partnerId: o, partnerKey: a } = b.getInstance();
-  if (!a || !o)
+  const { baseURL: n, partnerId: a, partnerKey: o } = b.getInstance();
+  if (!o || !a)
     throw new Error("partnerKey is undefined");
   const s = new URL(Y, n), u = R(/* @__PURE__ */ new Date()), c = await J(
-    a,
-    o.toString(),
+    o,
+    a.toString(),
     Y,
     u
   ), p = new URL(r);
   return p.searchParams.append("sign", t), s.search = new URLSearchParams({
-    partner_id: o.toString(),
+    partner_id: a.toString(),
     redirect: p.toString(),
     timestamp: u,
     sign: c
@@ -1289,11 +1301,11 @@ async function wo(r) {
     throw new Error(
       `parse request parameters error: ${t.error.message}`
     );
-  const { code: n, shop_id: o, sign: a } = t.data;
+  const { code: n, shop_id: a, sign: o } = t.data;
   return {
     code: n,
-    shopId: o,
-    sign: a
+    shopId: a,
+    sign: o
   };
 }
 const $o = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
@@ -1324,7 +1336,7 @@ if (!j.success)
   throw new Error(j.error.message);
 const T = j.data, m = b.getInstance();
 class zo {
-  constructor(t) {
+  constructor(t = {}) {
     m.accessToken = t.accessToken ?? T.accessToken, m.baseURL = t.baseURL ?? T.baseURL, m.partnerId = t.partnerId ?? T.partnerId, m.partnerKey = t.partnerKey ?? T.partnerKey, m.shopId = t.shopId ?? T.shopId, m.isLogEnabled = t.isLogEnabled ?? !1;
   }
   setPartnerId(t) {

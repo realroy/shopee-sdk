@@ -4,6 +4,7 @@ import { HttpClient } from "./http-client";
 import { ShopeeContext } from "./shopee-context";
 
 import { signURL } from "../utils";
+import { ResponseType } from "axios";
 
 const httpClient = HttpClient.getInstance();
 
@@ -17,6 +18,7 @@ export type BuildMutationArgs<
   transformRequestParameter?: (
     data: z.infer<z.ZodObject<TRequestParameterSchema>>
   ) => typeof data;
+  responseType?: ResponseType;
 };
 
 export function buildMutation<
@@ -39,10 +41,10 @@ export function buildMutation<
       );
     }
 
-    const contextInstance = ShopeeContext.getInstance()
+    const contextInstance = ShopeeContext.getInstance();
     const context = contextInstance.value;
 
-    httpClient.setLogEnabled(contextInstance.isLogEnabled)
+    httpClient.setLogEnabled(contextInstance.isLogEnabled);
 
     const signedURL = await signURL({
       ...context,
@@ -52,13 +54,20 @@ export function buildMutation<
 
     const body = parseRequestParameters.data;
 
-    const { data } = await httpClient.post(signedURL, {}, body);
+    const { data } = await httpClient.post(
+      signedURL,
+      {},
+      body,
+      args.responseType
+    );
 
     if (args.responseSchema === undefined) {
-      return data
+      return data;
     }
 
-    const parseData = await (args.responseSchema as z.ZodObject<TResponseSchema>).safeParseAsync(data);
+    const parseData = await (
+      args.responseSchema as z.ZodObject<TResponseSchema>
+    ).safeParseAsync(data);
 
     if (!parseData.success) {
       throw new Error(`parse response error: ${parseData.error.message}`);

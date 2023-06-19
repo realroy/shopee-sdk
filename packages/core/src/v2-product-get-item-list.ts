@@ -42,14 +42,12 @@ export const getItemList = buildQuery({
   path: API_V2_PRODUCT_GET_ITEM_LIST_PATH,
   requestParameterSchema: getItemListRequestParametersSchema,
   transformRequestParameterSchema: getItemListRequestParametersSchema.extend({
-    // itemStatus: z.string(),
     updateTimeFrom: z.string(),
     updateTimeTo: z.string(),
   }),
   transformRequestParameter(data) {
     return {
       ...data,
-      // itemStatus: data.itemStatus.join(","),
       updateTimeFrom: toTimestamp(
         data.updateTimeFrom ?? new Date("01/01/2022")
       ),
