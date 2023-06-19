@@ -1,10 +1,12 @@
 import { z } from "zod";
+import _snakeCase from "lodash/snakeCase";
+import _camelCase from "lodash/camelCase";
 
 import { HttpClient } from "./http-client";
 import { ShopeeContext } from "./shopee-context";
 
-import { signURL } from "../utils";
-import { ResponseType } from "axios";
+import { signURL, transformObjectKeys } from "../utils";
+import type { ResponseType } from "axios";
 
 const httpClient = HttpClient.getInstance();
 
@@ -25,15 +27,26 @@ export function buildMutation<
   TRequestParameterSchema extends z.ZodRawShape,
   TResponseSchema extends z.ZodRawShape
 >(args: BuildMutationArgs<TRequestParameterSchema, TResponseSchema>) {
-  return async function mutation(
-    requestParameters: z.infer<typeof args.requestParameterSchema>
-  ) {
-    const transformRequestParameter =
-      args.transformRequestParameter ?? ((data) => data);
+  type TRequestParameters = z.infer<typeof args.requestParameterSchema>;
 
-    const parseRequestParameters = await args.requestParameterSchema
-      .transform(transformRequestParameter)
-      .safeParseAsync(requestParameters);
+  function transformRequestParameter(
+    data: z.infer<z.ZodObject<TRequestParameterSchema>>
+  ) {
+    if (!args.transformRequestParameter) {
+      return data;
+    }
+
+    return args.transformRequestParameter(data);
+  }
+
+  return async function mutation(requestParameters: TRequestParameters) {
+    const transformedRequestParameter =
+      transformRequestParameter(requestParameters);
+
+    const parseRequestParameters =
+      await args.requestParameterSchema.safeParseAsync(
+        transformedRequestParameter
+      );
 
     if (!parseRequestParameters.success) {
       throw new Error(
@@ -52,18 +65,24 @@ export function buildMutation<
       params: {},
     });
 
-    const body = parseRequestParameters.data;
+    const body = transformObjectKeys(parseRequestParameters.data, (key) =>
+      _snakeCase(key.toString())
+    );
 
-    const { data } = await httpClient.post(
+    const response = await httpClient.post(
       signedURL,
       {},
       body,
       args.responseType
     );
 
-    if (args.responseSchema === undefined) {
-      return data;
+    if (args.responseType !== "json" || args.responseSchema === undefined) {
+      return response.data;
     }
+
+    const data = transformObjectKeys(response.data, (key) =>
+      _camelCase(key.toString())
+    );
 
     const parseData = await (
       args.responseSchema as z.ZodObject<TResponseSchema>

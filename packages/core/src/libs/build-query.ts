@@ -23,7 +23,7 @@ export type BuildQueryArgs<
   ) => z.infer<z.ZodObject<TTransformedRequestParameterSchema>>;
 };
 
-export function buildQuery<
+function createTransform<
   TRequestParameterSchema extends z.ZodRawShape,
   TResponseSchema extends z.ZodRawShape,
   TTransformedRequestParameterSchema extends z.ZodRawShape
@@ -34,7 +34,7 @@ export function buildQuery<
     TTransformedRequestParameterSchema
   >
 ) {
-  async function transformParsedRequestParameters(
+  return async function transformParsedRequestParameters(
     parsedRequestParameterData: z.infer<z.ZodObject<TRequestParameterSchema>>
   ) {
     if (!args.transformRequestParameter) {
@@ -58,11 +58,24 @@ export function buildQuery<
     }
 
     return result.data;
-  }
+  };
+}
 
-  return async function query(
-    requestParameters: z.infer<typeof args.requestParameterSchema>
-  ) {
+export function buildQuery<
+  TRequestParameterSchema extends z.ZodRawShape,
+  TResponseSchema extends z.ZodRawShape,
+  TTransformedRequestParameterSchema extends z.ZodRawShape
+>(
+  args: BuildQueryArgs<
+    TRequestParameterSchema,
+    TResponseSchema,
+    TTransformedRequestParameterSchema
+  >
+) {
+  const transformParsedRequestParameters = createTransform(args);
+  type TRequestParameters = z.infer<typeof args.requestParameterSchema>;
+
+  return async function query(requestParameters: TRequestParameters) {
     const parseRequestParameters =
       await args.requestParameterSchema.safeParseAsync(requestParameters);
 
