@@ -26,7 +26,10 @@ export type BuildMutationArgs<
 export function buildMutation<
   TRequestParameterSchema extends z.ZodRawShape,
   TResponseSchema extends z.ZodRawShape
->(args: BuildMutationArgs<TRequestParameterSchema, TResponseSchema>) {
+>({
+  responseType = "json",
+  ...args
+}: BuildMutationArgs<TRequestParameterSchema, TResponseSchema>) {
   type TRequestParameters = z.infer<typeof args.requestParameterSchema>;
 
   function transformRequestParameter(
@@ -69,14 +72,9 @@ export function buildMutation<
       _snakeCase(key.toString())
     );
 
-    const response = await httpClient.post(
-      signedURL,
-      {},
-      body,
-      args.responseType
-    );
+    const response = await httpClient.post(signedURL, {}, body, responseType);
 
-    if (args.responseType !== "json" || args.responseSchema === undefined) {
+    if (responseType !== "json" || args.responseSchema === undefined) {
       return response.data;
     }
 

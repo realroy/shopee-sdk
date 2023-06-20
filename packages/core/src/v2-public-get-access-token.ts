@@ -11,13 +11,14 @@ export const getAccessTokenRequestParametersSchema = z.object({
 });
 
 export const getAccessTokenResponseSchema = z.object({
-  access_token: z.string(),
+  accessToken: z.string(),
   error: z.string(),
-  expires_in: z.number(),
+  expireIn: z.number(),
   message: z.string(),
   refreshToken: z.string(),
   requestId: z.string(),
-  shopIdList: z.array(z.number()),
+  merchantIdList: z.array(z.number()).optional(),
+  shopIdList: z.array(z.number()).optional(),
 });
 
 export const getAccessToken = buildMutation({

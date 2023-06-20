@@ -16,29 +16,32 @@ export declare const getAccessTokenRequestParametersSchema: z.ZodObject<{
     mainAccountId?: number | undefined;
 }>;
 export declare const getAccessTokenResponseSchema: z.ZodObject<{
-    access_token: z.ZodString;
+    accessToken: z.ZodString;
     error: z.ZodString;
-    expires_in: z.ZodNumber;
+    expireIn: z.ZodNumber;
     message: z.ZodString;
     refreshToken: z.ZodString;
     requestId: z.ZodString;
-    shopIdList: z.ZodArray<z.ZodNumber, "many">;
+    merchantIdList: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
+    shopIdList: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
 }, "strip", z.ZodTypeAny, {
+    accessToken: string;
     message: string;
-    access_token: string;
     error: string;
     requestId: string;
-    expires_in: number;
+    expireIn: number;
     refreshToken: string;
-    shopIdList: number[];
+    merchantIdList?: number[] | undefined;
+    shopIdList?: number[] | undefined;
 }, {
+    accessToken: string;
     message: string;
-    access_token: string;
     error: string;
     requestId: string;
-    expires_in: number;
+    expireIn: number;
     refreshToken: string;
-    shopIdList: number[];
+    merchantIdList?: number[] | undefined;
+    shopIdList?: number[] | undefined;
 }>;
 export declare const getAccessToken: (requestParameters: {
     code: string;
