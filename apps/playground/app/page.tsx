@@ -1,4 +1,4 @@
-import { shopeeSdk } from "@/lib";
+import { getAccessTokenFromCookie, shopeeSdk } from "@/lib";
 
 export default async function Home() {
   return (
@@ -10,15 +10,19 @@ export default async function Home() {
 }
 
 export async function SectionProductApi() {
-  const { error: getItemListError } = await shopeeSdk.v2.product.getItemList({ item_status: ["NORMAL"] })
+  const accessToken = getAccessTokenFromCookie(true);
+  shopeeSdk.setAccessToken(accessToken);
+  const { error: getItemListError } = await shopeeSdk.v2.product.getItemList({
+    itemStatus: ["NORMAL"],
+  });
+
   return (
     <section>
       <ul>
         <li>
-          Get item list status: {getItemListError.length ? "Error" : "OK"} 
+          Get item list status: {getItemListError?.length ? "Error" : "OK"}
         </li>
       </ul>
     </section>
-  )
+  );
 }
-
