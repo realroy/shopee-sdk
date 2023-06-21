@@ -16,18 +16,18 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
         infoNeeded: z.ZodObject<{
             dropoff: z.ZodArray<z.ZodString, "many">;
             pickup: z.ZodArray<z.ZodString, "many">;
-            nonIntegrated: z.ZodNullable<z.ZodArray<z.ZodString, "many">>;
+            nonIntegrated: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodString, "many">>>;
         }, "strip", z.ZodTypeAny, {
             dropoff: string[];
             pickup: string[];
-            nonIntegrated: string[] | null;
+            nonIntegrated?: string[] | null | undefined;
         }, {
             dropoff: string[];
             pickup: string[];
-            nonIntegrated: string[] | null;
+            nonIntegrated?: string[] | null | undefined;
         }>;
         dropoff: z.ZodObject<{
-            branchList: z.ZodArray<z.ZodNullable<z.ZodObject<{
+            branchList: z.ZodOptional<z.ZodNullable<z.ZodArray<z.ZodObject<{
                 branch_id: z.ZodNumber;
                 region: z.ZodString;
                 state: z.ZodString;
@@ -54,7 +54,7 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 zipcode: string;
                 district: string;
                 town: string;
-            }>>, "many">;
+            }>, "many">>>;
             slugList: z.ZodNullable<z.ZodArray<z.ZodObject<{
                 slug: z.ZodString;
                 slugName: z.ZodString;
@@ -66,7 +66,11 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 slugName: string;
             }>, "many">>;
         }, "strip", z.ZodTypeAny, {
-            branchList: ({
+            slugList: {
+                slug: string;
+                slugName: string;
+            }[] | null;
+            branchList?: {
                 branch_id: number;
                 region: string;
                 state: string;
@@ -75,13 +79,13 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 zipcode: string;
                 district: string;
                 town: string;
-            } | null)[];
-            slugList: {
-                slug: string;
-                slugName: string;
-            }[] | null;
+            }[] | null | undefined;
         }, {
-            branchList: ({
+            slugList: {
+                slug: string;
+                slugName: string;
+            }[] | null;
+            branchList?: {
                 branch_id: number;
                 region: string;
                 state: string;
@@ -90,11 +94,7 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 zipcode: string;
                 district: string;
                 town: string;
-            } | null)[];
-            slugList: {
-                slug: string;
-                slugName: string;
-            }[] | null;
+            }[] | null | undefined;
         }>;
         pickup: z.ZodObject<{
             addressList: z.ZodArray<z.ZodObject<{
@@ -128,7 +128,7 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 addressId: number;
                 addressFlag: string[];
             }>, "many">;
-            timeSlotList: z.ZodNullable<z.ZodArray<z.ZodObject<{
+            timeSlotList: z.ZodNullable<z.ZodOptional<z.ZodArray<z.ZodObject<{
                 date: z.ZodNumber;
                 timeText: z.ZodString;
                 pickupTimeId: z.ZodString;
@@ -140,7 +140,7 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 date: number;
                 timeText: string;
                 pickupTimeId: string;
-            }>, "many">>;
+            }>, "many">>>;
         }, "strip", z.ZodTypeAny, {
             addressList: {
                 region: string;
@@ -153,11 +153,11 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 addressId: number;
                 addressFlag: string[];
             }[];
-            timeSlotList: {
+            timeSlotList?: {
                 date: number;
                 timeText: string;
                 pickupTimeId: string;
-            }[] | null;
+            }[] | null | undefined;
         }, {
             addressList: {
                 region: string;
@@ -170,20 +170,24 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 addressId: number;
                 addressFlag: string[];
             }[];
-            timeSlotList: {
+            timeSlotList?: {
                 date: number;
                 timeText: string;
                 pickupTimeId: string;
-            }[] | null;
+            }[] | null | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         infoNeeded: {
             dropoff: string[];
             pickup: string[];
-            nonIntegrated: string[] | null;
+            nonIntegrated?: string[] | null | undefined;
         };
         dropoff: {
-            branchList: ({
+            slugList: {
+                slug: string;
+                slugName: string;
+            }[] | null;
+            branchList?: {
                 branch_id: number;
                 region: string;
                 state: string;
@@ -192,11 +196,7 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 zipcode: string;
                 district: string;
                 town: string;
-            } | null)[];
-            slugList: {
-                slug: string;
-                slugName: string;
-            }[] | null;
+            }[] | null | undefined;
         };
         pickup: {
             addressList: {
@@ -210,20 +210,24 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 addressId: number;
                 addressFlag: string[];
             }[];
-            timeSlotList: {
+            timeSlotList?: {
                 date: number;
                 timeText: string;
                 pickupTimeId: string;
-            }[] | null;
+            }[] | null | undefined;
         };
     }, {
         infoNeeded: {
             dropoff: string[];
             pickup: string[];
-            nonIntegrated: string[] | null;
+            nonIntegrated?: string[] | null | undefined;
         };
         dropoff: {
-            branchList: ({
+            slugList: {
+                slug: string;
+                slugName: string;
+            }[] | null;
+            branchList?: {
                 branch_id: number;
                 region: string;
                 state: string;
@@ -232,11 +236,7 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 zipcode: string;
                 district: string;
                 town: string;
-            } | null)[];
-            slugList: {
-                slug: string;
-                slugName: string;
-            }[] | null;
+            }[] | null | undefined;
         };
         pickup: {
             addressList: {
@@ -250,11 +250,11 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 addressId: number;
                 addressFlag: string[];
             }[];
-            timeSlotList: {
+            timeSlotList?: {
                 date: number;
                 timeText: string;
                 pickupTimeId: string;
-            }[] | null;
+            }[] | null | undefined;
         };
     }>>;
     requestId: z.ZodString;
@@ -266,10 +266,14 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
         infoNeeded: {
             dropoff: string[];
             pickup: string[];
-            nonIntegrated: string[] | null;
+            nonIntegrated?: string[] | null | undefined;
         };
         dropoff: {
-            branchList: ({
+            slugList: {
+                slug: string;
+                slugName: string;
+            }[] | null;
+            branchList?: {
                 branch_id: number;
                 region: string;
                 state: string;
@@ -278,11 +282,7 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 zipcode: string;
                 district: string;
                 town: string;
-            } | null)[];
-            slugList: {
-                slug: string;
-                slugName: string;
-            }[] | null;
+            }[] | null | undefined;
         };
         pickup: {
             addressList: {
@@ -296,11 +296,11 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 addressId: number;
                 addressFlag: string[];
             }[];
-            timeSlotList: {
+            timeSlotList?: {
                 date: number;
                 timeText: string;
                 pickupTimeId: string;
-            }[] | null;
+            }[] | null | undefined;
         };
     } | undefined;
 }, {
@@ -311,10 +311,14 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
         infoNeeded: {
             dropoff: string[];
             pickup: string[];
-            nonIntegrated: string[] | null;
+            nonIntegrated?: string[] | null | undefined;
         };
         dropoff: {
-            branchList: ({
+            slugList: {
+                slug: string;
+                slugName: string;
+            }[] | null;
+            branchList?: {
                 branch_id: number;
                 region: string;
                 state: string;
@@ -323,11 +327,7 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 zipcode: string;
                 district: string;
                 town: string;
-            } | null)[];
-            slugList: {
-                slug: string;
-                slugName: string;
-            }[] | null;
+            }[] | null | undefined;
         };
         pickup: {
             addressList: {
@@ -341,11 +341,11 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 addressId: number;
                 addressFlag: string[];
             }[];
-            timeSlotList: {
+            timeSlotList?: {
                 date: number;
                 timeText: string;
                 pickupTimeId: string;
-            }[] | null;
+            }[] | null | undefined;
         };
     } | undefined;
 }>;
@@ -360,10 +360,14 @@ export declare const getShippingParameter: (requestParameters: {
         infoNeeded: {
             dropoff: string[];
             pickup: string[];
-            nonIntegrated: string[] | null;
+            nonIntegrated?: string[] | null | undefined;
         };
         dropoff: {
-            branchList: ({
+            slugList: {
+                slug: string;
+                slugName: string;
+            }[] | null;
+            branchList?: {
                 branch_id: number;
                 region: string;
                 state: string;
@@ -372,11 +376,7 @@ export declare const getShippingParameter: (requestParameters: {
                 zipcode: string;
                 district: string;
                 town: string;
-            } | null)[];
-            slugList: {
-                slug: string;
-                slugName: string;
-            }[] | null;
+            }[] | null | undefined;
         };
         pickup: {
             addressList: {
@@ -390,11 +390,11 @@ export declare const getShippingParameter: (requestParameters: {
                 addressId: number;
                 addressFlag: string[];
             }[];
-            timeSlotList: {
+            timeSlotList?: {
                 date: number;
                 timeText: string;
                 pickupTimeId: string;
-            }[] | null;
+            }[] | null | undefined;
         };
     } | undefined;
 }>;

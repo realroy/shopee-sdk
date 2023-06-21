@@ -43,15 +43,15 @@ async function Q(r) {
     access_token: s,
     shop_id: i,
     params: c = {}
-  } = r, g = t.toString(), u = i.toString(), d = {};
+  } = r, g = t.toString(), u = i.toString(), l = {};
   for (const p in c) {
     const I = c[p];
-    Array.isArray(I) ? d[p] = [
+    Array.isArray(I) ? l[p] = [
       I[0],
       ...I.slice(1).map((je) => `&${p}=${je}`)
-    ].join("") : I instanceof Date ? d[p] = E(I) : d[p] = `${I}`;
+    ].join("") : I instanceof Date ? l[p] = E(I) : l[p] = `${I}`;
   }
-  const f = E(), l = new URL(o, a), S = await J(
+  const f = E(), d = new URL(o, a), S = await J(
     n,
     g,
     o,
@@ -59,14 +59,14 @@ async function Q(r) {
     s,
     u
   );
-  return l.search = new URLSearchParams({
-    ...d,
+  return d.search = new URLSearchParams({
+    ...l,
     partner_id: g,
     shop_id: u,
     ...!!s && { access_token: s },
     sign: S,
     timestamp: f
-  }).toString(), l.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
+  }).toString(), d.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
 }
 function T(r, t) {
   if (typeof r != "object" || r === null || r instanceof Date)
@@ -311,11 +311,11 @@ var ir = sr, w = k, cr = nr, ur = ir, pr = "[object Null]", gr = "[object Undefi
 function mr(r) {
   return r == null ? r === void 0 ? gr : pr : $ && $ in Object(r) ? cr(r) : ur(r);
 }
-var dr = mr;
-function lr(r) {
+var lr = mr;
+function dr(r) {
   return r != null && typeof r == "object";
 }
-var br = lr, fr = dr, _r = br, hr = "[object Symbol]";
+var br = dr, fr = lr, _r = br, hr = "[object Symbol]";
 function Sr(r) {
   return typeof r == "symbol" || _r(r) && fr(r) == hr;
 }
@@ -346,7 +346,7 @@ var Gr = Mr, Hr = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z
 function Fr(r) {
   return Hr.test(r);
 }
-var Vr = Fr, re = "\\ud800-\\udfff", zr = "\\u0300-\\u036f", Wr = "\\ufe20-\\ufe2f", Kr = "\\u20d0-\\u20ff", Br = zr + Wr + Kr, te = "\\u2700-\\u27bf", ne = "a-z\\xdf-\\xf6\\xf8-\\xff", Zr = "\\xac\\xb1\\xd7\\xf7", Yr = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", Jr = "\\u2000-\\u206f", Qr = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", oe = "A-Z\\xc0-\\xd6\\xd8-\\xde", Xr = "\\ufe0e\\ufe0f", ae = Zr + Yr + Jr + Qr, se = "['’]", G = "[" + ae + "]", et = "[" + Br + "]", ie = "\\d+", rt = "[" + te + "]", ce = "[" + ne + "]", ue = "[^" + re + ae + ie + te + ne + oe + "]", tt = "\\ud83c[\\udffb-\\udfff]", nt = "(?:" + et + "|" + tt + ")", ot = "[^" + re + "]", pe = "(?:\\ud83c[\\udde6-\\uddff]){2}", ge = "[\\ud800-\\udbff][\\udc00-\\udfff]", y = "[" + oe + "]", at = "\\u200d", H = "(?:" + ce + "|" + ue + ")", st = "(?:" + y + "|" + ue + ")", F = "(?:" + se + "(?:d|ll|m|re|s|t|ve))?", V = "(?:" + se + "(?:D|LL|M|RE|S|T|VE))?", me = nt + "?", de = "[" + Xr + "]?", it = "(?:" + at + "(?:" + [ot, pe, ge].join("|") + ")" + de + me + ")*", ct = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", ut = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", pt = de + me + it, gt = "(?:" + [rt, pe, ge].join("|") + ")" + pt, mt = RegExp([
+var Vr = Fr, re = "\\ud800-\\udfff", zr = "\\u0300-\\u036f", Wr = "\\ufe20-\\ufe2f", Kr = "\\u20d0-\\u20ff", Br = zr + Wr + Kr, te = "\\u2700-\\u27bf", ne = "a-z\\xdf-\\xf6\\xf8-\\xff", Zr = "\\xac\\xb1\\xd7\\xf7", Yr = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", Jr = "\\u2000-\\u206f", Qr = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", oe = "A-Z\\xc0-\\xd6\\xd8-\\xde", Xr = "\\ufe0e\\ufe0f", ae = Zr + Yr + Jr + Qr, se = "['’]", G = "[" + ae + "]", et = "[" + Br + "]", ie = "\\d+", rt = "[" + te + "]", ce = "[" + ne + "]", ue = "[^" + re + ae + ie + te + ne + oe + "]", tt = "\\ud83c[\\udffb-\\udfff]", nt = "(?:" + et + "|" + tt + ")", ot = "[^" + re + "]", pe = "(?:\\ud83c[\\udde6-\\uddff]){2}", ge = "[\\ud800-\\udbff][\\udc00-\\udfff]", y = "[" + oe + "]", at = "\\u200d", H = "(?:" + ce + "|" + ue + ")", st = "(?:" + y + "|" + ue + ")", F = "(?:" + se + "(?:d|ll|m|re|s|t|ve))?", V = "(?:" + se + "(?:D|LL|M|RE|S|T|VE))?", me = nt + "?", le = "[" + Xr + "]?", it = "(?:" + at + "(?:" + [ot, pe, ge].join("|") + ")" + le + me + ")*", ct = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", ut = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", pt = le + me + it, gt = "(?:" + [rt, pe, ge].join("|") + ")" + pt, mt = RegExp([
   y + "?" + ce + "+" + F + "(?=" + [G, y, "$"].join("|") + ")",
   st + "+" + V + "(?=" + [G, y + H, "$"].join("|") + ")",
   y + "?" + H + "+" + F,
@@ -356,10 +356,10 @@ var Vr = Fr, re = "\\ud800-\\udfff", zr = "\\u0300-\\u036f", Wr = "\\ufe20-\\ufe
   ie,
   gt
 ].join("|"), "g");
-function dt(r) {
+function lt(r) {
   return r.match(mt) || [];
 }
-var lt = dt, bt = Gr, ft = Vr, _t = A, ht = lt;
+var dt = lt, bt = Gr, ft = Vr, _t = A, ht = dt;
 function St(r, t, n) {
   return r = _t(r), t = n ? void 0 : t, t === void 0 ? ft(r) ? ht(r) : bt(r) : r.match(t) || [];
 }
@@ -369,7 +369,7 @@ function Ot(r) {
     return yt(Rt(Tt(t).replace(Et, "")), r, "");
   };
 }
-var le = Ot, At = le, Lt = At(function(r, t, n) {
+var de = Ot, At = de, Lt = At(function(r, t, n) {
   return r + (n ? "_" : "") + t.toLowerCase();
 }), be = Lt;
 function xt(r, t, n) {
@@ -400,11 +400,11 @@ var on = nn, an = Vt, sn = fe, cn = on;
 function un(r) {
   return sn(r) ? cn(r) : an(r);
 }
-var pn = un, gn = kt, mn = fe, dn = pn, ln = A;
+var pn = un, gn = kt, mn = fe, ln = pn, dn = A;
 function bn(r) {
   return function(t) {
-    t = ln(t);
-    var n = mn(t) ? dn(t) : void 0, o = n ? n[0] : t.charAt(0), a = n ? gn(n, 1).join("") : t.slice(1);
+    t = dn(t);
+    var n = mn(t) ? ln(t) : void 0, o = n ? n[0] : t.charAt(0), a = n ? gn(n, 1).join("") : t.slice(1);
     return o[r]() + a;
   };
 }
@@ -412,7 +412,7 @@ var fn = bn, _n = fn, hn = _n("toUpperCase"), Sn = hn, In = A, yn = Sn;
 function Tn(r) {
   return yn(In(r).toLowerCase());
 }
-var Rn = Tn, Pn = Rn, En = le, On = En(function(r, t, n) {
+var Rn = Tn, Pn = Rn, En = de, On = En(function(r, t, n) {
   return t = t.toLowerCase(), r + (n ? Pn(t) : t);
 }), Re = On;
 class L {
@@ -432,8 +432,8 @@ class L {
           response: a,
           message: s,
           config: { method: i, url: c, data: g, params: u }
-        } = o, d = a == null ? void 0 : a.status;
-        throw this.logger.error({ status: d, message: s, method: i, url: c, data: g, params: u }), o;
+        } = o, l = a == null ? void 0 : a.status;
+        throw this.logger.error({ status: l, message: s, method: i, url: c, data: g, params: u }), o;
       }
     );
     this.logInterceptorIds = [
@@ -512,13 +512,13 @@ function b(r) {
       ...g,
       path: r.path,
       params: i
-    }), d = await z.get(u), f = T(
-      d.data,
+    }), l = await z.get(u), f = T(
+      l.data,
       (p) => Re(p.toString())
-    ), l = await r.responseSchema.safeParseAsync(f);
-    if (!l.success)
-      throw new Error(`parse response error: ${l.error.message}`);
-    return l.data;
+    ), d = await r.responseSchema.safeParseAsync(f);
+    if (!d.success)
+      throw new Error(`parse response error: ${d.error.message}`);
+    return d.data;
   };
 }
 const W = L.getInstance();
@@ -543,16 +543,16 @@ function h({
       ...g,
       path: t.path,
       params: {}
-    }), d = T(
+    }), l = T(
       i.data,
       (p) => be(p.toString())
-    ), f = await W.post(u, {}, d, r);
+    ), f = await W.post(u, {}, l, r);
     if (r !== "json" || t.responseSchema === void 0)
       return f.data;
-    const l = T(
+    const d = T(
       f.data,
       (p) => Re(p.toString())
-    ), S = await t.responseSchema.safeParseAsync(l);
+    ), S = await t.responseSchema.safeParseAsync(d);
     if (!S.success)
       throw new Error(`parse response error: ${S.error.message}`);
     return S.data;
@@ -700,7 +700,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
     infoNeeded: e.object({
       dropoff: e.array(e.string()),
       pickup: e.array(e.string()),
-      nonIntegrated: e.array(e.string()).nullable()
+      nonIntegrated: e.array(e.string()).nullable().optional()
     }),
     dropoff: e.object({
       branchList: e.array(
@@ -713,8 +713,8 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
           zipcode: e.string(),
           district: e.string(),
           town: e.string()
-        }).nullable()
-      ),
+        })
+      ).nullable().optional(),
       slugList: e.array(
         e.object({
           slug: e.string(),
@@ -742,7 +742,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
           timeText: e.string(),
           pickupTimeId: e.string()
         })
-      ).nullable()
+      ).optional().nullable()
     })
   }).optional(),
   requestId: e.string()
