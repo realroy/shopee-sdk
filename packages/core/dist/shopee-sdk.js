@@ -901,10 +901,10 @@ const Ln = "/api/v2/logistic/get_shipping_parameter", xn = "/api/v2/logistic/shi
             productLocationId: e.array(e.string())
           })
         ),
-        prescriptionImages: e.array(e.string()),
-        prescriptionCheckStatus: e.number(),
-        edtFrom: e.number(),
-        edtTo: e.number(),
+        prescriptionImages: e.array(e.string()).optional(),
+        prescriptionCheckStatus: e.number().optional(),
+        edtFrom: e.number().optional(),
+        edtTo: e.number().optional(),
         orderChargeableWeightGram: e.number(),
         messageToSeller: e.string(),
         note: e.string(),
@@ -926,7 +926,7 @@ const Ln = "/api/v2/logistic/get_shipping_parameter", xn = "/api/v2/logistic/shi
             parcelChargeableWeightGram: e.number()
           })
         ),
-        payTime: e.number(),
+        payTime: e.number().optional(),
         paymentMethod: e.string(),
         pickupDoneTime: e.number(),
         recipientAddress: e.object({

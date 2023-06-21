@@ -132,10 +132,10 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }>, "many">;
-            prescriptionImages: z.ZodArray<z.ZodString, "many">;
-            prescriptionCheckStatus: z.ZodNumber;
-            edtFrom: z.ZodNumber;
-            edtTo: z.ZodNumber;
+            prescriptionImages: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+            prescriptionCheckStatus: z.ZodOptional<z.ZodNumber>;
+            edtFrom: z.ZodOptional<z.ZodNumber>;
+            edtTo: z.ZodOptional<z.ZodNumber>;
             orderChargeableWeightGram: z.ZodNumber;
             messageToSeller: z.ZodString;
             note: z.ZodString;
@@ -181,7 +181,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 shippingCarrier: string;
                 parcelChargeableWeightGram: number;
             }>, "many">;
-            payTime: z.ZodNumber;
+            payTime: z.ZodOptional<z.ZodNumber>;
             paymentMethod: z.ZodString;
             pickupDoneTime: z.ZodNumber;
             recipientAddress: z.ZodObject<{
@@ -277,10 +277,6 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }[];
-            prescriptionImages: string[];
-            prescriptionCheckStatus: number;
-            edtFrom: number;
-            edtTo: number;
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
@@ -297,7 +293,6 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
-            payTime: number;
             paymentMethod: string;
             pickupDoneTime: number;
             recipientAddress: {
@@ -315,6 +310,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             splitUp: boolean;
             totalAmount: number;
             updateTime: number;
+            prescriptionImages?: string[] | undefined;
+            prescriptionCheckStatus?: number | undefined;
+            edtFrom?: number | undefined;
+            edtTo?: number | undefined;
+            payTime?: number | undefined;
         }, {
             orderSn: string;
             region: string;
@@ -371,10 +371,6 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }[];
-            prescriptionImages: string[];
-            prescriptionCheckStatus: number;
-            edtFrom: number;
-            edtTo: number;
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
@@ -391,7 +387,6 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
-            payTime: number;
             paymentMethod: string;
             pickupDoneTime: number;
             recipientAddress: {
@@ -409,6 +404,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             splitUp: boolean;
             totalAmount: number;
             updateTime: number;
+            prescriptionImages?: string[] | undefined;
+            prescriptionCheckStatus?: number | undefined;
+            edtFrom?: number | undefined;
+            edtTo?: number | undefined;
+            payTime?: number | undefined;
         }>, "many">;
     }, "strip", z.ZodTypeAny, {
         orderList: {
@@ -467,10 +467,6 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }[];
-            prescriptionImages: string[];
-            prescriptionCheckStatus: number;
-            edtFrom: number;
-            edtTo: number;
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
@@ -487,7 +483,6 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
-            payTime: number;
             paymentMethod: string;
             pickupDoneTime: number;
             recipientAddress: {
@@ -505,6 +500,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             splitUp: boolean;
             totalAmount: number;
             updateTime: number;
+            prescriptionImages?: string[] | undefined;
+            prescriptionCheckStatus?: number | undefined;
+            edtFrom?: number | undefined;
+            edtTo?: number | undefined;
+            payTime?: number | undefined;
         }[];
     }, {
         orderList: {
@@ -563,10 +563,6 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }[];
-            prescriptionImages: string[];
-            prescriptionCheckStatus: number;
-            edtFrom: number;
-            edtTo: number;
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
@@ -583,7 +579,6 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
-            payTime: number;
             paymentMethod: string;
             pickupDoneTime: number;
             recipientAddress: {
@@ -601,6 +596,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             splitUp: boolean;
             totalAmount: number;
             updateTime: number;
+            prescriptionImages?: string[] | undefined;
+            prescriptionCheckStatus?: number | undefined;
+            edtFrom?: number | undefined;
+            edtTo?: number | undefined;
+            payTime?: number | undefined;
         }[];
     }>>;
     requestId: z.ZodString;
@@ -665,10 +665,6 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }[];
-            prescriptionImages: string[];
-            prescriptionCheckStatus: number;
-            edtFrom: number;
-            edtTo: number;
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
@@ -685,7 +681,6 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
-            payTime: number;
             paymentMethod: string;
             pickupDoneTime: number;
             recipientAddress: {
@@ -703,6 +698,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             splitUp: boolean;
             totalAmount: number;
             updateTime: number;
+            prescriptionImages?: string[] | undefined;
+            prescriptionCheckStatus?: number | undefined;
+            edtFrom?: number | undefined;
+            edtTo?: number | undefined;
+            payTime?: number | undefined;
         }[];
     } | undefined;
 }, {
@@ -766,10 +766,6 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 };
                 productLocationId: string[];
             }[];
-            prescriptionImages: string[];
-            prescriptionCheckStatus: number;
-            edtFrom: number;
-            edtTo: number;
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
@@ -786,7 +782,6 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
                 parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
-            payTime: number;
             paymentMethod: string;
             pickupDoneTime: number;
             recipientAddress: {
@@ -804,6 +799,11 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             splitUp: boolean;
             totalAmount: number;
             updateTime: number;
+            prescriptionImages?: string[] | undefined;
+            prescriptionCheckStatus?: number | undefined;
+            edtFrom?: number | undefined;
+            edtTo?: number | undefined;
+            payTime?: number | undefined;
         }[];
     } | undefined;
 }>;
@@ -871,10 +871,6 @@ export declare const getOrderDetail: (requestParameters: {
                 };
                 productLocationId: string[];
             }[];
-            prescriptionImages: string[];
-            prescriptionCheckStatus: number;
-            edtFrom: number;
-            edtTo: number;
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
@@ -891,7 +887,6 @@ export declare const getOrderDetail: (requestParameters: {
                 parcelChargeableWeightGram: number;
             }[];
             shippingCarrier: string;
-            payTime: number;
             paymentMethod: string;
             pickupDoneTime: number;
             recipientAddress: {
@@ -909,6 +904,11 @@ export declare const getOrderDetail: (requestParameters: {
             splitUp: boolean;
             totalAmount: number;
             updateTime: number;
+            prescriptionImages?: string[] | undefined;
+            prescriptionCheckStatus?: number | undefined;
+            edtFrom?: number | undefined;
+            edtTo?: number | undefined;
+            payTime?: number | undefined;
         }[];
     } | undefined;
 }>;
