@@ -700,7 +700,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
     infoNeeded: e.object({
       dropoff: e.array(e.string()),
       pickup: e.array(e.string()),
-      nonIntegrated: e.array(e.string())
+      nonIntegrated: e.array(e.string()).nullable()
     }),
     dropoff: e.object({
       branchList: e.array(
@@ -713,14 +713,14 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
           zipcode: e.string(),
           district: e.string(),
           town: e.string()
-        })
+        }).nullable()
       ),
       slugList: e.array(
         e.object({
           slug: e.string(),
           slugName: e.string()
         })
-      )
+      ).nullable()
     }),
     pickup: e.object({
       addressList: e.array(
@@ -742,7 +742,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
           timeText: e.string(),
           pickupTimeId: e.string()
         })
-      )
+      ).nullable()
     })
   }).optional(),
   requestId: e.string()
