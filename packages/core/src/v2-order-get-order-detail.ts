@@ -76,8 +76,8 @@ export const getOrderDetailResponseSchema = z.object({
               productLocationId: z.array(z.string()),
             })
           ),
-          prescriptionImages: z.array(z.string()).optional(),
-          prescriptionCheckStatus: z.number().optional(),
+          prescriptionImages: z.array(z.string()).nullable(),
+          prescriptionCheckStatus: z.number().nullable(),
           edtFrom: z.number().optional(),
           edtTo: z.number().optional(),
           orderChargeableWeightGram: z.number(),
@@ -101,7 +101,7 @@ export const getOrderDetailResponseSchema = z.object({
               parcelChargeableWeightGram: z.number(),
             })
           ),
-          payTime: z.number().optional(),
+          payTime: z.number().nullable(),
           paymentMethod: z.string(),
           pickupDoneTime: z.number(),
           recipientAddress: z.object({
