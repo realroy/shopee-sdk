@@ -16,12 +16,12 @@ export const logisticGetShippingParameterResponseSchema = z.object({
       infoNeeded: z.object({
         dropoff: z.array(z.string()),
         pickup: z.array(z.string()),
-        nonIntegrated: z.array(z.string()).nullable(),
+        nonIntegrated: z.array(z.string()).nullable().optional(),
       }),
       dropoff: z.object({
-        branchList: z.array(
-          z
-            .object({
+        branchList: z
+          .array(
+            z.object({
               branch_id: z.number(),
               region: z.string(),
               state: z.string(),
@@ -31,8 +31,9 @@ export const logisticGetShippingParameterResponseSchema = z.object({
               district: z.string(),
               town: z.string(),
             })
-            .nullable()
-        ),
+          )
+          .nullable()
+          .optional(),
         slugList: z
           .array(
             z.object({
@@ -64,6 +65,7 @@ export const logisticGetShippingParameterResponseSchema = z.object({
               pickupTimeId: z.string(),
             })
           )
+          .optional()
           .nullable(),
       }),
     })
