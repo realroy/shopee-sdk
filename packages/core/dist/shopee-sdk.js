@@ -558,7 +558,7 @@ function h({
     return S.data;
   };
 }
-const Ln = "/api/v2/logistic/get_shipping_parameter", xn = "/api/v2/logistic/ship_order", jn = "/api/v2/logistics/update_shipping_order", vn = "/api/v2/logistics/get_tracking_number", Cn = "/api/v2/logistic/get_shipping_document_parameter", kn = "/api/v2/logistic/create_shipping_document", Dn = "/api/v2/logistics/get_shipping_document_result", Nn = "/api/v2/logistics/download_shipping_document", Pe = [
+const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/ship_order", jn = "/api/v2/logistics/update_shipping_order", vn = "/api/v2/logistics/get_tracking_number", Cn = "/api/v2/logistics/get_shipping_document_parameter", kn = "/api/v2/logistics/create_shipping_document", Dn = "/api/v2/logistics/get_shipping_document_result", Nn = "/api/v2/logistics/download_shipping_document", Pe = [
   "plp_number",
   "first_mile_tracking_number",
   "last_mile_tracking_number"
@@ -567,7 +567,11 @@ const Ln = "/api/v2/logistic/get_shipping_parameter", xn = "/api/v2/logistic/shi
   "THERMAL_AIR_WAYBILL",
   "NORMAL_JOB_AIR_WAYBILL",
   "THERMAL_JOB_AIR_WAYBILL"
-], wn = ["READY", "FAILED", "PROCESSING"], $n = e.object({
+], wn = [
+  "READY",
+  "FAILED",
+  "PROCESSING"
+], $n = e.object({
   orderList: e.array(
     e.object({
       orderSn: e.string(),
