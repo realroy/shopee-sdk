@@ -69,7 +69,7 @@ async function Q(r) {
   }).toString(), l.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
 }
 function T(r, t) {
-  if (typeof r != "object" || r === null)
+  if (typeof r != "object" || r === null || r instanceof Date)
     return r;
   if (Array.isArray(r))
     return r.map(
