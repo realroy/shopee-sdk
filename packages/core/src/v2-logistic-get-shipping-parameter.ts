@@ -16,27 +16,31 @@ export const logisticGetShippingParameterResponseSchema = z.object({
       infoNeeded: z.object({
         dropoff: z.array(z.string()),
         pickup: z.array(z.string()),
-        nonIntegrated: z.array(z.string()),
+        nonIntegrated: z.array(z.string()).nullable(),
       }),
       dropoff: z.object({
         branchList: z.array(
-          z.object({
-            branch_id: z.number(),
-            region: z.string(),
-            state: z.string(),
-            city: z.string(),
-            address: z.string(),
-            zipcode: z.string(),
-            district: z.string(),
-            town: z.string(),
-          })
+          z
+            .object({
+              branch_id: z.number(),
+              region: z.string(),
+              state: z.string(),
+              city: z.string(),
+              address: z.string(),
+              zipcode: z.string(),
+              district: z.string(),
+              town: z.string(),
+            })
+            .nullable()
         ),
-        slugList: z.array(
-          z.object({
-            slug: z.string(),
-            slugName: z.string(),
-          })
-        ),
+        slugList: z
+          .array(
+            z.object({
+              slug: z.string(),
+              slugName: z.string(),
+            })
+          )
+          .nullable(),
       }),
       pickup: z.object({
         addressList: z.array(
@@ -52,13 +56,15 @@ export const logisticGetShippingParameterResponseSchema = z.object({
             addressFlag: z.array(z.string()),
           })
         ),
-        timeSlotList: z.array(
-          z.object({
-            date: z.number(),
-            timeText: z.string(),
-            pickupTimeId: z.string(),
-          })
-        ),
+        timeSlotList: z
+          .array(
+            z.object({
+              date: z.number(),
+              timeText: z.string(),
+              pickupTimeId: z.string(),
+            })
+          )
+          .nullable(),
       }),
     })
     .optional(),
