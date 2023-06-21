@@ -588,10 +588,10 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
     packageNumber: e.string().optional()
   }).optional(),
   response: e.object({
-    orderSn: e.string(),
+    orderSn: e.string().optional(),
     packageNumber: e.string().optional(),
-    failError: e.string(),
-    failMessage: e.string()
+    failError: e.string().optional(),
+    failMessage: e.string().optional()
   }).optional(),
   requestId: e.string()
 }), qn = h({

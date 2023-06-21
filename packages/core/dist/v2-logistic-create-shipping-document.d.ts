@@ -45,20 +45,20 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
         packageNumber?: string | undefined;
     }>>;
     response: z.ZodOptional<z.ZodObject<{
-        orderSn: z.ZodString;
+        orderSn: z.ZodOptional<z.ZodString>;
         packageNumber: z.ZodOptional<z.ZodString>;
-        failError: z.ZodString;
-        failMessage: z.ZodString;
+        failError: z.ZodOptional<z.ZodString>;
+        failMessage: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
-        orderSn: string;
-        failError: string;
-        failMessage: string;
+        orderSn?: string | undefined;
         packageNumber?: string | undefined;
+        failError?: string | undefined;
+        failMessage?: string | undefined;
     }, {
-        orderSn: string;
-        failError: string;
-        failMessage: string;
+        orderSn?: string | undefined;
         packageNumber?: string | undefined;
+        failError?: string | undefined;
+        failMessage?: string | undefined;
     }>>;
     requestId: z.ZodString;
 }, "strip", z.ZodTypeAny, {
@@ -70,10 +70,10 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
         packageNumber?: string | undefined;
     } | undefined;
     response?: {
-        orderSn: string;
-        failError: string;
-        failMessage: string;
+        orderSn?: string | undefined;
         packageNumber?: string | undefined;
+        failError?: string | undefined;
+        failMessage?: string | undefined;
     } | undefined;
 }, {
     requestId: string;
@@ -84,10 +84,10 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
         packageNumber?: string | undefined;
     } | undefined;
     response?: {
-        orderSn: string;
-        failError: string;
-        failMessage: string;
+        orderSn?: string | undefined;
         packageNumber?: string | undefined;
+        failError?: string | undefined;
+        failMessage?: string | undefined;
     } | undefined;
 }>;
 export declare const createShippingDocument: (requestParameters: {
