@@ -9,7 +9,8 @@ export function transformObjectKeys<
 ): Record<TTransformedKey, T[keyof T]> {
   type TObjKey = keyof T;
 
-  if (typeof obj !== "object" || obj === null) {
+  if (typeof obj !== "object" || obj === null || obj instanceof Date) {
+    // @ts-ignore
     return obj;
   }
 

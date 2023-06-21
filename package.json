@@ -10,6 +10,7 @@
   "description": "",
   "scripts": {
     "dev:playground": "nx dev @shopee-sdk/playground",
+    "test:core": "nx test @shopee-sdk/core",
     "test:core-e2e": "nx test @shopee-sdk/core-e2e",
     "test-ui:core-e2e": "nx test-ui @shopee-sdk/core-e2e",
     "build:core": "nx build @shopee-sdk/core"

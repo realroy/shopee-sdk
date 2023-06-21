@@ -97,6 +97,7 @@ export function buildQuery<
     const context = contextInstance.value;
 
     httpClient.setLogEnabled(contextInstance.isLogEnabled);
+
     const signedURL = await signURL({
       ...context,
       path: args.path,
