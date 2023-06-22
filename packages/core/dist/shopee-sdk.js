@@ -575,8 +575,8 @@ const An = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   orderList: e.array(
     e.object({
       orderSn: e.string(),
-      packageNumber: e.string().optional(),
-      trackingNumber: e.string().optional(),
+      packageNumber: e.string().nullable().default(null),
+      trackingNumber: e.string().nullable().default(null),
       shippingDocumentType: e.enum(N).optional()
     })
   ).min(1).max(50)
