@@ -8,7 +8,7 @@ import {
 
 export const logisticGetTrackingNumberRequestParameterSchema = z.object({
   orderSn: z.string(),
-  packageNumber: z.number().optional(),
+  packageNumber: z.string().optional(),
   responseOptionalFields: z
     .array(z.enum(V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS))
     .optional(),
