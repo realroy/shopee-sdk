@@ -586,7 +586,7 @@ const An = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   warning: e.object({
     orderSn: e.string(),
     packageNumber: e.string().optional()
-  }).optional(),
+  }).nullable().optional(),
   response: e.object({
     resultList: e.array(
       e.object({

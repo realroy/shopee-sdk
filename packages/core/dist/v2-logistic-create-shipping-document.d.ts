@@ -34,7 +34,7 @@ export declare const logisticCreateShippingDocumentRequestParameterSchema: z.Zod
 export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
     error: z.ZodOptional<z.ZodString>;
     message: z.ZodOptional<z.ZodString>;
-    warning: z.ZodOptional<z.ZodObject<{
+    warning: z.ZodOptional<z.ZodNullable<z.ZodObject<{
         orderSn: z.ZodString;
         packageNumber: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
@@ -43,7 +43,7 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
     }, {
         orderSn: string;
         packageNumber?: string | undefined;
-    }>>;
+    }>>>;
     response: z.ZodOptional<z.ZodObject<{
         resultList: z.ZodArray<z.ZodObject<{
             orderSn: z.ZodOptional<z.ZodString>;
@@ -84,7 +84,7 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
     warning?: {
         orderSn: string;
         packageNumber?: string | undefined;
-    } | undefined;
+    } | null | undefined;
     response?: {
         resultList: {
             orderSn?: string | undefined;
@@ -100,7 +100,7 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
     warning?: {
         orderSn: string;
         packageNumber?: string | undefined;
-    } | undefined;
+    } | null | undefined;
     response?: {
         resultList: {
             orderSn?: string | undefined;
