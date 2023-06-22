@@ -11,8 +11,8 @@ export const logisticCreateShippingDocumentRequestParameterSchema = z.object({
     .array(
       z.object({
         orderSn: z.string(),
-        packageNumber: z.string().optional(),
-        trackingNumber: z.string().optional(),
+        packageNumber: z.string().nullable().default(null),
+        trackingNumber: z.string().nullable().default(null),
         shippingDocumentType: z
           .enum(V2_LOGISTIC_SHIPPING_DOCUMENT_TYPES)
           .optional(),
