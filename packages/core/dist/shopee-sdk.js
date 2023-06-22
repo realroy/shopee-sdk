@@ -80,7 +80,7 @@ function T(r, t) {
     o !== void 0 && (n[t(o)] = T(a, t));
   return n;
 }
-var O = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+var L = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
 function Ne(r, t, n, o) {
   var a = -1, s = r == null ? 0 : r.length;
   for (o && s && (n = r[++a]); ++a < s; )
@@ -286,7 +286,7 @@ var $e = we, Ue = $e, qe = {
   œ: "oe",
   ŉ: "'n",
   ſ: "s"
-}, Me = Ue(qe), Ge = Me, He = typeof O == "object" && O && O.Object === Object && O, Fe = He, Ve = Fe, ze = typeof self == "object" && self && self.Object === Object && self, We = Ve || ze || Function("return this")(), Ke = We, Be = Ke, Ze = Be.Symbol, k = Ze;
+}, Me = Ue(qe), Ge = Me, He = typeof L == "object" && L && L.Object === Object && L, Fe = He, Ve = Fe, ze = typeof self == "object" && self && self.Object === Object && self, We = Ve || ze || Function("return this")(), Ke = We, Be = Ke, Ze = Be.Symbol, k = Ze;
 function Ye(r, t) {
   for (var n = -1, o = r == null ? 0 : r.length, a = Array(o); ++n < o; )
     a[n] = t(r[n], n, r);
@@ -330,13 +330,13 @@ function ee(r) {
   var t = r + "";
   return t == "0" && 1 / r == -Pr ? "-0" : t;
 }
-var Er = ee, Or = Er;
-function Ar(r) {
-  return r == null ? "" : Or(r);
+var Er = ee, Lr = Er;
+function Or(r) {
+  return r == null ? "" : Lr(r);
 }
-var A = Ar, Lr = Ge, xr = A, jr = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, vr = "\\u0300-\\u036f", Cr = "\\ufe20-\\ufe2f", kr = "\\u20d0-\\u20ff", Nr = vr + Cr + kr, Dr = "[" + Nr + "]", wr = RegExp(Dr, "g");
+var O = Or, Ar = Ge, xr = O, jr = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, vr = "\\u0300-\\u036f", Cr = "\\ufe20-\\ufe2f", kr = "\\u20d0-\\u20ff", Nr = vr + Cr + kr, Dr = "[" + Nr + "]", wr = RegExp(Dr, "g");
 function $r(r) {
-  return r = xr(r), r && r.replace(jr, Lr).replace(wr, "");
+  return r = xr(r), r && r.replace(jr, Ar).replace(wr, "");
 }
 var Ur = $r, qr = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
 function Mr(r) {
@@ -359,19 +359,19 @@ var Vr = Fr, re = "\\ud800-\\udfff", zr = "\\u0300-\\u036f", Wr = "\\ufe20-\\ufe
 function lt(r) {
   return r.match(mt) || [];
 }
-var dt = lt, bt = Gr, ft = Vr, _t = A, ht = dt;
+var dt = lt, bt = Gr, ft = Vr, _t = O, ht = dt;
 function St(r, t, n) {
   return r = _t(r), t = n ? void 0 : t, t === void 0 ? ft(r) ? ht(r) : bt(r) : r.match(t) || [];
 }
 var It = St, yt = De, Tt = Ur, Rt = It, Pt = "['’]", Et = RegExp(Pt, "g");
-function Ot(r) {
+function Lt(r) {
   return function(t) {
     return yt(Rt(Tt(t).replace(Et, "")), r, "");
   };
 }
-var de = Ot, At = de, Lt = At(function(r, t, n) {
+var de = Lt, Ot = de, At = Ot(function(r, t, n) {
   return r + (n ? "_" : "") + t.toLowerCase();
-}), be = Lt;
+}), be = At;
 function xt(r, t, n) {
   var o = -1, a = r.length;
   t < 0 && (t = -t > a ? 0 : a + t), n = n > a ? a : n, n < 0 && (n += a), a = t > n ? 0 : n - t >>> 0, t >>>= 0;
@@ -400,7 +400,7 @@ var on = nn, an = Vt, sn = fe, cn = on;
 function un(r) {
   return sn(r) ? cn(r) : an(r);
 }
-var pn = un, gn = kt, mn = fe, ln = pn, dn = A;
+var pn = un, gn = kt, mn = fe, ln = pn, dn = O;
 function bn(r) {
   return function(t) {
     t = dn(t);
@@ -408,14 +408,14 @@ function bn(r) {
     return o[r]() + a;
   };
 }
-var fn = bn, _n = fn, hn = _n("toUpperCase"), Sn = hn, In = A, yn = Sn;
+var fn = bn, _n = fn, hn = _n("toUpperCase"), Sn = hn, In = O, yn = Sn;
 function Tn(r) {
   return yn(In(r).toLowerCase());
 }
-var Rn = Tn, Pn = Rn, En = de, On = En(function(r, t, n) {
+var Rn = Tn, Pn = Rn, En = de, Ln = En(function(r, t, n) {
   return t = t.toLowerCase(), r + (n ? Pn(t) : t);
-}), Re = On;
-class L {
+}), Re = Ln;
+class A {
   constructor() {
     this.logger = console, this.logInterceptorIds = [], this.isLogEnabled = !1, this.axios = ve.create(), this.isLogEnabled && this.addLogInterceptor();
   }
@@ -445,7 +445,7 @@ class L {
     this.logInterceptorIds.forEach(this.axios.interceptors.request.eject);
   }
   static getInstance() {
-    return this.instance ?? (this.instance = new L());
+    return this.instance ?? (this.instance = new A());
   }
   setLogEnabled(t) {
     return this.isLogEnabled = t, this.isLogEnabled ? this.addLogInterceptor() : this.removeLogInterceptor(), this.isLogEnabled;
@@ -477,8 +477,8 @@ class _ {
     };
   }
 }
-const z = L.getInstance();
-function An(r) {
+const z = A.getInstance();
+function On(r) {
   return async function(n) {
     if (!r.transformRequestParameter)
       return n;
@@ -496,7 +496,7 @@ function An(r) {
   };
 }
 function b(r) {
-  const t = An(r);
+  const t = On(r);
   return async function(o) {
     const a = await r.requestParameterSchema.safeParseAsync(o);
     if (!a.success)
@@ -521,7 +521,7 @@ function b(r) {
     return d.data;
   };
 }
-const W = L.getInstance();
+const W = A.getInstance();
 function h({
   responseType: r = "json",
   ...t
@@ -558,7 +558,7 @@ function h({
     return S.data;
   };
 }
-const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/ship_order", jn = "/api/v2/logistics/update_shipping_order", vn = "/api/v2/logistics/get_tracking_number", Cn = "/api/v2/logistics/get_shipping_document_parameter", kn = "/api/v2/logistics/create_shipping_document", Nn = "/api/v2/logistics/get_shipping_document_result", Dn = "/api/v2/logistics/download_shipping_document", Pe = [
+const An = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/ship_order", jn = "/api/v2/logistics/update_shipping_order", vn = "/api/v2/logistics/get_tracking_number", Cn = "/api/v2/logistics/get_shipping_document_parameter", kn = "/api/v2/logistics/create_shipping_document", Nn = "/api/v2/logistics/get_shipping_document_result", Dn = "/api/v2/logistics/download_shipping_document", Pe = [
   "plp_number",
   "first_mile_tracking_number",
   "last_mile_tracking_number"
@@ -587,14 +587,16 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
     orderSn: e.string(),
     packageNumber: e.string().optional()
   }).optional(),
-  response: e.array(
-    e.object({
-      orderSn: e.string().optional(),
-      packageNumber: e.string().optional(),
-      failError: e.string().optional().nullable(),
-      failMessage: e.string().optional().nullable()
-    })
-  ).optional(),
+  response: e.object({
+    resultList: e.array(
+      e.object({
+        orderSn: e.string().optional(),
+        packageNumber: e.string().optional(),
+        failError: e.string().optional().nullable(),
+        failMessage: e.string().optional().nullable()
+      })
+    )
+  }).optional(),
   requestId: e.string()
 }), qn = h({
   path: kn,
@@ -755,7 +757,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   }).optional(),
   requestId: e.string()
 }), Xn = b({
-  path: Ln,
+  path: An,
   requestParameterSchema: Jn,
   responseSchema: Qn
 }), eo = e.object({
@@ -817,7 +819,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   "IN_CANCEL",
   "CANCELLED",
   "INVOICE_PENDING"
-], Fo = C(Ee), Oe = [
+], Fo = C(Ee), Le = [
   "buyer_user_id",
   "buyer_username",
   "estimated_shipping_fee",
@@ -850,9 +852,9 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   "edt",
   "prescription_images",
   "prescription_check_status"
-], Vo = C(Oe), B = e.object({
+], Vo = C(Le), B = e.object({
   orderSnList: e.array(e.string()),
-  responseOptionalFields: e.array(e.enum(Oe)).optional()
+  responseOptionalFields: e.array(e.enum(Le)).optional()
 }), uo = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
@@ -1005,7 +1007,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   __proto__: null,
   getOrderDetail: po,
   getOrderList: lo
-}, Symbol.toStringTag, { value: "Module" })), fo = "/api/v2/product/get_item_base_info", _o = "/api/v2/product/get_item_extra_info", ho = "/api/v2/product/get_item_list", So = "/api/v2/product/get_model_list", Ae = ["NORMAL", "DELETED", "UNLIST", "BANNED"], Io = e.object({
+}, Symbol.toStringTag, { value: "Module" })), fo = "/api/v2/product/get_item_base_info", _o = "/api/v2/product/get_item_extra_info", ho = "/api/v2/product/get_item_list", So = "/api/v2/product/get_model_list", Oe = ["NORMAL", "DELETED", "UNLIST", "BANNED"], Io = e.object({
   itemIdList: e.string(),
   needTaxInfo: e.coerce.boolean().optional(),
   needComplaintPolicy: e.coerce.boolean().optional()
@@ -1149,8 +1151,8 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   pageSize: e.number().int().positive().max(100).optional(),
   updateTimeFrom: e.date().optional(),
   updateTimeTo: e.date().optional(),
-  itemStatus: e.array(e.enum(Ae))
-}), Oo = e.object({
+  itemStatus: e.array(e.enum(Oe))
+}), Lo = e.object({
   error: e.string().optional(),
   message: e.string().nullable().optional(),
   warning: e.string().nullable().optional(),
@@ -1159,7 +1161,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
     item: e.array(
       e.object({
         itemId: e.number().int(),
-        itemStatus: e.enum(Ae),
+        itemStatus: e.enum(Oe),
         updateTime: e.number().int().optional()
       })
     ).optional()
@@ -1167,7 +1169,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   totalCount: e.number().int().optional(),
   hasNextPage: e.boolean().optional(),
   nextOffset: e.number().int().optional()
-}), Ao = b({
+}), Oo = b({
   path: ho,
   requestParameterSchema: Z,
   transformRequestParameterSchema: Z.extend({
@@ -1183,8 +1185,8 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
       updateTimeTo: E(r.updateTimeTo ?? /* @__PURE__ */ new Date())
     };
   },
-  responseSchema: Oo
-}), Lo = e.object({
+  responseSchema: Lo
+}), Ao = e.object({
   item_id: e.string()
 }), xo = e.object({
   error: e.string(),
@@ -1260,15 +1262,15 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   })
 }), jo = b({
   path: So,
-  requestParameterSchema: Lo,
+  requestParameterSchema: Ao,
   responseSchema: xo
 }), vo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   getItemBaseInfo: To,
   getItemExtraInfo: Eo,
-  getItemList: Ao,
+  getItemList: Oo,
   getModelList: jo
-}, Symbol.toStringTag, { value: "Module" })), Co = "/api/v2/auth/token/get", Le = e.object({
+}, Symbol.toStringTag, { value: "Module" })), Co = "/api/v2/auth/token/get", Ae = e.object({
   code: e.string(),
   partnerId: e.number().optional(),
   shopId: e.number().optional(),
@@ -1284,7 +1286,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   shopIdList: e.array(e.number()).optional()
 }), ko = h({
   path: Co,
-  requestParameterSchema: Le,
+  requestParameterSchema: Ae,
   responseSchema: xe,
   transformRequestParameter(r) {
     return {
@@ -1338,7 +1340,7 @@ const $o = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
 }, Symbol.toStringTag, { value: "Module" })), Uo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   getAccessToken: ko,
-  getAccessTokenRequestParametersSchema: Le,
+  getAccessTokenRequestParametersSchema: Ae,
   getAccessTokenResponseSchema: xe,
   logistic: so,
   order: bo,
@@ -1391,7 +1393,7 @@ export {
   Dn as API_V2_LOGISTIC_DOWNLOAD_SHIPPING_DOCUMENT,
   Cn as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_PARAMETER,
   Nn as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_RESULT,
-  Ln as API_V2_LOGISTIC_GET_SHIPPING_PARAMETER,
+  An as API_V2_LOGISTIC_GET_SHIPPING_PARAMETER,
   vn as API_V2_LOGISTIC_GET_TRACKING_NUMBER,
   xn as API_V2_LOGISTIC_SHIP_ORDER,
   jn as API_V2_LOGISTIC_UPDATE_SHIP_ORDER,
@@ -1403,13 +1405,13 @@ export {
   So as API_V2_PRODUCT_GET_MODEL_LIST_PATH,
   Co as API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH,
   Y as API_V2_SHOP_AUTH_PARTNER,
-  Ae as ITEM_STATUS,
+  Oe as ITEM_STATUS,
   zo as ShopeeSdk,
   Pe as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS,
   Ho as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP,
   N as V2_LOGISTIC_SHIPPING_DOCUMENT_TYPES,
   wn as V2_LOGISTIC_SHIPPING_STATUSES,
-  Oe as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS,
+  Le as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS,
   Vo as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS_MAP,
   Ee as V2_ORDER_STATUS,
   Fo as V2_ORDER_STATUS_MAP,

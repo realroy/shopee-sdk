@@ -44,22 +44,38 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
         orderSn: string;
         packageNumber?: string | undefined;
     }>>;
-    response: z.ZodOptional<z.ZodArray<z.ZodObject<{
-        orderSn: z.ZodOptional<z.ZodString>;
-        packageNumber: z.ZodOptional<z.ZodString>;
-        failError: z.ZodNullable<z.ZodOptional<z.ZodString>>;
-        failMessage: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    response: z.ZodOptional<z.ZodObject<{
+        resultList: z.ZodArray<z.ZodObject<{
+            orderSn: z.ZodOptional<z.ZodString>;
+            packageNumber: z.ZodOptional<z.ZodString>;
+            failError: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            failMessage: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        }, "strip", z.ZodTypeAny, {
+            orderSn?: string | undefined;
+            packageNumber?: string | undefined;
+            failError?: string | null | undefined;
+            failMessage?: string | null | undefined;
+        }, {
+            orderSn?: string | undefined;
+            packageNumber?: string | undefined;
+            failError?: string | null | undefined;
+            failMessage?: string | null | undefined;
+        }>, "many">;
     }, "strip", z.ZodTypeAny, {
-        orderSn?: string | undefined;
-        packageNumber?: string | undefined;
-        failError?: string | null | undefined;
-        failMessage?: string | null | undefined;
+        resultList: {
+            orderSn?: string | undefined;
+            packageNumber?: string | undefined;
+            failError?: string | null | undefined;
+            failMessage?: string | null | undefined;
+        }[];
     }, {
-        orderSn?: string | undefined;
-        packageNumber?: string | undefined;
-        failError?: string | null | undefined;
-        failMessage?: string | null | undefined;
-    }>, "many">>;
+        resultList: {
+            orderSn?: string | undefined;
+            packageNumber?: string | undefined;
+            failError?: string | null | undefined;
+            failMessage?: string | null | undefined;
+        }[];
+    }>>;
     requestId: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     requestId: string;
@@ -70,11 +86,13 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
         packageNumber?: string | undefined;
     } | undefined;
     response?: {
-        orderSn?: string | undefined;
-        packageNumber?: string | undefined;
-        failError?: string | null | undefined;
-        failMessage?: string | null | undefined;
-    }[] | undefined;
+        resultList: {
+            orderSn?: string | undefined;
+            packageNumber?: string | undefined;
+            failError?: string | null | undefined;
+            failMessage?: string | null | undefined;
+        }[];
+    } | undefined;
 }, {
     requestId: string;
     error?: string | undefined;
@@ -84,11 +102,13 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
         packageNumber?: string | undefined;
     } | undefined;
     response?: {
-        orderSn?: string | undefined;
-        packageNumber?: string | undefined;
-        failError?: string | null | undefined;
-        failMessage?: string | null | undefined;
-    }[] | undefined;
+        resultList: {
+            orderSn?: string | undefined;
+            packageNumber?: string | undefined;
+            failError?: string | null | undefined;
+            failMessage?: string | null | undefined;
+        }[];
+    } | undefined;
 }>;
 export declare const createShippingDocument: (requestParameters: {
     orderList: {
