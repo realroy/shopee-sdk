@@ -44,22 +44,22 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
         orderSn: string;
         packageNumber?: string | undefined;
     }>>;
-    response: z.ZodOptional<z.ZodObject<{
+    response: z.ZodOptional<z.ZodArray<z.ZodObject<{
         orderSn: z.ZodOptional<z.ZodString>;
         packageNumber: z.ZodOptional<z.ZodString>;
-        failError: z.ZodOptional<z.ZodString>;
-        failMessage: z.ZodOptional<z.ZodString>;
+        failError: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        failMessage: z.ZodNullable<z.ZodOptional<z.ZodString>>;
     }, "strip", z.ZodTypeAny, {
         orderSn?: string | undefined;
         packageNumber?: string | undefined;
-        failError?: string | undefined;
-        failMessage?: string | undefined;
+        failError?: string | null | undefined;
+        failMessage?: string | null | undefined;
     }, {
         orderSn?: string | undefined;
         packageNumber?: string | undefined;
-        failError?: string | undefined;
-        failMessage?: string | undefined;
-    }>>;
+        failError?: string | null | undefined;
+        failMessage?: string | null | undefined;
+    }>, "many">>;
     requestId: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     requestId: string;
@@ -72,9 +72,9 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
     response?: {
         orderSn?: string | undefined;
         packageNumber?: string | undefined;
-        failError?: string | undefined;
-        failMessage?: string | undefined;
-    } | undefined;
+        failError?: string | null | undefined;
+        failMessage?: string | null | undefined;
+    }[] | undefined;
 }, {
     requestId: string;
     error?: string | undefined;
@@ -86,9 +86,9 @@ export declare const logisticCreateShippingDocumentResponseSchema: z.ZodObject<{
     response?: {
         orderSn?: string | undefined;
         packageNumber?: string | undefined;
-        failError?: string | undefined;
-        failMessage?: string | undefined;
-    } | undefined;
+        failError?: string | null | undefined;
+        failMessage?: string | null | undefined;
+    }[] | undefined;
 }>;
 export declare const createShippingDocument: (requestParameters: {
     orderList: {
