@@ -17,7 +17,15 @@ export const logisticGetTrackingNumberRequestParameterSchema = z.object({
 export const logisticGetTrackingNumberResponseSchema = z.object({
   error: z.string().optional(),
   message: z.string().optional(),
-  response: z.object({}).optional(),
+  response: z
+    .object({
+      firstMileTrackingNumber: z.string().nullable().optional(),
+      hint: z.string().optional(),
+      lastMileTrackingNumber: z.string().nullable().optional(),
+      plpNumber: z.string().nullable().optional(),
+      trackingNumber: z.string().nullable(),
+    })
+    .optional(),
   requestId: z.string(),
 });
 
