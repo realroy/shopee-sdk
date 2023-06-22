@@ -671,7 +671,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   responseSchema: Kn
 }), K = e.object({
   orderSn: e.string(),
-  packageNumber: e.number().optional(),
+  packageNumber: e.string().optional(),
   responseOptionalFields: e.array(e.enum(Pe)).optional()
 }), Zn = e.object({
   error: e.string().optional(),

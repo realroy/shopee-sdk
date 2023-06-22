@@ -1,15 +1,15 @@
 import { z } from "zod";
 export declare const logisticGetTrackingNumberRequestParameterSchema: z.ZodObject<{
     orderSn: z.ZodString;
-    packageNumber: z.ZodOptional<z.ZodNumber>;
+    packageNumber: z.ZodOptional<z.ZodString>;
     responseOptionalFields: z.ZodOptional<z.ZodArray<z.ZodEnum<["plp_number", "first_mile_tracking_number", "last_mile_tracking_number"]>, "many">>;
 }, "strip", z.ZodTypeAny, {
     orderSn: string;
-    packageNumber?: number | undefined;
+    packageNumber?: string | undefined;
     responseOptionalFields?: ("plp_number" | "first_mile_tracking_number" | "last_mile_tracking_number")[] | undefined;
 }, {
     orderSn: string;
-    packageNumber?: number | undefined;
+    packageNumber?: string | undefined;
     responseOptionalFields?: ("plp_number" | "first_mile_tracking_number" | "last_mile_tracking_number")[] | undefined;
 }>;
 export declare const logisticGetTrackingNumberResponseSchema: z.ZodObject<{
@@ -60,7 +60,7 @@ export declare const logisticGetTrackingNumberResponseSchema: z.ZodObject<{
 }>;
 export declare const getTrackingNumber: (requestParameters: {
     orderSn: string;
-    packageNumber?: number | undefined;
+    packageNumber?: string | undefined;
     responseOptionalFields?: ("plp_number" | "first_mile_tracking_number" | "last_mile_tracking_number")[] | undefined;
 }) => Promise<{
     requestId: string;
