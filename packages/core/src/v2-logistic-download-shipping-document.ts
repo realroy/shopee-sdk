@@ -12,7 +12,7 @@ export const logisticDownloadShippingDocumentRequestParameterSchema = z.object({
     .array(
       z.object({
         orderSn: z.string(),
-        packageNumber: z.string().optional(),
+        packageNumber: z.string().optional().nullable(),
       })
     )
     .max(50),
