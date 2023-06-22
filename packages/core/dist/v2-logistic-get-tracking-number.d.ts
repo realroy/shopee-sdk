@@ -15,18 +15,48 @@ export declare const logisticGetTrackingNumberRequestParameterSchema: z.ZodObjec
 export declare const logisticGetTrackingNumberResponseSchema: z.ZodObject<{
     error: z.ZodOptional<z.ZodString>;
     message: z.ZodOptional<z.ZodString>;
-    response: z.ZodOptional<z.ZodObject<{}, "strip", z.ZodTypeAny, {}, {}>>;
+    response: z.ZodOptional<z.ZodObject<{
+        firstMileTrackingNumber: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        hint: z.ZodOptional<z.ZodString>;
+        lastMileTrackingNumber: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        plpNumber: z.ZodOptional<z.ZodNullable<z.ZodString>>;
+        trackingNumber: z.ZodNullable<z.ZodString>;
+    }, "strip", z.ZodTypeAny, {
+        trackingNumber: string | null;
+        firstMileTrackingNumber?: string | null | undefined;
+        hint?: string | undefined;
+        lastMileTrackingNumber?: string | null | undefined;
+        plpNumber?: string | null | undefined;
+    }, {
+        trackingNumber: string | null;
+        firstMileTrackingNumber?: string | null | undefined;
+        hint?: string | undefined;
+        lastMileTrackingNumber?: string | null | undefined;
+        plpNumber?: string | null | undefined;
+    }>>;
     requestId: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     requestId: string;
     error?: string | undefined;
     message?: string | undefined;
-    response?: {} | undefined;
+    response?: {
+        trackingNumber: string | null;
+        firstMileTrackingNumber?: string | null | undefined;
+        hint?: string | undefined;
+        lastMileTrackingNumber?: string | null | undefined;
+        plpNumber?: string | null | undefined;
+    } | undefined;
 }, {
     requestId: string;
     error?: string | undefined;
     message?: string | undefined;
-    response?: {} | undefined;
+    response?: {
+        trackingNumber: string | null;
+        firstMileTrackingNumber?: string | null | undefined;
+        hint?: string | undefined;
+        lastMileTrackingNumber?: string | null | undefined;
+        plpNumber?: string | null | undefined;
+    } | undefined;
 }>;
 export declare const getTrackingNumber: (requestParameters: {
     orderSn: string;
@@ -36,6 +66,12 @@ export declare const getTrackingNumber: (requestParameters: {
     requestId: string;
     error?: string | undefined;
     message?: string | undefined;
-    response?: {} | undefined;
+    response?: {
+        trackingNumber: string | null;
+        firstMileTrackingNumber?: string | null | undefined;
+        hint?: string | undefined;
+        lastMileTrackingNumber?: string | null | undefined;
+        plpNumber?: string | null | undefined;
+    } | undefined;
 }>;
 //# sourceMappingURL=v2-logistic-get-tracking-number.d.ts.map

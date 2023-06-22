@@ -81,13 +81,13 @@ function T(r, t) {
   return n;
 }
 var O = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function De(r, t, n, o) {
+function Ne(r, t, n, o) {
   var a = -1, s = r == null ? 0 : r.length;
   for (o && s && (n = r[++a]); ++a < s; )
     n = t(n, r[a], a, r);
   return n;
 }
-var Ne = De;
+var De = Ne;
 function we(r) {
   return function(t) {
     return r == null ? void 0 : r[t];
@@ -292,7 +292,7 @@ function Ye(r, t) {
     a[n] = t(r[n], n, r);
   return a;
 }
-var Je = Ye, Qe = Array.isArray, Xe = Qe, N = k, X = Object.prototype, er = X.hasOwnProperty, rr = X.toString, R = N ? N.toStringTag : void 0;
+var Je = Ye, Qe = Array.isArray, Xe = Qe, D = k, X = Object.prototype, er = X.hasOwnProperty, rr = X.toString, R = D ? D.toStringTag : void 0;
 function tr(r) {
   var t = er.call(r, R), n = r[R];
   try {
@@ -334,7 +334,7 @@ var Er = ee, Or = Er;
 function Ar(r) {
   return r == null ? "" : Or(r);
 }
-var A = Ar, Lr = Ge, xr = A, jr = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, vr = "\\u0300-\\u036f", Cr = "\\ufe20-\\ufe2f", kr = "\\u20d0-\\u20ff", Dr = vr + Cr + kr, Nr = "[" + Dr + "]", wr = RegExp(Nr, "g");
+var A = Ar, Lr = Ge, xr = A, jr = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, vr = "\\u0300-\\u036f", Cr = "\\ufe20-\\ufe2f", kr = "\\u20d0-\\u20ff", Nr = vr + Cr + kr, Dr = "[" + Nr + "]", wr = RegExp(Dr, "g");
 function $r(r) {
   return r = xr(r), r && r.replace(jr, Lr).replace(wr, "");
 }
@@ -363,7 +363,7 @@ var dt = lt, bt = Gr, ft = Vr, _t = A, ht = dt;
 function St(r, t, n) {
   return r = _t(r), t = n ? void 0 : t, t === void 0 ? ft(r) ? ht(r) : bt(r) : r.match(t) || [];
 }
-var It = St, yt = Ne, Tt = Ur, Rt = It, Pt = "['’]", Et = RegExp(Pt, "g");
+var It = St, yt = De, Tt = Ur, Rt = It, Pt = "['’]", Et = RegExp(Pt, "g");
 function Ot(r) {
   return function(t) {
     return yt(Rt(Tt(t).replace(Et, "")), r, "");
@@ -384,7 +384,7 @@ function Ct(r, t, n) {
   var o = r.length;
   return n = n === void 0 ? o : n, !t && n >= o ? r : vt(r, t, n);
 }
-var kt = Ct, Dt = "\\ud800-\\udfff", Nt = "\\u0300-\\u036f", wt = "\\ufe20-\\ufe2f", $t = "\\u20d0-\\u20ff", Ut = Nt + wt + $t, qt = "\\ufe0e\\ufe0f", Mt = "\\u200d", Gt = RegExp("[" + Mt + Dt + Ut + qt + "]");
+var kt = Ct, Nt = "\\ud800-\\udfff", Dt = "\\u0300-\\u036f", wt = "\\ufe20-\\ufe2f", $t = "\\u20d0-\\u20ff", Ut = Dt + wt + $t, qt = "\\ufe0e\\ufe0f", Mt = "\\u200d", Gt = RegExp("[" + Mt + Nt + Ut + qt + "]");
 function Ht(r) {
   return Gt.test(r);
 }
@@ -558,11 +558,11 @@ function h({
     return S.data;
   };
 }
-const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/ship_order", jn = "/api/v2/logistics/update_shipping_order", vn = "/api/v2/logistics/get_tracking_number", Cn = "/api/v2/logistics/get_shipping_document_parameter", kn = "/api/v2/logistics/create_shipping_document", Dn = "/api/v2/logistics/get_shipping_document_result", Nn = "/api/v2/logistics/download_shipping_document", Pe = [
+const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/ship_order", jn = "/api/v2/logistics/update_shipping_order", vn = "/api/v2/logistics/get_tracking_number", Cn = "/api/v2/logistics/get_shipping_document_parameter", kn = "/api/v2/logistics/create_shipping_document", Nn = "/api/v2/logistics/get_shipping_document_result", Dn = "/api/v2/logistics/download_shipping_document", Pe = [
   "plp_number",
   "first_mile_tracking_number",
   "last_mile_tracking_number"
-], Ho = C(Pe), D = [
+], Ho = C(Pe), N = [
   "NORMAL_AIR_WAYBILL",
   "THERMAL_AIR_WAYBILL",
   "NORMAL_JOB_AIR_WAYBILL",
@@ -577,7 +577,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
       orderSn: e.string(),
       packageNumber: e.string().optional(),
       trackingNumber: e.string().optional(),
-      shippingDocumentType: e.enum(D).optional()
+      shippingDocumentType: e.enum(N).optional()
     })
   ).min(1).max(50)
 }), Un = e.object({
@@ -599,7 +599,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   requestParameterSchema: $n,
   responseSchema: Un
 }), Mn = e.object({
-  shippingDocumentType: e.enum(D).optional(),
+  shippingDocumentType: e.enum(N).optional(),
   orderList: e.array(
     e.object({
       orderSn: e.string(),
@@ -609,7 +609,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
 }), Gn = e.object({
   data: e.string()
 }), Hn = h({
-  path: Nn,
+  path: Dn,
   requestParameterSchema: Mn,
   responseSchema: Gn,
   responseType: "stream"
@@ -645,7 +645,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
     e.object({
       orderSn: e.string(),
       packageNumber: e.string().optional(),
-      shippingDocumentType: e.enum(D).optional()
+      shippingDocumentType: e.enum(N).optional()
     })
   ).max(50)
 }), Kn = e.object({
@@ -664,7 +664,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   }).optional(),
   requestId: e.string()
 }), Bn = h({
-  path: Dn,
+  path: Nn,
   requestParameterSchema: Wn,
   responseSchema: Kn
 }), K = e.object({
@@ -674,7 +674,13 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
 }), Zn = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
-  response: e.object({}).optional(),
+  response: e.object({
+    firstMileTrackingNumber: e.string().nullable().optional(),
+    hint: e.string().optional(),
+    lastMileTrackingNumber: e.string().nullable().optional(),
+    plpNumber: e.string().nullable().optional(),
+    trackingNumber: e.string().nullable()
+  }).optional(),
   requestId: e.string()
 }), Yn = b({
   path: vn,
@@ -1285,7 +1291,7 @@ const Ln = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
     };
   }
 }), Y = "/api/v2/shop/auth_partner";
-async function Do({
+async function No({
   redirectURL: r,
   redirectSign: t
 }) {
@@ -1305,13 +1311,13 @@ async function Do({
     sign: c
   }).toString(), s.toString();
 }
-const No = e.object({
+const Do = e.object({
   code: e.string(),
   shop_id: e.string(),
   sign: e.string()
 });
 async function wo(r) {
-  const t = await No.safeParseAsync(r);
+  const t = await Do.safeParseAsync(r);
   if (!t.success)
     throw new Error(
       `parse request parameters error: ${t.error.message}`
@@ -1325,7 +1331,7 @@ async function wo(r) {
 }
 const $o = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  authPartner: Do,
+  authPartner: No,
   verifyCallback: wo
 }, Symbol.toStringTag, { value: "Module" })), Uo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
@@ -1380,9 +1386,9 @@ class zo {
 }
 export {
   kn as API_V2_LOGISTIC_CREATE_SHIPPING_DOCUMENT,
-  Nn as API_V2_LOGISTIC_DOWNLOAD_SHIPPING_DOCUMENT,
+  Dn as API_V2_LOGISTIC_DOWNLOAD_SHIPPING_DOCUMENT,
   Cn as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_PARAMETER,
-  Dn as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_RESULT,
+  Nn as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_RESULT,
   Ln as API_V2_LOGISTIC_GET_SHIPPING_PARAMETER,
   vn as API_V2_LOGISTIC_GET_TRACKING_NUMBER,
   xn as API_V2_LOGISTIC_SHIP_ORDER,
@@ -1399,7 +1405,7 @@ export {
   zo as ShopeeSdk,
   Pe as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS,
   Ho as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP,
-  D as V2_LOGISTIC_SHIPPING_DOCUMENT_TYPES,
+  N as V2_LOGISTIC_SHIPPING_DOCUMENT_TYPES,
   wn as V2_LOGISTIC_SHIPPING_STATUSES,
   Oe as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS,
   Vo as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS_MAP,
