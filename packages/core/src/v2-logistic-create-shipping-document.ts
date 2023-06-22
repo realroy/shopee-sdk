@@ -32,12 +32,14 @@ export const logisticCreateShippingDocumentResponseSchema = z.object({
     })
     .optional(),
   response: z
-    .object({
-      orderSn: z.string().optional(),
-      packageNumber: z.string().optional(),
-      failError: z.string().optional(),
-      failMessage: z.string().optional(),
-    })
+    .array(
+      z.object({
+        orderSn: z.string().optional(),
+        packageNumber: z.string().optional(),
+        failError: z.string().optional().nullable(),
+        failMessage: z.string().optional().nullable(),
+      })
+    )
     .optional(),
   requestId: z.string(),
 });
