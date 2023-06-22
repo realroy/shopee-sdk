@@ -30,6 +30,7 @@ export const logisticCreateShippingDocumentResponseSchema = z.object({
       orderSn: z.string(),
       packageNumber: z.string().optional(),
     })
+    .nullable()
     .optional(),
   response: z
     .object({
