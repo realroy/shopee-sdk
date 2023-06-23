@@ -3,15 +3,16 @@ import { z as p } from "zod";
 import F, { Readable as z2 } from "stream";
 import Ie from "http";
 import V1 from "url";
+import H2 from "https";
 import d1 from "zlib";
 function K1(e) {
   return e.reduce((a, m) => (a[m] = m, a), {});
 }
 async function Ce(e, ...a) {
   let m;
-  return typeof globalThis.crypto < "u" && (m = await H2(e, ...a)), m = await G2(e, ...a), m;
+  return typeof globalThis.crypto < "u" && (m = await G2(e, ...a)), m = await W2(e, ...a), m;
 }
-async function H2(e, ...a) {
+async function G2(e, ...a) {
   const m = new TextEncoder(), i = m.encode(e);
   let d = new Uint8Array();
   a.forEach((w) => {
@@ -30,7 +31,7 @@ async function H2(e, ...a) {
   ), n = new Uint8Array(o);
   return Array.from(n).map((w) => w.toString(16).padStart(2, "0")).join("");
 }
-async function G2(e, ...a) {
+async function W2(e, ...a) {
   const { createHmac: m } = await import("crypto"), i = m("sha256", e);
   return a.filter((d) => !!d).forEach((d) => i.update(d)), i.digest("hex");
 }
@@ -85,7 +86,7 @@ function m1(e, a) {
   return m;
 }
 var D1 = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function W2(e) {
+function K2(e) {
   if (e.__esModule)
     return e;
   var a = e.default;
@@ -112,19 +113,19 @@ function W2(e) {
     });
   }), m;
 }
-function K2(e, a, m, i) {
+function Z2(e, a, m, i) {
   var d = -1, r = e == null ? 0 : e.length;
   for (i && r && (m = e[++d]); ++d < r; )
     m = a(m, e[d], d, e);
   return m;
 }
-var Z2 = K2;
-function J2(e) {
+var J2 = Z2;
+function Y2(e) {
   return function(a) {
     return e == null ? void 0 : e[a];
   };
 }
-var Y2 = J2, Q2 = Y2, X2 = {
+var Q2 = Y2, X2 = Q2, ep = {
   // Latin-1 Supplement block.
   À: "A",
   Á: "A",
@@ -317,135 +318,135 @@ var Y2 = J2, Q2 = Y2, X2 = {
   œ: "oe",
   ŉ: "'n",
   ſ: "s"
-}, ep = Q2(X2), pp = ep, ap = typeof D1 == "object" && D1 && D1.Object === Object && D1, dp = ap, mp = dp, ip = typeof self == "object" && self && self.Object === Object && self, lp = mp || ip || Function("return this")(), tp = lp, rp = tp, sp = rp.Symbol, J1 = sp;
-function op(e, a) {
+}, pp = X2(ep), ap = pp, dp = typeof D1 == "object" && D1 && D1.Object === Object && D1, mp = dp, ip = mp, lp = typeof self == "object" && self && self.Object === Object && self, tp = ip || lp || Function("return this")(), rp = tp, sp = rp, op = sp.Symbol, J1 = op;
+function np(e, a) {
   for (var m = -1, i = e == null ? 0 : e.length, d = Array(i); ++m < i; )
     d[m] = a(e[m], m, e);
   return d;
 }
-var np = op, up = Array.isArray, vp = up, re = J1, Re = Object.prototype, cp = Re.hasOwnProperty, fp = Re.toString, c1 = re ? re.toStringTag : void 0;
-function hp(e) {
-  var a = cp.call(e, c1), m = e[c1];
+var up = np, vp = Array.isArray, cp = vp, re = J1, Re = Object.prototype, fp = Re.hasOwnProperty, hp = Re.toString, c1 = re ? re.toStringTag : void 0;
+function wp(e) {
+  var a = fp.call(e, c1), m = e[c1];
   try {
     e[c1] = void 0;
     var i = !0;
   } catch {
   }
-  var d = fp.call(e);
+  var d = hp.call(e);
   return i && (a ? e[c1] = m : delete e[c1]), d;
 }
-var wp = hp, gp = Object.prototype, _p = gp.toString;
-function bp(e) {
-  return _p.call(e);
+var gp = wp, _p = Object.prototype, bp = _p.toString;
+function Sp(e) {
+  return bp.call(e);
 }
-var Sp = bp, se = J1, Np = wp, Dp = Sp, Tp = "[object Null]", yp = "[object Undefined]", oe = se ? se.toStringTag : void 0;
-function Vp(e) {
-  return e == null ? e === void 0 ? yp : Tp : oe && oe in Object(e) ? Np(e) : Dp(e);
+var Np = Sp, se = J1, Dp = gp, Tp = Np, yp = "[object Null]", Vp = "[object Undefined]", oe = se ? se.toStringTag : void 0;
+function Ap(e) {
+  return e == null ? e === void 0 ? Vp : yp : oe && oe in Object(e) ? Dp(e) : Tp(e);
 }
-var Ap = Vp;
-function Ep(e) {
+var Ep = Ap;
+function Pp(e) {
   return e != null && typeof e == "object";
 }
-var Pp = Ep, Ip = Ap, Cp = Pp, Rp = "[object Symbol]";
-function xp(e) {
-  return typeof e == "symbol" || Cp(e) && Ip(e) == Rp;
+var Ip = Pp, Cp = Ep, Rp = Ip, xp = "[object Symbol]";
+function Op(e) {
+  return typeof e == "symbol" || Rp(e) && Cp(e) == xp;
 }
-var Op = xp, ne = J1, Lp = np, Fp = vp, Bp = Op, Up = 1 / 0, ue = ne ? ne.prototype : void 0, ve = ue ? ue.toString : void 0;
+var Lp = Op, ne = J1, Fp = up, Bp = cp, Up = Lp, jp = 1 / 0, ue = ne ? ne.prototype : void 0, ve = ue ? ue.toString : void 0;
 function xe(e) {
   if (typeof e == "string")
     return e;
-  if (Fp(e))
-    return Lp(e, xe) + "";
   if (Bp(e))
+    return Fp(e, xe) + "";
+  if (Up(e))
     return ve ? ve.call(e) : "";
   var a = e + "";
-  return a == "0" && 1 / e == -Up ? "-0" : a;
+  return a == "0" && 1 / e == -jp ? "-0" : a;
 }
-var jp = xe, kp = jp;
-function $p(e) {
-  return e == null ? "" : kp(e);
+var kp = xe, $p = kp;
+function qp(e) {
+  return e == null ? "" : $p(e);
 }
-var A1 = $p, qp = pp, Mp = A1, zp = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, Hp = "\\u0300-\\u036f", Gp = "\\ufe20-\\ufe2f", Wp = "\\u20d0-\\u20ff", Kp = Hp + Gp + Wp, Zp = "[" + Kp + "]", Jp = RegExp(Zp, "g");
-function Yp(e) {
-  return e = Mp(e), e && e.replace(zp, qp).replace(Jp, "");
+var A1 = qp, Mp = ap, zp = A1, Hp = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, Gp = "\\u0300-\\u036f", Wp = "\\ufe20-\\ufe2f", Kp = "\\u20d0-\\u20ff", Zp = Gp + Wp + Kp, Jp = "[" + Zp + "]", Yp = RegExp(Jp, "g");
+function Qp(e) {
+  return e = zp(e), e && e.replace(Hp, Mp).replace(Yp, "");
 }
-var Qp = Yp, Xp = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
-function ea(e) {
-  return e.match(Xp) || [];
+var Xp = Qp, ea = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+function pa(e) {
+  return e.match(ea) || [];
 }
-var pa = ea, aa = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
-function da(e) {
-  return aa.test(e);
+var aa = pa, da = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
+function ma(e) {
+  return da.test(e);
 }
-var ma = da, Oe = "\\ud800-\\udfff", ia = "\\u0300-\\u036f", la = "\\ufe20-\\ufe2f", ta = "\\u20d0-\\u20ff", ra = ia + la + ta, Le = "\\u2700-\\u27bf", Fe = "a-z\\xdf-\\xf6\\xf8-\\xff", sa = "\\xac\\xb1\\xd7\\xf7", oa = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", na = "\\u2000-\\u206f", ua = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", Be = "A-Z\\xc0-\\xd6\\xd8-\\xde", va = "\\ufe0e\\ufe0f", Ue = sa + oa + na + ua, je = "['’]", ce = "[" + Ue + "]", ca = "[" + ra + "]", ke = "\\d+", fa = "[" + Le + "]", $e = "[" + Fe + "]", qe = "[^" + Oe + Ue + ke + Le + Fe + Be + "]", ha = "\\ud83c[\\udffb-\\udfff]", wa = "(?:" + ca + "|" + ha + ")", ga = "[^" + Oe + "]", Me = "(?:\\ud83c[\\udde6-\\uddff]){2}", ze = "[\\ud800-\\udbff][\\udc00-\\udfff]", t1 = "[" + Be + "]", _a = "\\u200d", fe = "(?:" + $e + "|" + qe + ")", ba = "(?:" + t1 + "|" + qe + ")", he = "(?:" + je + "(?:d|ll|m|re|s|t|ve))?", we = "(?:" + je + "(?:D|LL|M|RE|S|T|VE))?", He = wa + "?", Ge = "[" + va + "]?", Sa = "(?:" + _a + "(?:" + [ga, Me, ze].join("|") + ")" + Ge + He + ")*", Na = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", Da = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", Ta = Ge + He + Sa, ya = "(?:" + [fa, Me, ze].join("|") + ")" + Ta, Va = RegExp([
+var ia = ma, Oe = "\\ud800-\\udfff", la = "\\u0300-\\u036f", ta = "\\ufe20-\\ufe2f", ra = "\\u20d0-\\u20ff", sa = la + ta + ra, Le = "\\u2700-\\u27bf", Fe = "a-z\\xdf-\\xf6\\xf8-\\xff", oa = "\\xac\\xb1\\xd7\\xf7", na = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", ua = "\\u2000-\\u206f", va = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", Be = "A-Z\\xc0-\\xd6\\xd8-\\xde", ca = "\\ufe0e\\ufe0f", Ue = oa + na + ua + va, je = "['’]", ce = "[" + Ue + "]", fa = "[" + sa + "]", ke = "\\d+", ha = "[" + Le + "]", $e = "[" + Fe + "]", qe = "[^" + Oe + Ue + ke + Le + Fe + Be + "]", wa = "\\ud83c[\\udffb-\\udfff]", ga = "(?:" + fa + "|" + wa + ")", _a = "[^" + Oe + "]", Me = "(?:\\ud83c[\\udde6-\\uddff]){2}", ze = "[\\ud800-\\udbff][\\udc00-\\udfff]", t1 = "[" + Be + "]", ba = "\\u200d", fe = "(?:" + $e + "|" + qe + ")", Sa = "(?:" + t1 + "|" + qe + ")", he = "(?:" + je + "(?:d|ll|m|re|s|t|ve))?", we = "(?:" + je + "(?:D|LL|M|RE|S|T|VE))?", He = ga + "?", Ge = "[" + ca + "]?", Na = "(?:" + ba + "(?:" + [_a, Me, ze].join("|") + ")" + Ge + He + ")*", Da = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", Ta = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", ya = Ge + He + Na, Va = "(?:" + [ha, Me, ze].join("|") + ")" + ya, Aa = RegExp([
   t1 + "?" + $e + "+" + he + "(?=" + [ce, t1, "$"].join("|") + ")",
-  ba + "+" + we + "(?=" + [ce, t1 + fe, "$"].join("|") + ")",
+  Sa + "+" + we + "(?=" + [ce, t1 + fe, "$"].join("|") + ")",
   t1 + "?" + fe + "+" + he,
   t1 + "+" + we,
+  Ta,
   Da,
-  Na,
   ke,
-  ya
+  Va
 ].join("|"), "g");
-function Aa(e) {
-  return e.match(Va) || [];
+function Ea(e) {
+  return e.match(Aa) || [];
 }
-var Ea = Aa, Pa = pa, Ia = ma, Ca = A1, Ra = Ea;
-function xa(e, a, m) {
-  return e = Ca(e), a = m ? void 0 : a, a === void 0 ? Ia(e) ? Ra(e) : Pa(e) : e.match(a) || [];
+var Pa = Ea, Ia = aa, Ca = ia, Ra = A1, xa = Pa;
+function Oa(e, a, m) {
+  return e = Ra(e), a = m ? void 0 : a, a === void 0 ? Ca(e) ? xa(e) : Ia(e) : e.match(a) || [];
 }
-var Oa = xa, La = Z2, Fa = Qp, Ba = Oa, Ua = "['’]", ja = RegExp(Ua, "g");
-function ka(e) {
+var La = Oa, Fa = J2, Ba = Xp, Ua = La, ja = "['’]", ka = RegExp(ja, "g");
+function $a(e) {
   return function(a) {
-    return La(Ba(Fa(a).replace(ja, "")), e, "");
+    return Fa(Ua(Ba(a).replace(ka, "")), e, "");
   };
 }
-var We = ka, $a = We, qa = $a(function(e, a, m) {
+var We = $a, qa = We, Ma = qa(function(e, a, m) {
   return e + (m ? "_" : "") + a.toLowerCase();
-}), Y1 = qa;
-function Ma(e, a, m) {
+}), Y1 = Ma;
+function za(e, a, m) {
   var i = -1, d = e.length;
   a < 0 && (a = -a > d ? 0 : d + a), m = m > d ? d : m, m < 0 && (m += d), d = a > m ? 0 : m - a >>> 0, a >>>= 0;
   for (var r = Array(d); ++i < d; )
     r[i] = e[i + a];
   return r;
 }
-var za = Ma, Ha = za;
-function Ga(e, a, m) {
+var Ha = za, Ga = Ha;
+function Wa(e, a, m) {
   var i = e.length;
-  return m = m === void 0 ? i : m, !a && m >= i ? e : Ha(e, a, m);
+  return m = m === void 0 ? i : m, !a && m >= i ? e : Ga(e, a, m);
 }
-var Wa = Ga, Ka = "\\ud800-\\udfff", Za = "\\u0300-\\u036f", Ja = "\\ufe20-\\ufe2f", Ya = "\\u20d0-\\u20ff", Qa = Za + Ja + Ya, Xa = "\\ufe0e\\ufe0f", e6 = "\\u200d", p6 = RegExp("[" + e6 + Ka + Qa + Xa + "]");
-function a6(e) {
-  return p6.test(e);
-}
-var Ke = a6;
+var Ka = Wa, Za = "\\ud800-\\udfff", Ja = "\\u0300-\\u036f", Ya = "\\ufe20-\\ufe2f", Qa = "\\u20d0-\\u20ff", Xa = Ja + Ya + Qa, e6 = "\\ufe0e\\ufe0f", p6 = "\\u200d", a6 = RegExp("[" + p6 + Za + Xa + e6 + "]");
 function d6(e) {
+  return a6.test(e);
+}
+var Ke = d6;
+function m6(e) {
   return e.split("");
 }
-var m6 = d6, Ze = "\\ud800-\\udfff", i6 = "\\u0300-\\u036f", l6 = "\\ufe20-\\ufe2f", t6 = "\\u20d0-\\u20ff", r6 = i6 + l6 + t6, s6 = "\\ufe0e\\ufe0f", o6 = "[" + Ze + "]", j1 = "[" + r6 + "]", k1 = "\\ud83c[\\udffb-\\udfff]", n6 = "(?:" + j1 + "|" + k1 + ")", Je = "[^" + Ze + "]", Ye = "(?:\\ud83c[\\udde6-\\uddff]){2}", Qe = "[\\ud800-\\udbff][\\udc00-\\udfff]", u6 = "\\u200d", Xe = n6 + "?", e2 = "[" + s6 + "]?", v6 = "(?:" + u6 + "(?:" + [Je, Ye, Qe].join("|") + ")" + e2 + Xe + ")*", c6 = e2 + Xe + v6, f6 = "(?:" + [Je + j1 + "?", j1, Ye, Qe, o6].join("|") + ")", h6 = RegExp(k1 + "(?=" + k1 + ")|" + f6 + c6, "g");
-function w6(e) {
-  return e.match(h6) || [];
+var i6 = m6, Ze = "\\ud800-\\udfff", l6 = "\\u0300-\\u036f", t6 = "\\ufe20-\\ufe2f", r6 = "\\u20d0-\\u20ff", s6 = l6 + t6 + r6, o6 = "\\ufe0e\\ufe0f", n6 = "[" + Ze + "]", j1 = "[" + s6 + "]", k1 = "\\ud83c[\\udffb-\\udfff]", u6 = "(?:" + j1 + "|" + k1 + ")", Je = "[^" + Ze + "]", Ye = "(?:\\ud83c[\\udde6-\\uddff]){2}", Qe = "[\\ud800-\\udbff][\\udc00-\\udfff]", v6 = "\\u200d", Xe = u6 + "?", e2 = "[" + o6 + "]?", c6 = "(?:" + v6 + "(?:" + [Je, Ye, Qe].join("|") + ")" + e2 + Xe + ")*", f6 = e2 + Xe + c6, h6 = "(?:" + [Je + j1 + "?", j1, Ye, Qe, n6].join("|") + ")", w6 = RegExp(k1 + "(?=" + k1 + ")|" + h6 + f6, "g");
+function g6(e) {
+  return e.match(w6) || [];
 }
-var g6 = w6, _6 = m6, b6 = Ke, S6 = g6;
-function N6(e) {
-  return b6(e) ? S6(e) : _6(e);
+var _6 = g6, b6 = i6, S6 = Ke, N6 = _6;
+function D6(e) {
+  return S6(e) ? N6(e) : b6(e);
 }
-var D6 = N6, T6 = Wa, y6 = Ke, V6 = D6, A6 = A1;
-function E6(e) {
+var T6 = D6, y6 = Ka, V6 = Ke, A6 = T6, E6 = A1;
+function P6(e) {
   return function(a) {
-    a = A6(a);
-    var m = y6(a) ? V6(a) : void 0, i = m ? m[0] : a.charAt(0), d = m ? T6(m, 1).join("") : a.slice(1);
+    a = E6(a);
+    var m = V6(a) ? A6(a) : void 0, i = m ? m[0] : a.charAt(0), d = m ? y6(m, 1).join("") : a.slice(1);
     return i[e]() + d;
   };
 }
-var P6 = E6, I6 = P6, C6 = I6("toUpperCase"), R6 = C6, x6 = A1, O6 = R6;
-function L6(e) {
-  return O6(x6(e).toLowerCase());
+var I6 = P6, C6 = I6, R6 = C6("toUpperCase"), x6 = R6, O6 = A1, L6 = x6;
+function F6(e) {
+  return L6(O6(e).toLowerCase());
 }
-var F6 = L6, B6 = F6, U6 = We, j6 = U6(function(e, a, m) {
-  return a = a.toLowerCase(), e + (m ? B6(a) : a);
-}), p2 = j6;
+var B6 = F6, U6 = B6, j6 = We, k6 = j6(function(e, a, m) {
+  return a = a.toLowerCase(), e + (m ? U6(a) : a);
+}), p2 = k6;
 class E1 {
   constructor() {
     this.logger = console, this.logInterceptorIds = [], this.isLogEnabled = !1, this.axios = M2.create(), this.isLogEnabled && this.addLogInterceptor();
@@ -509,7 +510,7 @@ class X {
   }
 }
 const ge = E1.getInstance();
-function k6(e) {
+function $6(e) {
   return async function(m) {
     if (!e.transformRequestParameter)
       return m;
@@ -527,7 +528,7 @@ function k6(e) {
   };
 }
 function e1(e) {
-  const a = k6(e);
+  const a = $6(e);
   return async function(i) {
     const d = await e.requestParameterSchema.safeParseAsync(i);
     if (!d.success)
@@ -586,20 +587,20 @@ function u1({
     return b.data;
   };
 }
-const $6 = "/api/v2/logistics/get_shipping_parameter", q6 = "/api/v2/logistic/ship_order", M6 = "/api/v2/logistics/update_shipping_order", z6 = "/api/v2/logistics/get_tracking_number", H6 = "/api/v2/logistics/get_shipping_document_parameter", G6 = "/api/v2/logistics/create_shipping_document", W6 = "/api/v2/logistics/get_shipping_document_result", K6 = "/api/v2/logistics/download_shipping_document", a2 = [
+const q6 = "/api/v2/logistics/get_shipping_parameter", M6 = "/api/v2/logistic/ship_order", z6 = "/api/v2/logistics/update_shipping_order", H6 = "/api/v2/logistics/get_tracking_number", G6 = "/api/v2/logistics/get_shipping_document_parameter", W6 = "/api/v2/logistics/create_shipping_document", K6 = "/api/v2/logistics/get_shipping_document_result", Z6 = "/api/v2/logistics/download_shipping_document", a2 = [
   "plp_number",
   "first_mile_tracking_number",
   "last_mile_tracking_number"
-], j0 = K1(a2), Q1 = [
+], k0 = K1(a2), Q1 = [
   "NORMAL_AIR_WAYBILL",
   "THERMAL_AIR_WAYBILL",
   "NORMAL_JOB_AIR_WAYBILL",
   "THERMAL_JOB_AIR_WAYBILL"
-], Z6 = [
+], J6 = [
   "READY",
   "FAILED",
   "PROCESSING"
-], J6 = p.object({
+], Y6 = p.object({
   orderList: p.array(
     p.object({
       orderSn: p.string(),
@@ -608,7 +609,7 @@ const $6 = "/api/v2/logistics/get_shipping_parameter", q6 = "/api/v2/logistic/sh
       shippingDocumentType: p.enum(Q1).optional()
     })
   ).min(1).max(50)
-}), Y6 = p.object({
+}), Q6 = p.object({
   error: p.string().optional(),
   message: p.string().optional(),
   warning: p.object({
@@ -626,23 +627,23 @@ const $6 = "/api/v2/logistics/get_shipping_parameter", q6 = "/api/v2/logistic/sh
     )
   }).optional(),
   requestId: p.string()
-}), Q6 = u1({
-  path: G6,
-  requestParameterSchema: J6,
-  responseSchema: Y6
+}), X6 = u1({
+  path: W6,
+  requestParameterSchema: Y6,
+  responseSchema: Q6
 });
-var j = {}, $1 = {}, X6 = {
+var j = {}, $1 = {}, e4 = {
   get exports() {
     return $1;
   },
   set exports(e) {
     $1 = e;
   }
-}, y = {}, e4 = y;
+}, y = {}, p4 = y;
 function be(e) {
   return e < 0 ? -1 : 1;
 }
-function p4(e) {
+function a4(e) {
   return e % 1 === 0.5 && !(e & 1) ? Math.floor(e) : Math.round(e);
 }
 function p1(e, a) {
@@ -659,7 +660,7 @@ function p1(e, a) {
       return s;
     }
     if (!isNaN(s) && n.clamp)
-      return s = p4(s), s < m && (s = m), s > i && (s = i), s;
+      return s = a4(s), s < m && (s = m), s > i && (s = i), s;
     if (!Number.isFinite(s) || s === 0)
       return 0;
     if (s = be(s) * Math.floor(Math.abs(s)), s = s % d, !a.unsigned && s >= r)
@@ -741,7 +742,7 @@ y.Date = function(e, a) {
 y.RegExp = function(e, a) {
   return e instanceof RegExp || (e = new RegExp(e)), e;
 };
-var q1 = {}, a4 = {
+var q1 = {}, d4 = {
   get exports() {
     return q1;
   },
@@ -759,8 +760,8 @@ var q1 = {}, a4 = {
   }, e.exports.implForWrapper = function(a) {
     return a[e.exports.implSymbol];
   };
-})(a4);
-var d2 = {}, B = {}, d4 = {
+})(d4);
+var d2 = {}, B = {}, m4 = {
   get exports() {
     return B;
   },
@@ -768,15 +769,15 @@ var d2 = {}, B = {}, d4 = {
     B = e;
   }
 };
-const s1 = 2147483647, q = 36, X1 = 1, g1 = 26, m4 = 38, i4 = 700, m2 = 72, i2 = 128, l2 = "-", l4 = /^xn--/, t4 = /[^\0-\x7F]/, r4 = /[\x2E\u3002\uFF0E\uFF61]/g, s4 = {
+const s1 = 2147483647, q = 36, X1 = 1, g1 = 26, i4 = 38, l4 = 700, m2 = 72, i2 = 128, l2 = "-", t4 = /^xn--/, r4 = /[^\0-\x7F]/, s4 = /[\x2E\u3002\uFF0E\uFF61]/g, o4 = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
 }, x1 = q - X1, M = Math.floor, O1 = String.fromCharCode;
 function Y(e) {
-  throw new RangeError(s4[e]);
+  throw new RangeError(o4[e]);
 }
-function o4(e, a) {
+function n4(e, a) {
   const m = [];
   let i = e.length;
   for (; i--; )
@@ -786,8 +787,8 @@ function o4(e, a) {
 function t2(e, a) {
   const m = e.split("@");
   let i = "";
-  m.length > 1 && (i = m[0] + "@", e = m[1]), e = e.replace(r4, ".");
-  const d = e.split("."), r = o4(d, a).join(".");
+  m.length > 1 && (i = m[0] + "@", e = m[1]), e = e.replace(s4, ".");
+  const d = e.split("."), r = n4(d, a).join(".");
   return i + r;
 }
 function ee(e) {
@@ -804,15 +805,15 @@ function ee(e) {
   }
   return a;
 }
-const r2 = (e) => String.fromCodePoint(...e), n4 = function(e) {
+const r2 = (e) => String.fromCodePoint(...e), u4 = function(e) {
   return e >= 48 && e < 58 ? 26 + (e - 48) : e >= 65 && e < 91 ? e - 65 : e >= 97 && e < 123 ? e - 97 : q;
 }, Se = function(e, a) {
   return e + 22 + 75 * (e < 26) - ((a != 0) << 5);
 }, s2 = function(e, a, m) {
   let i = 0;
-  for (e = m ? M(e / i4) : e >> 1, e += M(e / a); e > x1 * g1 >> 1; i += q)
+  for (e = m ? M(e / l4) : e >> 1, e += M(e / a); e > x1 * g1 >> 1; i += q)
     e = M(e / x1);
-  return M(i + (x1 + 1) * e / (e + m4));
+  return M(i + (x1 + 1) * e / (e + i4));
 }, pe = function(e) {
   const a = [], m = e.length;
   let i = 0, d = i2, r = m2, o = e.lastIndexOf(l2);
@@ -823,7 +824,7 @@ const r2 = (e) => String.fromCodePoint(...e), n4 = function(e) {
     const s = i;
     for (let h = 1, _ = q; ; _ += q) {
       n >= m && Y("invalid-input");
-      const S = n4(e.charCodeAt(n++));
+      const S = u4(e.charCodeAt(n++));
       S >= q && Y("invalid-input"), S > M((s1 - i) / h) && Y("overflow"), i += S * h;
       const b = _ <= r ? X1 : _ >= r + g1 ? g1 : _ - r;
       if (S < b)
@@ -869,13 +870,13 @@ const r2 = (e) => String.fromCodePoint(...e), n4 = function(e) {
   return a.join("");
 }, o2 = function(e) {
   return t2(e, function(a) {
-    return l4.test(a) ? pe(a.slice(4).toLowerCase()) : a;
+    return t4.test(a) ? pe(a.slice(4).toLowerCase()) : a;
   });
 }, n2 = function(e) {
   return t2(e, function(a) {
-    return t4.test(a) ? "xn--" + ae(a) : a;
+    return r4.test(a) ? "xn--" + ae(a) : a;
   });
-}, u4 = {
+}, v4 = {
   /**
    * A string representing the current Punycode.js version number.
    * @memberOf punycode
@@ -897,18 +898,18 @@ const r2 = (e) => String.fromCodePoint(...e), n4 = function(e) {
   encode: ae,
   toASCII: n2,
   toUnicode: o2
-}, v4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}, c4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   decode: pe,
-  default: u4,
+  default: v4,
   encode: ae,
   toASCII: n2,
   toUnicode: o2,
   ucs2decode: ee,
   ucs2encode: r2
-}, Symbol.toStringTag, { value: "Module" })), u2 = /* @__PURE__ */ W2(v4);
+}, Symbol.toStringTag, { value: "Module" })), u2 = /* @__PURE__ */ K2(c4);
 var P1 = {};
-const c4 = [
+const f4 = [
   [
     [
       0,
@@ -78012,7 +78013,7 @@ const c4 = [
     "disallowed"
   ]
 ];
-var v2 = u2, Ne = c4, o1 = {
+var v2 = u2, Ne = f4, o1 = {
   TRANSITIONAL: 0,
   NONTRANSITIONAL: 1
 };
@@ -78030,11 +78031,11 @@ function f2(e) {
   }
   return null;
 }
-var f4 = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
+var h4 = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
 function h2(e) {
-  return e.replace(f4, "_").length;
+  return e.replace(h4, "_").length;
 }
-function h4(e, a, m) {
+function w4(e, a, m) {
   for (var i = !1, d = "", r = h2(e), o = 0; o < r; ++o) {
     var n = e.codePointAt(o), s = f2(n);
     switch (s[1]) {
@@ -78065,11 +78066,11 @@ function h4(e, a, m) {
     error: i
   };
 }
-var w4 = /[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08E4-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C03\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D01-\u0D03\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u18A9\u1920-\u192B\u1930-\u193B\u19B0-\u19C0\u19C8\u19C9\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF8\u1CF9\u1DC0-\u1DF5\u1DFC-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C4\uA8E0-\uA8F1\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2D]|\uD800[\uDDFD\uDEE0\uDF76-\uDF7A]|\uD802[\uDE01-\uDE03\uDE05\uDE06\uDE0C-\uDE0F\uDE38-\uDE3A\uDE3F\uDEE5\uDEE6]|\uD804[\uDC00-\uDC02\uDC38-\uDC46\uDC7F-\uDC82\uDCB0-\uDCBA\uDD00-\uDD02\uDD27-\uDD34\uDD73\uDD80-\uDD82\uDDB3-\uDDC0\uDE2C-\uDE37\uDEDF-\uDEEA\uDF01-\uDF03\uDF3C\uDF3E-\uDF44\uDF47\uDF48\uDF4B-\uDF4D\uDF57\uDF62\uDF63\uDF66-\uDF6C\uDF70-\uDF74]|\uD805[\uDCB0-\uDCC3\uDDAF-\uDDB5\uDDB8-\uDDC0\uDE30-\uDE40\uDEAB-\uDEB7]|\uD81A[\uDEF0-\uDEF4\uDF30-\uDF36]|\uD81B[\uDF51-\uDF7E\uDF8F-\uDF92]|\uD82F[\uDC9D\uDC9E]|\uD834[\uDD65-\uDD69\uDD6D-\uDD72\uDD7B-\uDD82\uDD85-\uDD8B\uDDAA-\uDDAD\uDE42-\uDE44]|\uD83A[\uDCD0-\uDCD6]|\uDB40[\uDD00-\uDDEF]/;
-function g4(e, a) {
+var g4 = /[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08E4-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C03\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D01-\u0D03\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u18A9\u1920-\u192B\u1930-\u193B\u19B0-\u19C0\u19C8\u19C9\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF8\u1CF9\u1DC0-\u1DF5\u1DFC-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C4\uA8E0-\uA8F1\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2D]|\uD800[\uDDFD\uDEE0\uDF76-\uDF7A]|\uD802[\uDE01-\uDE03\uDE05\uDE06\uDE0C-\uDE0F\uDE38-\uDE3A\uDE3F\uDEE5\uDEE6]|\uD804[\uDC00-\uDC02\uDC38-\uDC46\uDC7F-\uDC82\uDCB0-\uDCBA\uDD00-\uDD02\uDD27-\uDD34\uDD73\uDD80-\uDD82\uDDB3-\uDDC0\uDE2C-\uDE37\uDEDF-\uDEEA\uDF01-\uDF03\uDF3C\uDF3E-\uDF44\uDF47\uDF48\uDF4B-\uDF4D\uDF57\uDF62\uDF63\uDF66-\uDF6C\uDF70-\uDF74]|\uD805[\uDCB0-\uDCC3\uDDAF-\uDDB5\uDDB8-\uDDC0\uDE30-\uDE40\uDEAB-\uDEB7]|\uD81A[\uDEF0-\uDEF4\uDF30-\uDF36]|\uD81B[\uDF51-\uDF7E\uDF8F-\uDF92]|\uD82F[\uDC9D\uDC9E]|\uD834[\uDD65-\uDD69\uDD6D-\uDD72\uDD7B-\uDD82\uDD85-\uDD8B\uDDAA-\uDDAD\uDE42-\uDE44]|\uD83A[\uDCD0-\uDCD6]|\uDB40[\uDD00-\uDDEF]/;
+function _4(e, a) {
   e.substr(0, 4) === "xn--" && (e = v2.toUnicode(e), o1.NONTRANSITIONAL);
   var m = !1;
-  (c2(e) !== e || e[3] === "-" && e[4] === "-" || e[0] === "-" || e[e.length - 1] === "-" || e.indexOf(".") !== -1 || e.search(w4) === 0) && (m = !0);
+  (c2(e) !== e || e[3] === "-" && e[4] === "-" || e[0] === "-" || e[e.length - 1] === "-" || e.indexOf(".") !== -1 || e.search(g4) === 0) && (m = !0);
   for (var i = h2(e), d = 0; d < i; ++d) {
     var r = f2(e.codePointAt(d));
     if (y1 === o1.TRANSITIONAL && r[1] !== "valid" || y1 === o1.NONTRANSITIONAL && r[1] !== "valid" && r[1] !== "deviation") {
@@ -78083,11 +78084,11 @@ function g4(e, a) {
   };
 }
 function y1(e, a, m) {
-  var i = h4(e, a, m);
+  var i = w4(e, a, m);
   i.string = c2(i.string);
   for (var d = i.string.split("."), r = 0; r < d.length; ++r)
     try {
-      var o = g4(d[r]);
+      var o = _4(d[r]);
       d[r] = o.label, i.error = i.error || o.error;
     } catch {
       i.error = !0;
@@ -78613,7 +78614,7 @@ P1.PROCESSING_OPTIONS = o1;
   }, e.exports.parseURL = function(l, t) {
     return t === void 0 && (t = {}), e.exports.basicURLParse(l, { baseURL: t.baseURL, encodingOverride: t.encodingOverride });
   };
-})(d4);
+})(m4);
 const T = B;
 d2.implementation = class {
   constructor(a) {
@@ -78709,7 +78710,7 @@ d2.implementation = class {
   }
 };
 (function(e) {
-  const a = e4, m = q1, i = d2, d = m.implSymbol;
+  const a = p4, m = q1, i = d2, d = m.implSymbol;
   function r(o) {
     if (!this || this[d] || !(this instanceof r))
       throw new TypeError("Failed to construct 'URL': Please use the 'new' operator, this DOM object constructor cannot be called as a function.");
@@ -78844,7 +78845,7 @@ d2.implementation = class {
       Worker: { URL: r }
     }
   };
-})(X6);
+})(e4);
 j.URL = $1.interface;
 j.serializeURL = B.serializeURL;
 j.serializeURLOrigin = B.serializeURLOrigin;
@@ -78854,7 +78855,7 @@ j.setThePassword = B.setThePassword;
 j.serializeHost = B.serializeHost;
 j.serializeInteger = B.serializeInteger;
 j.parseURL = B.parseURL;
-const _4 = {}, b4 = F.Readable, z = Symbol("buffer"), L1 = Symbol("type");
+const b4 = F.Readable, z = Symbol("buffer"), L1 = Symbol("type");
 class n1 {
   constructor() {
     this[L1] = "";
@@ -79530,7 +79531,7 @@ function Q(e, a) {
   if (!Q.Promise)
     throw new Error("native promise missing, set fetch.Promise to your favorite alternative");
   return I.Promise = Q.Promise, new Q.Promise(function(m, i) {
-    const d = new i1(e, a), r = C4(d), o = (r.protocol === "https:" ? _4 : Ie).request, n = d.signal;
+    const d = new i1(e, a), r = C4(d), o = (r.protocol === "https:" ? H2 : Ie).request, n = d.signal;
     let s = null;
     const w = function() {
       let N = new _1("The user aborted a request.");
@@ -79705,7 +79706,7 @@ async function F4(e) {
     );
   const i = X.getInstance().value, d = await Z1({
     ...i,
-    path: K6,
+    path: Z6,
     params: {}
   }), r = m1(
     a.data,
@@ -79743,7 +79744,7 @@ const B4 = p.object({
   }).optional(),
   requestId: p.string()
 }), j4 = u1({
-  path: H6,
+  path: G6,
   requestParameterSchema: B4,
   responseSchema: U4
 }), k4 = p.object({
@@ -79764,13 +79765,13 @@ const B4 = p.object({
   response: p.object({
     orderSn: p.string(),
     packageNumber: p.string(),
-    status: p.enum(Z6),
+    status: p.enum(J6),
     failError: p.string(),
     failMessage: p.string()
   }).optional(),
   requestId: p.string()
 }), q4 = u1({
-  path: W6,
+  path: K6,
   requestParameterSchema: k4,
   responseSchema: $4
 }), Ve = p.object({
@@ -79789,7 +79790,7 @@ const B4 = p.object({
   }).optional(),
   requestId: p.string()
 }), z4 = e1({
-  path: z6,
+  path: H6,
   requestParameterSchema: Ve,
   responseSchema: M4,
   transformRequestParameterSchema: Ve.extend({
@@ -79859,7 +79860,7 @@ const B4 = p.object({
   }).optional(),
   requestId: p.string()
 }), W4 = e1({
-  path: $6,
+  path: q6,
   requestParameterSchema: H4,
   responseSchema: G4
 }), K4 = p.object({
@@ -79884,7 +79885,7 @@ const B4 = p.object({
   message: p.string().optional(),
   requestId: p.string()
 }), J4 = u1({
-  path: q6,
+  path: M6,
   requestParameterSchema: K4,
   responseSchema: Z4
 }), Y4 = p.object({
@@ -79899,12 +79900,12 @@ const B4 = p.object({
   message: p.string().optional(),
   requestId: p.string()
 }), X4 = u1({
-  path: M6,
+  path: z6,
   requestParameterSchema: Y4,
   responseSchema: Q4
 }), e0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  createShippingDocument: Q6,
+  createShippingDocument: X6,
   downloadShippingDocument: F4,
   getShippingDocumentParameter: j4,
   getShippingDocumentResult: q4,
@@ -79921,7 +79922,7 @@ const B4 = p.object({
   "IN_CANCEL",
   "CANCELLED",
   "INVOICE_PENDING"
-], $0 = K1(N2), D2 = [
+], q0 = K1(N2), D2 = [
   "buyer_user_id",
   "buyer_username",
   "estimated_shipping_fee",
@@ -79954,7 +79955,7 @@ const B4 = p.object({
   "edt",
   "prescription_images",
   "prescription_check_status"
-], q0 = K1(D2), Ae = p.object({
+], M0 = K1(D2), Ae = p.object({
   orderSnList: p.array(p.string()),
   responseOptionalFields: p.array(p.enum(D2)).optional()
 }), d0 = p.object({
@@ -80464,7 +80465,7 @@ const I0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
 if (!W1.success)
   throw new Error(W1.error.message);
 const h1 = W1.data, x = X.getInstance();
-class M0 {
+class z0 {
   constructor(a = {}) {
     x.accessToken = a.accessToken ?? h1.accessToken, x.baseURL = a.baseURL ?? h1.baseURL, x.partnerId = a.partnerId ?? h1.partnerId, x.partnerKey = a.partnerKey ?? h1.partnerKey, x.shopId = a.shopId ?? h1.shopId, x.isLogEnabled = a.isLogEnabled ?? !1;
   }
@@ -80491,14 +80492,14 @@ class M0 {
   }
 }
 export {
-  G6 as API_V2_LOGISTIC_CREATE_SHIPPING_DOCUMENT,
-  K6 as API_V2_LOGISTIC_DOWNLOAD_SHIPPING_DOCUMENT,
-  H6 as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_PARAMETER,
-  W6 as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_RESULT,
-  $6 as API_V2_LOGISTIC_GET_SHIPPING_PARAMETER,
-  z6 as API_V2_LOGISTIC_GET_TRACKING_NUMBER,
-  q6 as API_V2_LOGISTIC_SHIP_ORDER,
-  M6 as API_V2_LOGISTIC_UPDATE_SHIP_ORDER,
+  W6 as API_V2_LOGISTIC_CREATE_SHIPPING_DOCUMENT,
+  Z6 as API_V2_LOGISTIC_DOWNLOAD_SHIPPING_DOCUMENT,
+  G6 as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_PARAMETER,
+  K6 as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_RESULT,
+  q6 as API_V2_LOGISTIC_GET_SHIPPING_PARAMETER,
+  H6 as API_V2_LOGISTIC_GET_TRACKING_NUMBER,
+  M6 as API_V2_LOGISTIC_SHIP_ORDER,
+  z6 as API_V2_LOGISTIC_UPDATE_SHIP_ORDER,
   a0 as API_V2_ORDER_GET_ORDER_DETAIL_PATH,
   p0 as API_V2_ORDER_GET_ORDER_LIST_PATH,
   s0 as API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH,
@@ -80508,15 +80509,15 @@ export {
   y0 as API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH,
   Pe as API_V2_SHOP_AUTH_PARTNER,
   T2 as ITEM_STATUS,
-  M0 as ShopeeSdk,
+  z0 as ShopeeSdk,
   a2 as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS,
-  j0 as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP,
+  k0 as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP,
   Q1 as V2_LOGISTIC_SHIPPING_DOCUMENT_TYPES,
-  Z6 as V2_LOGISTIC_SHIPPING_STATUSES,
+  J6 as V2_LOGISTIC_SHIPPING_STATUSES,
   D2 as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS,
-  q0 as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS_MAP,
+  M0 as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS_MAP,
   N2 as V2_ORDER_STATUS,
-  $0 as V2_ORDER_STATUS_MAP,
+  q0 as V2_ORDER_STATUS_MAP,
   K1 as createConstantsMap,
   Ce as generateHmac,
   Z1 as signURL,

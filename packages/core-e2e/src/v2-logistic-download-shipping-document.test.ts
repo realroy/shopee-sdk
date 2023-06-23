@@ -20,14 +20,19 @@ describe("v2/logistic/download-shipping-document", async () => {
     ) as { orderSn: string }[];
 
     expect(async () => {
-      await shopeeSdk.v2.logistic.downloadShippingDocument({
-        shippingDocumentType: "NORMAL_AIR_WAYBILL",
-        orderList: [
-          {
-            orderSn: orderList[0]?.orderSn as string,
-          },
-        ],
-      });
+      await shopeeSdk.v2.logistic
+        .downloadShippingDocument({
+          shippingDocumentType: "NORMAL_AIR_WAYBILL",
+          orderList: [
+            {
+              orderSn: orderList[0]?.orderSn as string,
+            },
+          ],
+        })
+        .catch((err) => {
+          console.log(err);
+          throw err;
+        });
     }).not.toThrowError();
   });
 });
