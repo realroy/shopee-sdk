@@ -55,18 +55,18 @@ export const logisticGetShippingParameterResponseSchema = z.object({
             address: z.string(),
             zipcode: z.string(),
             addressFlag: z.array(z.string()),
+            timeSlotList: z
+              .array(
+                z.object({
+                  date: z.number(),
+                  timeText: z.string(),
+                  pickupTimeId: z.string(),
+                })
+              )
+              .optional()
+              .nullable(),
           })
         ),
-        timeSlotList: z
-          .array(
-            z.object({
-              date: z.number(),
-              timeText: z.string(),
-              pickupTimeId: z.string(),
-            })
-          )
-          .optional()
-          .nullable(),
       }),
     })
     .optional(),
