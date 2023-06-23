@@ -1,6 +1,11 @@
 import { z } from "zod";
+import _snakeCase from "lodash/snakeCase";
+import { Readable } from "stream";
+import nodeFetch from "node-fetch";
 
-import { buildMutation } from "./libs";
+import { signURL, transformObjectKeys } from "./utils";
+import { ShopeeContext } from "./libs";
+
 import {
   API_V2_LOGISTIC_DOWNLOAD_SHIPPING_DOCUMENT,
   V2_LOGISTIC_SHIPPING_DOCUMENT_TYPES,
@@ -22,10 +27,42 @@ export const logisticDownloadShippingDocumentResponseSchema = z.object({
   data: z.string(),
 });
 
-export const downloadShippingDocument = buildMutation({
-  path: API_V2_LOGISTIC_DOWNLOAD_SHIPPING_DOCUMENT,
-  requestParameterSchema:
-    logisticDownloadShippingDocumentRequestParameterSchema,
-  responseSchema: logisticDownloadShippingDocumentResponseSchema,
-  responseType: "stream",
-});
+export async function downloadShippingDocument(
+  requestParameter: z.infer<
+    typeof logisticDownloadShippingDocumentRequestParameterSchema
+  >
+) {
+  const parseRequestParameters =
+    await logisticDownloadShippingDocumentRequestParameterSchema.safeParseAsync(
+      requestParameter
+    );
+
+  if (!parseRequestParameters.success) {
+    throw new Error(
+      `parse request parameters error: ${parseRequestParameters.error.message}`
+    );
+  }
+
+  const contextInstance = ShopeeContext.getInstance();
+  const context = contextInstance.value;
+
+  const signedURL = await signURL({
+    ...context,
+    path: API_V2_LOGISTIC_DOWNLOAD_SHIPPING_DOCUMENT,
+    params: {},
+  });
+
+  const body = transformObjectKeys(parseRequestParameters.data, (key) =>
+    _snakeCase(key.toString())
+  );
+
+  const res = await nodeFetch(signedURL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  });
+
+  return Readable.from(res.body);
+}

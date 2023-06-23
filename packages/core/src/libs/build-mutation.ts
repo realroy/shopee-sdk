@@ -21,6 +21,7 @@ export type BuildMutationArgs<
     data: z.infer<z.ZodObject<TRequestParameterSchema>>
   ) => typeof data;
   responseType?: ResponseType;
+  headers?: Record<string, string | number>;
 };
 
 export function buildMutation<
@@ -74,9 +75,9 @@ export function buildMutation<
 
     const response = await httpClient.post(signedURL, {}, body, responseType);
 
-    if (responseType !== "json" || args.responseSchema === undefined) {
-      return response.data;
-    }
+    // if (responseType !== "json" || args.responseSchema === undefined) {
+    //   return response.data;
+    // }
 
     const data = transformObjectKeys(response.data, (key) =>
       _camelCase(key.toString())

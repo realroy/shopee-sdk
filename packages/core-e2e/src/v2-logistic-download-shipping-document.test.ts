@@ -6,10 +6,10 @@ describe("v2/logistic/download-shipping-document", async () => {
   const now = new Date();
 
   const getOrderListResponse = await shopeeSdk.v2.order.getOrderList({
-    timeFrom: new Date(new Date().setDate(now.getDate() - 1)),
+    timeFrom: new Date(new Date().setDate(now.getDate() - 10)),
     timeTo: now,
     pageSize: 10,
-    orderStatus: 'PROCESSED',
+    orderStatus: "PROCESSED",
     timeRangeField: "create_time",
     responseOptionalFields: "order_status",
   });
