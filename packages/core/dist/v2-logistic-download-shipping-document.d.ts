@@ -3,24 +3,24 @@ export declare const logisticDownloadShippingDocumentRequestParameterSchema: z.Z
     shippingDocumentType: z.ZodOptional<z.ZodEnum<["NORMAL_AIR_WAYBILL", "THERMAL_AIR_WAYBILL", "NORMAL_JOB_AIR_WAYBILL", "THERMAL_JOB_AIR_WAYBILL"]>>;
     orderList: z.ZodArray<z.ZodObject<{
         orderSn: z.ZodString;
-        packageNumber: z.ZodOptional<z.ZodString>;
+        packageNumber: z.ZodNullable<z.ZodOptional<z.ZodString>>;
     }, "strip", z.ZodTypeAny, {
         orderSn: string;
-        packageNumber?: string | undefined;
+        packageNumber?: string | null | undefined;
     }, {
         orderSn: string;
-        packageNumber?: string | undefined;
+        packageNumber?: string | null | undefined;
     }>, "many">;
 }, "strip", z.ZodTypeAny, {
     orderList: {
         orderSn: string;
-        packageNumber?: string | undefined;
+        packageNumber?: string | null | undefined;
     }[];
     shippingDocumentType?: "NORMAL_AIR_WAYBILL" | "THERMAL_AIR_WAYBILL" | "NORMAL_JOB_AIR_WAYBILL" | "THERMAL_JOB_AIR_WAYBILL" | undefined;
 }, {
     orderList: {
         orderSn: string;
-        packageNumber?: string | undefined;
+        packageNumber?: string | null | undefined;
     }[];
     shippingDocumentType?: "NORMAL_AIR_WAYBILL" | "THERMAL_AIR_WAYBILL" | "NORMAL_JOB_AIR_WAYBILL" | "THERMAL_JOB_AIR_WAYBILL" | undefined;
 }>;
@@ -34,7 +34,7 @@ export declare const logisticDownloadShippingDocumentResponseSchema: z.ZodObject
 export declare const downloadShippingDocument: (requestParameters: {
     orderList: {
         orderSn: string;
-        packageNumber?: string | undefined;
+        packageNumber?: string | null | undefined;
     }[];
     shippingDocumentType?: "NORMAL_AIR_WAYBILL" | "THERMAL_AIR_WAYBILL" | "NORMAL_JOB_AIR_WAYBILL" | "THERMAL_JOB_AIR_WAYBILL" | undefined;
 }) => Promise<any>;

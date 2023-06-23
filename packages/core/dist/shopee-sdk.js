@@ -43,13 +43,13 @@ async function Q(r) {
     access_token: s,
     shop_id: i,
     params: c = {}
-  } = r, g = t.toString(), u = i.toString(), l = {};
+  } = r, g = t.toString(), u = i.toString(), m = {};
   for (const p in c) {
     const I = c[p];
-    Array.isArray(I) ? l[p] = [
+    Array.isArray(I) ? m[p] = [
       I[0],
       ...I.slice(1).map((je) => `&${p}=${je}`)
-    ].join("") : I instanceof Date ? l[p] = E(I) : l[p] = `${I}`;
+    ].join("") : I instanceof Date ? m[p] = E(I) : m[p] = `${I}`;
   }
   const f = E(), d = new URL(o, a), S = await J(
     n,
@@ -60,7 +60,7 @@ async function Q(r) {
     u
   );
   return d.search = new URLSearchParams({
-    ...l,
+    ...m,
     partner_id: g,
     shop_id: u,
     ...!!s && { access_token: s },
@@ -308,14 +308,14 @@ function sr(r) {
   return ar.call(r);
 }
 var ir = sr, w = k, cr = nr, ur = ir, pr = "[object Null]", gr = "[object Undefined]", $ = w ? w.toStringTag : void 0;
-function mr(r) {
+function lr(r) {
   return r == null ? r === void 0 ? gr : pr : $ && $ in Object(r) ? cr(r) : ur(r);
 }
-var lr = mr;
+var mr = lr;
 function dr(r) {
   return r != null && typeof r == "object";
 }
-var br = dr, fr = lr, _r = br, hr = "[object Symbol]";
+var br = dr, fr = mr, _r = br, hr = "[object Symbol]";
 function Sr(r) {
   return typeof r == "symbol" || _r(r) && fr(r) == hr;
 }
@@ -346,7 +346,7 @@ var Gr = Mr, Hr = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z
 function Fr(r) {
   return Hr.test(r);
 }
-var Vr = Fr, re = "\\ud800-\\udfff", zr = "\\u0300-\\u036f", Wr = "\\ufe20-\\ufe2f", Kr = "\\u20d0-\\u20ff", Br = zr + Wr + Kr, te = "\\u2700-\\u27bf", ne = "a-z\\xdf-\\xf6\\xf8-\\xff", Zr = "\\xac\\xb1\\xd7\\xf7", Yr = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", Jr = "\\u2000-\\u206f", Qr = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", oe = "A-Z\\xc0-\\xd6\\xd8-\\xde", Xr = "\\ufe0e\\ufe0f", ae = Zr + Yr + Jr + Qr, se = "['’]", G = "[" + ae + "]", et = "[" + Br + "]", ie = "\\d+", rt = "[" + te + "]", ce = "[" + ne + "]", ue = "[^" + re + ae + ie + te + ne + oe + "]", tt = "\\ud83c[\\udffb-\\udfff]", nt = "(?:" + et + "|" + tt + ")", ot = "[^" + re + "]", pe = "(?:\\ud83c[\\udde6-\\uddff]){2}", ge = "[\\ud800-\\udbff][\\udc00-\\udfff]", y = "[" + oe + "]", at = "\\u200d", H = "(?:" + ce + "|" + ue + ")", st = "(?:" + y + "|" + ue + ")", F = "(?:" + se + "(?:d|ll|m|re|s|t|ve))?", V = "(?:" + se + "(?:D|LL|M|RE|S|T|VE))?", me = nt + "?", le = "[" + Xr + "]?", it = "(?:" + at + "(?:" + [ot, pe, ge].join("|") + ")" + le + me + ")*", ct = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", ut = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", pt = le + me + it, gt = "(?:" + [rt, pe, ge].join("|") + ")" + pt, mt = RegExp([
+var Vr = Fr, re = "\\ud800-\\udfff", zr = "\\u0300-\\u036f", Wr = "\\ufe20-\\ufe2f", Kr = "\\u20d0-\\u20ff", Br = zr + Wr + Kr, te = "\\u2700-\\u27bf", ne = "a-z\\xdf-\\xf6\\xf8-\\xff", Zr = "\\xac\\xb1\\xd7\\xf7", Yr = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", Jr = "\\u2000-\\u206f", Qr = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", oe = "A-Z\\xc0-\\xd6\\xd8-\\xde", Xr = "\\ufe0e\\ufe0f", ae = Zr + Yr + Jr + Qr, se = "['’]", G = "[" + ae + "]", et = "[" + Br + "]", ie = "\\d+", rt = "[" + te + "]", ce = "[" + ne + "]", ue = "[^" + re + ae + ie + te + ne + oe + "]", tt = "\\ud83c[\\udffb-\\udfff]", nt = "(?:" + et + "|" + tt + ")", ot = "[^" + re + "]", pe = "(?:\\ud83c[\\udde6-\\uddff]){2}", ge = "[\\ud800-\\udbff][\\udc00-\\udfff]", y = "[" + oe + "]", at = "\\u200d", H = "(?:" + ce + "|" + ue + ")", st = "(?:" + y + "|" + ue + ")", F = "(?:" + se + "(?:d|ll|m|re|s|t|ve))?", V = "(?:" + se + "(?:D|LL|M|RE|S|T|VE))?", le = nt + "?", me = "[" + Xr + "]?", it = "(?:" + at + "(?:" + [ot, pe, ge].join("|") + ")" + me + le + ")*", ct = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", ut = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", pt = me + le + it, gt = "(?:" + [rt, pe, ge].join("|") + ")" + pt, lt = RegExp([
   y + "?" + ce + "+" + F + "(?=" + [G, y, "$"].join("|") + ")",
   st + "+" + V + "(?=" + [G, y + H, "$"].join("|") + ")",
   y + "?" + H + "+" + F,
@@ -356,10 +356,10 @@ var Vr = Fr, re = "\\ud800-\\udfff", zr = "\\u0300-\\u036f", Wr = "\\ufe20-\\ufe
   ie,
   gt
 ].join("|"), "g");
-function lt(r) {
-  return r.match(mt) || [];
+function mt(r) {
+  return r.match(lt) || [];
 }
-var dt = lt, bt = Gr, ft = Vr, _t = O, ht = dt;
+var dt = mt, bt = Gr, ft = Vr, _t = O, ht = dt;
 function St(r, t, n) {
   return r = _t(r), t = n ? void 0 : t, t === void 0 ? ft(r) ? ht(r) : bt(r) : r.match(t) || [];
 }
@@ -400,11 +400,11 @@ var on = nn, an = Vt, sn = fe, cn = on;
 function un(r) {
   return sn(r) ? cn(r) : an(r);
 }
-var pn = un, gn = kt, mn = fe, ln = pn, dn = O;
+var pn = un, gn = kt, ln = fe, mn = pn, dn = O;
 function bn(r) {
   return function(t) {
     t = dn(t);
-    var n = mn(t) ? ln(t) : void 0, o = n ? n[0] : t.charAt(0), a = n ? gn(n, 1).join("") : t.slice(1);
+    var n = ln(t) ? mn(t) : void 0, o = n ? n[0] : t.charAt(0), a = n ? gn(n, 1).join("") : t.slice(1);
     return o[r]() + a;
   };
 }
@@ -432,8 +432,8 @@ class A {
           response: a,
           message: s,
           config: { method: i, url: c, data: g, params: u }
-        } = o, l = a == null ? void 0 : a.status;
-        throw this.logger.error({ status: l, message: s, method: i, url: c, data: g, params: u }), o;
+        } = o, m = a == null ? void 0 : a.status;
+        throw this.logger.error({ status: m, message: s, method: i, url: c, data: g, params: u }), o;
       }
     );
     this.logInterceptorIds = [
@@ -512,8 +512,8 @@ function b(r) {
       ...g,
       path: r.path,
       params: i
-    }), l = await z.get(u), f = T(
-      l.data,
+    }), m = await z.get(u), f = T(
+      m.data,
       (p) => Re(p.toString())
     ), d = await r.responseSchema.safeParseAsync(f);
     if (!d.success)
@@ -543,10 +543,10 @@ function h({
       ...g,
       path: t.path,
       params: {}
-    }), l = T(
+    }), m = T(
       i.data,
       (p) => be(p.toString())
-    ), f = await W.post(u, {}, l, r);
+    ), f = await W.post(u, {}, m, r);
     if (r !== "json" || t.responseSchema === void 0)
       return f.data;
     const d = T(
@@ -607,7 +607,7 @@ const An = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   orderList: e.array(
     e.object({
       orderSn: e.string(),
-      packageNumber: e.string().optional()
+      packageNumber: e.string().optional().nullable()
     })
   ).max(50)
 }), Gn = e.object({
@@ -986,7 +986,7 @@ const An = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
   cursor: e.string().optional(),
   orderStatus: e.enum(Ee).optional(),
   responseOptionalFields: e.enum(["order_status"]).optional().default("order_status")
-}), mo = e.object({
+}), lo = e.object({
   error: e.string().optional(),
   message: e.string().optional(),
   response: e.object({
@@ -999,14 +999,14 @@ const An = "/api/v2/logistics/get_shipping_parameter", xn = "/api/v2/logistic/sh
     )
   }).optional(),
   requestId: e.string()
-}), lo = b({
+}), mo = b({
   path: io,
   requestParameterSchema: go,
-  responseSchema: mo
+  responseSchema: lo
 }), bo = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   getOrderDetail: po,
-  getOrderList: lo
+  getOrderList: mo
 }, Symbol.toStringTag, { value: "Module" })), fo = "/api/v2/product/get_item_base_info", _o = "/api/v2/product/get_item_extra_info", ho = "/api/v2/product/get_item_list", So = "/api/v2/product/get_model_list", Oe = ["NORMAL", "DELETED", "UNLIST", "BANNED"], Io = e.object({
   itemIdList: e.string(),
   needTaxInfo: e.coerce.boolean().optional(),
@@ -1361,28 +1361,28 @@ const $o = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
 });
 if (!v.success)
   throw new Error(v.error.message);
-const P = v.data, m = _.getInstance();
+const P = v.data, l = _.getInstance();
 class zo {
   constructor(t = {}) {
-    m.accessToken = t.accessToken ?? P.accessToken, m.baseURL = t.baseURL ?? P.baseURL, m.partnerId = t.partnerId ?? P.partnerId, m.partnerKey = t.partnerKey ?? P.partnerKey, m.shopId = t.shopId ?? P.shopId, m.isLogEnabled = t.isLogEnabled ?? !1;
+    l.accessToken = t.accessToken ?? P.accessToken, l.baseURL = t.baseURL ?? P.baseURL, l.partnerId = t.partnerId ?? P.partnerId, l.partnerKey = t.partnerKey ?? P.partnerKey, l.shopId = t.shopId ?? P.shopId, l.isLogEnabled = t.isLogEnabled ?? !1;
   }
   setPartnerId(t) {
-    return m.partnerId = t, this;
+    return l.partnerId = t, this;
   }
   setBaseURL(t) {
-    return m.baseURL = t, this;
+    return l.baseURL = t, this;
   }
   setPartnerKey(t) {
-    return m.partnerKey = t, this;
+    return l.partnerKey = t, this;
   }
   setAccessToken(t) {
-    return m.accessToken = t, this;
+    return l.accessToken = t, this;
   }
   setShopId(t) {
-    return m.shopId = t, this;
+    return l.shopId = t, this;
   }
   setIsLogEnabled(t) {
-    return m.isLogEnabled = t, this;
+    return l.isLogEnabled = t, this;
   }
   get v2() {
     return Uo;
