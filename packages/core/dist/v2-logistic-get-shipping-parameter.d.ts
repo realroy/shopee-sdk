@@ -107,6 +107,19 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 address: z.ZodString;
                 zipcode: z.ZodString;
                 addressFlag: z.ZodArray<z.ZodString, "many">;
+                timeSlotList: z.ZodNullable<z.ZodOptional<z.ZodArray<z.ZodObject<{
+                    date: z.ZodNumber;
+                    timeText: z.ZodString;
+                    pickupTimeId: z.ZodString;
+                }, "strip", z.ZodTypeAny, {
+                    date: number;
+                    timeText: string;
+                    pickupTimeId: string;
+                }, {
+                    date: number;
+                    timeText: string;
+                    pickupTimeId: string;
+                }>, "many">>>;
             }, "strip", z.ZodTypeAny, {
                 region: string;
                 state: string;
@@ -117,6 +130,11 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 town: string;
                 addressId: number;
                 addressFlag: string[];
+                timeSlotList?: {
+                    date: number;
+                    timeText: string;
+                    pickupTimeId: string;
+                }[] | null | undefined;
             }, {
                 region: string;
                 state: string;
@@ -127,20 +145,12 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 town: string;
                 addressId: number;
                 addressFlag: string[];
+                timeSlotList?: {
+                    date: number;
+                    timeText: string;
+                    pickupTimeId: string;
+                }[] | null | undefined;
             }>, "many">;
-            timeSlotList: z.ZodNullable<z.ZodOptional<z.ZodArray<z.ZodObject<{
-                date: z.ZodNumber;
-                timeText: z.ZodString;
-                pickupTimeId: z.ZodString;
-            }, "strip", z.ZodTypeAny, {
-                date: number;
-                timeText: string;
-                pickupTimeId: string;
-            }, {
-                date: number;
-                timeText: string;
-                pickupTimeId: string;
-            }>, "many">>>;
         }, "strip", z.ZodTypeAny, {
             addressList: {
                 region: string;
@@ -152,12 +162,12 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 town: string;
                 addressId: number;
                 addressFlag: string[];
+                timeSlotList?: {
+                    date: number;
+                    timeText: string;
+                    pickupTimeId: string;
+                }[] | null | undefined;
             }[];
-            timeSlotList?: {
-                date: number;
-                timeText: string;
-                pickupTimeId: string;
-            }[] | null | undefined;
         }, {
             addressList: {
                 region: string;
@@ -169,12 +179,12 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 town: string;
                 addressId: number;
                 addressFlag: string[];
+                timeSlotList?: {
+                    date: number;
+                    timeText: string;
+                    pickupTimeId: string;
+                }[] | null | undefined;
             }[];
-            timeSlotList?: {
-                date: number;
-                timeText: string;
-                pickupTimeId: string;
-            }[] | null | undefined;
         }>;
     }, "strip", z.ZodTypeAny, {
         infoNeeded: {
@@ -209,12 +219,12 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 town: string;
                 addressId: number;
                 addressFlag: string[];
+                timeSlotList?: {
+                    date: number;
+                    timeText: string;
+                    pickupTimeId: string;
+                }[] | null | undefined;
             }[];
-            timeSlotList?: {
-                date: number;
-                timeText: string;
-                pickupTimeId: string;
-            }[] | null | undefined;
         };
     }, {
         infoNeeded: {
@@ -249,12 +259,12 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 town: string;
                 addressId: number;
                 addressFlag: string[];
+                timeSlotList?: {
+                    date: number;
+                    timeText: string;
+                    pickupTimeId: string;
+                }[] | null | undefined;
             }[];
-            timeSlotList?: {
-                date: number;
-                timeText: string;
-                pickupTimeId: string;
-            }[] | null | undefined;
         };
     }>>;
     requestId: z.ZodString;
@@ -295,12 +305,12 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 town: string;
                 addressId: number;
                 addressFlag: string[];
+                timeSlotList?: {
+                    date: number;
+                    timeText: string;
+                    pickupTimeId: string;
+                }[] | null | undefined;
             }[];
-            timeSlotList?: {
-                date: number;
-                timeText: string;
-                pickupTimeId: string;
-            }[] | null | undefined;
         };
     } | undefined;
 }, {
@@ -340,12 +350,12 @@ export declare const logisticGetShippingParameterResponseSchema: z.ZodObject<{
                 town: string;
                 addressId: number;
                 addressFlag: string[];
+                timeSlotList?: {
+                    date: number;
+                    timeText: string;
+                    pickupTimeId: string;
+                }[] | null | undefined;
             }[];
-            timeSlotList?: {
-                date: number;
-                timeText: string;
-                pickupTimeId: string;
-            }[] | null | undefined;
         };
     } | undefined;
 }>;
@@ -389,12 +399,12 @@ export declare const getShippingParameter: (requestParameters: {
                 town: string;
                 addressId: number;
                 addressFlag: string[];
+                timeSlotList?: {
+                    date: number;
+                    timeText: string;
+                    pickupTimeId: string;
+                }[] | null | undefined;
             }[];
-            timeSlotList?: {
-                date: number;
-                timeText: string;
-                pickupTimeId: string;
-            }[] | null | undefined;
         };
     } | undefined;
 }>;

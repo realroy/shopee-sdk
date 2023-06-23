@@ -79846,16 +79846,16 @@ const B4 = p.object({
           town: p.string(),
           address: p.string(),
           zipcode: p.string(),
-          addressFlag: p.array(p.string())
+          addressFlag: p.array(p.string()),
+          timeSlotList: p.array(
+            p.object({
+              date: p.number(),
+              timeText: p.string(),
+              pickupTimeId: p.string()
+            })
+          ).optional().nullable()
         })
-      ),
-      timeSlotList: p.array(
-        p.object({
-          date: p.number(),
-          timeText: p.string(),
-          pickupTimeId: p.string()
-        })
-      ).optional().nullable()
+      )
     })
   }).optional(),
   requestId: p.string()
