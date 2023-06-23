@@ -95,5 +95,21 @@ export declare const getShippingDocumentParameter: (requestParameters: {
         orderSn: string;
         packageNumber?: number | undefined;
     }[];
-}) => Promise<any>;
+}) => Promise<{
+    requestId: string;
+    error?: string | undefined;
+    message?: string | undefined;
+    warning?: {
+        orderSn: string;
+        packageNumber?: number | undefined;
+    } | undefined;
+    response?: {
+        orderSn: string;
+        failError: string;
+        failMessage: string;
+        suggestShippingDocumentType: string;
+        selectableShippingDocumentType: string[];
+        packageNumber?: number | undefined;
+    } | undefined;
+}>;
 //# sourceMappingURL=v2-logistic-get-shipping-document-parameter.d.ts.map

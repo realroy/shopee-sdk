@@ -1,4 +1,6 @@
+/// <reference types="node" />
 import { z } from "zod";
+import { Readable } from "stream";
 export declare const logisticDownloadShippingDocumentRequestParameterSchema: z.ZodObject<{
     shippingDocumentType: z.ZodOptional<z.ZodEnum<["NORMAL_AIR_WAYBILL", "THERMAL_AIR_WAYBILL", "NORMAL_JOB_AIR_WAYBILL", "THERMAL_JOB_AIR_WAYBILL"]>>;
     orderList: z.ZodArray<z.ZodObject<{
@@ -31,11 +33,5 @@ export declare const logisticDownloadShippingDocumentResponseSchema: z.ZodObject
 }, {
     data: string;
 }>;
-export declare const downloadShippingDocument: (requestParameters: {
-    orderList: {
-        orderSn: string;
-        packageNumber?: string | null | undefined;
-    }[];
-    shippingDocumentType?: "NORMAL_AIR_WAYBILL" | "THERMAL_AIR_WAYBILL" | "NORMAL_JOB_AIR_WAYBILL" | "THERMAL_JOB_AIR_WAYBILL" | undefined;
-}) => Promise<any>;
+export declare function downloadShippingDocument(requestParameter: z.infer<typeof logisticDownloadShippingDocumentRequestParameterSchema>): Promise<Readable>;
 //# sourceMappingURL=v2-logistic-download-shipping-document.d.ts.map

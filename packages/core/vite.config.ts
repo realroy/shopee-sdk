@@ -13,12 +13,13 @@ export default defineConfig({
     },
     rollupOptions: {
       plugins: [nodePolyfills()],
-      external: ["zod", "axios", "crypto"],
+      external: ["zod", "axios", "crypto", "stream", "url", "http", "zlib"],
       output: {
         globals: {
           zod: "zod",
           axios: "axios",
           crypto: "crypto",
+          nodeFetch: "node-fetch",
         },
       },
     },

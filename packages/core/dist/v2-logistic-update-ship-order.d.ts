@@ -47,5 +47,9 @@ export declare const updateShipOrder: (requestParameters: {
         pickupTimeId: string;
     };
     packageNumber?: string | undefined;
-}) => Promise<any>;
+}) => Promise<{
+    requestId: string;
+    error?: string | undefined;
+    message?: string | undefined;
+}>;
 //# sourceMappingURL=v2-logistic-update-ship-order.d.ts.map

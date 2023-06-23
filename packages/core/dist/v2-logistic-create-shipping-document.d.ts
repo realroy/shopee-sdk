@@ -117,5 +117,21 @@ export declare const createShippingDocument: (requestParameters: {
         trackingNumber: string | null;
         shippingDocumentType?: "NORMAL_AIR_WAYBILL" | "THERMAL_AIR_WAYBILL" | "NORMAL_JOB_AIR_WAYBILL" | "THERMAL_JOB_AIR_WAYBILL" | undefined;
     }[];
-}) => Promise<any>;
+}) => Promise<{
+    requestId: string;
+    error?: string | undefined;
+    message?: string | undefined;
+    warning?: {
+        orderSn: string;
+        packageNumber?: string | undefined;
+    } | null | undefined;
+    response?: {
+        resultList: {
+            orderSn?: string | undefined;
+            packageNumber?: string | undefined;
+            failError?: string | null | undefined;
+            failMessage?: string | null | undefined;
+        }[];
+    } | undefined;
+}>;
 //# sourceMappingURL=v2-logistic-create-shipping-document.d.ts.map

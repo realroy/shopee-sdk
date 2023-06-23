@@ -96,5 +96,20 @@ export declare const getShippingDocumentResult: (requestParameters: {
         packageNumber?: string | undefined;
         shippingDocumentType?: "NORMAL_AIR_WAYBILL" | "THERMAL_AIR_WAYBILL" | "NORMAL_JOB_AIR_WAYBILL" | "THERMAL_JOB_AIR_WAYBILL" | undefined;
     }[];
-}) => Promise<any>;
+}) => Promise<{
+    requestId: string;
+    error?: string | undefined;
+    message?: string | undefined;
+    warning?: {
+        orderSn: string;
+        packageNumber?: number | undefined;
+    } | undefined;
+    response?: {
+        status: "READY" | "FAILED" | "PROCESSING";
+        orderSn: string;
+        packageNumber: string;
+        failError: string;
+        failMessage: string;
+    } | undefined;
+}>;
 //# sourceMappingURL=v2-logistic-get-shipping-document-result.d.ts.map
