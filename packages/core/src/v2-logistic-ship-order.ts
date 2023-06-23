@@ -10,14 +10,14 @@ export const logisticShipOrderRequestParameterSchema = z.object({
     .object({
       addressId: z.number().optional(),
       pickupTimeId: z.string().optional(),
-      trackingNumber: z.string().optional(),
+      trackingNumber: z.string().optional().nullable().default(null),
     })
     .optional(),
   dropoff: z
     .object({
       branchId: z.number().optional(),
       senderRealName: z.string().optional(),
-      trackingNumber: z.string().optional(),
+      trackingNumber: z.string().optional().nullable().default(null),
       slug: z.string().optional(),
     })
     .optional(),
@@ -37,5 +37,5 @@ export const logisticShipOrderResponseSchema = z.object({
 export const shipOrder = buildMutation({
   path: API_V2_LOGISTIC_SHIP_ORDER,
   requestParameterSchema: logisticShipOrderRequestParameterSchema,
-  responseSchema: logisticShipOrderResponseSchema
+  responseSchema: logisticShipOrderResponseSchema,
 });
