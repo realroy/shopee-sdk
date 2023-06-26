@@ -5,30 +5,30 @@ export declare const logisticShipOrderRequestParameterSchema: z.ZodObject<{
     pickup: z.ZodOptional<z.ZodObject<{
         addressId: z.ZodOptional<z.ZodNumber>;
         pickupTimeId: z.ZodOptional<z.ZodString>;
-        trackingNumber: z.ZodOptional<z.ZodString>;
+        trackingNumber: z.ZodDefault<z.ZodNullable<z.ZodOptional<z.ZodString>>>;
     }, "strip", z.ZodTypeAny, {
+        trackingNumber: string | null;
         addressId?: number | undefined;
         pickupTimeId?: string | undefined;
-        trackingNumber?: string | undefined;
     }, {
         addressId?: number | undefined;
         pickupTimeId?: string | undefined;
-        trackingNumber?: string | undefined;
+        trackingNumber?: string | null | undefined;
     }>>;
     dropoff: z.ZodOptional<z.ZodObject<{
         branchId: z.ZodOptional<z.ZodNumber>;
         senderRealName: z.ZodOptional<z.ZodString>;
-        trackingNumber: z.ZodOptional<z.ZodString>;
+        trackingNumber: z.ZodDefault<z.ZodNullable<z.ZodOptional<z.ZodString>>>;
         slug: z.ZodOptional<z.ZodString>;
     }, "strip", z.ZodTypeAny, {
+        trackingNumber: string | null;
         branchId?: number | undefined;
         senderRealName?: string | undefined;
-        trackingNumber?: string | undefined;
         slug?: string | undefined;
     }, {
         branchId?: number | undefined;
         senderRealName?: string | undefined;
-        trackingNumber?: string | undefined;
+        trackingNumber?: string | null | undefined;
         slug?: string | undefined;
     }>>;
     nonIntegrated: z.ZodOptional<z.ZodObject<{
@@ -42,14 +42,14 @@ export declare const logisticShipOrderRequestParameterSchema: z.ZodObject<{
     orderSn: string;
     packageNumber?: string | undefined;
     pickup?: {
+        trackingNumber: string | null;
         addressId?: number | undefined;
         pickupTimeId?: string | undefined;
-        trackingNumber?: string | undefined;
     } | undefined;
     dropoff?: {
+        trackingNumber: string | null;
         branchId?: number | undefined;
         senderRealName?: string | undefined;
-        trackingNumber?: string | undefined;
         slug?: string | undefined;
     } | undefined;
     nonIntegrated?: {
@@ -61,12 +61,12 @@ export declare const logisticShipOrderRequestParameterSchema: z.ZodObject<{
     pickup?: {
         addressId?: number | undefined;
         pickupTimeId?: string | undefined;
-        trackingNumber?: string | undefined;
+        trackingNumber?: string | null | undefined;
     } | undefined;
     dropoff?: {
         branchId?: number | undefined;
         senderRealName?: string | undefined;
-        trackingNumber?: string | undefined;
+        trackingNumber?: string | null | undefined;
         slug?: string | undefined;
     } | undefined;
     nonIntegrated?: {
@@ -90,14 +90,14 @@ export declare const shipOrder: (requestParameters: {
     orderSn: string;
     packageNumber?: string | undefined;
     pickup?: {
+        trackingNumber: string | null;
         addressId?: number | undefined;
         pickupTimeId?: string | undefined;
-        trackingNumber?: string | undefined;
     } | undefined;
     dropoff?: {
+        trackingNumber: string | null;
         branchId?: number | undefined;
         senderRealName?: string | undefined;
-        trackingNumber?: string | undefined;
         slug?: string | undefined;
     } | undefined;
     nonIntegrated?: {

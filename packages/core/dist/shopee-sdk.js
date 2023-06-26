@@ -587,7 +587,7 @@ function u1({
     return b.data;
   };
 }
-const q6 = "/api/v2/logistics/get_shipping_parameter", M6 = "/api/v2/logistic/ship_order", z6 = "/api/v2/logistics/update_shipping_order", H6 = "/api/v2/logistics/get_tracking_number", G6 = "/api/v2/logistics/get_shipping_document_parameter", W6 = "/api/v2/logistics/create_shipping_document", K6 = "/api/v2/logistics/get_shipping_document_result", Z6 = "/api/v2/logistics/download_shipping_document", a2 = [
+const q6 = "/api/v2/logistics/get_shipping_parameter", M6 = "/api/v2/logistics/ship_order", z6 = "/api/v2/logistics/update_shipping_order", H6 = "/api/v2/logistics/get_tracking_number", G6 = "/api/v2/logistics/get_shipping_document_parameter", W6 = "/api/v2/logistics/create_shipping_document", K6 = "/api/v2/logistics/get_shipping_document_result", Z6 = "/api/v2/logistics/download_shipping_document", a2 = [
   "plp_number",
   "first_mile_tracking_number",
   "last_mile_tracking_number"
@@ -79869,12 +79869,12 @@ const B4 = p.object({
   pickup: p.object({
     addressId: p.number().optional(),
     pickupTimeId: p.string().optional(),
-    trackingNumber: p.string().optional()
+    trackingNumber: p.string().optional().nullable().default(null)
   }).optional(),
   dropoff: p.object({
     branchId: p.number().optional(),
     senderRealName: p.string().optional(),
-    trackingNumber: p.string().optional(),
+    trackingNumber: p.string().optional().nullable().default(null),
     slug: p.string().optional()
   }).optional(),
   nonIntegrated: p.object({
@@ -79890,7 +79890,7 @@ const B4 = p.object({
   responseSchema: Z4
 }), Y4 = p.object({
   orderSn: p.string(),
-  packageNumber: p.string().optional(),
+  packageNumber: p.string().optional().nullable().default(null),
   pickup: p.object({
     addressId: p.number(),
     pickupTimeId: p.string()

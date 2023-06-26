@@ -1,7 +1,7 @@
 import { z } from "zod";
 export declare const logisticUpdateShipOrderRequestParameterSchema: z.ZodObject<{
     orderSn: z.ZodString;
-    packageNumber: z.ZodOptional<z.ZodString>;
+    packageNumber: z.ZodDefault<z.ZodNullable<z.ZodOptional<z.ZodString>>>;
     pickup: z.ZodObject<{
         addressId: z.ZodNumber;
         pickupTimeId: z.ZodString;
@@ -14,18 +14,18 @@ export declare const logisticUpdateShipOrderRequestParameterSchema: z.ZodObject<
     }>;
 }, "strip", z.ZodTypeAny, {
     orderSn: string;
+    packageNumber: string | null;
     pickup: {
         addressId: number;
         pickupTimeId: string;
     };
-    packageNumber?: string | undefined;
 }, {
     orderSn: string;
     pickup: {
         addressId: number;
         pickupTimeId: string;
     };
-    packageNumber?: string | undefined;
+    packageNumber?: string | null | undefined;
 }>;
 export declare const logisticUpdateShipOrderResponseSchema: z.ZodObject<{
     error: z.ZodOptional<z.ZodString>;
@@ -42,11 +42,11 @@ export declare const logisticUpdateShipOrderResponseSchema: z.ZodObject<{
 }>;
 export declare const updateShipOrder: (requestParameters: {
     orderSn: string;
+    packageNumber: string | null;
     pickup: {
         addressId: number;
         pickupTimeId: string;
     };
-    packageNumber?: string | undefined;
 }) => Promise<{
     requestId: string;
     error?: string | undefined;
