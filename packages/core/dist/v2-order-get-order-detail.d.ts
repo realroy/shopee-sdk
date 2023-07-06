@@ -141,7 +141,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             note: z.ZodString;
             noteUpdateTime: z.ZodNumber;
             orderSn: z.ZodString;
-            orderStatus: z.ZodString;
+            orderStatus: z.ZodArray<z.ZodEnum<["UNPAID", "READY_TO_SHIP", "RETRY_SHIP", "IN_CANCEL", "CANCELLED", "PROCESSED", "SHIPPED", "TO_RETURN", "TO_CONFIRM_RECEIVE", "COMPLETED"]>, "many">;
             packageList: z.ZodArray<z.ZodObject<{
                 packageNumber: z.ZodString;
                 logisticsStatus: z.ZodString;
@@ -282,7 +282,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
-            orderStatus: string;
+            orderStatus: ("UNPAID" | "READY_TO_SHIP" | "RETRY_SHIP" | "IN_CANCEL" | "CANCELLED" | "PROCESSED" | "SHIPPED" | "TO_RETURN" | "TO_CONFIRM_RECEIVE" | "COMPLETED")[];
             packageList: {
                 packageNumber: string;
                 itemList: {
@@ -376,7 +376,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
-            orderStatus: string;
+            orderStatus: ("UNPAID" | "READY_TO_SHIP" | "RETRY_SHIP" | "IN_CANCEL" | "CANCELLED" | "PROCESSED" | "SHIPPED" | "TO_RETURN" | "TO_CONFIRM_RECEIVE" | "COMPLETED")[];
             packageList: {
                 packageNumber: string;
                 itemList: {
@@ -472,7 +472,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
-            orderStatus: string;
+            orderStatus: ("UNPAID" | "READY_TO_SHIP" | "RETRY_SHIP" | "IN_CANCEL" | "CANCELLED" | "PROCESSED" | "SHIPPED" | "TO_RETURN" | "TO_CONFIRM_RECEIVE" | "COMPLETED")[];
             packageList: {
                 packageNumber: string;
                 itemList: {
@@ -568,7 +568,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
-            orderStatus: string;
+            orderStatus: ("UNPAID" | "READY_TO_SHIP" | "RETRY_SHIP" | "IN_CANCEL" | "CANCELLED" | "PROCESSED" | "SHIPPED" | "TO_RETURN" | "TO_CONFIRM_RECEIVE" | "COMPLETED")[];
             packageList: {
                 packageNumber: string;
                 itemList: {
@@ -670,7 +670,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
-            orderStatus: string;
+            orderStatus: ("UNPAID" | "READY_TO_SHIP" | "RETRY_SHIP" | "IN_CANCEL" | "CANCELLED" | "PROCESSED" | "SHIPPED" | "TO_RETURN" | "TO_CONFIRM_RECEIVE" | "COMPLETED")[];
             packageList: {
                 packageNumber: string;
                 itemList: {
@@ -771,7 +771,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
-            orderStatus: string;
+            orderStatus: ("UNPAID" | "READY_TO_SHIP" | "RETRY_SHIP" | "IN_CANCEL" | "CANCELLED" | "PROCESSED" | "SHIPPED" | "TO_RETURN" | "TO_CONFIRM_RECEIVE" | "COMPLETED")[];
             packageList: {
                 packageNumber: string;
                 itemList: {
@@ -876,7 +876,7 @@ export declare const getOrderDetail: (requestParameters: {
             orderChargeableWeightGram: number;
             messageToSeller: string;
             noteUpdateTime: number;
-            orderStatus: string;
+            orderStatus: ("UNPAID" | "READY_TO_SHIP" | "RETRY_SHIP" | "IN_CANCEL" | "CANCELLED" | "PROCESSED" | "SHIPPED" | "TO_RETURN" | "TO_CONFIRM_RECEIVE" | "COMPLETED")[];
             packageList: {
                 packageNumber: string;
                 itemList: {

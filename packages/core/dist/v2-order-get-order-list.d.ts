@@ -5,7 +5,7 @@ export declare const getOrderListRequestParametersSchema: z.ZodObject<{
     timeTo: z.ZodDate;
     pageSize: z.ZodNumber;
     cursor: z.ZodOptional<z.ZodString>;
-    orderStatus: z.ZodOptional<z.ZodEnum<["UNPAID", "READY_TO_SHIP", "PROCESSED", "SHIPPED", "COMPLETED", "IN_CANCEL", "CANCELLED", "INVOICE_PENDING"]>>;
+    orderStatus: z.ZodOptional<z.ZodEnum<["UNPAID", "READY_TO_SHIP", "RETRY_SHIP", "IN_CANCEL", "CANCELLED", "PROCESSED", "SHIPPED", "TO_RETURN", "TO_CONFIRM_RECEIVE", "COMPLETED"]>>;
     responseOptionalFields: z.ZodDefault<z.ZodOptional<z.ZodEnum<["order_status"]>>>;
 }, "strip", z.ZodTypeAny, {
     responseOptionalFields: "order_status";
@@ -14,14 +14,14 @@ export declare const getOrderListRequestParametersSchema: z.ZodObject<{
     timeTo: Date;
     pageSize: number;
     cursor?: string | undefined;
-    orderStatus?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
+    orderStatus?: "UNPAID" | "READY_TO_SHIP" | "RETRY_SHIP" | "IN_CANCEL" | "CANCELLED" | "PROCESSED" | "SHIPPED" | "TO_RETURN" | "TO_CONFIRM_RECEIVE" | "COMPLETED" | undefined;
 }, {
     timeRangeField: "create_time" | "update_time";
     timeFrom: Date;
     timeTo: Date;
     pageSize: number;
     cursor?: string | undefined;
-    orderStatus?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
+    orderStatus?: "UNPAID" | "READY_TO_SHIP" | "RETRY_SHIP" | "IN_CANCEL" | "CANCELLED" | "PROCESSED" | "SHIPPED" | "TO_RETURN" | "TO_CONFIRM_RECEIVE" | "COMPLETED" | undefined;
     responseOptionalFields?: "order_status" | undefined;
 }>;
 export declare const getOrderListResponseSchema: z.ZodObject<{
@@ -81,7 +81,7 @@ export declare const getOrderList: (requestParameters: {
     timeTo: Date;
     pageSize: number;
     cursor?: string | undefined;
-    orderStatus?: "UNPAID" | "READY_TO_SHIP" | "PROCESSED" | "SHIPPED" | "COMPLETED" | "IN_CANCEL" | "CANCELLED" | "INVOICE_PENDING" | undefined;
+    orderStatus?: "UNPAID" | "READY_TO_SHIP" | "RETRY_SHIP" | "IN_CANCEL" | "CANCELLED" | "PROCESSED" | "SHIPPED" | "TO_RETURN" | "TO_CONFIRM_RECEIVE" | "COMPLETED" | undefined;
 }) => Promise<{
     requestId: string;
     error?: string | undefined;
