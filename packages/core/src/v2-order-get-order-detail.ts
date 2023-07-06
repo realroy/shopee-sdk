@@ -4,6 +4,7 @@ import { buildQuery } from "./libs";
 import {
   API_V2_ORDER_GET_ORDER_DETAIL_PATH,
   V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS,
+  V2_ORDER_STATUS,
 } from "./v2-order.constant";
 
 export const getOrderDetailRequestParametersSchema = z.object({
@@ -85,7 +86,7 @@ export const getOrderDetailResponseSchema = z.object({
           note: z.string(),
           noteUpdateTime: z.number(),
           orderSn: z.string(),
-          orderStatus: z.string(),
+          orderStatus: z.array(z.enum(V2_ORDER_STATUS)),
           packageList: z.array(
             z.object({
               packageNumber: z.string(),
