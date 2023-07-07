@@ -80031,7 +80031,7 @@ const B4 = p.object({
         note: p.string(),
         noteUpdateTime: p.number(),
         orderSn: p.string(),
-        orderStatus: p.array(p.enum(me)),
+        orderStatus: p.enum(me),
         packageList: p.array(
           p.object({
             packageNumber: p.string(),
