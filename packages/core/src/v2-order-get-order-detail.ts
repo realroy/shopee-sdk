@@ -86,7 +86,7 @@ export const getOrderDetailResponseSchema = z.object({
           note: z.string(),
           noteUpdateTime: z.number(),
           orderSn: z.string(),
-          orderStatus: z.array(z.enum(V2_ORDER_STATUS)),
+          orderStatus: z.enum(V2_ORDER_STATUS),
           packageList: z.array(
             z.object({
               packageNumber: z.string(),
