@@ -1,10 +1,10 @@
 import M2 from "axios";
 import { z as p } from "zod";
-import F, { Readable as z2 } from "stream";
-import Re from "http";
+import B, { Readable as z2 } from "stream";
+import Ie from "http";
 import V1 from "url";
 import H2 from "https";
-import d1 from "zlib";
+import m1 from "zlib";
 function K1(e) {
   return e.reduce((a, m) => (a[m] = m, a), {});
 }
@@ -73,16 +73,16 @@ async function Z1(e) {
     timestamp: _
   }).toString(), S.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
 }
-function m1(e, a) {
+function i1(e, a) {
   if (typeof e != "object" || e === null || e instanceof Date)
     return e;
   if (Array.isArray(e))
     return e.map(
-      (d, r) => m1(e[r], a)
+      (d, r) => i1(e[r], a)
     );
   const m = {};
   for (const [i, d] of Object.entries(e))
-    i !== void 0 && (m[a(i)] = m1(d, a));
+    i !== void 0 && (m[a(i)] = i1(d, a));
   return m;
 }
 var D1 = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
@@ -344,19 +344,19 @@ function Ap(e) {
   return e == null ? e === void 0 ? Vp : yp : ne && ne in Object(e) ? Dp(e) : Tp(e);
 }
 var Ep = Ap;
-function Pp(e) {
+function Rp(e) {
   return e != null && typeof e == "object";
 }
-var Ip = Pp, Rp = Ep, Cp = Ip, xp = "[object Symbol]";
+var Pp = Rp, Ip = Ep, Cp = Pp, xp = "[object Symbol]";
 function Op(e) {
-  return typeof e == "symbol" || Cp(e) && Rp(e) == xp;
+  return typeof e == "symbol" || Cp(e) && Ip(e) == xp;
 }
-var Lp = Op, ue = J1, Fp = up, Bp = cp, Up = Lp, jp = 1 / 0, ve = ue ? ue.prototype : void 0, ce = ve ? ve.toString : void 0;
+var Lp = Op, ue = J1, Bp = up, Fp = cp, Up = Lp, jp = 1 / 0, ve = ue ? ue.prototype : void 0, ce = ve ? ve.toString : void 0;
 function Oe(e) {
   if (typeof e == "string")
     return e;
-  if (Bp(e))
-    return Fp(e, Oe) + "";
+  if (Fp(e))
+    return Bp(e, Oe) + "";
   if (Up(e))
     return ce ? ce.call(e) : "";
   var a = e + "";
@@ -378,11 +378,11 @@ var aa = pa, da = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z
 function ma(e) {
   return da.test(e);
 }
-var ia = ma, Le = "\\ud800-\\udfff", la = "\\u0300-\\u036f", ta = "\\ufe20-\\ufe2f", ra = "\\u20d0-\\u20ff", sa = la + ta + ra, Fe = "\\u2700-\\u27bf", Be = "a-z\\xdf-\\xf6\\xf8-\\xff", oa = "\\xac\\xb1\\xd7\\xf7", na = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", ua = "\\u2000-\\u206f", va = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", Ue = "A-Z\\xc0-\\xd6\\xd8-\\xde", ca = "\\ufe0e\\ufe0f", je = oa + na + ua + va, ke = "['’]", fe = "[" + je + "]", fa = "[" + sa + "]", $e = "\\d+", ha = "[" + Fe + "]", qe = "[" + Be + "]", Me = "[^" + Le + je + $e + Fe + Be + Ue + "]", wa = "\\ud83c[\\udffb-\\udfff]", ga = "(?:" + fa + "|" + wa + ")", _a = "[^" + Le + "]", ze = "(?:\\ud83c[\\udde6-\\uddff]){2}", He = "[\\ud800-\\udbff][\\udc00-\\udfff]", t1 = "[" + Ue + "]", ba = "\\u200d", he = "(?:" + qe + "|" + Me + ")", Sa = "(?:" + t1 + "|" + Me + ")", we = "(?:" + ke + "(?:d|ll|m|re|s|t|ve))?", ge = "(?:" + ke + "(?:D|LL|M|RE|S|T|VE))?", Ge = ga + "?", We = "[" + ca + "]?", Na = "(?:" + ba + "(?:" + [_a, ze, He].join("|") + ")" + We + Ge + ")*", Da = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", Ta = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", ya = We + Ge + Na, Va = "(?:" + [ha, ze, He].join("|") + ")" + ya, Aa = RegExp([
-  t1 + "?" + qe + "+" + we + "(?=" + [fe, t1, "$"].join("|") + ")",
-  Sa + "+" + ge + "(?=" + [fe, t1 + he, "$"].join("|") + ")",
-  t1 + "?" + he + "+" + we,
-  t1 + "+" + ge,
+var ia = ma, Le = "\\ud800-\\udfff", la = "\\u0300-\\u036f", ta = "\\ufe20-\\ufe2f", ra = "\\u20d0-\\u20ff", sa = la + ta + ra, Be = "\\u2700-\\u27bf", Fe = "a-z\\xdf-\\xf6\\xf8-\\xff", oa = "\\xac\\xb1\\xd7\\xf7", na = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", ua = "\\u2000-\\u206f", va = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", Ue = "A-Z\\xc0-\\xd6\\xd8-\\xde", ca = "\\ufe0e\\ufe0f", je = oa + na + ua + va, ke = "['’]", fe = "[" + je + "]", fa = "[" + sa + "]", $e = "\\d+", ha = "[" + Be + "]", qe = "[" + Fe + "]", Me = "[^" + Le + je + $e + Be + Fe + Ue + "]", wa = "\\ud83c[\\udffb-\\udfff]", ga = "(?:" + fa + "|" + wa + ")", _a = "[^" + Le + "]", ze = "(?:\\ud83c[\\udde6-\\uddff]){2}", He = "[\\ud800-\\udbff][\\udc00-\\udfff]", r1 = "[" + Ue + "]", ba = "\\u200d", he = "(?:" + qe + "|" + Me + ")", Sa = "(?:" + r1 + "|" + Me + ")", we = "(?:" + ke + "(?:d|ll|m|re|s|t|ve))?", ge = "(?:" + ke + "(?:D|LL|M|RE|S|T|VE))?", Ge = ga + "?", We = "[" + ca + "]?", Na = "(?:" + ba + "(?:" + [_a, ze, He].join("|") + ")" + We + Ge + ")*", Da = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", Ta = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", ya = We + Ge + Na, Va = "(?:" + [ha, ze, He].join("|") + ")" + ya, Aa = RegExp([
+  r1 + "?" + qe + "+" + we + "(?=" + [fe, r1, "$"].join("|") + ")",
+  Sa + "+" + ge + "(?=" + [fe, r1 + he, "$"].join("|") + ")",
+  r1 + "?" + he + "+" + we,
+  r1 + "+" + ge,
   Ta,
   Da,
   $e,
@@ -391,14 +391,14 @@ var ia = ma, Le = "\\ud800-\\udfff", la = "\\u0300-\\u036f", ta = "\\ufe20-\\ufe
 function Ea(e) {
   return e.match(Aa) || [];
 }
-var Pa = Ea, Ia = aa, Ra = ia, Ca = A1, xa = Pa;
+var Ra = Ea, Pa = aa, Ia = ia, Ca = A1, xa = Ra;
 function Oa(e, a, m) {
-  return e = Ca(e), a = m ? void 0 : a, a === void 0 ? Ra(e) ? xa(e) : Ia(e) : e.match(a) || [];
+  return e = Ca(e), a = m ? void 0 : a, a === void 0 ? Ia(e) ? xa(e) : Pa(e) : e.match(a) || [];
 }
-var La = Oa, Fa = J2, Ba = Xp, Ua = La, ja = "['’]", ka = RegExp(ja, "g");
+var La = Oa, Ba = J2, Fa = Xp, Ua = La, ja = "['’]", ka = RegExp(ja, "g");
 function $a(e) {
   return function(a) {
-    return Fa(Ua(Ba(a).replace(ka, "")), e, "");
+    return Ba(Ua(Fa(a).replace(ka, "")), e, "");
   };
 }
 var Ke = $a, qa = Ke, Ma = qa(function(e, a, m) {
@@ -433,18 +433,18 @@ function D6(e) {
   return S6(e) ? N6(e) : b6(e);
 }
 var T6 = D6, y6 = Ka, V6 = Ze, A6 = T6, E6 = A1;
-function P6(e) {
+function R6(e) {
   return function(a) {
     a = E6(a);
     var m = V6(a) ? A6(a) : void 0, i = m ? m[0] : a.charAt(0), d = m ? y6(m, 1).join("") : a.slice(1);
     return i[e]() + d;
   };
 }
-var I6 = P6, R6 = I6, C6 = R6("toUpperCase"), x6 = C6, O6 = A1, L6 = x6;
-function F6(e) {
+var P6 = R6, I6 = P6, C6 = I6("toUpperCase"), x6 = C6, O6 = A1, L6 = x6;
+function B6(e) {
   return L6(O6(e).toLowerCase());
 }
-var B6 = F6, U6 = B6, j6 = Ke, k6 = j6(function(e, a, m) {
+var F6 = B6, U6 = F6, j6 = Ke, k6 = j6(function(e, a, m) {
   return a = a.toLowerCase(), e + (m ? U6(a) : a);
 }), a2 = k6;
 class E1 {
@@ -535,7 +535,7 @@ function e1(e) {
       throw new Error(
         `parse request parameters error: ${d.error.message}`
       );
-    const r = await a(d.data), o = m1(
+    const r = await a(d.data), o = i1(
       r,
       (f) => Y1(f.toString())
     ), n = X.getInstance(), s = n.value;
@@ -544,7 +544,7 @@ function e1(e) {
       ...s,
       path: e.path,
       params: o
-    }), h = await _e.get(w), _ = m1(
+    }), h = await _e.get(w), _ = i1(
       h.data,
       (f) => a2(f.toString())
     ), S = await e.responseSchema.safeParseAsync(_);
@@ -554,7 +554,7 @@ function e1(e) {
   };
 }
 const be = E1.getInstance();
-function u1({
+function p1({
   responseType: e = "json",
   ...a
 }) {
@@ -575,10 +575,10 @@ function u1({
       ...s,
       path: a.path,
       params: {}
-    }), h = m1(
+    }), h = i1(
       o.data,
       (f) => Y1(f.toString())
-    ), _ = await be.post(w, {}, h, e), S = m1(
+    ), _ = await be.post(w, {}, h, e), S = i1(
       _.data,
       (f) => a2(f.toString())
     ), b = await a.responseSchema.safeParseAsync(S);
@@ -591,7 +591,7 @@ const q6 = "/api/v2/logistics/get_shipping_parameter", M6 = "/api/v2/logistics/s
   "plp_number",
   "first_mile_tracking_number",
   "last_mile_tracking_number"
-], k0 = K1(d2), Q1 = [
+], Z0 = K1(d2), Q1 = [
   "NORMAL_AIR_WAYBILL",
   "THERMAL_AIR_WAYBILL",
   "NORMAL_JOB_AIR_WAYBILL",
@@ -627,7 +627,7 @@ const q6 = "/api/v2/logistics/get_shipping_parameter", M6 = "/api/v2/logistics/s
     )
   }).optional(),
   requestId: p.string()
-}), X6 = u1({
+}), X6 = p1({
   path: W6,
   requestParameterSchema: Y6,
   responseSchema: Q6
@@ -646,7 +646,7 @@ function Se(e) {
 function a4(e) {
   return e % 1 === 0.5 && !(e & 1) ? Math.floor(e) : Math.round(e);
 }
-function p1(e, a) {
+function a1(e, a) {
   a.unsigned || --e;
   const m = a.unsigned ? 0 : -Math.pow(2, e), i = Math.pow(2, e) - 1, d = a.moduloBitLength ? Math.pow(2, a.moduloBitLength) : Math.pow(2, e), r = a.moduloBitLength ? Math.pow(2, a.moduloBitLength - 1) : Math.pow(2, e - 1);
   return function(o, n) {
@@ -679,14 +679,14 @@ y.void = function() {
 y.boolean = function(e) {
   return !!e;
 };
-y.byte = p1(8, { unsigned: !1 });
-y.octet = p1(8, { unsigned: !0 });
-y.short = p1(16, { unsigned: !1 });
-y["unsigned short"] = p1(16, { unsigned: !0 });
-y.long = p1(32, { unsigned: !1 });
-y["unsigned long"] = p1(32, { unsigned: !0 });
-y["long long"] = p1(32, { unsigned: !1, moduloBitLength: 64 });
-y["unsigned long long"] = p1(32, { unsigned: !0, moduloBitLength: 64 });
+y.byte = a1(8, { unsigned: !1 });
+y.octet = a1(8, { unsigned: !0 });
+y.short = a1(16, { unsigned: !1 });
+y["unsigned short"] = a1(16, { unsigned: !0 });
+y.long = a1(32, { unsigned: !1 });
+y["unsigned long"] = a1(32, { unsigned: !0 });
+y["long long"] = a1(32, { unsigned: !1, moduloBitLength: 64 });
+y["unsigned long long"] = a1(32, { unsigned: !0, moduloBitLength: 64 });
 y.double = function(e) {
   const a = +e;
   if (!Number.isFinite(a))
@@ -761,15 +761,15 @@ var q1 = {}, d4 = {
     return a[e.exports.implSymbol];
   };
 })(d4);
-var m2 = {}, B = {}, m4 = {
+var m2 = {}, F = {}, m4 = {
   get exports() {
-    return B;
+    return F;
   },
   set exports(e) {
-    B = e;
+    F = e;
   }
 };
-const s1 = 2147483647, q = 36, X1 = 1, g1 = 26, i4 = 38, l4 = 700, i2 = 72, l2 = 128, t2 = "-", t4 = /^xn--/, r4 = /[^\0-\x7F]/, s4 = /[\x2E\u3002\uFF0E\uFF61]/g, o4 = {
+const o1 = 2147483647, q = 36, X1 = 1, g1 = 26, i4 = 38, l4 = 700, i2 = 72, l2 = 128, t2 = "-", t4 = /^xn--/, r4 = /[^\0-\x7F]/, s4 = /[\x2E\u3002\uFF0E\uFF61]/g, o4 = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
@@ -825,15 +825,15 @@ const s2 = (e) => String.fromCodePoint(...e), u4 = function(e) {
     for (let h = 1, _ = q; ; _ += q) {
       n >= m && Y("invalid-input");
       const S = u4(e.charCodeAt(n++));
-      S >= q && Y("invalid-input"), S > M((s1 - i) / h) && Y("overflow"), i += S * h;
+      S >= q && Y("invalid-input"), S > M((o1 - i) / h) && Y("overflow"), i += S * h;
       const b = _ <= r ? X1 : _ >= r + g1 ? g1 : _ - r;
       if (S < b)
         break;
       const f = q - b;
-      h > M(s1 / f) && Y("overflow"), h *= f;
+      h > M(o1 / f) && Y("overflow"), h *= f;
     }
     const w = a.length + 1;
-    r = o2(i - s, w, s == 0), M(i / w) > s1 - d && Y("overflow"), d += M(i / w), i %= w, a.splice(i++, 0, d);
+    r = o2(i - s, w, s == 0), M(i / w) > o1 - d && Y("overflow"), d += M(i / w), i %= w, a.splice(i++, 0, d);
   }
   return String.fromCodePoint(...a);
 }, ae = function(e) {
@@ -846,13 +846,13 @@ const s2 = (e) => String.fromCodePoint(...e), u4 = function(e) {
   const o = a.length;
   let n = o;
   for (o && a.push(t2); n < m; ) {
-    let s = s1;
+    let s = o1;
     for (const h of e)
       h >= i && h < s && (s = h);
     const w = n + 1;
-    s - i > M((s1 - d) / w) && Y("overflow"), d += (s - i) * w, i = s;
+    s - i > M((o1 - d) / w) && Y("overflow"), d += (s - i) * w, i = s;
     for (const h of e)
-      if (h < i && ++d > s1 && Y("overflow"), h === i) {
+      if (h < i && ++d > o1 && Y("overflow"), h === i) {
         let _ = d;
         for (let S = q; ; S += q) {
           const b = S <= r ? X1 : S >= r + g1 ? g1 : S - r;
@@ -908,7 +908,7 @@ const s2 = (e) => String.fromCodePoint(...e), u4 = function(e) {
   ucs2decode: ee,
   ucs2encode: s2
 }, Symbol.toStringTag, { value: "Module" })), v2 = /* @__PURE__ */ K2(c4);
-var P1 = {};
+var R1 = {};
 const f4 = [
   [
     [
@@ -78013,7 +78013,7 @@ const f4 = [
     "disallowed"
   ]
 ];
-var c2 = v2, De = f4, o1 = {
+var c2 = v2, De = f4, n1 = {
   TRANSITIONAL: 0,
   NONTRANSITIONAL: 1
 };
@@ -78048,7 +78048,7 @@ function w4(e, a, m) {
         d += String.fromCodePoint.apply(String, s[2]);
         break;
       case "deviation":
-        m === o1.TRANSITIONAL ? d += String.fromCodePoint.apply(String, s[2]) : d += String.fromCodePoint(n);
+        m === n1.TRANSITIONAL ? d += String.fromCodePoint.apply(String, s[2]) : d += String.fromCodePoint(n);
         break;
       case "valid":
         d += String.fromCodePoint(n);
@@ -78068,12 +78068,12 @@ function w4(e, a, m) {
 }
 var g4 = /[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08E4-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C03\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D01-\u0D03\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u18A9\u1920-\u192B\u1930-\u193B\u19B0-\u19C0\u19C8\u19C9\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF8\u1CF9\u1DC0-\u1DF5\u1DFC-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C4\uA8E0-\uA8F1\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2D]|\uD800[\uDDFD\uDEE0\uDF76-\uDF7A]|\uD802[\uDE01-\uDE03\uDE05\uDE06\uDE0C-\uDE0F\uDE38-\uDE3A\uDE3F\uDEE5\uDEE6]|\uD804[\uDC00-\uDC02\uDC38-\uDC46\uDC7F-\uDC82\uDCB0-\uDCBA\uDD00-\uDD02\uDD27-\uDD34\uDD73\uDD80-\uDD82\uDDB3-\uDDC0\uDE2C-\uDE37\uDEDF-\uDEEA\uDF01-\uDF03\uDF3C\uDF3E-\uDF44\uDF47\uDF48\uDF4B-\uDF4D\uDF57\uDF62\uDF63\uDF66-\uDF6C\uDF70-\uDF74]|\uD805[\uDCB0-\uDCC3\uDDAF-\uDDB5\uDDB8-\uDDC0\uDE30-\uDE40\uDEAB-\uDEB7]|\uD81A[\uDEF0-\uDEF4\uDF30-\uDF36]|\uD81B[\uDF51-\uDF7E\uDF8F-\uDF92]|\uD82F[\uDC9D\uDC9E]|\uD834[\uDD65-\uDD69\uDD6D-\uDD72\uDD7B-\uDD82\uDD85-\uDD8B\uDDAA-\uDDAD\uDE42-\uDE44]|\uD83A[\uDCD0-\uDCD6]|\uDB40[\uDD00-\uDDEF]/;
 function _4(e, a) {
-  e.substr(0, 4) === "xn--" && (e = c2.toUnicode(e), o1.NONTRANSITIONAL);
+  e.substr(0, 4) === "xn--" && (e = c2.toUnicode(e), n1.NONTRANSITIONAL);
   var m = !1;
   (f2(e) !== e || e[3] === "-" && e[4] === "-" || e[0] === "-" || e[e.length - 1] === "-" || e.indexOf(".") !== -1 || e.search(g4) === 0) && (m = !0);
   for (var i = w2(e), d = 0; d < i; ++d) {
     var r = h2(e.codePointAt(d));
-    if (y1 === o1.TRANSITIONAL && r[1] !== "valid" || y1 === o1.NONTRANSITIONAL && r[1] !== "valid" && r[1] !== "deviation") {
+    if (y1 === n1.TRANSITIONAL && r[1] !== "valid" || y1 === n1.NONTRANSITIONAL && r[1] !== "valid" && r[1] !== "deviation") {
       m = !0;
       break;
     }
@@ -78098,7 +78098,7 @@ function y1(e, a, m) {
     error: i.error
   };
 }
-P1.toASCII = function(e, a, m, i) {
+R1.toASCII = function(e, a, m, i) {
   var d = y1(e, a, m), r = d.string.split(".");
   if (r = r.map(function(s) {
     try {
@@ -78117,16 +78117,16 @@ P1.toASCII = function(e, a, m, i) {
   }
   return d.error ? null : r.join(".");
 };
-P1.toUnicode = function(e, a) {
-  var m = y1(e, a, o1.NONTRANSITIONAL);
+R1.toUnicode = function(e, a) {
+  var m = y1(e, a, n1.NONTRANSITIONAL);
   return {
     domain: m.string,
     error: m.error
   };
 };
-P1.PROCESSING_OPTIONS = o1;
+R1.PROCESSING_OPTIONS = n1;
 (function(e) {
-  const a = v2, m = P1, i = {
+  const a = v2, m = R1, i = {
     ftp: 21,
     file: null,
     gopher: 70,
@@ -78209,18 +78209,18 @@ P1.PROCESSING_OPTIONS = o1;
     return N1(l) || A2.has(l);
   }
   const E2 = /* @__PURE__ */ new Set([47, 58, 59, 61, 64, 91, 92, 93, 94, 124]);
-  function I1(l) {
+  function P1(l) {
     return ie(l) || E2.has(l);
   }
-  function a1(l, t) {
+  function d1(l, t) {
     const u = String.fromCodePoint(l);
     return t(l) ? K(u) : u;
   }
-  function P2(l) {
+  function R2(l) {
     let t = 10;
     return l.length >= 2 && l.charAt(0) === "0" && l.charAt(1).toLowerCase() === "x" ? (l = l.substring(2), t = 16) : l.length >= 2 && l.charAt(0) === "0" && (l = l.substring(1), t = 8), l === "" ? 0 : (t === 10 ? /[^0-9]/ : t === 16 ? /[^0-9A-Fa-f]/ : /[^0-7]/).test(l) ? d : parseInt(l, t);
   }
-  function I2(l) {
+  function P2(l) {
     const t = l.split(".");
     if (t[t.length - 1] === "" && t.length > 1 && t.pop(), t.length > 4)
       return l;
@@ -78228,10 +78228,10 @@ P1.PROCESSING_OPTIONS = o1;
     for (const g of t) {
       if (g === "")
         return l;
-      const P = P2(g);
-      if (P === d)
+      const R = R2(g);
+      if (R === d)
         return l;
-      u.push(P);
+      u.push(R);
     }
     for (let g = 0; g < u.length - 1; ++g)
       if (u[g] > 255)
@@ -78243,7 +78243,7 @@ P1.PROCESSING_OPTIONS = o1;
       v += g * Math.pow(256, 3 - c), ++c;
     return v;
   }
-  function R2(l) {
+  function I2(l) {
     let t = "", u = l;
     for (let v = 1; v <= 4; ++v)
       t = String(u % 256) + t, v !== 4 && (t = "." + t), u = Math.floor(u / 256);
@@ -78266,11 +78266,11 @@ P1.PROCESSING_OPTIONS = o1;
         ++c, ++u, v = u;
         continue;
       }
-      let g = 0, P = 0;
-      for (; P < 4 && h(l[c]); )
-        g = g * 16 + parseInt(o(l, c), 16), ++c, ++P;
+      let g = 0, R = 0;
+      for (; R < 4 && h(l[c]); )
+        g = g * 16 + parseInt(o(l, c), 16), ++c, ++R;
       if (l[c] === 46) {
-        if (P === 0 || (c -= P, u > 6))
+        if (R === 0 || (c -= R, u > 6))
           return d;
         let Z = 0;
         for (; l[c] !== void 0; ) {
@@ -78310,8 +78310,8 @@ P1.PROCESSING_OPTIONS = o1;
     if (v !== null) {
       let g = u - v;
       for (u = 7; u !== 0 && g > 0; ) {
-        const P = t[v + g - 1];
-        t[v + g - 1] = t[u], t[u] = P, --u, --g;
+        const R = t[v + g - 1];
+        t[v + g - 1] = t[u], t[u] = R, --u, --g;
       }
     } else if (v === null && u !== 8)
       return d;
@@ -78331,7 +78331,7 @@ P1.PROCESSING_OPTIONS = o1;
       }
     return t;
   }
-  function R1(l, t) {
+  function I1(l, t) {
     if (l[0] === "[")
       return l[l.length - 1] !== "]" ? d : C2(l.substring(1, l.length - 1));
     if (!t)
@@ -78339,7 +78339,7 @@ P1.PROCESSING_OPTIONS = o1;
     const u = v1(l), v = m.toASCII(u, !1, m.PROCESSING_OPTIONS.NONTRANSITIONAL, !1);
     if (v === null || E(v))
       return d;
-    const c = I2(v);
+    const c = P2(v);
     return typeof c == "number" || c === d ? c : v;
   }
   function O2(l) {
@@ -78348,7 +78348,7 @@ P1.PROCESSING_OPTIONS = o1;
     let t = "";
     const u = a.ucs2.decode(l);
     for (let v = 0; v < u.length; ++v)
-      t += a1(u[v], N1);
+      t += d1(u[v], N1);
     return t;
   }
   function L2(l) {
@@ -78361,12 +78361,12 @@ P1.PROCESSING_OPTIONS = o1;
     };
   }
   function C1(l) {
-    return typeof l == "number" ? R2(l) : l instanceof Array ? "[" + x2(l) + "]" : l;
-  }
-  function F2(l) {
-    return l.replace(/^[\u0000-\u001F\u0020]+|[\u0000-\u001F\u0020]+$/g, "");
+    return typeof l == "number" ? I2(l) : l instanceof Array ? "[" + x2(l) + "]" : l;
   }
   function B2(l) {
+    return l.replace(/^[\u0000-\u001F\u0020]+|[\u0000-\u001F\u0020]+$/g, "");
+  }
+  function F2(l) {
     return l.replace(/\u0009|\u000A|\u000D/g, "");
   }
   function le(l) {
@@ -78395,12 +78395,12 @@ P1.PROCESSING_OPTIONS = o1;
         fragment: null,
         cannotBeABaseURL: !1
       };
-      const P = F2(this.input);
-      P !== this.input && (this.parseError = !0), this.input = P;
+      const R = B2(this.input);
+      R !== this.input && (this.parseError = !0), this.input = R;
     }
-    const g = B2(this.input);
+    const g = F2(this.input);
     for (g !== this.input && (this.parseError = !0), this.input = g, this.state = c || "scheme start", this.buffer = "", this.atFlag = !1, this.arrFlag = !1, this.passwordTokenSeenFlag = !1, this.input = a.ucs2.decode(this.input); this.pointer <= this.input.length; ++this.pointer) {
-      const P = this.input[this.pointer], Z = isNaN(P) ? void 0 : String.fromCodePoint(P), $ = this["parse " + this.state](P, Z);
+      const R = this.input[this.pointer], Z = isNaN(R) ? void 0 : String.fromCodePoint(R), $ = this["parse " + this.state](R, Z);
       if ($) {
         if ($ === d) {
           this.failure = !0;
@@ -78454,8 +78454,8 @@ P1.PROCESSING_OPTIONS = o1;
           this.passwordTokenSeenFlag = !0;
           continue;
         }
-        const P = a1(g, I1);
-        this.passwordTokenSeenFlag ? this.url.password += P : this.url.username += P;
+        const R = d1(g, P1);
+        this.passwordTokenSeenFlag ? this.url.password += R : this.url.username += R;
       }
       this.buffer = "";
     } else if (isNaN(t) || t === 47 || t === 63 || t === 35 || V(this.url) && t === 92) {
@@ -78471,7 +78471,7 @@ P1.PROCESSING_OPTIONS = o1;
     else if (t === 58 && !this.arrFlag) {
       if (this.buffer === "")
         return this.parseError = !0, d;
-      const v = R1(this.buffer, V(this.url));
+      const v = I1(this.buffer, V(this.url));
       if (v === d)
         return d;
       if (this.url.host = v, this.buffer = "", this.state = "port", this.stateOverride === "hostname")
@@ -78481,7 +78481,7 @@ P1.PROCESSING_OPTIONS = o1;
         return this.parseError = !0, d;
       if (this.stateOverride && this.buffer === "" && (te(this.url) || this.url.port !== null))
         return this.parseError = !0, !1;
-      const v = R1(this.buffer, V(this.url));
+      const v = I1(this.buffer, V(this.url));
       if (v === d)
         return d;
       if (this.url.host = v, this.buffer = "", this.state = "path start", this.stateOverride)
@@ -78522,7 +78522,7 @@ P1.PROCESSING_OPTIONS = o1;
           return !1;
         this.state = "path start";
       } else {
-        let v = R1(this.buffer, V(this.url));
+        let v = I1(this.buffer, V(this.url));
         if (v === d)
           return d;
         if (v === "localhost" && (v = ""), this.url.host = v, this.stateOverride)
@@ -78541,10 +78541,10 @@ P1.PROCESSING_OPTIONS = o1;
           this.parseError = !0, this.url.path.shift();
       t === 63 && (this.url.query = "", this.state = "query"), t === 35 && (this.url.fragment = "", this.state = "fragment");
     } else
-      t === 37 && (!h(this.input[this.pointer + 1]) || !h(this.input[this.pointer + 2])) && (this.parseError = !0), this.buffer += a1(t, ie);
+      t === 37 && (!h(this.input[this.pointer + 1]) || !h(this.input[this.pointer + 2])) && (this.parseError = !0), this.buffer += d1(t, ie);
     return !0;
   }, D.prototype["parse cannot-be-a-base-URL path"] = function(t) {
-    return t === 63 ? (this.url.query = "", this.state = "query") : t === 35 ? (this.url.fragment = "", this.state = "fragment") : (!isNaN(t) && t !== 37 && (this.parseError = !0), t === 37 && (!h(this.input[this.pointer + 1]) || !h(this.input[this.pointer + 2])) && (this.parseError = !0), isNaN(t) || (this.url.path[0] = this.url.path[0] + a1(t, N1))), !0;
+    return t === 63 ? (this.url.query = "", this.state = "query") : t === 35 ? (this.url.fragment = "", this.state = "fragment") : (!isNaN(t) && t !== 37 && (this.parseError = !0), t === 37 && (!h(this.input[this.pointer + 1]) || !h(this.input[this.pointer + 2])) && (this.parseError = !0), isNaN(t) || (this.url.path[0] = this.url.path[0] + d1(t, N1))), !0;
   }, D.prototype["parse query"] = function(t, u) {
     if (isNaN(t) || !this.stateOverride && t === 35) {
       (!V(this.url) || this.url.scheme === "ws" || this.url.scheme === "wss") && (this.encodingOverride = "utf-8");
@@ -78556,7 +78556,7 @@ P1.PROCESSING_OPTIONS = o1;
       t === 37 && (!h(this.input[this.pointer + 1]) || !h(this.input[this.pointer + 2])) && (this.parseError = !0), this.buffer += u;
     return !0;
   }, D.prototype["parse fragment"] = function(t) {
-    return isNaN(t) || (t === 0 ? this.parseError = !0 : (t === 37 && (!h(this.input[this.pointer + 1]) || !h(this.input[this.pointer + 2])) && (this.parseError = !0), this.url.fragment += a1(t, N1))), !0;
+    return isNaN(t) || (t === 0 ? this.parseError = !0 : (t === 37 && (!h(this.input[this.pointer + 1]) || !h(this.input[this.pointer + 2])) && (this.parseError = !0), this.url.fragment += d1(t, N1))), !0;
   };
   function $2(l, t) {
     let u = l.scheme + ":";
@@ -78603,19 +78603,19 @@ P1.PROCESSING_OPTIONS = o1;
     l.username = "";
     const u = a.ucs2.decode(t);
     for (let v = 0; v < u.length; ++v)
-      l.username += a1(u[v], I1);
+      l.username += d1(u[v], P1);
   }, e.exports.setThePassword = function(l, t) {
     l.password = "";
     const u = a.ucs2.decode(t);
     for (let v = 0; v < u.length; ++v)
-      l.password += a1(u[v], I1);
+      l.password += d1(u[v], P1);
   }, e.exports.serializeHost = C1, e.exports.cannotHaveAUsernamePasswordPort = U2, e.exports.serializeInteger = function(l) {
     return String(l);
   }, e.exports.parseURL = function(l, t) {
     return t === void 0 && (t = {}), e.exports.basicURLParse(l, { baseURL: t.baseURL, encodingOverride: t.encodingOverride });
   };
 })(m4);
-const T = B;
+const T = F;
 m2.implementation = class {
   constructor(a) {
     const m = a[0], i = a[1];
@@ -78847,16 +78847,16 @@ m2.implementation = class {
   };
 })(e4);
 j.URL = $1.interface;
-j.serializeURL = B.serializeURL;
-j.serializeURLOrigin = B.serializeURLOrigin;
-j.basicURLParse = B.basicURLParse;
-j.setTheUsername = B.setTheUsername;
-j.setThePassword = B.setThePassword;
-j.serializeHost = B.serializeHost;
-j.serializeInteger = B.serializeInteger;
-j.parseURL = B.parseURL;
-const b4 = F.Readable, z = Symbol("buffer"), L1 = Symbol("type");
-class n1 {
+j.serializeURL = F.serializeURL;
+j.serializeURLOrigin = F.serializeURLOrigin;
+j.basicURLParse = F.basicURLParse;
+j.setTheUsername = F.setTheUsername;
+j.setThePassword = F.setThePassword;
+j.serializeHost = F.serializeHost;
+j.serializeInteger = F.serializeInteger;
+j.parseURL = F.parseURL;
+const b4 = B.Readable, z = Symbol("buffer"), L1 = Symbol("type");
+class u1 {
   constructor() {
     this[L1] = "";
     const a = arguments[0], m = arguments[1], i = [];
@@ -78866,7 +78866,7 @@ class n1 {
       for (let s = 0; s < n; s++) {
         const w = o[s];
         let h;
-        w instanceof Buffer ? h = w : ArrayBuffer.isView(w) ? h = Buffer.from(w.buffer, w.byteOffset, w.byteLength) : w instanceof ArrayBuffer ? h = Buffer.from(w) : w instanceof n1 ? h = w[z] : h = Buffer.from(typeof w == "string" ? w : String(w)), d += h.length, i.push(h);
+        w instanceof Buffer ? h = w : ArrayBuffer.isView(w) ? h = Buffer.from(w.buffer, w.byteOffset, w.byteLength) : w instanceof ArrayBuffer ? h = Buffer.from(w) : w instanceof u1 ? h = w[z] : h = Buffer.from(typeof w == "string" ? w : String(w)), d += h.length, i.push(h);
       }
     }
     this[z] = Buffer.concat(i);
@@ -78898,48 +78898,48 @@ class n1 {
     const a = this.size, m = arguments[0], i = arguments[1];
     let d, r;
     m === void 0 ? d = 0 : m < 0 ? d = Math.max(a + m, 0) : d = Math.min(m, a), i === void 0 ? r = a : i < 0 ? r = Math.max(a + i, 0) : r = Math.min(i, a);
-    const o = Math.max(r - d, 0), s = this[z].slice(d, d + o), w = new n1([], { type: arguments[2] });
+    const o = Math.max(r - d, 0), s = this[z].slice(d, d + o), w = new u1([], { type: arguments[2] });
     return w[z] = s, w;
   }
 }
-Object.defineProperties(n1.prototype, {
+Object.defineProperties(u1.prototype, {
   size: { enumerable: !0 },
   type: { enumerable: !0 },
   slice: { enumerable: !0 }
 });
-Object.defineProperty(n1.prototype, Symbol.toStringTag, {
+Object.defineProperty(u1.prototype, Symbol.toStringTag, {
   value: "Blob",
   writable: !1,
   enumerable: !1,
   configurable: !0
 });
-function R(e, a, m) {
+function I(e, a, m) {
   Error.call(this, e), this.message = e, this.type = a, m && (this.code = this.errno = m.code), Error.captureStackTrace(this, this.constructor);
 }
-R.prototype = Object.create(Error.prototype);
-R.prototype.constructor = R;
-R.prototype.name = "FetchError";
+I.prototype = Object.create(Error.prototype);
+I.prototype.constructor = I;
+I.prototype.name = "FetchError";
 let M1;
 try {
   M1 = require("encoding").convert;
 } catch {
 }
-const G = Symbol("Body internals"), Te = F.PassThrough;
-function I(e) {
+const G = Symbol("Body internals"), Te = B.PassThrough;
+function P(e) {
   var a = this, m = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, i = m.size;
   let d = i === void 0 ? 0 : i;
   var r = m.timeout;
   let o = r === void 0 ? 0 : r;
-  e == null ? e = null : g2(e) ? e = Buffer.from(e.toString()) : S1(e) || Buffer.isBuffer(e) || (Object.prototype.toString.call(e) === "[object ArrayBuffer]" ? e = Buffer.from(e) : ArrayBuffer.isView(e) ? e = Buffer.from(e.buffer, e.byteOffset, e.byteLength) : e instanceof F || (e = Buffer.from(String(e)))), this[G] = {
+  e == null ? e = null : g2(e) ? e = Buffer.from(e.toString()) : S1(e) || Buffer.isBuffer(e) || (Object.prototype.toString.call(e) === "[object ArrayBuffer]" ? e = Buffer.from(e) : ArrayBuffer.isView(e) ? e = Buffer.from(e.buffer, e.byteOffset, e.byteLength) : e instanceof B || (e = Buffer.from(String(e)))), this[G] = {
     body: e,
     disturbed: !1,
     error: null
-  }, this.size = d, this.timeout = o, e instanceof F && e.on("error", function(n) {
-    const s = n.name === "AbortError" ? n : new R(`Invalid response body while trying to fetch ${a.url}: ${n.message}`, "system", n);
+  }, this.size = d, this.timeout = o, e instanceof B && e.on("error", function(n) {
+    const s = n.name === "AbortError" ? n : new I(`Invalid response body while trying to fetch ${a.url}: ${n.message}`, "system", n);
     a[G].error = s;
   });
 }
-I.prototype = {
+P.prototype = {
   get body() {
     return this[G].body;
   },
@@ -78952,7 +78952,7 @@ I.prototype = {
    * @return  Promise
    */
   arrayBuffer() {
-    return l1.call(this).then(function(e) {
+    return t1.call(this).then(function(e) {
       return e.buffer.slice(e.byteOffset, e.byteOffset + e.byteLength);
     });
   },
@@ -78963,10 +78963,10 @@ I.prototype = {
    */
   blob() {
     let e = this.headers && this.headers.get("content-type") || "";
-    return l1.call(this).then(function(a) {
+    return t1.call(this).then(function(a) {
       return Object.assign(
         // Prevent copying
-        new n1([], {
+        new u1([], {
           type: e.toLowerCase()
         }),
         {
@@ -78982,11 +78982,11 @@ I.prototype = {
    */
   json() {
     var e = this;
-    return l1.call(this).then(function(a) {
+    return t1.call(this).then(function(a) {
       try {
         return JSON.parse(a.toString());
       } catch (m) {
-        return I.Promise.reject(new R(`invalid json response body at ${e.url} reason: ${m.message}`, "invalid-json"));
+        return P.Promise.reject(new I(`invalid json response body at ${e.url} reason: ${m.message}`, "invalid-json"));
       }
     });
   },
@@ -78996,7 +78996,7 @@ I.prototype = {
    * @return  Promise
    */
   text() {
-    return l1.call(this).then(function(e) {
+    return t1.call(this).then(function(e) {
       return e.toString();
     });
   },
@@ -79006,7 +79006,7 @@ I.prototype = {
    * @return  Promise
    */
   buffer() {
-    return l1.call(this);
+    return t1.call(this);
   },
   /**
    * Decode response as text, while automatically detecting the encoding and
@@ -79016,12 +79016,12 @@ I.prototype = {
    */
   textConverted() {
     var e = this;
-    return l1.call(this).then(function(a) {
+    return t1.call(this).then(function(a) {
       return S4(a, e.headers);
     });
   }
 };
-Object.defineProperties(I.prototype, {
+Object.defineProperties(P.prototype, {
   body: { enumerable: !0 },
   bodyUsed: { enumerable: !0 },
   arrayBuffer: { enumerable: !0 },
@@ -79029,37 +79029,37 @@ Object.defineProperties(I.prototype, {
   json: { enumerable: !0 },
   text: { enumerable: !0 }
 });
-I.mixIn = function(e) {
-  for (const a of Object.getOwnPropertyNames(I.prototype))
+P.mixIn = function(e) {
+  for (const a of Object.getOwnPropertyNames(P.prototype))
     if (!(a in e)) {
-      const m = Object.getOwnPropertyDescriptor(I.prototype, a);
+      const m = Object.getOwnPropertyDescriptor(P.prototype, a);
       Object.defineProperty(e, a, m);
     }
 };
-function l1() {
+function t1() {
   var e = this;
   if (this[G].disturbed)
-    return I.Promise.reject(new TypeError(`body used already for: ${this.url}`));
+    return P.Promise.reject(new TypeError(`body used already for: ${this.url}`));
   if (this[G].disturbed = !0, this[G].error)
-    return I.Promise.reject(this[G].error);
+    return P.Promise.reject(this[G].error);
   let a = this.body;
   if (a === null)
-    return I.Promise.resolve(Buffer.alloc(0));
+    return P.Promise.resolve(Buffer.alloc(0));
   if (S1(a) && (a = a.stream()), Buffer.isBuffer(a))
-    return I.Promise.resolve(a);
-  if (!(a instanceof F))
-    return I.Promise.resolve(Buffer.alloc(0));
+    return P.Promise.resolve(a);
+  if (!(a instanceof B))
+    return P.Promise.resolve(Buffer.alloc(0));
   let m = [], i = 0, d = !1;
-  return new I.Promise(function(r, o) {
+  return new P.Promise(function(r, o) {
     let n;
     e.timeout && (n = setTimeout(function() {
-      d = !0, o(new R(`Response timeout while trying to fetch ${e.url} (over ${e.timeout}ms)`, "body-timeout"));
+      d = !0, o(new I(`Response timeout while trying to fetch ${e.url} (over ${e.timeout}ms)`, "body-timeout"));
     }, e.timeout)), a.on("error", function(s) {
-      s.name === "AbortError" ? (d = !0, o(s)) : o(new R(`Invalid response body while trying to fetch ${e.url}: ${s.message}`, "system", s));
+      s.name === "AbortError" ? (d = !0, o(s)) : o(new I(`Invalid response body while trying to fetch ${e.url}: ${s.message}`, "system", s));
     }), a.on("data", function(s) {
       if (!(d || s === null)) {
         if (e.size && i + s.length > e.size) {
-          d = !0, o(new R(`content size at ${e.url} over limit: ${e.size}`, "max-size"));
+          d = !0, o(new I(`content size at ${e.url} over limit: ${e.size}`, "max-size"));
           return;
         }
         i += s.length, m.push(s);
@@ -79070,7 +79070,7 @@ function l1() {
         try {
           r(Buffer.concat(m, i));
         } catch (s) {
-          o(new R(`Could not create Buffer from response body for ${e.url}: ${s.message}`, "system", s));
+          o(new I(`Could not create Buffer from response body for ${e.url}: ${s.message}`, "system", s));
         }
       }
     });
@@ -79093,10 +79093,10 @@ function _2(e) {
   let a, m, i = e.body;
   if (e.bodyUsed)
     throw new Error("cannot clone body after it is used");
-  return i instanceof F && typeof i.getBoundary != "function" && (a = new Te(), m = new Te(), i.pipe(a), i.pipe(m), e[G].body = a, i = m), i;
+  return i instanceof B && typeof i.getBoundary != "function" && (a = new Te(), m = new Te(), i.pipe(a), i.pipe(m), e[G].body = a, i = m), i;
 }
 function b2(e) {
-  return e === null ? null : typeof e == "string" ? "text/plain;charset=UTF-8" : g2(e) ? "application/x-www-form-urlencoded;charset=UTF-8" : S1(e) ? e.type || null : Buffer.isBuffer(e) || Object.prototype.toString.call(e) === "[object ArrayBuffer]" || ArrayBuffer.isView(e) ? null : typeof e.getBoundary == "function" ? `multipart/form-data;boundary=${e.getBoundary()}` : e instanceof F ? null : "text/plain;charset=UTF-8";
+  return e === null ? null : typeof e == "string" ? "text/plain;charset=UTF-8" : g2(e) ? "application/x-www-form-urlencoded;charset=UTF-8" : S1(e) ? e.type || null : Buffer.isBuffer(e) || Object.prototype.toString.call(e) === "[object ArrayBuffer]" || ArrayBuffer.isView(e) ? null : typeof e.getBoundary == "function" ? `multipart/form-data;boundary=${e.getBoundary()}` : e instanceof B ? null : "text/plain;charset=UTF-8";
 }
 function S2(e) {
   const a = e.body;
@@ -79107,7 +79107,7 @@ function N4(e, a) {
   const m = a.body;
   m === null ? e.end() : S1(m) ? m.stream().pipe(e) : Buffer.isBuffer(m) ? (e.write(m), e.end()) : m.pipe(e);
 }
-I.Promise = global.Promise;
+P.Promise = global.Promise;
 const N2 = /[^\^_`a-zA-Z\-0-9!#$%&'*+.|~]/, z1 = /[^\t\x20-\x7e\x80-\xff]/;
 function f1(e) {
   if (e = `${e}`, N2.test(e) || e === "")
@@ -79117,7 +79117,7 @@ function ye(e) {
   if (e = `${e}`, z1.test(e))
     throw new TypeError(`${e} is not a legal HTTP header value`);
 }
-function r1(e, a) {
+function s1(e, a) {
   a = a.toLowerCase();
   for (const m in e)
     if (m.toLowerCase() === a)
@@ -79173,7 +79173,7 @@ class U {
    */
   get(a) {
     a = `${a}`, f1(a);
-    const m = r1(this[A], a);
+    const m = s1(this[A], a);
     return m === void 0 ? null : this[A][m].join(", ");
   }
   /**
@@ -79200,7 +79200,7 @@ class U {
    */
   set(a, m) {
     a = `${a}`, m = `${m}`, f1(a), ye(m);
-    const i = r1(this[A], a);
+    const i = s1(this[A], a);
     this[A][i !== void 0 ? i : a] = [m];
   }
   /**
@@ -79212,7 +79212,7 @@ class U {
    */
   append(a, m) {
     a = `${a}`, m = `${m}`, f1(a), ye(m);
-    const i = r1(this[A], a);
+    const i = s1(this[A], a);
     i !== void 0 ? this[A][i].push(m) : this[A][a] = [m];
   }
   /**
@@ -79222,7 +79222,7 @@ class U {
    * @return  Boolean
    */
   has(a) {
-    return a = `${a}`, f1(a), r1(this[A], a) !== void 0;
+    return a = `${a}`, f1(a), s1(this[A], a) !== void 0;
   }
   /**
    * Delete all header values given name
@@ -79232,7 +79232,7 @@ class U {
    */
   delete(a) {
     a = `${a}`, f1(a);
-    const m = r1(this[A], a);
+    const m = s1(this[A], a);
     m !== void 0 && delete this[A][m];
   }
   /**
@@ -79249,7 +79249,7 @@ class U {
    * @return  Iterator
    */
   keys() {
-    return F1(this, "key");
+    return B1(this, "key");
   }
   /**
    * Get an iterator on values.
@@ -79257,7 +79257,7 @@ class U {
    * @return  Iterator
    */
   values() {
-    return F1(this, "value");
+    return B1(this, "value");
   }
   /**
    * Get an iterator on entries.
@@ -79267,7 +79267,7 @@ class U {
    * @return  Iterator
    */
   [Symbol.iterator]() {
-    return F1(this, "key+value");
+    return B1(this, "key+value");
   }
 }
 U.prototype.entries = U.prototype[Symbol.iterator];
@@ -79299,7 +79299,7 @@ function H1(e) {
   });
 }
 const G1 = Symbol("internal");
-function F1(e, a) {
+function B1(e, a) {
   const m = Object.create(de);
   return m[G1] = {
     target: e,
@@ -79329,7 +79329,7 @@ Object.defineProperty(de, Symbol.toStringTag, {
   configurable: !0
 });
 function D4(e) {
-  const a = Object.assign({ __proto__: null }, e[A]), m = r1(e[A], "Host");
+  const a = Object.assign({ __proto__: null }, e[A]), m = s1(e[A], "Host");
   return m !== void 0 && (a[m] = a[m][0]), a;
 }
 function T4(e) {
@@ -79343,11 +79343,11 @@ function T4(e) {
         z1.test(e[m]) || (a[A][m] = [e[m]]);
   return a;
 }
-const J = Symbol("Response internals"), y4 = Re.STATUS_CODES;
+const J = Symbol("Response internals"), y4 = Ie.STATUS_CODES;
 class L {
   constructor() {
     let a = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null, m = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-    I.call(this, a, m);
+    P.call(this, a, m);
     const i = m.status || 200, d = new U(m.headers);
     if (a != null && !d.has("Content-Type")) {
       const r = b2(a);
@@ -79398,7 +79398,7 @@ class L {
     });
   }
 }
-I.mixIn(L.prototype);
+P.mixIn(L.prototype);
 Object.defineProperties(L.prototype, {
   url: { enumerable: !0 },
   status: { enumerable: !0 },
@@ -79415,26 +79415,26 @@ Object.defineProperty(L.prototype, Symbol.toStringTag, {
   configurable: !0
 });
 const H = Symbol("Request internals"), V4 = V1.URL || j.URL, A4 = V1.parse, E4 = V1.format;
-function B1(e) {
+function F1(e) {
   return /^[a-zA-Z][a-zA-Z\d+\-.]*:/.exec(e) && (e = new V4(e).toString()), A4(e);
 }
-const P4 = "destroy" in F.Readable.prototype;
+const R4 = "destroy" in B.Readable.prototype;
 function T1(e) {
   return typeof e == "object" && typeof e[H] == "object";
 }
-function I4(e) {
+function P4(e) {
   const a = e && typeof e == "object" && Object.getPrototypeOf(e);
   return !!(a && a.constructor.name === "AbortSignal");
 }
-class i1 {
+class l1 {
   constructor(a) {
     let m = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, i;
-    T1(a) ? i = B1(a.url) : (a && a.href ? i = B1(a.href) : i = B1(`${a}`), a = {});
+    T1(a) ? i = F1(a.url) : (a && a.href ? i = F1(a.href) : i = F1(`${a}`), a = {});
     let d = m.method || a.method || "GET";
     if (d = d.toUpperCase(), (m.body != null || T1(a) && a.body !== null) && (d === "GET" || d === "HEAD"))
       throw new TypeError("Request with GET/HEAD method cannot have body");
     let r = m.body != null ? m.body : T1(a) && a.body !== null ? _2(a) : null;
-    I.call(this, r, {
+    P.call(this, r, {
       timeout: m.timeout || a.timeout || 0,
       size: m.size || a.size || 0
     });
@@ -79444,7 +79444,7 @@ class i1 {
       s && o.append("Content-Type", s);
     }
     let n = T1(a) ? a.signal : null;
-    if ("signal" in m && (n = m.signal), n != null && !I4(n))
+    if ("signal" in m && (n = m.signal), n != null && !P4(n))
       throw new TypeError("Expected signal to be an instanceof AbortSignal");
     this[H] = {
       method: d,
@@ -79475,17 +79475,17 @@ class i1 {
    * @return  Request
    */
   clone() {
-    return new i1(this);
+    return new l1(this);
   }
 }
-I.mixIn(i1.prototype);
-Object.defineProperty(i1.prototype, Symbol.toStringTag, {
+P.mixIn(l1.prototype);
+Object.defineProperty(l1.prototype, Symbol.toStringTag, {
   value: "Request",
   writable: !1,
   enumerable: !1,
   configurable: !0
 });
-Object.defineProperties(i1.prototype, {
+Object.defineProperties(l1.prototype, {
   method: { enumerable: !0 },
   url: { enumerable: !0 },
   headers: { enumerable: !0 },
@@ -79493,13 +79493,13 @@ Object.defineProperties(i1.prototype, {
   clone: { enumerable: !0 },
   signal: { enumerable: !0 }
 });
-function R4(e) {
+function I4(e) {
   const a = e[H].parsedURL, m = new U(e[H].headers);
   if (m.has("Accept") || m.set("Accept", "*/*"), !a.protocol || !a.hostname)
     throw new TypeError("Only absolute URLs are supported");
   if (!/^https?:$/.test(a.protocol))
     throw new TypeError("Only HTTP(S) protocols are supported");
-  if (e.signal && e.body instanceof F.Readable && !P4)
+  if (e.signal && e.body instanceof B.Readable && !R4)
     throw new Error("Cancellation of streamed requests with AbortSignal is not supported in node < 8");
   let i = null;
   if (e.body == null && /^(POST|PUT)$/i.test(e.method) && (i = "0"), e.body != null) {
@@ -79520,7 +79520,7 @@ function _1(e) {
 _1.prototype = Object.create(Error.prototype);
 _1.prototype.constructor = _1;
 _1.prototype.name = "AbortError";
-const b1 = V1.URL || j.URL, Ve = F.PassThrough, C4 = function(a, m) {
+const b1 = V1.URL || j.URL, Ve = B.PassThrough, C4 = function(a, m) {
   const i = new b1(m).hostname, d = new b1(a).hostname;
   return i === d || i[i.length - d.length - 1] === "." && i.endsWith(d);
 }, x4 = function(a, m) {
@@ -79530,12 +79530,12 @@ const b1 = V1.URL || j.URL, Ve = F.PassThrough, C4 = function(a, m) {
 function Q(e, a) {
   if (!Q.Promise)
     throw new Error("native promise missing, set fetch.Promise to your favorite alternative");
-  return I.Promise = Q.Promise, new Q.Promise(function(m, i) {
-    const d = new i1(e, a), r = R4(d), o = (r.protocol === "https:" ? H2 : Re).request, n = d.signal;
+  return P.Promise = Q.Promise, new Q.Promise(function(m, i) {
+    const d = new l1(e, a), r = I4(d), o = (r.protocol === "https:" ? H2 : Ie).request, n = d.signal;
     let s = null;
     const w = function() {
       let N = new _1("The user aborted a request.");
-      i(N), d.body && d.body instanceof F.Readable && U1(d.body, N), !(!s || !s.body) && s.body.emit("error", N);
+      i(N), d.body && d.body instanceof B.Readable && U1(d.body, N), !(!s || !s.body) && s.body.emit("error", N);
     };
     if (n && n.aborted) {
       w();
@@ -79551,10 +79551,10 @@ function Q(e, a) {
     }
     d.timeout && _.once("socket", function(f) {
       S = setTimeout(function() {
-        i(new R(`network timeout at: ${d.url}`, "request-timeout")), b();
+        i(new I(`network timeout at: ${d.url}`, "request-timeout")), b();
       }, d.timeout);
     }), _.on("error", function(f) {
-      i(new R(`request to ${d.url} failed, reason: ${f.message}`, "system", f)), s && s.body && U1(s.body, f), b();
+      i(new I(`request to ${d.url} failed, reason: ${f.message}`, "system", f)), s && s.body && U1(s.body, f), b();
     }), O4(_, function(f) {
       n && n.aborted || s && s.body && U1(s.body, f);
     }), parseInt(process.version.substring(1)) < 14 && _.on("socket", function(f) {
@@ -79575,13 +79575,13 @@ function Q(e, a) {
           C = W === null ? null : new b1(W, d.url).toString();
         } catch {
           if (d.redirect !== "manual") {
-            i(new R(`uri requested responds with an invalid redirect URL: ${W}`, "invalid-redirect")), b();
+            i(new I(`uri requested responds with an invalid redirect URL: ${W}`, "invalid-redirect")), b();
             return;
           }
         }
         switch (d.redirect) {
           case "error":
-            i(new R(`uri requested responds with a redirect, redirect mode is set to error: ${d.url}`, "no-redirect")), b();
+            i(new I(`uri requested responds with a redirect, redirect mode is set to error: ${d.url}`, "no-redirect")), b();
             return;
           case "manual":
             if (C !== null)
@@ -79595,7 +79595,7 @@ function Q(e, a) {
             if (C === null)
               break;
             if (d.counter >= d.follow) {
-              i(new R(`maximum redirect reached at: ${d.url}`, "max-redirect")), b();
+              i(new I(`maximum redirect reached at: ${d.url}`, "max-redirect")), b();
               return;
             }
             const K = {
@@ -79614,10 +79614,10 @@ function Q(e, a) {
               for (const v1 of ["authorization", "www-authenticate", "cookie", "cookie2"])
                 K.headers.delete(v1);
             if (f.statusCode !== 303 && d.body && S2(d) === null) {
-              i(new R("Cannot follow redirect with body being a readable stream", "unsupported-redirect")), b();
+              i(new I("Cannot follow redirect with body being a readable stream", "unsupported-redirect")), b();
               return;
             }
-            (f.statusCode === 303 || (f.statusCode === 301 || f.statusCode === 302) && d.method === "POST") && (K.method = "GET", K.body = void 0, K.headers.delete("content-length")), m(Q(new i1(C, K))), b();
+            (f.statusCode === 303 || (f.statusCode === 301 || f.statusCode === 302) && d.method === "POST") && (K.method = "GET", K.body = void 0, K.headers.delete("content-length")), m(Q(new l1(C, K))), b();
             return;
         }
       }
@@ -79639,24 +79639,24 @@ function Q(e, a) {
         return;
       }
       const V = {
-        flush: d1.Z_SYNC_FLUSH,
-        finishFlush: d1.Z_SYNC_FLUSH
+        flush: m1.Z_SYNC_FLUSH,
+        finishFlush: m1.Z_SYNC_FLUSH
       };
       if (k == "gzip" || k == "x-gzip") {
-        E = E.pipe(d1.createGunzip(V)), s = new L(E, O), m(s);
+        E = E.pipe(m1.createGunzip(V)), s = new L(E, O), m(s);
         return;
       }
       if (k == "deflate" || k == "x-deflate") {
         const W = f.pipe(new Ve());
         W.once("data", function(C) {
-          (C[0] & 15) === 8 ? E = E.pipe(d1.createInflate()) : E = E.pipe(d1.createInflateRaw()), s = new L(E, O), m(s);
+          (C[0] & 15) === 8 ? E = E.pipe(m1.createInflate()) : E = E.pipe(m1.createInflateRaw()), s = new L(E, O), m(s);
         }), W.on("end", function() {
           s || (s = new L(E, O), m(s));
         });
         return;
       }
-      if (k == "br" && typeof d1.createBrotliDecompress == "function") {
-        E = E.pipe(d1.createBrotliDecompress()), s = new L(E, O), m(s);
+      if (k == "br" && typeof m1.createBrotliDecompress == "function") {
+        E = E.pipe(m1.createBrotliDecompress()), s = new L(E, O), m(s);
         return;
       }
       s = new L(E, O), m(s);
@@ -79696,7 +79696,7 @@ const L4 = p.object({
 p.object({
   data: p.string()
 });
-async function F4(e) {
+async function B4(e) {
   const a = await L4.safeParseAsync(
     e
   );
@@ -79708,7 +79708,7 @@ async function F4(e) {
     ...i,
     path: Z6,
     params: {}
-  }), r = m1(
+  }), r = i1(
     a.data,
     (n) => Y1(n.toString())
   ), o = await Q(d, {
@@ -79720,7 +79720,7 @@ async function F4(e) {
   });
   return z2.from(o.body);
 }
-const B4 = p.object({
+const F4 = p.object({
   orderList: p.array(
     p.object({
       orderSn: p.string(),
@@ -79743,9 +79743,9 @@ const B4 = p.object({
     failMessage: p.string()
   }).optional(),
   requestId: p.string()
-}), j4 = u1({
+}), j4 = p1({
   path: G6,
-  requestParameterSchema: B4,
+  requestParameterSchema: F4,
   responseSchema: U4
 }), k4 = p.object({
   orderList: p.array(
@@ -79770,7 +79770,7 @@ const B4 = p.object({
     failMessage: p.string()
   }).optional(),
   requestId: p.string()
-}), q4 = u1({
+}), q4 = p1({
   path: K6,
   requestParameterSchema: k4,
   responseSchema: $4
@@ -79884,7 +79884,7 @@ const B4 = p.object({
   error: p.string().optional(),
   message: p.string().optional(),
   requestId: p.string()
-}), J4 = u1({
+}), J4 = p1({
   path: M6,
   requestParameterSchema: K4,
   responseSchema: Z4
@@ -79899,21 +79899,21 @@ const B4 = p.object({
   error: p.string().optional(),
   message: p.string().optional(),
   requestId: p.string()
-}), X4 = u1({
+}), X4 = p1({
   path: z6,
   requestParameterSchema: Y4,
   responseSchema: Q4
 }), e0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   createShippingDocument: X6,
-  downloadShippingDocument: F4,
+  downloadShippingDocument: B4,
   getShippingDocumentParameter: j4,
   getShippingDocumentResult: q4,
   getShippingParameter: W4,
   getTrackingNumber: z4,
   shipOrder: J4,
   updateShipOrder: X4
-}, Symbol.toStringTag, { value: "Module" })), p0 = "/api/v2/order/get_order_list", a0 = "/api/v2/order/get_order_detail", me = [
+}, Symbol.toStringTag, { value: "Module" })), p0 = "/api/v2/order/get_order_list", a0 = "/api/v2/order/get_order_detail", d0 = "/api/v2/order/cancel_order", m0 = "/api/v2/order/handle_buyer_cancellation", me = [
   "UNPAID",
   "READY_TO_SHIP",
   "RETRY_SHIP",
@@ -79924,7 +79924,7 @@ const B4 = p.object({
   "TO_RETURN",
   "TO_CONFIRM_RECEIVE",
   "COMPLETED"
-], q0 = K1(me), D2 = [
+], Y0 = K1(me), D2 = [
   "buyer_user_id",
   "buyer_username",
   "estimated_shipping_fee",
@@ -79957,12 +79957,35 @@ const B4 = p.object({
   "edt",
   "prescription_images",
   "prescription_check_status"
-], M0 = K1(
+], Q0 = K1(
   D2
-), Ee = p.object({
+), i0 = [
+  "OUT_OF_STOCK",
+  "UNDELIVERABLE_AREA"
+], l0 = p.object({
+  orderSn: p.string(),
+  cancelReason: p.literal(i0[0]),
+  itemList: p.array(
+    p.object({
+      itemId: p.number(),
+      modelId: p.number()
+    })
+  )
+}), t0 = p.object({
+  error: p.string().optional(),
+  message: p.string().optional(),
+  response: p.object({
+    updateTime: p.number()
+  }),
+  requestId: p.string()
+}), r0 = p1({
+  path: d0,
+  requestParameterSchema: l0,
+  responseSchema: t0
+}), Ee = p.object({
   orderSnList: p.array(p.string()),
   responseOptionalFields: p.array(p.enum(D2)).optional()
-}), d0 = p.object({
+}), s0 = p.object({
   error: p.string().optional(),
   message: p.string().optional(),
   response: p.object({
@@ -80071,7 +80094,7 @@ const B4 = p.object({
     )
   }).optional(),
   requestId: p.string()
-}), m0 = e1({
+}), o0 = e1({
   path: a0,
   requestParameterSchema: Ee,
   transformRequestParameterSchema: Ee.extend(
@@ -80084,8 +80107,8 @@ const B4 = p.object({
       responseOptionalFields: (a = e.responseOptionalFields) == null ? void 0 : a.join(",")
     };
   },
-  responseSchema: d0
-}), i0 = p.object({
+  responseSchema: s0
+}), n0 = p.object({
   timeRangeField: p.enum(["create_time", "update_time"]),
   timeFrom: p.date(),
   timeTo: p.date(),
@@ -80093,7 +80116,7 @@ const B4 = p.object({
   cursor: p.string().optional(),
   orderStatus: p.enum(me).optional(),
   responseOptionalFields: p.enum(["order_status"]).optional().default("order_status")
-}), l0 = p.object({
+}), u0 = p.object({
   error: p.string().optional(),
   message: p.string().optional(),
   response: p.object({
@@ -80106,19 +80129,35 @@ const B4 = p.object({
     )
   }).optional(),
   requestId: p.string()
-}), t0 = e1({
+}), v0 = e1({
   path: p0,
-  requestParameterSchema: i0,
-  responseSchema: l0
-}), r0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  requestParameterSchema: n0,
+  responseSchema: u0
+}), c0 = p.object({
+  orderSn: p.string(),
+  operation: p.enum(["ACCEPT", "REJECT"])
+}), f0 = p.object({
+  error: p.string().optional(),
+  message: p.string().optional(),
+  response: p.object({
+    updateTime: p.number()
+  }),
+  requestId: p.string()
+}), h0 = p1({
+  path: m0,
+  requestParameterSchema: c0,
+  responseSchema: f0
+}), w0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getOrderDetail: m0,
-  getOrderList: t0
-}, Symbol.toStringTag, { value: "Module" })), s0 = "/api/v2/product/get_item_base_info", o0 = "/api/v2/product/get_item_extra_info", n0 = "/api/v2/product/get_item_list", u0 = "/api/v2/product/get_model_list", T2 = ["NORMAL", "DELETED", "UNLIST", "BANNED"], v0 = p.object({
+  cancelOrder: r0,
+  getOrderDetail: o0,
+  getOrderList: v0,
+  handleBuyerCancellation: h0
+}, Symbol.toStringTag, { value: "Module" })), g0 = "/api/v2/product/get_item_base_info", _0 = "/api/v2/product/get_item_extra_info", b0 = "/api/v2/product/get_item_list", S0 = "/api/v2/product/get_model_list", T2 = ["NORMAL", "DELETED", "UNLIST", "BANNED"], N0 = p.object({
   itemIdList: p.string(),
   needTaxInfo: p.coerce.boolean().optional(),
   needComplaintPolicy: p.coerce.boolean().optional()
-}), c0 = p.object({
+}), D0 = p.object({
   error: p.string(),
   message: p.string(),
   warning: p.string(),
@@ -80223,16 +80262,16 @@ const B4 = p.object({
       })
     ).optional()
   })
-}), f0 = e1({
-  path: s0,
-  requestParameterSchema: v0,
-  responseSchema: c0,
+}), T0 = e1({
+  path: g0,
+  requestParameterSchema: N0,
+  responseSchema: D0,
   transformRequestParameter(e) {
     return e.needTaxInfo = !!e.needTaxInfo, e.needComplaintPolicy = !!e.needComplaintPolicy, e;
   }
-}), h0 = p.object({
+}), y0 = p.object({
   itemIdList: p.string()
-}), w0 = p.object({
+}), V0 = p.object({
   error: p.string(),
   message: p.string(),
   warning: p.string().optional(),
@@ -80249,17 +80288,17 @@ const B4 = p.object({
       })
     ).optional()
   }).optional()
-}), g0 = e1({
-  path: o0,
-  requestParameterSchema: h0,
-  responseSchema: w0
-}), Pe = p.object({
+}), A0 = e1({
+  path: _0,
+  requestParameterSchema: y0,
+  responseSchema: V0
+}), Re = p.object({
   offset: p.number().int().min(0).optional(),
   pageSize: p.number().int().positive().max(100).optional(),
   updateTimeFrom: p.date().optional(),
   updateTimeTo: p.date().optional(),
   itemStatus: p.array(p.enum(T2))
-}), _0 = p.object({
+}), E0 = p.object({
   error: p.string().optional(),
   message: p.string().nullable().optional(),
   warning: p.string().nullable().optional(),
@@ -80276,10 +80315,10 @@ const B4 = p.object({
   totalCount: p.number().int().optional(),
   hasNextPage: p.boolean().optional(),
   nextOffset: p.number().int().optional()
-}), b0 = e1({
-  path: n0,
-  requestParameterSchema: Pe,
-  transformRequestParameterSchema: Pe.extend({
+}), R0 = e1({
+  path: b0,
+  requestParameterSchema: Re,
+  transformRequestParameterSchema: Re.extend({
     updateTimeFrom: p.string(),
     updateTimeTo: p.string()
   }),
@@ -80292,10 +80331,10 @@ const B4 = p.object({
       updateTimeTo: w1(e.updateTimeTo ?? /* @__PURE__ */ new Date())
     };
   },
-  responseSchema: _0
-}), S0 = p.object({
+  responseSchema: E0
+}), P0 = p.object({
   item_id: p.string()
-}), N0 = p.object({
+}), I0 = p.object({
   error: p.string(),
   message: p.string(),
   warning: p.string(),
@@ -80367,17 +80406,17 @@ const B4 = p.object({
       })
     )
   })
-}), D0 = e1({
-  path: u0,
-  requestParameterSchema: S0,
-  responseSchema: N0
-}), T0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), C0 = e1({
+  path: S0,
+  requestParameterSchema: P0,
+  responseSchema: I0
+}), x0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getItemBaseInfo: f0,
-  getItemExtraInfo: g0,
-  getItemList: b0,
-  getModelList: D0
-}, Symbol.toStringTag, { value: "Module" })), y0 = "/api/v2/auth/token/get", y2 = p.object({
+  getItemBaseInfo: T0,
+  getItemExtraInfo: A0,
+  getItemList: R0,
+  getModelList: C0
+}, Symbol.toStringTag, { value: "Module" })), O0 = "/api/v2/auth/token/get", y2 = p.object({
   code: p.string(),
   partnerId: p.number().optional(),
   shopId: p.number().optional(),
@@ -80391,8 +80430,8 @@ const B4 = p.object({
   requestId: p.string(),
   merchantIdList: p.array(p.number()).optional(),
   shopIdList: p.array(p.number()).optional()
-}), V0 = u1({
-  path: y0,
+}), L0 = p1({
+  path: O0,
   requestParameterSchema: y2,
   responseSchema: V2,
   transformRequestParameter(e) {
@@ -80401,18 +80440,18 @@ const B4 = p.object({
       partnerId: X.getInstance().partnerId
     };
   }
-}), Ie = "/api/v2/shop/auth_partner";
-async function A0({
+}), Pe = "/api/v2/shop/auth_partner";
+async function B0({
   redirectURL: e,
   redirectSign: a
 }) {
   const { baseURL: m, partnerId: i, partnerKey: d } = X.getInstance();
   if (!d || !i)
     throw new Error("partnerKey is undefined");
-  const r = new URL(Ie, m), o = w1(/* @__PURE__ */ new Date()), n = await Ce(
+  const r = new URL(Pe, m), o = w1(/* @__PURE__ */ new Date()), n = await Ce(
     d,
     i.toString(),
-    Ie,
+    Pe,
     o
   ), s = new URL(e);
   return s.searchParams.append("sign", a), r.search = new URLSearchParams({
@@ -80422,13 +80461,13 @@ async function A0({
     sign: n
   }).toString(), r.toString();
 }
-const E0 = p.object({
+const F0 = p.object({
   code: p.string(),
   shop_id: p.string(),
   sign: p.string()
 });
-async function P0(e) {
-  const a = await E0.safeParseAsync(e);
+async function U0(e) {
+  const a = await F0.safeParseAsync(e);
   if (!a.success)
     throw new Error(
       `parse request parameters error: ${a.error.message}`
@@ -80440,26 +80479,26 @@ async function P0(e) {
     sign: d
   };
 }
-const I0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const j0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  authPartner: A0,
-  verifyCallback: P0
-}, Symbol.toStringTag, { value: "Module" })), R0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  authPartner: B0,
+  verifyCallback: U0
+}, Symbol.toStringTag, { value: "Module" })), k0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getAccessToken: V0,
+  getAccessToken: L0,
   getAccessTokenRequestParametersSchema: y2,
   getAccessTokenResponseSchema: V2,
   logistic: e0,
-  order: r0,
-  product: T0,
-  shop: I0
-}, Symbol.toStringTag, { value: "Module" })), C0 = p.object({
+  order: w0,
+  product: x0,
+  shop: j0
+}, Symbol.toStringTag, { value: "Module" })), $0 = p.object({
   partnerId: p.coerce.number().optional(),
   partnerKey: p.coerce.string().optional(),
   baseURL: p.coerce.string().url().optional(),
   accessToken: p.coerce.string().optional(),
   shopId: p.coerce.number().optional()
-}), W1 = C0.safeParse({
+}), W1 = $0.safeParse({
   partnerId: process.env.SHOPEE_SDK_PARTNER_ID,
   partnerKey: process.env.SHOPEE_SDK_PARTNER_KEY,
   baseURL: process.env.SHOPEE_SDK_BASE_URL,
@@ -80469,7 +80508,7 @@ const I0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
 if (!W1.success)
   throw new Error(W1.error.message);
 const h1 = W1.data, x = X.getInstance();
-class z0 {
+class X0 {
   constructor(a = {}) {
     x.accessToken = a.accessToken ?? h1.accessToken, x.baseURL = a.baseURL ?? h1.baseURL, x.partnerId = a.partnerId ?? h1.partnerId, x.partnerKey = a.partnerKey ?? h1.partnerKey, x.shopId = a.shopId ?? h1.shopId, x.isLogEnabled = a.isLogEnabled ?? !1;
   }
@@ -80492,7 +80531,7 @@ class z0 {
     return x.isLogEnabled = a, this;
   }
   get v2() {
-    return R0;
+    return k0;
   }
 }
 export {
@@ -80504,27 +80543,30 @@ export {
   H6 as API_V2_LOGISTIC_GET_TRACKING_NUMBER,
   M6 as API_V2_LOGISTIC_SHIP_ORDER,
   z6 as API_V2_LOGISTIC_UPDATE_SHIP_ORDER,
+  d0 as API_V2_ORDER_CANCEL_ORDER_PATH,
   a0 as API_V2_ORDER_GET_ORDER_DETAIL_PATH,
   p0 as API_V2_ORDER_GET_ORDER_LIST_PATH,
-  s0 as API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH,
-  o0 as API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH,
-  n0 as API_V2_PRODUCT_GET_ITEM_LIST_PATH,
-  u0 as API_V2_PRODUCT_GET_MODEL_LIST_PATH,
-  y0 as API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH,
-  Ie as API_V2_SHOP_AUTH_PARTNER,
+  m0 as API_V2_ORDER_HANDLE_BUYER_CANCELLATION_PATH,
+  g0 as API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH,
+  _0 as API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH,
+  b0 as API_V2_PRODUCT_GET_ITEM_LIST_PATH,
+  S0 as API_V2_PRODUCT_GET_MODEL_LIST_PATH,
+  O0 as API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH,
+  Pe as API_V2_SHOP_AUTH_PARTNER,
   T2 as ITEM_STATUS,
-  z0 as ShopeeSdk,
+  i0 as SELLER_CANCEL_REASONS,
+  X0 as ShopeeSdk,
   d2 as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS,
-  k0 as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP,
+  Z0 as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP,
   Q1 as V2_LOGISTIC_SHIPPING_DOCUMENT_TYPES,
   J6 as V2_LOGISTIC_SHIPPING_STATUSES,
   D2 as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS,
-  M0 as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS_MAP,
+  Q0 as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS_MAP,
   me as V2_ORDER_STATUS,
-  q0 as V2_ORDER_STATUS_MAP,
+  Y0 as V2_ORDER_STATUS_MAP,
   K1 as createConstantsMap,
   Ce as generateHmac,
   Z1 as signURL,
   w1 as toTimestamp,
-  m1 as transformObjectKeys
+  i1 as transformObjectKeys
 };

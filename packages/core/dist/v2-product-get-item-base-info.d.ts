@@ -278,12 +278,12 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 } | undefined;
             }>>;
         }, "strip", z.ZodTypeAny, {
-            createTime: number;
             itemId: number;
+            updateTime: number;
+            createTime: number;
             itemName: string;
             itemSku: string;
             weight: string;
-            updateTime: number;
             categoryId: number;
             image: {
                 imageUrlList: string[];
@@ -361,12 +361,12 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
                 } | undefined;
             } | undefined;
         }, {
-            createTime: number;
             itemId: number;
+            updateTime: number;
+            createTime: number;
             itemName: string;
             itemSku: string;
             weight: string;
-            updateTime: number;
             categoryId: number;
             image: {
                 imageUrlList: string[];
@@ -446,12 +446,12 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
         }>, "many">>;
     }, "strip", z.ZodTypeAny, {
         itemList?: {
-            createTime: number;
             itemId: number;
+            updateTime: number;
+            createTime: number;
             itemName: string;
             itemSku: string;
             weight: string;
-            updateTime: number;
             categoryId: number;
             image: {
                 imageUrlList: string[];
@@ -531,12 +531,12 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
         }[] | undefined;
     }, {
         itemList?: {
-            createTime: number;
             itemId: number;
+            updateTime: number;
+            createTime: number;
             itemName: string;
             itemSku: string;
             weight: string;
-            updateTime: number;
             categoryId: number;
             image: {
                 imageUrlList: string[];
@@ -619,12 +619,12 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
     message: string;
     response: {
         itemList?: {
-            createTime: number;
             itemId: number;
+            updateTime: number;
+            createTime: number;
             itemName: string;
             itemSku: string;
             weight: string;
-            updateTime: number;
             categoryId: number;
             image: {
                 imageUrlList: string[];
@@ -710,12 +710,12 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
     message: string;
     response: {
         itemList?: {
-            createTime: number;
             itemId: number;
+            updateTime: number;
+            createTime: number;
             itemName: string;
             itemSku: string;
             weight: string;
-            updateTime: number;
             categoryId: number;
             image: {
                 imageUrlList: string[];
@@ -806,12 +806,12 @@ export declare const getItemBaseInfo: (requestParameters: {
     message: string;
     response: {
         itemList?: {
-            createTime: number;
             itemId: number;
+            updateTime: number;
+            createTime: number;
             itemName: string;
             itemSku: string;
             weight: string;
-            updateTime: number;
             categoryId: number;
             image: {
                 imageUrlList: string[];
