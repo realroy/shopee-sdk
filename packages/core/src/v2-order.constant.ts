@@ -5,6 +5,10 @@ export const API_V2_ORDER_GET_ORDER_LIST_PATH = "/api/v2/order/get_order_list";
 export const API_V2_ORDER_GET_ORDER_DETAIL_PATH =
   "/api/v2/order/get_order_detail";
 
+export const API_V2_ORDER_CANCEL_ORDER_PATH = "/api/v2/order/cancel_order";
+export const API_V2_ORDER_HANDLE_BUYER_CANCELLATION_PATH =
+  "/api/v2/order/handle_buyer_cancellation";
+
 export const V2_ORDER_STATUS = [
   "UNPAID",
   "READY_TO_SHIP",
@@ -58,3 +62,8 @@ export const V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS = [
 export const V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS_MAP = createConstantsMap(
   V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS
 );
+
+export const SELLER_CANCEL_REASONS = [
+  "OUT_OF_STOCK",
+  "UNDELIVERABLE_AREA",
+] as const;
