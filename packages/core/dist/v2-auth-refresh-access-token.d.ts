@@ -1,18 +1,15 @@
 import { z } from "zod";
 export declare const refreshAccessTokenRequestParametersSchema: z.ZodObject<{
-    code: z.ZodString;
+    refreshToken: z.ZodString;
     partnerId: z.ZodOptional<z.ZodNumber>;
     shopId: z.ZodOptional<z.ZodNumber>;
     merchantId: z.ZodOptional<z.ZodNumber>;
-    refreshToken: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    code: string;
     refreshToken: string;
     partnerId?: number | undefined;
     shopId?: number | undefined;
     merchantId?: number | undefined;
 }, {
-    code: string;
     refreshToken: string;
     partnerId?: number | undefined;
     shopId?: number | undefined;
@@ -50,7 +47,6 @@ export declare const refreshAccessTokenResponseSchema: z.ZodObject<{
     merchantId: number;
 }>;
 export declare const refreshAccessToken: (requestParameters: {
-    code: string;
     refreshToken: string;
     partnerId?: number | undefined;
     shopId?: number | undefined;

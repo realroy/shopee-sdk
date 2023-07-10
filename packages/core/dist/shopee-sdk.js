@@ -612,11 +612,10 @@ const k6 = "/api/v2/auth/token/get", $6 = "/api/v2/auth/access_token/get", q6 = 
     };
   }
 }), z6 = e.object({
-  code: e.string(),
+  refreshToken: e.string(),
   partnerId: e.number().optional(),
   shopId: e.number().optional(),
-  merchantId: e.number().optional(),
-  refreshToken: e.string()
+  merchantId: e.number().optional()
 }), G6 = e.object({
   partnerId: e.number(),
   refreshToken: e.string(),
