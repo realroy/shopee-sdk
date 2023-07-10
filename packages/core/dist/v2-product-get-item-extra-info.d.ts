@@ -55,8 +55,8 @@ export declare const getItemExtraInfoResponseSchema: z.ZodObject<{
     }>>;
 }, "strip", z.ZodTypeAny, {
     message: string;
-    error: string;
     requestId: string;
+    error: string;
     warning?: string | undefined;
     response?: {
         itemList?: {
@@ -70,8 +70,8 @@ export declare const getItemExtraInfoResponseSchema: z.ZodObject<{
     } | undefined;
 }, {
     message: string;
-    error: string;
     requestId: string;
+    error: string;
     warning?: string | undefined;
     response?: {
         itemList?: {
@@ -88,8 +88,8 @@ export declare const getItemExtraInfo: (requestParameters: {
     itemIdList: string;
 }) => Promise<{
     message: string;
-    error: string;
     requestId: string;
+    error: string;
     warning?: string | undefined;
     response?: {
         itemList?: {

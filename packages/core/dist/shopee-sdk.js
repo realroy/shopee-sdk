@@ -1,19 +1,19 @@
-import M2 from "axios";
-import { z as p } from "zod";
-import B, { Readable as z2 } from "stream";
-import Ie from "http";
+import $2 from "axios";
+import { z as e } from "zod";
+import F, { Readable as q2 } from "stream";
+import Pe from "http";
 import V1 from "url";
-import H2 from "https";
+import M2 from "https";
 import m1 from "zlib";
-function K1(e) {
-  return e.reduce((a, m) => (a[m] = m, a), {});
+function K1(p) {
+  return p.reduce((a, m) => (a[m] = m, a), {});
 }
-async function Ce(e, ...a) {
+async function Ce(p, ...a) {
   let m;
-  return typeof globalThis.crypto < "u" && (m = await G2(e, ...a)), m = await W2(e, ...a), m;
+  return typeof globalThis.crypto < "u" && (m = await H2(p, ...a)), m = await z2(p, ...a), m;
 }
-async function G2(e, ...a) {
-  const m = new TextEncoder(), i = m.encode(e);
+async function H2(p, ...a) {
+  const m = new TextEncoder(), i = m.encode(p);
   let d = new Uint8Array();
   a.forEach((w) => {
     w && (d = m.encode(w));
@@ -31,15 +31,15 @@ async function G2(e, ...a) {
   ), n = new Uint8Array(o);
   return Array.from(n).map((w) => w.toString(16).padStart(2, "0")).join("");
 }
-async function W2(e, ...a) {
-  const { createHmac: m } = await import("crypto"), i = m("sha256", e);
+async function z2(p, ...a) {
+  const { createHmac: m } = await import("crypto"), i = m("sha256", p);
   return a.filter((d) => !!d).forEach((d) => i.update(d)), i.digest("hex");
 }
-function w1(e) {
-  const a = e ? e.getTime() : Date.now();
+function w1(p) {
+  const a = p ? p.getTime() : Date.now();
   return Math.round(a / 1e3).toString();
 }
-async function Z1(e) {
+async function Z1(p) {
   const {
     partner_id: a,
     partner_key: m,
@@ -48,7 +48,7 @@ async function Z1(e) {
     access_token: r,
     shop_id: o,
     params: n = {}
-  } = e, s = a.toString(), w = o.toString(), h = {};
+  } = p, s = a.toString(), w = o.toString(), h = {};
   for (const f in n) {
     const N = n[f];
     Array.isArray(N) ? h[f] = [
@@ -73,23 +73,23 @@ async function Z1(e) {
     timestamp: _
   }).toString(), S.toString().replace(new RegExp("%26", "g"), "&").replace(new RegExp("%3D", "g"), "=");
 }
-function i1(e, a) {
-  if (typeof e != "object" || e === null || e instanceof Date)
-    return e;
-  if (Array.isArray(e))
-    return e.map(
-      (d, r) => i1(e[r], a)
+function i1(p, a) {
+  if (typeof p != "object" || p === null || p instanceof Date)
+    return p;
+  if (Array.isArray(p))
+    return p.map(
+      (d, r) => i1(p[r], a)
     );
   const m = {};
-  for (const [i, d] of Object.entries(e))
+  for (const [i, d] of Object.entries(p))
     i !== void 0 && (m[a(i)] = i1(d, a));
   return m;
 }
-var D1 = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
-function K2(e) {
-  if (e.__esModule)
-    return e;
-  var a = e.default;
+var T1 = typeof globalThis < "u" ? globalThis : typeof window < "u" ? window : typeof global < "u" ? global : typeof self < "u" ? self : {};
+function G2(p) {
+  if (p.__esModule)
+    return p;
+  var a = p.default;
   if (typeof a == "function") {
     var m = function i() {
       if (this instanceof i) {
@@ -103,29 +103,29 @@ function K2(e) {
     m.prototype = a.prototype;
   } else
     m = {};
-  return Object.defineProperty(m, "__esModule", { value: !0 }), Object.keys(e).forEach(function(i) {
-    var d = Object.getOwnPropertyDescriptor(e, i);
+  return Object.defineProperty(m, "__esModule", { value: !0 }), Object.keys(p).forEach(function(i) {
+    var d = Object.getOwnPropertyDescriptor(p, i);
     Object.defineProperty(m, i, d.get ? d : {
       enumerable: !0,
       get: function() {
-        return e[i];
+        return p[i];
       }
     });
   }), m;
 }
-function Z2(e, a, m, i) {
-  var d = -1, r = e == null ? 0 : e.length;
-  for (i && r && (m = e[++d]); ++d < r; )
-    m = a(m, e[d], d, e);
+function W2(p, a, m, i) {
+  var d = -1, r = p == null ? 0 : p.length;
+  for (i && r && (m = p[++d]); ++d < r; )
+    m = a(m, p[d], d, p);
   return m;
 }
-var J2 = Z2;
-function Y2(e) {
+var K2 = W2;
+function Z2(p) {
   return function(a) {
-    return e == null ? void 0 : e[a];
+    return p == null ? void 0 : p[a];
   };
 }
-var Q2 = Y2, X2 = Q2, ep = {
+var J2 = Z2, Y2 = J2, Q2 = {
   // Latin-1 Supplement block.
   À: "A",
   Á: "A",
@@ -318,138 +318,138 @@ var Q2 = Y2, X2 = Q2, ep = {
   œ: "oe",
   ŉ: "'n",
   ſ: "s"
-}, pp = X2(ep), ap = pp, dp = typeof D1 == "object" && D1 && D1.Object === Object && D1, mp = dp, ip = mp, lp = typeof self == "object" && self && self.Object === Object && self, tp = ip || lp || Function("return this")(), rp = tp, sp = rp, op = sp.Symbol, J1 = op;
-function np(e, a) {
-  for (var m = -1, i = e == null ? 0 : e.length, d = Array(i); ++m < i; )
-    d[m] = a(e[m], m, e);
+}, X2 = Y2(Q2), ep = X2, pp = typeof T1 == "object" && T1 && T1.Object === Object && T1, ap = pp, dp = ap, mp = typeof self == "object" && self && self.Object === Object && self, ip = dp || mp || Function("return this")(), lp = ip, tp = lp, rp = tp.Symbol, J1 = rp;
+function sp(p, a) {
+  for (var m = -1, i = p == null ? 0 : p.length, d = Array(i); ++m < i; )
+    d[m] = a(p[m], m, p);
   return d;
 }
-var up = np, vp = Array.isArray, cp = vp, se = J1, xe = Object.prototype, fp = xe.hasOwnProperty, hp = xe.toString, c1 = se ? se.toStringTag : void 0;
-function wp(e) {
-  var a = fp.call(e, c1), m = e[c1];
+var op = sp, np = Array.isArray, up = np, se = J1, xe = Object.prototype, vp = xe.hasOwnProperty, cp = xe.toString, c1 = se ? se.toStringTag : void 0;
+function fp(p) {
+  var a = vp.call(p, c1), m = p[c1];
   try {
-    e[c1] = void 0;
+    p[c1] = void 0;
     var i = !0;
   } catch {
   }
-  var d = hp.call(e);
-  return i && (a ? e[c1] = m : delete e[c1]), d;
+  var d = cp.call(p);
+  return i && (a ? p[c1] = m : delete p[c1]), d;
 }
-var gp = wp, _p = Object.prototype, bp = _p.toString;
-function Sp(e) {
-  return bp.call(e);
+var hp = fp, wp = Object.prototype, gp = wp.toString;
+function _p(p) {
+  return gp.call(p);
 }
-var Np = Sp, oe = J1, Dp = gp, Tp = Np, yp = "[object Null]", Vp = "[object Undefined]", ne = oe ? oe.toStringTag : void 0;
-function Ap(e) {
-  return e == null ? e === void 0 ? Vp : yp : ne && ne in Object(e) ? Dp(e) : Tp(e);
+var bp = _p, oe = J1, Sp = hp, Np = bp, Tp = "[object Null]", Dp = "[object Undefined]", ne = oe ? oe.toStringTag : void 0;
+function yp(p) {
+  return p == null ? p === void 0 ? Dp : Tp : ne && ne in Object(p) ? Sp(p) : Np(p);
 }
-var Ep = Ap;
-function Rp(e) {
-  return e != null && typeof e == "object";
+var Vp = yp;
+function Ap(p) {
+  return p != null && typeof p == "object";
 }
-var Pp = Rp, Ip = Ep, Cp = Pp, xp = "[object Symbol]";
-function Op(e) {
-  return typeof e == "symbol" || Cp(e) && Ip(e) == xp;
+var Ep = Ap, Ip = Vp, Rp = Ep, Pp = "[object Symbol]";
+function Cp(p) {
+  return typeof p == "symbol" || Rp(p) && Ip(p) == Pp;
 }
-var Lp = Op, ue = J1, Bp = up, Fp = cp, Up = Lp, jp = 1 / 0, ve = ue ? ue.prototype : void 0, ce = ve ? ve.toString : void 0;
-function Oe(e) {
-  if (typeof e == "string")
-    return e;
-  if (Fp(e))
-    return Bp(e, Oe) + "";
-  if (Up(e))
-    return ce ? ce.call(e) : "";
-  var a = e + "";
-  return a == "0" && 1 / e == -jp ? "-0" : a;
+var xp = Cp, ue = J1, Op = op, Lp = up, Fp = xp, Bp = 1 / 0, ve = ue ? ue.prototype : void 0, ce = ve ? ve.toString : void 0;
+function Oe(p) {
+  if (typeof p == "string")
+    return p;
+  if (Lp(p))
+    return Op(p, Oe) + "";
+  if (Fp(p))
+    return ce ? ce.call(p) : "";
+  var a = p + "";
+  return a == "0" && 1 / p == -Bp ? "-0" : a;
 }
-var kp = Oe, $p = kp;
-function qp(e) {
-  return e == null ? "" : $p(e);
+var Up = Oe, jp = Up;
+function kp(p) {
+  return p == null ? "" : jp(p);
 }
-var A1 = qp, Mp = ap, zp = A1, Hp = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, Gp = "\\u0300-\\u036f", Wp = "\\ufe20-\\ufe2f", Kp = "\\u20d0-\\u20ff", Zp = Gp + Wp + Kp, Jp = "[" + Zp + "]", Yp = RegExp(Jp, "g");
-function Qp(e) {
-  return e = zp(e), e && e.replace(Hp, Mp).replace(Yp, "");
+var A1 = kp, $p = ep, qp = A1, Mp = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g, Hp = "\\u0300-\\u036f", zp = "\\ufe20-\\ufe2f", Gp = "\\u20d0-\\u20ff", Wp = Hp + zp + Gp, Kp = "[" + Wp + "]", Zp = RegExp(Kp, "g");
+function Jp(p) {
+  return p = qp(p), p && p.replace(Mp, $p).replace(Zp, "");
 }
-var Xp = Qp, ea = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
-function pa(e) {
-  return e.match(ea) || [];
+var Yp = Jp, Qp = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
+function Xp(p) {
+  return p.match(Qp) || [];
 }
-var aa = pa, da = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
-function ma(e) {
-  return da.test(e);
+var ea = Xp, pa = /[a-z][A-Z]|[A-Z]{2}[a-z]|[0-9][a-zA-Z]|[a-zA-Z][0-9]|[^a-zA-Z0-9 ]/;
+function aa(p) {
+  return pa.test(p);
 }
-var ia = ma, Le = "\\ud800-\\udfff", la = "\\u0300-\\u036f", ta = "\\ufe20-\\ufe2f", ra = "\\u20d0-\\u20ff", sa = la + ta + ra, Be = "\\u2700-\\u27bf", Fe = "a-z\\xdf-\\xf6\\xf8-\\xff", oa = "\\xac\\xb1\\xd7\\xf7", na = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", ua = "\\u2000-\\u206f", va = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", Ue = "A-Z\\xc0-\\xd6\\xd8-\\xde", ca = "\\ufe0e\\ufe0f", je = oa + na + ua + va, ke = "['’]", fe = "[" + je + "]", fa = "[" + sa + "]", $e = "\\d+", ha = "[" + Be + "]", qe = "[" + Fe + "]", Me = "[^" + Le + je + $e + Be + Fe + Ue + "]", wa = "\\ud83c[\\udffb-\\udfff]", ga = "(?:" + fa + "|" + wa + ")", _a = "[^" + Le + "]", ze = "(?:\\ud83c[\\udde6-\\uddff]){2}", He = "[\\ud800-\\udbff][\\udc00-\\udfff]", r1 = "[" + Ue + "]", ba = "\\u200d", he = "(?:" + qe + "|" + Me + ")", Sa = "(?:" + r1 + "|" + Me + ")", we = "(?:" + ke + "(?:d|ll|m|re|s|t|ve))?", ge = "(?:" + ke + "(?:D|LL|M|RE|S|T|VE))?", Ge = ga + "?", We = "[" + ca + "]?", Na = "(?:" + ba + "(?:" + [_a, ze, He].join("|") + ")" + We + Ge + ")*", Da = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", Ta = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", ya = We + Ge + Na, Va = "(?:" + [ha, ze, He].join("|") + ")" + ya, Aa = RegExp([
+var da = aa, Le = "\\ud800-\\udfff", ma = "\\u0300-\\u036f", ia = "\\ufe20-\\ufe2f", la = "\\u20d0-\\u20ff", ta = ma + ia + la, Fe = "\\u2700-\\u27bf", Be = "a-z\\xdf-\\xf6\\xf8-\\xff", ra = "\\xac\\xb1\\xd7\\xf7", sa = "\\x00-\\x2f\\x3a-\\x40\\x5b-\\x60\\x7b-\\xbf", oa = "\\u2000-\\u206f", na = " \\t\\x0b\\f\\xa0\\ufeff\\n\\r\\u2028\\u2029\\u1680\\u180e\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200a\\u202f\\u205f\\u3000", Ue = "A-Z\\xc0-\\xd6\\xd8-\\xde", ua = "\\ufe0e\\ufe0f", je = ra + sa + oa + na, ke = "['’]", fe = "[" + je + "]", va = "[" + ta + "]", $e = "\\d+", ca = "[" + Fe + "]", qe = "[" + Be + "]", Me = "[^" + Le + je + $e + Fe + Be + Ue + "]", fa = "\\ud83c[\\udffb-\\udfff]", ha = "(?:" + va + "|" + fa + ")", wa = "[^" + Le + "]", He = "(?:\\ud83c[\\udde6-\\uddff]){2}", ze = "[\\ud800-\\udbff][\\udc00-\\udfff]", r1 = "[" + Ue + "]", ga = "\\u200d", he = "(?:" + qe + "|" + Me + ")", _a = "(?:" + r1 + "|" + Me + ")", we = "(?:" + ke + "(?:d|ll|m|re|s|t|ve))?", ge = "(?:" + ke + "(?:D|LL|M|RE|S|T|VE))?", Ge = ha + "?", We = "[" + ua + "]?", ba = "(?:" + ga + "(?:" + [wa, He, ze].join("|") + ")" + We + Ge + ")*", Sa = "\\d*(?:1st|2nd|3rd|(?![123])\\dth)(?=\\b|[A-Z_])", Na = "\\d*(?:1ST|2ND|3RD|(?![123])\\dTH)(?=\\b|[a-z_])", Ta = We + Ge + ba, Da = "(?:" + [ca, He, ze].join("|") + ")" + Ta, ya = RegExp([
   r1 + "?" + qe + "+" + we + "(?=" + [fe, r1, "$"].join("|") + ")",
-  Sa + "+" + ge + "(?=" + [fe, r1 + he, "$"].join("|") + ")",
+  _a + "+" + ge + "(?=" + [fe, r1 + he, "$"].join("|") + ")",
   r1 + "?" + he + "+" + we,
   r1 + "+" + ge,
-  Ta,
-  Da,
+  Na,
+  Sa,
   $e,
-  Va
+  Da
 ].join("|"), "g");
-function Ea(e) {
-  return e.match(Aa) || [];
+function Va(p) {
+  return p.match(ya) || [];
 }
-var Ra = Ea, Pa = aa, Ia = ia, Ca = A1, xa = Ra;
-function Oa(e, a, m) {
-  return e = Ca(e), a = m ? void 0 : a, a === void 0 ? Ia(e) ? xa(e) : Pa(e) : e.match(a) || [];
+var Aa = Va, Ea = ea, Ia = da, Ra = A1, Pa = Aa;
+function Ca(p, a, m) {
+  return p = Ra(p), a = m ? void 0 : a, a === void 0 ? Ia(p) ? Pa(p) : Ea(p) : p.match(a) || [];
 }
-var La = Oa, Ba = J2, Fa = Xp, Ua = La, ja = "['’]", ka = RegExp(ja, "g");
-function $a(e) {
+var xa = Ca, Oa = K2, La = Yp, Fa = xa, Ba = "['’]", Ua = RegExp(Ba, "g");
+function ja(p) {
   return function(a) {
-    return Ba(Ua(Fa(a).replace(ka, "")), e, "");
+    return Oa(Fa(La(a).replace(Ua, "")), p, "");
   };
 }
-var Ke = $a, qa = Ke, Ma = qa(function(e, a, m) {
-  return e + (m ? "_" : "") + a.toLowerCase();
-}), Y1 = Ma;
-function za(e, a, m) {
-  var i = -1, d = e.length;
+var Ke = ja, ka = Ke, $a = ka(function(p, a, m) {
+  return p + (m ? "_" : "") + a.toLowerCase();
+}), Y1 = $a;
+function qa(p, a, m) {
+  var i = -1, d = p.length;
   a < 0 && (a = -a > d ? 0 : d + a), m = m > d ? d : m, m < 0 && (m += d), d = a > m ? 0 : m - a >>> 0, a >>>= 0;
   for (var r = Array(d); ++i < d; )
-    r[i] = e[i + a];
+    r[i] = p[i + a];
   return r;
 }
-var Ha = za, Ga = Ha;
-function Wa(e, a, m) {
-  var i = e.length;
-  return m = m === void 0 ? i : m, !a && m >= i ? e : Ga(e, a, m);
+var Ma = qa, Ha = Ma;
+function za(p, a, m) {
+  var i = p.length;
+  return m = m === void 0 ? i : m, !a && m >= i ? p : Ha(p, a, m);
 }
-var Ka = Wa, Za = "\\ud800-\\udfff", Ja = "\\u0300-\\u036f", Ya = "\\ufe20-\\ufe2f", Qa = "\\u20d0-\\u20ff", Xa = Ja + Ya + Qa, e6 = "\\ufe0e\\ufe0f", p6 = "\\u200d", a6 = RegExp("[" + p6 + Za + Xa + e6 + "]");
-function d6(e) {
-  return a6.test(e);
+var Ga = za, Wa = "\\ud800-\\udfff", Ka = "\\u0300-\\u036f", Za = "\\ufe20-\\ufe2f", Ja = "\\u20d0-\\u20ff", Ya = Ka + Za + Ja, Qa = "\\ufe0e\\ufe0f", Xa = "\\u200d", e6 = RegExp("[" + Xa + Wa + Ya + Qa + "]");
+function p6(p) {
+  return e6.test(p);
 }
-var Ze = d6;
-function m6(e) {
-  return e.split("");
+var Ze = p6;
+function a6(p) {
+  return p.split("");
 }
-var i6 = m6, Je = "\\ud800-\\udfff", l6 = "\\u0300-\\u036f", t6 = "\\ufe20-\\ufe2f", r6 = "\\u20d0-\\u20ff", s6 = l6 + t6 + r6, o6 = "\\ufe0e\\ufe0f", n6 = "[" + Je + "]", j1 = "[" + s6 + "]", k1 = "\\ud83c[\\udffb-\\udfff]", u6 = "(?:" + j1 + "|" + k1 + ")", Ye = "[^" + Je + "]", Qe = "(?:\\ud83c[\\udde6-\\uddff]){2}", Xe = "[\\ud800-\\udbff][\\udc00-\\udfff]", v6 = "\\u200d", e2 = u6 + "?", p2 = "[" + o6 + "]?", c6 = "(?:" + v6 + "(?:" + [Ye, Qe, Xe].join("|") + ")" + p2 + e2 + ")*", f6 = p2 + e2 + c6, h6 = "(?:" + [Ye + j1 + "?", j1, Qe, Xe, n6].join("|") + ")", w6 = RegExp(k1 + "(?=" + k1 + ")|" + h6 + f6, "g");
-function g6(e) {
-  return e.match(w6) || [];
+var d6 = a6, Je = "\\ud800-\\udfff", m6 = "\\u0300-\\u036f", i6 = "\\ufe20-\\ufe2f", l6 = "\\u20d0-\\u20ff", t6 = m6 + i6 + l6, r6 = "\\ufe0e\\ufe0f", s6 = "[" + Je + "]", j1 = "[" + t6 + "]", k1 = "\\ud83c[\\udffb-\\udfff]", o6 = "(?:" + j1 + "|" + k1 + ")", Ye = "[^" + Je + "]", Qe = "(?:\\ud83c[\\udde6-\\uddff]){2}", Xe = "[\\ud800-\\udbff][\\udc00-\\udfff]", n6 = "\\u200d", e2 = o6 + "?", p2 = "[" + r6 + "]?", u6 = "(?:" + n6 + "(?:" + [Ye, Qe, Xe].join("|") + ")" + p2 + e2 + ")*", v6 = p2 + e2 + u6, c6 = "(?:" + [Ye + j1 + "?", j1, Qe, Xe, s6].join("|") + ")", f6 = RegExp(k1 + "(?=" + k1 + ")|" + c6 + v6, "g");
+function h6(p) {
+  return p.match(f6) || [];
 }
-var _6 = g6, b6 = i6, S6 = Ze, N6 = _6;
-function D6(e) {
-  return S6(e) ? N6(e) : b6(e);
+var w6 = h6, g6 = d6, _6 = Ze, b6 = w6;
+function S6(p) {
+  return _6(p) ? b6(p) : g6(p);
 }
-var T6 = D6, y6 = Ka, V6 = Ze, A6 = T6, E6 = A1;
-function R6(e) {
+var N6 = S6, T6 = Ga, D6 = Ze, y6 = N6, V6 = A1;
+function A6(p) {
   return function(a) {
-    a = E6(a);
-    var m = V6(a) ? A6(a) : void 0, i = m ? m[0] : a.charAt(0), d = m ? y6(m, 1).join("") : a.slice(1);
-    return i[e]() + d;
+    a = V6(a);
+    var m = D6(a) ? y6(a) : void 0, i = m ? m[0] : a.charAt(0), d = m ? T6(m, 1).join("") : a.slice(1);
+    return i[p]() + d;
   };
 }
-var P6 = R6, I6 = P6, C6 = I6("toUpperCase"), x6 = C6, O6 = A1, L6 = x6;
-function B6(e) {
-  return L6(O6(e).toLowerCase());
+var E6 = A6, I6 = E6, R6 = I6("toUpperCase"), P6 = R6, C6 = A1, x6 = P6;
+function O6(p) {
+  return x6(C6(p).toLowerCase());
 }
-var F6 = B6, U6 = F6, j6 = Ke, k6 = j6(function(e, a, m) {
-  return a = a.toLowerCase(), e + (m ? U6(a) : a);
-}), a2 = k6;
+var L6 = O6, F6 = L6, B6 = Ke, U6 = B6(function(p, a, m) {
+  return a = a.toLowerCase(), p + (m ? F6(a) : a);
+}), a2 = U6;
 class E1 {
   constructor() {
-    this.logger = console, this.logInterceptorIds = [], this.isLogEnabled = !1, this.axios = M2.create(), this.isLogEnabled && this.addLogInterceptor();
+    this.logger = console, this.logInterceptorIds = [], this.isLogEnabled = !1, this.axios = $2.create(), this.isLogEnabled && this.addLogInterceptor();
   }
   addLogInterceptor() {
     const a = this.axios.interceptors.request.use(
@@ -492,12 +492,12 @@ class E1 {
     });
   }
 }
-class X {
+class W {
   constructor() {
     this.isLogEnabled = !1;
   }
   static getInstance() {
-    return this.instance ?? (this.instance = new X());
+    return this.instance ?? (this.instance = new W());
   }
   get value() {
     return {
@@ -510,14 +510,14 @@ class X {
   }
 }
 const _e = E1.getInstance();
-function $6(e) {
+function j6(p) {
   return async function(m) {
-    if (!e.transformRequestParameter)
+    if (!p.transformRequestParameter)
       return m;
-    const i = e.transformRequestParameter(m);
-    if (!e.transformRequestParameterSchema)
+    const i = p.transformRequestParameter(m);
+    if (!p.transformRequestParameterSchema)
       return m;
-    const d = await e.transformRequestParameterSchema.safeParseAsync(
+    const d = await p.transformRequestParameterSchema.safeParseAsync(
       i
     );
     if (!d.success)
@@ -527,10 +527,10 @@ function $6(e) {
     return d.data;
   };
 }
-function e1(e) {
-  const a = $6(e);
+function p1(p) {
+  const a = j6(p);
   return async function(i) {
-    const d = await e.requestParameterSchema.safeParseAsync(i);
+    const d = await p.requestParameterSchema.safeParseAsync(i);
     if (!d.success)
       throw new Error(
         `parse request parameters error: ${d.error.message}`
@@ -538,24 +538,24 @@ function e1(e) {
     const r = await a(d.data), o = i1(
       r,
       (f) => Y1(f.toString())
-    ), n = X.getInstance(), s = n.value;
+    ), n = W.getInstance(), s = n.value;
     _e.setLogEnabled(n.isLogEnabled);
     const w = await Z1({
       ...s,
-      path: e.path,
+      path: p.path,
       params: o
     }), h = await _e.get(w), _ = i1(
       h.data,
       (f) => a2(f.toString())
-    ), S = await e.responseSchema.safeParseAsync(_);
+    ), S = await p.responseSchema.safeParseAsync(_);
     if (!S.success)
       throw new Error(`parse response error: ${S.error.message}`);
     return S.data;
   };
 }
 const be = E1.getInstance();
-function p1({
-  responseType: e = "json",
+function K({
+  responseType: p = "json",
   ...a
 }) {
   function m(i) {
@@ -569,7 +569,7 @@ function p1({
       throw new Error(
         `parse request parameters error: ${o.error.message}`
       );
-    const n = X.getInstance(), s = n.value;
+    const n = W.getInstance(), s = n.value;
     be.setLogEnabled(n.isLogEnabled);
     const w = await Z1({
       ...s,
@@ -578,7 +578,7 @@ function p1({
     }), h = i1(
       o.data,
       (f) => Y1(f.toString())
-    ), _ = await be.post(w, {}, h, e), S = i1(
+    ), _ = await be.post(w, {}, h, p), S = i1(
       _.data,
       (f) => a2(f.toString())
     ), b = await a.responseSchema.safeParseAsync(S);
@@ -587,68 +587,122 @@ function p1({
     return b.data;
   };
 }
-const q6 = "/api/v2/logistics/get_shipping_parameter", M6 = "/api/v2/logistics/ship_order", z6 = "/api/v2/logistics/update_shipping_order", H6 = "/api/v2/logistics/get_tracking_number", G6 = "/api/v2/logistics/get_shipping_document_parameter", W6 = "/api/v2/logistics/create_shipping_document", K6 = "/api/v2/logistics/get_shipping_document_result", Z6 = "/api/v2/logistics/download_shipping_document", d2 = [
+const k6 = "/api/v2/auth/token/get", $6 = "/api/v2/auth/access_token/get", q6 = e.object({
+  code: e.string(),
+  partnerId: e.number().optional(),
+  shopId: e.number().optional(),
+  mainAccountId: e.number().optional()
+}), M6 = e.object({
+  refreshToken: e.string(),
+  accessToken: e.string(),
+  expireIn: e.number(),
+  requestId: e.string(),
+  error: e.string(),
+  message: e.string(),
+  merchantIdList: e.array(e.number()).optional(),
+  shopIdList: e.array(e.number()).optional()
+}), H6 = K({
+  path: k6,
+  requestParameterSchema: q6,
+  responseSchema: M6,
+  transformRequestParameter(p) {
+    return {
+      ...p,
+      partnerId: W.getInstance().partnerId
+    };
+  }
+}), z6 = e.object({
+  code: e.string(),
+  partnerId: e.number().optional(),
+  shopId: e.number().optional(),
+  merchantId: e.number().optional(),
+  refreshToken: e.string()
+}), G6 = e.object({
+  partnerId: e.number(),
+  refreshToken: e.string(),
+  accessToken: e.string(),
+  expireIn: e.number(),
+  requestId: e.string(),
+  error: e.string(),
+  message: e.string(),
+  shopId: e.number(),
+  merchantId: e.number()
+}), W6 = K({
+  path: $6,
+  requestParameterSchema: z6,
+  responseSchema: G6,
+  transformRequestParameter(p) {
+    return {
+      ...p,
+      partnerId: W.getInstance().partnerId
+    };
+  }
+}), K6 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  __proto__: null,
+  getAccessToken: H6,
+  refreshAccessToken: W6
+}, Symbol.toStringTag, { value: "Module" })), Z6 = "/api/v2/logistics/get_shipping_parameter", J6 = "/api/v2/logistics/ship_order", Y6 = "/api/v2/logistics/update_shipping_order", Q6 = "/api/v2/logistics/get_tracking_number", X6 = "/api/v2/logistics/get_shipping_document_parameter", e4 = "/api/v2/logistics/create_shipping_document", p4 = "/api/v2/logistics/get_shipping_document_result", a4 = "/api/v2/logistics/download_shipping_document", d2 = [
   "plp_number",
   "first_mile_tracking_number",
   "last_mile_tracking_number"
-], Z0 = K1(d2), Q1 = [
+], ed = K1(d2), Q1 = [
   "NORMAL_AIR_WAYBILL",
   "THERMAL_AIR_WAYBILL",
   "NORMAL_JOB_AIR_WAYBILL",
   "THERMAL_JOB_AIR_WAYBILL"
-], J6 = [
+], d4 = [
   "READY",
   "FAILED",
   "PROCESSING"
-], Y6 = p.object({
-  orderList: p.array(
-    p.object({
-      orderSn: p.string(),
-      packageNumber: p.string().nullable().default(null),
-      trackingNumber: p.string().nullable().default(null),
-      shippingDocumentType: p.enum(Q1).optional()
+], m4 = e.object({
+  orderList: e.array(
+    e.object({
+      orderSn: e.string(),
+      packageNumber: e.string().nullable().default(null),
+      trackingNumber: e.string().nullable().default(null),
+      shippingDocumentType: e.enum(Q1).optional()
     })
   ).min(1).max(50)
-}), Q6 = p.object({
-  error: p.string().optional(),
-  message: p.string().optional(),
-  warning: p.object({
-    orderSn: p.string(),
-    packageNumber: p.string().optional()
+}), i4 = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  warning: e.object({
+    orderSn: e.string(),
+    packageNumber: e.string().optional()
   }).nullable().optional(),
-  response: p.object({
-    resultList: p.array(
-      p.object({
-        orderSn: p.string().optional(),
-        packageNumber: p.string().optional(),
-        failError: p.string().optional().nullable(),
-        failMessage: p.string().optional().nullable()
+  response: e.object({
+    resultList: e.array(
+      e.object({
+        orderSn: e.string().optional(),
+        packageNumber: e.string().optional(),
+        failError: e.string().optional().nullable(),
+        failMessage: e.string().optional().nullable()
       })
     )
   }).optional(),
-  requestId: p.string()
-}), X6 = p1({
-  path: W6,
-  requestParameterSchema: Y6,
-  responseSchema: Q6
+  requestId: e.string()
+}), l4 = K({
+  path: e4,
+  requestParameterSchema: m4,
+  responseSchema: i4
 });
-var j = {}, $1 = {}, e4 = {
+var j = {}, $1 = {}, t4 = {
   get exports() {
     return $1;
   },
-  set exports(e) {
-    $1 = e;
+  set exports(p) {
+    $1 = p;
   }
-}, y = {}, p4 = y;
-function Se(e) {
-  return e < 0 ? -1 : 1;
+}, y = {}, r4 = y;
+function Se(p) {
+  return p < 0 ? -1 : 1;
 }
-function a4(e) {
-  return e % 1 === 0.5 && !(e & 1) ? Math.floor(e) : Math.round(e);
+function s4(p) {
+  return p % 1 === 0.5 && !(p & 1) ? Math.floor(p) : Math.round(p);
 }
-function a1(e, a) {
-  a.unsigned || --e;
-  const m = a.unsigned ? 0 : -Math.pow(2, e), i = Math.pow(2, e) - 1, d = a.moduloBitLength ? Math.pow(2, a.moduloBitLength) : Math.pow(2, e), r = a.moduloBitLength ? Math.pow(2, a.moduloBitLength - 1) : Math.pow(2, e - 1);
+function a1(p, a) {
+  a.unsigned || --p;
+  const m = a.unsigned ? 0 : -Math.pow(2, p), i = Math.pow(2, p) - 1, d = a.moduloBitLength ? Math.pow(2, a.moduloBitLength) : Math.pow(2, p), r = a.moduloBitLength ? Math.pow(2, a.moduloBitLength - 1) : Math.pow(2, p - 1);
   return function(o, n) {
     n || (n = {});
     let s = +o;
@@ -660,7 +714,7 @@ function a1(e, a) {
       return s;
     }
     if (!isNaN(s) && n.clamp)
-      return s = a4(s), s < m && (s = m), s > i && (s = i), s;
+      return s = s4(s), s < m && (s = m), s > i && (s = i), s;
     if (!Number.isFinite(s) || s === 0)
       return 0;
     if (s = Se(s) * Math.floor(Math.abs(s)), s = s % d, !a.unsigned && s >= r)
@@ -676,8 +730,8 @@ function a1(e, a) {
 }
 y.void = function() {
 };
-y.boolean = function(e) {
-  return !!e;
+y.boolean = function(p) {
+  return !!p;
 };
 y.byte = a1(8, { unsigned: !1 });
 y.octet = a1(8, { unsigned: !0 });
@@ -687,33 +741,33 @@ y.long = a1(32, { unsigned: !1 });
 y["unsigned long"] = a1(32, { unsigned: !0 });
 y["long long"] = a1(32, { unsigned: !1, moduloBitLength: 64 });
 y["unsigned long long"] = a1(32, { unsigned: !0, moduloBitLength: 64 });
-y.double = function(e) {
-  const a = +e;
+y.double = function(p) {
+  const a = +p;
   if (!Number.isFinite(a))
     throw new TypeError("Argument is not a finite floating-point value");
   return a;
 };
-y["unrestricted double"] = function(e) {
-  const a = +e;
+y["unrestricted double"] = function(p) {
+  const a = +p;
   if (isNaN(a))
     throw new TypeError("Argument is NaN");
   return a;
 };
 y.float = y.double;
 y["unrestricted float"] = y["unrestricted double"];
-y.DOMString = function(e, a) {
-  return a || (a = {}), a.treatNullAsEmptyString && e === null ? "" : String(e);
+y.DOMString = function(p, a) {
+  return a || (a = {}), a.treatNullAsEmptyString && p === null ? "" : String(p);
 };
-y.ByteString = function(e, a) {
-  const m = String(e);
+y.ByteString = function(p, a) {
+  const m = String(p);
   let i;
   for (let d = 0; (i = m.codePointAt(d)) !== void 0; ++d)
     if (i > 255)
       throw new TypeError("Argument is not a valid bytestring");
   return m;
 };
-y.USVString = function(e) {
-  const a = String(e), m = a.length, i = [];
+y.USVString = function(p) {
+  const a = String(p), m = a.length, i = [];
   for (let d = 0; d < m; ++d) {
     const r = a.charCodeAt(d);
     if (r < 55296 || r > 57343)
@@ -733,126 +787,126 @@ y.USVString = function(e) {
   }
   return i.join("");
 };
-y.Date = function(e, a) {
-  if (!(e instanceof Date))
+y.Date = function(p, a) {
+  if (!(p instanceof Date))
     throw new TypeError("Argument is not a Date object");
-  if (!isNaN(e))
-    return e;
+  if (!isNaN(p))
+    return p;
 };
-y.RegExp = function(e, a) {
-  return e instanceof RegExp || (e = new RegExp(e)), e;
+y.RegExp = function(p, a) {
+  return p instanceof RegExp || (p = new RegExp(p)), p;
 };
-var q1 = {}, d4 = {
+var q1 = {}, o4 = {
   get exports() {
     return q1;
   },
-  set exports(e) {
-    q1 = e;
+  set exports(p) {
+    q1 = p;
   }
 };
-(function(e) {
-  e.exports.mixin = function(m, i) {
+(function(p) {
+  p.exports.mixin = function(m, i) {
     const d = Object.getOwnPropertyNames(i);
     for (let r = 0; r < d.length; ++r)
       Object.defineProperty(m, d[r], Object.getOwnPropertyDescriptor(i, d[r]));
-  }, e.exports.wrapperSymbol = Symbol("wrapper"), e.exports.implSymbol = Symbol("impl"), e.exports.wrapperForImpl = function(a) {
-    return a[e.exports.wrapperSymbol];
-  }, e.exports.implForWrapper = function(a) {
-    return a[e.exports.implSymbol];
+  }, p.exports.wrapperSymbol = Symbol("wrapper"), p.exports.implSymbol = Symbol("impl"), p.exports.wrapperForImpl = function(a) {
+    return a[p.exports.wrapperSymbol];
+  }, p.exports.implForWrapper = function(a) {
+    return a[p.exports.implSymbol];
   };
-})(d4);
-var m2 = {}, F = {}, m4 = {
+})(o4);
+var m2 = {}, B = {}, n4 = {
   get exports() {
-    return F;
+    return B;
   },
-  set exports(e) {
-    F = e;
+  set exports(p) {
+    B = p;
   }
 };
-const o1 = 2147483647, q = 36, X1 = 1, g1 = 26, i4 = 38, l4 = 700, i2 = 72, l2 = 128, t2 = "-", t4 = /^xn--/, r4 = /[^\0-\x7F]/, s4 = /[\x2E\u3002\uFF0E\uFF61]/g, o4 = {
+const o1 = 2147483647, q = 36, X1 = 1, g1 = 26, u4 = 38, v4 = 700, i2 = 72, l2 = 128, t2 = "-", c4 = /^xn--/, f4 = /[^\0-\x7F]/, h4 = /[\x2E\u3002\uFF0E\uFF61]/g, w4 = {
   overflow: "Overflow: input needs wider integers to process",
   "not-basic": "Illegal input >= 0x80 (not a basic code point)",
   "invalid-input": "Invalid input"
 }, x1 = q - X1, M = Math.floor, O1 = String.fromCharCode;
-function Y(e) {
-  throw new RangeError(o4[e]);
+function X(p) {
+  throw new RangeError(w4[p]);
 }
-function n4(e, a) {
+function g4(p, a) {
   const m = [];
-  let i = e.length;
+  let i = p.length;
   for (; i--; )
-    m[i] = a(e[i]);
+    m[i] = a(p[i]);
   return m;
 }
-function r2(e, a) {
-  const m = e.split("@");
+function r2(p, a) {
+  const m = p.split("@");
   let i = "";
-  m.length > 1 && (i = m[0] + "@", e = m[1]), e = e.replace(s4, ".");
-  const d = e.split("."), r = n4(d, a).join(".");
+  m.length > 1 && (i = m[0] + "@", p = m[1]), p = p.replace(h4, ".");
+  const d = p.split("."), r = g4(d, a).join(".");
   return i + r;
 }
-function ee(e) {
+function ee(p) {
   const a = [];
   let m = 0;
-  const i = e.length;
+  const i = p.length;
   for (; m < i; ) {
-    const d = e.charCodeAt(m++);
+    const d = p.charCodeAt(m++);
     if (d >= 55296 && d <= 56319 && m < i) {
-      const r = e.charCodeAt(m++);
+      const r = p.charCodeAt(m++);
       (r & 64512) == 56320 ? a.push(((d & 1023) << 10) + (r & 1023) + 65536) : (a.push(d), m--);
     } else
       a.push(d);
   }
   return a;
 }
-const s2 = (e) => String.fromCodePoint(...e), u4 = function(e) {
-  return e >= 48 && e < 58 ? 26 + (e - 48) : e >= 65 && e < 91 ? e - 65 : e >= 97 && e < 123 ? e - 97 : q;
-}, Ne = function(e, a) {
-  return e + 22 + 75 * (e < 26) - ((a != 0) << 5);
-}, o2 = function(e, a, m) {
+const s2 = (p) => String.fromCodePoint(...p), _4 = function(p) {
+  return p >= 48 && p < 58 ? 26 + (p - 48) : p >= 65 && p < 91 ? p - 65 : p >= 97 && p < 123 ? p - 97 : q;
+}, Ne = function(p, a) {
+  return p + 22 + 75 * (p < 26) - ((a != 0) << 5);
+}, o2 = function(p, a, m) {
   let i = 0;
-  for (e = m ? M(e / l4) : e >> 1, e += M(e / a); e > x1 * g1 >> 1; i += q)
-    e = M(e / x1);
-  return M(i + (x1 + 1) * e / (e + i4));
-}, pe = function(e) {
-  const a = [], m = e.length;
-  let i = 0, d = l2, r = i2, o = e.lastIndexOf(t2);
+  for (p = m ? M(p / v4) : p >> 1, p += M(p / a); p > x1 * g1 >> 1; i += q)
+    p = M(p / x1);
+  return M(i + (x1 + 1) * p / (p + u4));
+}, pe = function(p) {
+  const a = [], m = p.length;
+  let i = 0, d = l2, r = i2, o = p.lastIndexOf(t2);
   o < 0 && (o = 0);
   for (let n = 0; n < o; ++n)
-    e.charCodeAt(n) >= 128 && Y("not-basic"), a.push(e.charCodeAt(n));
+    p.charCodeAt(n) >= 128 && X("not-basic"), a.push(p.charCodeAt(n));
   for (let n = o > 0 ? o + 1 : 0; n < m; ) {
     const s = i;
     for (let h = 1, _ = q; ; _ += q) {
-      n >= m && Y("invalid-input");
-      const S = u4(e.charCodeAt(n++));
-      S >= q && Y("invalid-input"), S > M((o1 - i) / h) && Y("overflow"), i += S * h;
+      n >= m && X("invalid-input");
+      const S = _4(p.charCodeAt(n++));
+      S >= q && X("invalid-input"), S > M((o1 - i) / h) && X("overflow"), i += S * h;
       const b = _ <= r ? X1 : _ >= r + g1 ? g1 : _ - r;
       if (S < b)
         break;
       const f = q - b;
-      h > M(o1 / f) && Y("overflow"), h *= f;
+      h > M(o1 / f) && X("overflow"), h *= f;
     }
     const w = a.length + 1;
-    r = o2(i - s, w, s == 0), M(i / w) > o1 - d && Y("overflow"), d += M(i / w), i %= w, a.splice(i++, 0, d);
+    r = o2(i - s, w, s == 0), M(i / w) > o1 - d && X("overflow"), d += M(i / w), i %= w, a.splice(i++, 0, d);
   }
   return String.fromCodePoint(...a);
-}, ae = function(e) {
+}, ae = function(p) {
   const a = [];
-  e = ee(e);
-  const m = e.length;
+  p = ee(p);
+  const m = p.length;
   let i = l2, d = 0, r = i2;
-  for (const s of e)
+  for (const s of p)
     s < 128 && a.push(O1(s));
   const o = a.length;
   let n = o;
   for (o && a.push(t2); n < m; ) {
     let s = o1;
-    for (const h of e)
+    for (const h of p)
       h >= i && h < s && (s = h);
     const w = n + 1;
-    s - i > M((o1 - d) / w) && Y("overflow"), d += (s - i) * w, i = s;
-    for (const h of e)
-      if (h < i && ++d > o1 && Y("overflow"), h === i) {
+    s - i > M((o1 - d) / w) && X("overflow"), d += (s - i) * w, i = s;
+    for (const h of p)
+      if (h < i && ++d > o1 && X("overflow"), h === i) {
         let _ = d;
         for (let S = q; ; S += q) {
           const b = S <= r ? X1 : S >= r + g1 ? g1 : S - r;
@@ -868,15 +922,15 @@ const s2 = (e) => String.fromCodePoint(...e), u4 = function(e) {
     ++d, ++i;
   }
   return a.join("");
-}, n2 = function(e) {
-  return r2(e, function(a) {
-    return t4.test(a) ? pe(a.slice(4).toLowerCase()) : a;
+}, n2 = function(p) {
+  return r2(p, function(a) {
+    return c4.test(a) ? pe(a.slice(4).toLowerCase()) : a;
   });
-}, u2 = function(e) {
-  return r2(e, function(a) {
-    return r4.test(a) ? "xn--" + ae(a) : a;
+}, u2 = function(p) {
+  return r2(p, function(a) {
+    return f4.test(a) ? "xn--" + ae(a) : a;
   });
-}, v4 = {
+}, b4 = {
   /**
    * A string representing the current Punycode.js version number.
    * @memberOf punycode
@@ -898,18 +952,18 @@ const s2 = (e) => String.fromCodePoint(...e), u4 = function(e) {
   encode: ae,
   toASCII: u2,
   toUnicode: n2
-}, c4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}, S4 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   decode: pe,
-  default: v4,
+  default: b4,
   encode: ae,
   toASCII: u2,
   toUnicode: n2,
   ucs2decode: ee,
   ucs2encode: s2
-}, Symbol.toStringTag, { value: "Module" })), v2 = /* @__PURE__ */ K2(c4);
-var R1 = {};
-const f4 = [
+}, Symbol.toStringTag, { value: "Module" })), v2 = /* @__PURE__ */ G2(S4);
+var I1 = {};
+const N4 = [
   [
     [
       0,
@@ -78013,31 +78067,31 @@ const f4 = [
     "disallowed"
   ]
 ];
-var c2 = v2, De = f4, n1 = {
+var c2 = v2, Te = N4, n1 = {
   TRANSITIONAL: 0,
   NONTRANSITIONAL: 1
 };
-function f2(e) {
-  return e.split("\0").map(function(a) {
+function f2(p) {
+  return p.split("\0").map(function(a) {
     return a.normalize("NFC");
   }).join("\0");
 }
-function h2(e) {
-  for (var a = 0, m = De.length - 1; a <= m; ) {
-    var i = Math.floor((a + m) / 2), d = De[i];
-    if (d[0][0] <= e && d[0][1] >= e)
+function h2(p) {
+  for (var a = 0, m = Te.length - 1; a <= m; ) {
+    var i = Math.floor((a + m) / 2), d = Te[i];
+    if (d[0][0] <= p && d[0][1] >= p)
       return d;
-    d[0][0] > e ? m = i - 1 : a = i + 1;
+    d[0][0] > p ? m = i - 1 : a = i + 1;
   }
   return null;
 }
-var h4 = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
-function w2(e) {
-  return e.replace(h4, "_").length;
+var T4 = /[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
+function w2(p) {
+  return p.replace(T4, "_").length;
 }
-function w4(e, a, m) {
-  for (var i = !1, d = "", r = w2(e), o = 0; o < r; ++o) {
-    var n = e.codePointAt(o), s = h2(n);
+function D4(p, a, m) {
+  for (var i = !1, d = "", r = w2(p), o = 0; o < r; ++o) {
+    var n = p.codePointAt(o), s = h2(n);
     switch (s[1]) {
       case "disallowed":
         i = !0, d += String.fromCodePoint(n);
@@ -78066,29 +78120,29 @@ function w4(e, a, m) {
     error: i
   };
 }
-var g4 = /[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08E4-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C03\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D01-\u0D03\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u18A9\u1920-\u192B\u1930-\u193B\u19B0-\u19C0\u19C8\u19C9\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF8\u1CF9\u1DC0-\u1DF5\u1DFC-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C4\uA8E0-\uA8F1\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2D]|\uD800[\uDDFD\uDEE0\uDF76-\uDF7A]|\uD802[\uDE01-\uDE03\uDE05\uDE06\uDE0C-\uDE0F\uDE38-\uDE3A\uDE3F\uDEE5\uDEE6]|\uD804[\uDC00-\uDC02\uDC38-\uDC46\uDC7F-\uDC82\uDCB0-\uDCBA\uDD00-\uDD02\uDD27-\uDD34\uDD73\uDD80-\uDD82\uDDB3-\uDDC0\uDE2C-\uDE37\uDEDF-\uDEEA\uDF01-\uDF03\uDF3C\uDF3E-\uDF44\uDF47\uDF48\uDF4B-\uDF4D\uDF57\uDF62\uDF63\uDF66-\uDF6C\uDF70-\uDF74]|\uD805[\uDCB0-\uDCC3\uDDAF-\uDDB5\uDDB8-\uDDC0\uDE30-\uDE40\uDEAB-\uDEB7]|\uD81A[\uDEF0-\uDEF4\uDF30-\uDF36]|\uD81B[\uDF51-\uDF7E\uDF8F-\uDF92]|\uD82F[\uDC9D\uDC9E]|\uD834[\uDD65-\uDD69\uDD6D-\uDD72\uDD7B-\uDD82\uDD85-\uDD8B\uDDAA-\uDDAD\uDE42-\uDE44]|\uD83A[\uDCD0-\uDCD6]|\uDB40[\uDD00-\uDDEF]/;
-function _4(e, a) {
-  e.substr(0, 4) === "xn--" && (e = c2.toUnicode(e), n1.NONTRANSITIONAL);
+var y4 = /[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08E4-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C03\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D01-\u0D03\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u18A9\u1920-\u192B\u1930-\u193B\u19B0-\u19C0\u19C8\u19C9\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF8\u1CF9\u1DC0-\u1DF5\u1DFC-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C4\uA8E0-\uA8F1\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2D]|\uD800[\uDDFD\uDEE0\uDF76-\uDF7A]|\uD802[\uDE01-\uDE03\uDE05\uDE06\uDE0C-\uDE0F\uDE38-\uDE3A\uDE3F\uDEE5\uDEE6]|\uD804[\uDC00-\uDC02\uDC38-\uDC46\uDC7F-\uDC82\uDCB0-\uDCBA\uDD00-\uDD02\uDD27-\uDD34\uDD73\uDD80-\uDD82\uDDB3-\uDDC0\uDE2C-\uDE37\uDEDF-\uDEEA\uDF01-\uDF03\uDF3C\uDF3E-\uDF44\uDF47\uDF48\uDF4B-\uDF4D\uDF57\uDF62\uDF63\uDF66-\uDF6C\uDF70-\uDF74]|\uD805[\uDCB0-\uDCC3\uDDAF-\uDDB5\uDDB8-\uDDC0\uDE30-\uDE40\uDEAB-\uDEB7]|\uD81A[\uDEF0-\uDEF4\uDF30-\uDF36]|\uD81B[\uDF51-\uDF7E\uDF8F-\uDF92]|\uD82F[\uDC9D\uDC9E]|\uD834[\uDD65-\uDD69\uDD6D-\uDD72\uDD7B-\uDD82\uDD85-\uDD8B\uDDAA-\uDDAD\uDE42-\uDE44]|\uD83A[\uDCD0-\uDCD6]|\uDB40[\uDD00-\uDDEF]/;
+function V4(p, a) {
+  p.substr(0, 4) === "xn--" && (p = c2.toUnicode(p), n1.NONTRANSITIONAL);
   var m = !1;
-  (f2(e) !== e || e[3] === "-" && e[4] === "-" || e[0] === "-" || e[e.length - 1] === "-" || e.indexOf(".") !== -1 || e.search(g4) === 0) && (m = !0);
-  for (var i = w2(e), d = 0; d < i; ++d) {
-    var r = h2(e.codePointAt(d));
+  (f2(p) !== p || p[3] === "-" && p[4] === "-" || p[0] === "-" || p[p.length - 1] === "-" || p.indexOf(".") !== -1 || p.search(y4) === 0) && (m = !0);
+  for (var i = w2(p), d = 0; d < i; ++d) {
+    var r = h2(p.codePointAt(d));
     if (y1 === n1.TRANSITIONAL && r[1] !== "valid" || y1 === n1.NONTRANSITIONAL && r[1] !== "valid" && r[1] !== "deviation") {
       m = !0;
       break;
     }
   }
   return {
-    label: e,
+    label: p,
     error: m
   };
 }
-function y1(e, a, m) {
-  var i = w4(e, a, m);
+function y1(p, a, m) {
+  var i = D4(p, a, m);
   i.string = f2(i.string);
   for (var d = i.string.split("."), r = 0; r < d.length; ++r)
     try {
-      var o = _4(d[r]);
+      var o = V4(d[r]);
       d[r] = o.label, i.error = i.error || o.error;
     } catch {
       i.error = !0;
@@ -78098,8 +78152,8 @@ function y1(e, a, m) {
     error: i.error
   };
 }
-R1.toASCII = function(e, a, m, i) {
-  var d = y1(e, a, m), r = d.string.split(".");
+I1.toASCII = function(p, a, m, i) {
+  var d = y1(p, a, m), r = d.string.split(".");
   if (r = r.map(function(s) {
     try {
       return c2.toASCII(s);
@@ -78117,16 +78171,16 @@ R1.toASCII = function(e, a, m, i) {
   }
   return d.error ? null : r.join(".");
 };
-R1.toUnicode = function(e, a) {
-  var m = y1(e, a, n1.NONTRANSITIONAL);
+I1.toUnicode = function(p, a) {
+  var m = y1(p, a, n1.NONTRANSITIONAL);
   return {
     domain: m.string,
     error: m.error
   };
 };
-R1.PROCESSING_OPTIONS = n1;
-(function(e) {
-  const a = v2, m = R1, i = {
+I1.PROCESSING_OPTIONS = n1;
+(function(p) {
+  const a = v2, m = I1, i = {
     ftp: 21,
     file: null,
     gopher: 70,
@@ -78181,14 +78235,14 @@ R1.PROCESSING_OPTIONS = n1;
   function V(l) {
     return k(l.scheme);
   }
-  function W(l) {
+  function Z(l) {
     return i[l];
   }
   function C(l) {
     let t = l.toString(16).toUpperCase();
     return t.length === 1 && (t = "0" + t), "%" + t;
   }
-  function K(l) {
+  function J(l) {
     const t = new Buffer(l);
     let u = "";
     for (let v = 0; v < t.length; ++v)
@@ -78204,23 +78258,23 @@ R1.PROCESSING_OPTIONS = n1;
   function N1(l) {
     return l <= 31 || l > 126;
   }
-  const A2 = /* @__PURE__ */ new Set([32, 34, 35, 60, 62, 63, 96, 123, 125]);
+  const y2 = /* @__PURE__ */ new Set([32, 34, 35, 60, 62, 63, 96, 123, 125]);
   function ie(l) {
-    return N1(l) || A2.has(l);
+    return N1(l) || y2.has(l);
   }
-  const E2 = /* @__PURE__ */ new Set([47, 58, 59, 61, 64, 91, 92, 93, 94, 124]);
-  function P1(l) {
-    return ie(l) || E2.has(l);
+  const V2 = /* @__PURE__ */ new Set([47, 58, 59, 61, 64, 91, 92, 93, 94, 124]);
+  function R1(l) {
+    return ie(l) || V2.has(l);
   }
   function d1(l, t) {
     const u = String.fromCodePoint(l);
-    return t(l) ? K(u) : u;
+    return t(l) ? J(u) : u;
   }
-  function R2(l) {
+  function A2(l) {
     let t = 10;
     return l.length >= 2 && l.charAt(0) === "0" && l.charAt(1).toLowerCase() === "x" ? (l = l.substring(2), t = 16) : l.length >= 2 && l.charAt(0) === "0" && (l = l.substring(1), t = 8), l === "" ? 0 : (t === 10 ? /[^0-9]/ : t === 16 ? /[^0-9A-Fa-f]/ : /[^0-7]/).test(l) ? d : parseInt(l, t);
   }
-  function P2(l) {
+  function E2(l) {
     const t = l.split(".");
     if (t[t.length - 1] === "" && t.length > 1 && t.pop(), t.length > 4)
       return l;
@@ -78228,10 +78282,10 @@ R1.PROCESSING_OPTIONS = n1;
     for (const g of t) {
       if (g === "")
         return l;
-      const R = R2(g);
-      if (R === d)
+      const I = A2(g);
+      if (I === d)
         return l;
-      u.push(R);
+      u.push(I);
     }
     for (let g = 0; g < u.length - 1; ++g)
       if (u[g] > 255)
@@ -78249,7 +78303,7 @@ R1.PROCESSING_OPTIONS = n1;
       t = String(u % 256) + t, v !== 4 && (t = "." + t), u = Math.floor(u / 256);
     return t;
   }
-  function C2(l) {
+  function R2(l) {
     const t = [0, 0, 0, 0, 0, 0, 0, 0];
     let u = 0, v = null, c = 0;
     if (l = a.ucs2.decode(l), l[c] === 58) {
@@ -78266,17 +78320,17 @@ R1.PROCESSING_OPTIONS = n1;
         ++c, ++u, v = u;
         continue;
       }
-      let g = 0, R = 0;
-      for (; R < 4 && h(l[c]); )
-        g = g * 16 + parseInt(o(l, c), 16), ++c, ++R;
+      let g = 0, I = 0;
+      for (; I < 4 && h(l[c]); )
+        g = g * 16 + parseInt(o(l, c), 16), ++c, ++I;
       if (l[c] === 46) {
-        if (R === 0 || (c -= R, u > 6))
+        if (I === 0 || (c -= I, u > 6))
           return d;
-        let Z = 0;
+        let Y = 0;
         for (; l[c] !== void 0; ) {
           let $ = null;
-          if (Z > 0)
-            if (l[c] === 46 && Z < 4)
+          if (Y > 0)
+            if (l[c] === 46 && Y < 4)
               ++c;
             else
               return d;
@@ -78295,9 +78349,9 @@ R1.PROCESSING_OPTIONS = n1;
               return d;
             ++c;
           }
-          t[u] = t[u] * 256 + $, ++Z, (Z === 2 || Z === 4) && ++u;
+          t[u] = t[u] * 256 + $, ++Y, (Y === 2 || Y === 4) && ++u;
         }
-        if (Z !== 4)
+        if (Y !== 4)
           return d;
         break;
       } else if (l[c] === 58) {
@@ -78310,16 +78364,16 @@ R1.PROCESSING_OPTIONS = n1;
     if (v !== null) {
       let g = u - v;
       for (u = 7; u !== 0 && g > 0; ) {
-        const R = t[v + g - 1];
-        t[v + g - 1] = t[u], t[u] = R, --u, --g;
+        const I = t[v + g - 1];
+        t[v + g - 1] = t[u], t[u] = I, --u, --g;
       }
     } else if (v === null && u !== 8)
       return d;
     return t;
   }
-  function x2(l) {
+  function P2(l) {
     let t = "";
-    const v = L2(l).idx;
+    const v = x2(l).idx;
     let c = !1;
     for (let g = 0; g <= 7; ++g)
       if (!(c && l[g] === 0)) {
@@ -78331,18 +78385,18 @@ R1.PROCESSING_OPTIONS = n1;
       }
     return t;
   }
-  function I1(l, t) {
+  function P1(l, t) {
     if (l[0] === "[")
-      return l[l.length - 1] !== "]" ? d : C2(l.substring(1, l.length - 1));
+      return l[l.length - 1] !== "]" ? d : R2(l.substring(1, l.length - 1));
     if (!t)
-      return O2(l);
+      return C2(l);
     const u = v1(l), v = m.toASCII(u, !1, m.PROCESSING_OPTIONS.NONTRANSITIONAL, !1);
     if (v === null || E(v))
       return d;
-    const c = P2(v);
+    const c = E2(v);
     return typeof c == "number" || c === d ? c : v;
   }
-  function O2(l) {
+  function C2(l) {
     if (O(l))
       return d;
     let t = "";
@@ -78351,7 +78405,7 @@ R1.PROCESSING_OPTIONS = n1;
       t += d1(u[v], N1);
     return t;
   }
-  function L2(l) {
+  function x2(l) {
     let t = null, u = 1, v = null, c = 0;
     for (let g = 0; g < l.length; ++g)
       l[g] !== 0 ? (c > u && (t = v, u = c), v = null, c = 0) : (v === null && (v = g), ++c);
@@ -78361,28 +78415,28 @@ R1.PROCESSING_OPTIONS = n1;
     };
   }
   function C1(l) {
-    return typeof l == "number" ? I2(l) : l instanceof Array ? "[" + x2(l) + "]" : l;
+    return typeof l == "number" ? I2(l) : l instanceof Array ? "[" + P2(l) + "]" : l;
   }
-  function B2(l) {
+  function O2(l) {
     return l.replace(/^[\u0000-\u001F\u0020]+|[\u0000-\u001F\u0020]+$/g, "");
   }
-  function F2(l) {
+  function L2(l) {
     return l.replace(/\u0009|\u000A|\u000D/g, "");
   }
   function le(l) {
     const t = l.path;
-    t.length !== 0 && (l.scheme === "file" && t.length === 1 && j2(t[0]) || t.pop());
+    t.length !== 0 && (l.scheme === "file" && t.length === 1 && B2(t[0]) || t.pop());
   }
   function te(l) {
     return l.username !== "" || l.password !== "";
   }
-  function U2(l) {
+  function F2(l) {
     return l.host === null || l.host === "" || l.cannotBeABaseURL || l.scheme === "file";
   }
-  function j2(l) {
+  function B2(l) {
     return /^[A-Za-z]:$/.test(l);
   }
-  function D(l, t, u, v, c) {
+  function T(l, t, u, v, c) {
     if (this.pointer = 0, this.input = l, this.base = t || null, this.encodingOverride = u || "utf-8", this.stateOverride = c, this.url = v, this.failure = !1, this.parseError = !1, !this.url) {
       this.url = {
         scheme: "",
@@ -78395,12 +78449,12 @@ R1.PROCESSING_OPTIONS = n1;
         fragment: null,
         cannotBeABaseURL: !1
       };
-      const R = B2(this.input);
-      R !== this.input && (this.parseError = !0), this.input = R;
+      const I = O2(this.input);
+      I !== this.input && (this.parseError = !0), this.input = I;
     }
-    const g = F2(this.input);
+    const g = L2(this.input);
     for (g !== this.input && (this.parseError = !0), this.input = g, this.state = c || "scheme start", this.buffer = "", this.atFlag = !1, this.arrFlag = !1, this.passwordTokenSeenFlag = !1, this.input = a.ucs2.decode(this.input); this.pointer <= this.input.length; ++this.pointer) {
-      const R = this.input[this.pointer], Z = isNaN(R) ? void 0 : String.fromCodePoint(R), $ = this["parse " + this.state](R, Z);
+      const I = this.input[this.pointer], Y = isNaN(I) ? void 0 : String.fromCodePoint(I), $ = this["parse " + this.state](I, Y);
       if ($) {
         if ($ === d) {
           this.failure = !0;
@@ -78410,7 +78464,7 @@ R1.PROCESSING_OPTIONS = n1;
         break;
     }
   }
-  D.prototype["parse scheme start"] = function(t, u) {
+  T.prototype["parse scheme start"] = function(t, u) {
     if (s(t))
       this.buffer += u.toLowerCase(), this.state = "scheme";
     else if (!this.stateOverride)
@@ -78418,7 +78472,7 @@ R1.PROCESSING_OPTIONS = n1;
     else
       return this.parseError = !0, d;
     return !0;
-  }, D.prototype["parse scheme"] = function(t, u) {
+  }, T.prototype["parse scheme"] = function(t, u) {
     if (w(t) || t === 43 || t === 45 || t === 46)
       this.buffer += u.toLowerCase();
     else if (t === 58) {
@@ -78430,21 +78484,21 @@ R1.PROCESSING_OPTIONS = n1;
     else
       return this.parseError = !0, d;
     return !0;
-  }, D.prototype["parse no scheme"] = function(t) {
+  }, T.prototype["parse no scheme"] = function(t) {
     return this.base === null || this.base.cannotBeABaseURL && t !== 35 ? d : (this.base.cannotBeABaseURL && t === 35 ? (this.url.scheme = this.base.scheme, this.url.path = this.base.path.slice(), this.url.query = this.base.query, this.url.fragment = "", this.url.cannotBeABaseURL = !0, this.state = "fragment") : this.base.scheme === "file" ? (this.state = "file", --this.pointer) : (this.state = "relative", --this.pointer), !0);
-  }, D.prototype["parse special relative or authority"] = function(t) {
+  }, T.prototype["parse special relative or authority"] = function(t) {
     return t === 47 && this.input[this.pointer + 1] === 47 ? (this.state = "special authority ignore slashes", ++this.pointer) : (this.parseError = !0, this.state = "relative", --this.pointer), !0;
-  }, D.prototype["parse path or authority"] = function(t) {
+  }, T.prototype["parse path or authority"] = function(t) {
     return t === 47 ? this.state = "authority" : (this.state = "path", --this.pointer), !0;
-  }, D.prototype["parse relative"] = function(t) {
+  }, T.prototype["parse relative"] = function(t) {
     return this.url.scheme = this.base.scheme, isNaN(t) ? (this.url.username = this.base.username, this.url.password = this.base.password, this.url.host = this.base.host, this.url.port = this.base.port, this.url.path = this.base.path.slice(), this.url.query = this.base.query) : t === 47 ? this.state = "relative slash" : t === 63 ? (this.url.username = this.base.username, this.url.password = this.base.password, this.url.host = this.base.host, this.url.port = this.base.port, this.url.path = this.base.path.slice(), this.url.query = "", this.state = "query") : t === 35 ? (this.url.username = this.base.username, this.url.password = this.base.password, this.url.host = this.base.host, this.url.port = this.base.port, this.url.path = this.base.path.slice(), this.url.query = this.base.query, this.url.fragment = "", this.state = "fragment") : V(this.url) && t === 92 ? (this.parseError = !0, this.state = "relative slash") : (this.url.username = this.base.username, this.url.password = this.base.password, this.url.host = this.base.host, this.url.port = this.base.port, this.url.path = this.base.path.slice(0, this.base.path.length - 1), this.state = "path", --this.pointer), !0;
-  }, D.prototype["parse relative slash"] = function(t) {
+  }, T.prototype["parse relative slash"] = function(t) {
     return V(this.url) && (t === 47 || t === 92) ? (t === 92 && (this.parseError = !0), this.state = "special authority ignore slashes") : t === 47 ? this.state = "authority" : (this.url.username = this.base.username, this.url.password = this.base.password, this.url.host = this.base.host, this.url.port = this.base.port, this.state = "path", --this.pointer), !0;
-  }, D.prototype["parse special authority slashes"] = function(t) {
+  }, T.prototype["parse special authority slashes"] = function(t) {
     return t === 47 && this.input[this.pointer + 1] === 47 ? (this.state = "special authority ignore slashes", ++this.pointer) : (this.parseError = !0, this.state = "special authority ignore slashes", --this.pointer), !0;
-  }, D.prototype["parse special authority ignore slashes"] = function(t) {
+  }, T.prototype["parse special authority ignore slashes"] = function(t) {
     return t !== 47 && t !== 92 ? (this.state = "authority", --this.pointer) : this.parseError = !0, !0;
-  }, D.prototype["parse authority"] = function(t, u) {
+  }, T.prototype["parse authority"] = function(t, u) {
     if (t === 64) {
       this.parseError = !0, this.atFlag && (this.buffer = "%40" + this.buffer), this.atFlag = !0;
       const v = r(this.buffer);
@@ -78454,8 +78508,8 @@ R1.PROCESSING_OPTIONS = n1;
           this.passwordTokenSeenFlag = !0;
           continue;
         }
-        const R = d1(g, P1);
-        this.passwordTokenSeenFlag ? this.url.password += R : this.url.username += R;
+        const I = d1(g, R1);
+        this.passwordTokenSeenFlag ? this.url.password += I : this.url.username += I;
       }
       this.buffer = "";
     } else if (isNaN(t) || t === 47 || t === 63 || t === 35 || V(this.url) && t === 92) {
@@ -78465,13 +78519,13 @@ R1.PROCESSING_OPTIONS = n1;
     } else
       this.buffer += u;
     return !0;
-  }, D.prototype["parse hostname"] = D.prototype["parse host"] = function(t, u) {
+  }, T.prototype["parse hostname"] = T.prototype["parse host"] = function(t, u) {
     if (this.stateOverride && this.url.scheme === "file")
       --this.pointer, this.state = "file host";
     else if (t === 58 && !this.arrFlag) {
       if (this.buffer === "")
         return this.parseError = !0, d;
-      const v = I1(this.buffer, V(this.url));
+      const v = P1(this.buffer, V(this.url));
       if (v === d)
         return d;
       if (this.url.host = v, this.buffer = "", this.state = "port", this.stateOverride === "hostname")
@@ -78481,7 +78535,7 @@ R1.PROCESSING_OPTIONS = n1;
         return this.parseError = !0, d;
       if (this.stateOverride && this.buffer === "" && (te(this.url) || this.url.port !== null))
         return this.parseError = !0, !1;
-      const v = I1(this.buffer, V(this.url));
+      const v = P1(this.buffer, V(this.url));
       if (v === d)
         return d;
       if (this.url.host = v, this.buffer = "", this.state = "path start", this.stateOverride)
@@ -78489,7 +78543,7 @@ R1.PROCESSING_OPTIONS = n1;
     } else
       t === 91 ? this.arrFlag = !0 : t === 93 && (this.arrFlag = !1), this.buffer += u;
     return !0;
-  }, D.prototype["parse port"] = function(t, u) {
+  }, T.prototype["parse port"] = function(t, u) {
     if (n(t))
       this.buffer += u;
     else if (isNaN(t) || t === 47 || t === 63 || t === 35 || V(this.url) && t === 92 || this.stateOverride) {
@@ -78497,7 +78551,7 @@ R1.PROCESSING_OPTIONS = n1;
         const v = parseInt(this.buffer);
         if (v > Math.pow(2, 16) - 1)
           return this.parseError = !0, d;
-        this.url.port = v === W(this.url.scheme) ? null : v, this.buffer = "";
+        this.url.port = v === Z(this.url.scheme) ? null : v, this.buffer = "";
       }
       if (this.stateOverride)
         return !1;
@@ -78506,14 +78560,14 @@ R1.PROCESSING_OPTIONS = n1;
       return this.parseError = !0, d;
     return !0;
   };
-  const k2 = /* @__PURE__ */ new Set([47, 92, 63, 35]);
-  D.prototype["parse file"] = function(t) {
+  const U2 = /* @__PURE__ */ new Set([47, 92, 63, 35]);
+  T.prototype["parse file"] = function(t) {
     return this.url.scheme = "file", t === 47 || t === 92 ? (t === 92 && (this.parseError = !0), this.state = "file slash") : this.base !== null && this.base.scheme === "file" ? isNaN(t) ? (this.url.host = this.base.host, this.url.path = this.base.path.slice(), this.url.query = this.base.query) : t === 63 ? (this.url.host = this.base.host, this.url.path = this.base.path.slice(), this.url.query = "", this.state = "query") : t === 35 ? (this.url.host = this.base.host, this.url.path = this.base.path.slice(), this.url.query = this.base.query, this.url.fragment = "", this.state = "fragment") : (this.input.length - this.pointer - 1 === 0 || // remaining consists of 0 code points
     !b(t, this.input[this.pointer + 1]) || this.input.length - this.pointer - 1 >= 2 && // remaining has at least 2 code points
-    !k2.has(this.input[this.pointer + 2]) ? (this.url.host = this.base.host, this.url.path = this.base.path.slice(), le(this.url)) : this.parseError = !0, this.state = "path", --this.pointer) : (this.state = "path", --this.pointer), !0;
-  }, D.prototype["parse file slash"] = function(t) {
+    !U2.has(this.input[this.pointer + 2]) ? (this.url.host = this.base.host, this.url.path = this.base.path.slice(), le(this.url)) : this.parseError = !0, this.state = "path", --this.pointer) : (this.state = "path", --this.pointer), !0;
+  }, T.prototype["parse file slash"] = function(t) {
     return t === 47 || t === 92 ? (t === 92 && (this.parseError = !0), this.state = "file host") : (this.base !== null && this.base.scheme === "file" && (N(this.base.path[0]) ? this.url.path.push(this.base.path[0]) : this.url.host = this.base.host), this.state = "path", --this.pointer), !0;
-  }, D.prototype["parse file host"] = function(t, u) {
+  }, T.prototype["parse file host"] = function(t, u) {
     if (isNaN(t) || t === 47 || t === 92 || t === 63 || t === 35)
       if (--this.pointer, !this.stateOverride && f(this.buffer))
         this.parseError = !0, this.state = "path";
@@ -78522,7 +78576,7 @@ R1.PROCESSING_OPTIONS = n1;
           return !1;
         this.state = "path start";
       } else {
-        let v = I1(this.buffer, V(this.url));
+        let v = P1(this.buffer, V(this.url));
         if (v === d)
           return d;
         if (v === "localhost" && (v = ""), this.url.host = v, this.stateOverride)
@@ -78532,9 +78586,9 @@ R1.PROCESSING_OPTIONS = n1;
     else
       this.buffer += u;
     return !0;
-  }, D.prototype["parse path start"] = function(t) {
+  }, T.prototype["parse path start"] = function(t) {
     return V(this.url) ? (t === 92 && (this.parseError = !0), this.state = "path", t !== 47 && t !== 92 && --this.pointer) : !this.stateOverride && t === 63 ? (this.url.query = "", this.state = "query") : !this.stateOverride && t === 35 ? (this.url.fragment = "", this.state = "fragment") : t !== void 0 && (this.state = "path", t !== 47 && --this.pointer), !0;
-  }, D.prototype["parse path"] = function(t) {
+  }, T.prototype["parse path"] = function(t) {
     if (isNaN(t) || t === 47 || V(this.url) && t === 92 || !this.stateOverride && (t === 63 || t === 35)) {
       if (V(this.url) && t === 92 && (this.parseError = !0), S(this.buffer) ? (le(this.url), t !== 47 && !(V(this.url) && t === 92) && this.url.path.push("")) : _(this.buffer) && t !== 47 && !(V(this.url) && t === 92) ? this.url.path.push("") : _(this.buffer) || (this.url.scheme === "file" && this.url.path.length === 0 && f(this.buffer) && (this.url.host !== "" && this.url.host !== null && (this.parseError = !0, this.url.host = ""), this.buffer = this.buffer[0] + ":"), this.url.path.push(this.buffer)), this.buffer = "", this.url.scheme === "file" && (t === void 0 || t === 63 || t === 35))
         for (; this.url.path.length > 1 && this.url.path[0] === ""; )
@@ -78543,9 +78597,9 @@ R1.PROCESSING_OPTIONS = n1;
     } else
       t === 37 && (!h(this.input[this.pointer + 1]) || !h(this.input[this.pointer + 2])) && (this.parseError = !0), this.buffer += d1(t, ie);
     return !0;
-  }, D.prototype["parse cannot-be-a-base-URL path"] = function(t) {
+  }, T.prototype["parse cannot-be-a-base-URL path"] = function(t) {
     return t === 63 ? (this.url.query = "", this.state = "query") : t === 35 ? (this.url.fragment = "", this.state = "fragment") : (!isNaN(t) && t !== 37 && (this.parseError = !0), t === 37 && (!h(this.input[this.pointer + 1]) || !h(this.input[this.pointer + 2])) && (this.parseError = !0), isNaN(t) || (this.url.path[0] = this.url.path[0] + d1(t, N1))), !0;
-  }, D.prototype["parse query"] = function(t, u) {
+  }, T.prototype["parse query"] = function(t, u) {
     if (isNaN(t) || !this.stateOverride && t === 35) {
       (!V(this.url) || this.url.scheme === "ws" || this.url.scheme === "wss") && (this.encodingOverride = "utf-8");
       const v = new Buffer(this.buffer);
@@ -78555,10 +78609,10 @@ R1.PROCESSING_OPTIONS = n1;
     } else
       t === 37 && (!h(this.input[this.pointer + 1]) || !h(this.input[this.pointer + 2])) && (this.parseError = !0), this.buffer += u;
     return !0;
-  }, D.prototype["parse fragment"] = function(t) {
+  }, T.prototype["parse fragment"] = function(t) {
     return isNaN(t) || (t === 0 ? this.parseError = !0 : (t === 37 && (!h(this.input[this.pointer + 1]) || !h(this.input[this.pointer + 2])) && (this.parseError = !0), this.url.fragment += d1(t, N1))), !0;
   };
-  function $2(l, t) {
+  function j2(l, t) {
     let u = l.scheme + ":";
     if (l.host !== null ? (u += "//", (l.username !== "" || l.password !== "") && (u += l.username, l.password !== "" && (u += ":" + l.password), u += "@"), u += C1(l.host), l.port !== null && (u += ":" + l.port)) : l.host === null && l.scheme === "file" && (u += "//"), l.cannotBeABaseURL)
       u += l.path[0];
@@ -78567,15 +78621,15 @@ R1.PROCESSING_OPTIONS = n1;
         u += "/" + v;
     return l.query !== null && (u += "?" + l.query), !t && l.fragment !== null && (u += "#" + l.fragment), u;
   }
-  function q2(l) {
+  function k2(l) {
     let t = l.scheme + "://";
     return t += C1(l.host), l.port !== null && (t += ":" + l.port), t;
   }
-  e.exports.serializeURL = $2, e.exports.serializeURLOrigin = function(l) {
+  p.exports.serializeURL = j2, p.exports.serializeURLOrigin = function(l) {
     switch (l.scheme) {
       case "blob":
         try {
-          return e.exports.serializeURLOrigin(e.exports.parseURL(l.path[0]));
+          return p.exports.serializeURLOrigin(p.exports.parseURL(l.path[0]));
         } catch {
           return "null";
         }
@@ -78585,7 +78639,7 @@ R1.PROCESSING_OPTIONS = n1;
       case "https":
       case "ws":
       case "wss":
-        return q2({
+        return k2({
           scheme: l.scheme,
           host: l.host,
           port: l.port
@@ -78595,92 +78649,92 @@ R1.PROCESSING_OPTIONS = n1;
       default:
         return "null";
     }
-  }, e.exports.basicURLParse = function(l, t) {
+  }, p.exports.basicURLParse = function(l, t) {
     t === void 0 && (t = {});
-    const u = new D(l, t.baseURL, t.encodingOverride, t.url, t.stateOverride);
+    const u = new T(l, t.baseURL, t.encodingOverride, t.url, t.stateOverride);
     return u.failure ? "failure" : u.url;
-  }, e.exports.setTheUsername = function(l, t) {
+  }, p.exports.setTheUsername = function(l, t) {
     l.username = "";
     const u = a.ucs2.decode(t);
     for (let v = 0; v < u.length; ++v)
-      l.username += d1(u[v], P1);
-  }, e.exports.setThePassword = function(l, t) {
+      l.username += d1(u[v], R1);
+  }, p.exports.setThePassword = function(l, t) {
     l.password = "";
     const u = a.ucs2.decode(t);
     for (let v = 0; v < u.length; ++v)
-      l.password += d1(u[v], P1);
-  }, e.exports.serializeHost = C1, e.exports.cannotHaveAUsernamePasswordPort = U2, e.exports.serializeInteger = function(l) {
+      l.password += d1(u[v], R1);
+  }, p.exports.serializeHost = C1, p.exports.cannotHaveAUsernamePasswordPort = F2, p.exports.serializeInteger = function(l) {
     return String(l);
-  }, e.exports.parseURL = function(l, t) {
-    return t === void 0 && (t = {}), e.exports.basicURLParse(l, { baseURL: t.baseURL, encodingOverride: t.encodingOverride });
+  }, p.exports.parseURL = function(l, t) {
+    return t === void 0 && (t = {}), p.exports.basicURLParse(l, { baseURL: t.baseURL, encodingOverride: t.encodingOverride });
   };
-})(m4);
-const T = F;
+})(n4);
+const D = B;
 m2.implementation = class {
   constructor(a) {
     const m = a[0], i = a[1];
     let d = null;
-    if (i !== void 0 && (d = T.basicURLParse(i), d === "failure"))
+    if (i !== void 0 && (d = D.basicURLParse(i), d === "failure"))
       throw new TypeError("Invalid base URL");
-    const r = T.basicURLParse(m, { baseURL: d });
+    const r = D.basicURLParse(m, { baseURL: d });
     if (r === "failure")
       throw new TypeError("Invalid URL");
     this._url = r;
   }
   get href() {
-    return T.serializeURL(this._url);
+    return D.serializeURL(this._url);
   }
   set href(a) {
-    const m = T.basicURLParse(a);
+    const m = D.basicURLParse(a);
     if (m === "failure")
       throw new TypeError("Invalid URL");
     this._url = m;
   }
   get origin() {
-    return T.serializeURLOrigin(this._url);
+    return D.serializeURLOrigin(this._url);
   }
   get protocol() {
     return this._url.scheme + ":";
   }
   set protocol(a) {
-    T.basicURLParse(a + ":", { url: this._url, stateOverride: "scheme start" });
+    D.basicURLParse(a + ":", { url: this._url, stateOverride: "scheme start" });
   }
   get username() {
     return this._url.username;
   }
   set username(a) {
-    T.cannotHaveAUsernamePasswordPort(this._url) || T.setTheUsername(this._url, a);
+    D.cannotHaveAUsernamePasswordPort(this._url) || D.setTheUsername(this._url, a);
   }
   get password() {
     return this._url.password;
   }
   set password(a) {
-    T.cannotHaveAUsernamePasswordPort(this._url) || T.setThePassword(this._url, a);
+    D.cannotHaveAUsernamePasswordPort(this._url) || D.setThePassword(this._url, a);
   }
   get host() {
     const a = this._url;
-    return a.host === null ? "" : a.port === null ? T.serializeHost(a.host) : T.serializeHost(a.host) + ":" + T.serializeInteger(a.port);
+    return a.host === null ? "" : a.port === null ? D.serializeHost(a.host) : D.serializeHost(a.host) + ":" + D.serializeInteger(a.port);
   }
   set host(a) {
-    this._url.cannotBeABaseURL || T.basicURLParse(a, { url: this._url, stateOverride: "host" });
+    this._url.cannotBeABaseURL || D.basicURLParse(a, { url: this._url, stateOverride: "host" });
   }
   get hostname() {
-    return this._url.host === null ? "" : T.serializeHost(this._url.host);
+    return this._url.host === null ? "" : D.serializeHost(this._url.host);
   }
   set hostname(a) {
-    this._url.cannotBeABaseURL || T.basicURLParse(a, { url: this._url, stateOverride: "hostname" });
+    this._url.cannotBeABaseURL || D.basicURLParse(a, { url: this._url, stateOverride: "hostname" });
   }
   get port() {
-    return this._url.port === null ? "" : T.serializeInteger(this._url.port);
+    return this._url.port === null ? "" : D.serializeInteger(this._url.port);
   }
   set port(a) {
-    T.cannotHaveAUsernamePasswordPort(this._url) || (a === "" ? this._url.port = null : T.basicURLParse(a, { url: this._url, stateOverride: "port" }));
+    D.cannotHaveAUsernamePasswordPort(this._url) || (a === "" ? this._url.port = null : D.basicURLParse(a, { url: this._url, stateOverride: "port" }));
   }
   get pathname() {
     return this._url.cannotBeABaseURL ? this._url.path[0] : this._url.path.length === 0 ? "" : "/" + this._url.path.join("/");
   }
   set pathname(a) {
-    this._url.cannotBeABaseURL || (this._url.path = [], T.basicURLParse(a, { url: this._url, stateOverride: "path start" }));
+    this._url.cannotBeABaseURL || (this._url.path = [], D.basicURLParse(a, { url: this._url, stateOverride: "path start" }));
   }
   get search() {
     return this._url.query === null || this._url.query === "" ? "" : "?" + this._url.query;
@@ -78692,7 +78746,7 @@ m2.implementation = class {
       return;
     }
     const i = a[0] === "?" ? a.substring(1) : a;
-    m.query = "", T.basicURLParse(i, { url: m, stateOverride: "query" });
+    m.query = "", D.basicURLParse(i, { url: m, stateOverride: "query" });
   }
   get hash() {
     return this._url.fragment === null || this._url.fragment === "" ? "" : "#" + this._url.fragment;
@@ -78703,14 +78757,14 @@ m2.implementation = class {
       return;
     }
     const m = a[0] === "#" ? a.substring(1) : a;
-    this._url.fragment = "", T.basicURLParse(m, { url: this._url, stateOverride: "fragment" });
+    this._url.fragment = "", D.basicURLParse(m, { url: this._url, stateOverride: "fragment" });
   }
   toJSON() {
     return this.href;
   }
 };
-(function(e) {
-  const a = p4, m = q1, i = m2, d = m.implSymbol;
+(function(p) {
+  const a = r4, m = q1, i = m2, d = m.implSymbol;
   function r(o) {
     if (!this || this[d] || !(this instanceof r))
       throw new TypeError("Failed to construct 'URL': Please use the 'new' operator, this DOM object constructor cannot be called as a function.");
@@ -78719,10 +78773,10 @@ m2.implementation = class {
     const n = [];
     for (let s = 0; s < arguments.length && s < 2; ++s)
       n[s] = arguments[s];
-    n[0] = a.USVString(n[0]), n[1] !== void 0 && (n[1] = a.USVString(n[1])), e.exports.setup(this, n);
+    n[0] = a.USVString(n[0]), n[1] !== void 0 && (n[1] = a.USVString(n[1])), p.exports.setup(this, n);
   }
   r.prototype.toJSON = function() {
-    if (!this || !e.exports.is(this))
+    if (!this || !p.exports.is(this))
       throw new TypeError("Illegal invocation");
     const n = [];
     for (let s = 0; s < arguments.length && s < 0; ++s)
@@ -78738,7 +78792,7 @@ m2.implementation = class {
     enumerable: !0,
     configurable: !0
   }), r.prototype.toString = function() {
-    if (!this || !e.exports.is(this))
+    if (!this || !p.exports.is(this))
       throw new TypeError("Illegal invocation");
     return this.href;
   }, Object.defineProperty(r.prototype, "origin", {
@@ -78828,7 +78882,7 @@ m2.implementation = class {
     },
     enumerable: !0,
     configurable: !0
-  }), e.exports = {
+  }), p.exports = {
     is(o) {
       return !!o && o[d] instanceof i.implementation;
     },
@@ -78845,17 +78899,17 @@ m2.implementation = class {
       Worker: { URL: r }
     }
   };
-})(e4);
+})(t4);
 j.URL = $1.interface;
-j.serializeURL = F.serializeURL;
-j.serializeURLOrigin = F.serializeURLOrigin;
-j.basicURLParse = F.basicURLParse;
-j.setTheUsername = F.setTheUsername;
-j.setThePassword = F.setThePassword;
-j.serializeHost = F.serializeHost;
-j.serializeInteger = F.serializeInteger;
-j.parseURL = F.parseURL;
-const b4 = B.Readable, z = Symbol("buffer"), L1 = Symbol("type");
+j.serializeURL = B.serializeURL;
+j.serializeURLOrigin = B.serializeURLOrigin;
+j.basicURLParse = B.basicURLParse;
+j.setTheUsername = B.setTheUsername;
+j.setThePassword = B.setThePassword;
+j.serializeHost = B.serializeHost;
+j.serializeInteger = B.serializeInteger;
+j.parseURL = B.parseURL;
+const A4 = F.Readable, H = Symbol("buffer"), L1 = Symbol("type");
 class u1 {
   constructor() {
     this[L1] = "";
@@ -78866,30 +78920,30 @@ class u1 {
       for (let s = 0; s < n; s++) {
         const w = o[s];
         let h;
-        w instanceof Buffer ? h = w : ArrayBuffer.isView(w) ? h = Buffer.from(w.buffer, w.byteOffset, w.byteLength) : w instanceof ArrayBuffer ? h = Buffer.from(w) : w instanceof u1 ? h = w[z] : h = Buffer.from(typeof w == "string" ? w : String(w)), d += h.length, i.push(h);
+        w instanceof Buffer ? h = w : ArrayBuffer.isView(w) ? h = Buffer.from(w.buffer, w.byteOffset, w.byteLength) : w instanceof ArrayBuffer ? h = Buffer.from(w) : w instanceof u1 ? h = w[H] : h = Buffer.from(typeof w == "string" ? w : String(w)), d += h.length, i.push(h);
       }
     }
-    this[z] = Buffer.concat(i);
+    this[H] = Buffer.concat(i);
     let r = m && m.type !== void 0 && String(m.type).toLowerCase();
     r && !/[^\u0020-\u007E]/.test(r) && (this[L1] = r);
   }
   get size() {
-    return this[z].length;
+    return this[H].length;
   }
   get type() {
     return this[L1];
   }
   text() {
-    return Promise.resolve(this[z].toString());
+    return Promise.resolve(this[H].toString());
   }
   arrayBuffer() {
-    const a = this[z], m = a.buffer.slice(a.byteOffset, a.byteOffset + a.byteLength);
+    const a = this[H], m = a.buffer.slice(a.byteOffset, a.byteOffset + a.byteLength);
     return Promise.resolve(m);
   }
   stream() {
-    const a = new b4();
+    const a = new A4();
     return a._read = function() {
-    }, a.push(this[z]), a.push(null), a;
+    }, a.push(this[H]), a.push(null), a;
   }
   toString() {
     return "[object Blob]";
@@ -78898,8 +78952,8 @@ class u1 {
     const a = this.size, m = arguments[0], i = arguments[1];
     let d, r;
     m === void 0 ? d = 0 : m < 0 ? d = Math.max(a + m, 0) : d = Math.min(m, a), i === void 0 ? r = a : i < 0 ? r = Math.max(a + i, 0) : r = Math.min(i, a);
-    const o = Math.max(r - d, 0), s = this[z].slice(d, d + o), w = new u1([], { type: arguments[2] });
-    return w[z] = s, w;
+    const o = Math.max(r - d, 0), s = this[H].slice(d, d + o), w = new u1([], { type: arguments[2] });
+    return w[H] = s, w;
   }
 }
 Object.defineProperties(u1.prototype, {
@@ -78913,33 +78967,33 @@ Object.defineProperty(u1.prototype, Symbol.toStringTag, {
   enumerable: !1,
   configurable: !0
 });
-function I(e, a, m) {
-  Error.call(this, e), this.message = e, this.type = a, m && (this.code = this.errno = m.code), Error.captureStackTrace(this, this.constructor);
+function P(p, a, m) {
+  Error.call(this, p), this.message = p, this.type = a, m && (this.code = this.errno = m.code), Error.captureStackTrace(this, this.constructor);
 }
-I.prototype = Object.create(Error.prototype);
-I.prototype.constructor = I;
-I.prototype.name = "FetchError";
+P.prototype = Object.create(Error.prototype);
+P.prototype.constructor = P;
+P.prototype.name = "FetchError";
 let M1;
 try {
   M1 = require("encoding").convert;
 } catch {
 }
-const G = Symbol("Body internals"), Te = B.PassThrough;
-function P(e) {
+const G = Symbol("Body internals"), De = F.PassThrough;
+function R(p) {
   var a = this, m = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, i = m.size;
   let d = i === void 0 ? 0 : i;
   var r = m.timeout;
   let o = r === void 0 ? 0 : r;
-  e == null ? e = null : g2(e) ? e = Buffer.from(e.toString()) : S1(e) || Buffer.isBuffer(e) || (Object.prototype.toString.call(e) === "[object ArrayBuffer]" ? e = Buffer.from(e) : ArrayBuffer.isView(e) ? e = Buffer.from(e.buffer, e.byteOffset, e.byteLength) : e instanceof B || (e = Buffer.from(String(e)))), this[G] = {
-    body: e,
+  p == null ? p = null : g2(p) ? p = Buffer.from(p.toString()) : S1(p) || Buffer.isBuffer(p) || (Object.prototype.toString.call(p) === "[object ArrayBuffer]" ? p = Buffer.from(p) : ArrayBuffer.isView(p) ? p = Buffer.from(p.buffer, p.byteOffset, p.byteLength) : p instanceof F || (p = Buffer.from(String(p)))), this[G] = {
+    body: p,
     disturbed: !1,
     error: null
-  }, this.size = d, this.timeout = o, e instanceof B && e.on("error", function(n) {
-    const s = n.name === "AbortError" ? n : new I(`Invalid response body while trying to fetch ${a.url}: ${n.message}`, "system", n);
+  }, this.size = d, this.timeout = o, p instanceof F && p.on("error", function(n) {
+    const s = n.name === "AbortError" ? n : new P(`Invalid response body while trying to fetch ${a.url}: ${n.message}`, "system", n);
     a[G].error = s;
   });
 }
-P.prototype = {
+R.prototype = {
   get body() {
     return this[G].body;
   },
@@ -78952,8 +79006,8 @@ P.prototype = {
    * @return  Promise
    */
   arrayBuffer() {
-    return t1.call(this).then(function(e) {
-      return e.buffer.slice(e.byteOffset, e.byteOffset + e.byteLength);
+    return t1.call(this).then(function(p) {
+      return p.buffer.slice(p.byteOffset, p.byteOffset + p.byteLength);
     });
   },
   /**
@@ -78962,15 +79016,15 @@ P.prototype = {
    * @return Promise
    */
   blob() {
-    let e = this.headers && this.headers.get("content-type") || "";
+    let p = this.headers && this.headers.get("content-type") || "";
     return t1.call(this).then(function(a) {
       return Object.assign(
         // Prevent copying
         new u1([], {
-          type: e.toLowerCase()
+          type: p.toLowerCase()
         }),
         {
-          [z]: a
+          [H]: a
         }
       );
     });
@@ -78981,12 +79035,12 @@ P.prototype = {
    * @return  Promise
    */
   json() {
-    var e = this;
+    var p = this;
     return t1.call(this).then(function(a) {
       try {
         return JSON.parse(a.toString());
       } catch (m) {
-        return P.Promise.reject(new I(`invalid json response body at ${e.url} reason: ${m.message}`, "invalid-json"));
+        return R.Promise.reject(new P(`invalid json response body at ${p.url} reason: ${m.message}`, "invalid-json"));
       }
     });
   },
@@ -78996,8 +79050,8 @@ P.prototype = {
    * @return  Promise
    */
   text() {
-    return t1.call(this).then(function(e) {
-      return e.toString();
+    return t1.call(this).then(function(p) {
+      return p.toString();
     });
   },
   /**
@@ -79015,13 +79069,13 @@ P.prototype = {
    * @return  Promise
    */
   textConverted() {
-    var e = this;
+    var p = this;
     return t1.call(this).then(function(a) {
-      return S4(a, e.headers);
+      return E4(a, p.headers);
     });
   }
 };
-Object.defineProperties(P.prototype, {
+Object.defineProperties(R.prototype, {
   body: { enumerable: !0 },
   bodyUsed: { enumerable: !0 },
   arrayBuffer: { enumerable: !0 },
@@ -79029,37 +79083,37 @@ Object.defineProperties(P.prototype, {
   json: { enumerable: !0 },
   text: { enumerable: !0 }
 });
-P.mixIn = function(e) {
-  for (const a of Object.getOwnPropertyNames(P.prototype))
-    if (!(a in e)) {
-      const m = Object.getOwnPropertyDescriptor(P.prototype, a);
-      Object.defineProperty(e, a, m);
+R.mixIn = function(p) {
+  for (const a of Object.getOwnPropertyNames(R.prototype))
+    if (!(a in p)) {
+      const m = Object.getOwnPropertyDescriptor(R.prototype, a);
+      Object.defineProperty(p, a, m);
     }
 };
 function t1() {
-  var e = this;
+  var p = this;
   if (this[G].disturbed)
-    return P.Promise.reject(new TypeError(`body used already for: ${this.url}`));
+    return R.Promise.reject(new TypeError(`body used already for: ${this.url}`));
   if (this[G].disturbed = !0, this[G].error)
-    return P.Promise.reject(this[G].error);
+    return R.Promise.reject(this[G].error);
   let a = this.body;
   if (a === null)
-    return P.Promise.resolve(Buffer.alloc(0));
+    return R.Promise.resolve(Buffer.alloc(0));
   if (S1(a) && (a = a.stream()), Buffer.isBuffer(a))
-    return P.Promise.resolve(a);
-  if (!(a instanceof B))
-    return P.Promise.resolve(Buffer.alloc(0));
+    return R.Promise.resolve(a);
+  if (!(a instanceof F))
+    return R.Promise.resolve(Buffer.alloc(0));
   let m = [], i = 0, d = !1;
-  return new P.Promise(function(r, o) {
+  return new R.Promise(function(r, o) {
     let n;
-    e.timeout && (n = setTimeout(function() {
-      d = !0, o(new I(`Response timeout while trying to fetch ${e.url} (over ${e.timeout}ms)`, "body-timeout"));
-    }, e.timeout)), a.on("error", function(s) {
-      s.name === "AbortError" ? (d = !0, o(s)) : o(new I(`Invalid response body while trying to fetch ${e.url}: ${s.message}`, "system", s));
+    p.timeout && (n = setTimeout(function() {
+      d = !0, o(new P(`Response timeout while trying to fetch ${p.url} (over ${p.timeout}ms)`, "body-timeout"));
+    }, p.timeout)), a.on("error", function(s) {
+      s.name === "AbortError" ? (d = !0, o(s)) : o(new P(`Invalid response body while trying to fetch ${p.url}: ${s.message}`, "system", s));
     }), a.on("data", function(s) {
       if (!(d || s === null)) {
-        if (e.size && i + s.length > e.size) {
-          d = !0, o(new I(`content size at ${e.url} over limit: ${e.size}`, "max-size"));
+        if (p.size && i + s.length > p.size) {
+          d = !0, o(new P(`content size at ${p.url} over limit: ${p.size}`, "max-size"));
           return;
         }
         i += s.length, m.push(s);
@@ -79070,56 +79124,56 @@ function t1() {
         try {
           r(Buffer.concat(m, i));
         } catch (s) {
-          o(new I(`Could not create Buffer from response body for ${e.url}: ${s.message}`, "system", s));
+          o(new P(`Could not create Buffer from response body for ${p.url}: ${s.message}`, "system", s));
         }
       }
     });
   });
 }
-function S4(e, a) {
+function E4(p, a) {
   if (typeof M1 != "function")
     throw new Error("The package `encoding` must be installed to use the textConverted() function");
   const m = a.get("content-type");
   let i = "utf-8", d, r;
-  return m && (d = /charset=([^;]*)/i.exec(m)), r = e.slice(0, 1024).toString(), !d && r && (d = /<meta.+?charset=(['"])(.+?)\1/i.exec(r)), !d && r && (d = /<meta[\s]+?http-equiv=(['"])content-type\1[\s]+?content=(['"])(.+?)\2/i.exec(r), d || (d = /<meta[\s]+?content=(['"])(.+?)\1[\s]+?http-equiv=(['"])content-type\3/i.exec(r), d && d.pop()), d && (d = /charset=(.*)/i.exec(d.pop()))), !d && r && (d = /<\?xml.+?encoding=(['"])(.+?)\1/i.exec(r)), d && (i = d.pop(), (i === "gb2312" || i === "gbk") && (i = "gb18030")), M1(e, "UTF-8", i).toString();
+  return m && (d = /charset=([^;]*)/i.exec(m)), r = p.slice(0, 1024).toString(), !d && r && (d = /<meta.+?charset=(['"])(.+?)\1/i.exec(r)), !d && r && (d = /<meta[\s]+?http-equiv=(['"])content-type\1[\s]+?content=(['"])(.+?)\2/i.exec(r), d || (d = /<meta[\s]+?content=(['"])(.+?)\1[\s]+?http-equiv=(['"])content-type\3/i.exec(r), d && d.pop()), d && (d = /charset=(.*)/i.exec(d.pop()))), !d && r && (d = /<\?xml.+?encoding=(['"])(.+?)\1/i.exec(r)), d && (i = d.pop(), (i === "gb2312" || i === "gbk") && (i = "gb18030")), M1(p, "UTF-8", i).toString();
 }
-function g2(e) {
-  return typeof e != "object" || typeof e.append != "function" || typeof e.delete != "function" || typeof e.get != "function" || typeof e.getAll != "function" || typeof e.has != "function" || typeof e.set != "function" ? !1 : e.constructor.name === "URLSearchParams" || Object.prototype.toString.call(e) === "[object URLSearchParams]" || typeof e.sort == "function";
+function g2(p) {
+  return typeof p != "object" || typeof p.append != "function" || typeof p.delete != "function" || typeof p.get != "function" || typeof p.getAll != "function" || typeof p.has != "function" || typeof p.set != "function" ? !1 : p.constructor.name === "URLSearchParams" || Object.prototype.toString.call(p) === "[object URLSearchParams]" || typeof p.sort == "function";
 }
-function S1(e) {
-  return typeof e == "object" && typeof e.arrayBuffer == "function" && typeof e.type == "string" && typeof e.stream == "function" && typeof e.constructor == "function" && typeof e.constructor.name == "string" && /^(Blob|File)$/.test(e.constructor.name) && /^(Blob|File)$/.test(e[Symbol.toStringTag]);
+function S1(p) {
+  return typeof p == "object" && typeof p.arrayBuffer == "function" && typeof p.type == "string" && typeof p.stream == "function" && typeof p.constructor == "function" && typeof p.constructor.name == "string" && /^(Blob|File)$/.test(p.constructor.name) && /^(Blob|File)$/.test(p[Symbol.toStringTag]);
 }
-function _2(e) {
-  let a, m, i = e.body;
-  if (e.bodyUsed)
+function _2(p) {
+  let a, m, i = p.body;
+  if (p.bodyUsed)
     throw new Error("cannot clone body after it is used");
-  return i instanceof B && typeof i.getBoundary != "function" && (a = new Te(), m = new Te(), i.pipe(a), i.pipe(m), e[G].body = a, i = m), i;
+  return i instanceof F && typeof i.getBoundary != "function" && (a = new De(), m = new De(), i.pipe(a), i.pipe(m), p[G].body = a, i = m), i;
 }
-function b2(e) {
-  return e === null ? null : typeof e == "string" ? "text/plain;charset=UTF-8" : g2(e) ? "application/x-www-form-urlencoded;charset=UTF-8" : S1(e) ? e.type || null : Buffer.isBuffer(e) || Object.prototype.toString.call(e) === "[object ArrayBuffer]" || ArrayBuffer.isView(e) ? null : typeof e.getBoundary == "function" ? `multipart/form-data;boundary=${e.getBoundary()}` : e instanceof B ? null : "text/plain;charset=UTF-8";
+function b2(p) {
+  return p === null ? null : typeof p == "string" ? "text/plain;charset=UTF-8" : g2(p) ? "application/x-www-form-urlencoded;charset=UTF-8" : S1(p) ? p.type || null : Buffer.isBuffer(p) || Object.prototype.toString.call(p) === "[object ArrayBuffer]" || ArrayBuffer.isView(p) ? null : typeof p.getBoundary == "function" ? `multipart/form-data;boundary=${p.getBoundary()}` : p instanceof F ? null : "text/plain;charset=UTF-8";
 }
-function S2(e) {
-  const a = e.body;
+function S2(p) {
+  const a = p.body;
   return a === null ? 0 : S1(a) ? a.size : Buffer.isBuffer(a) ? a.length : a && typeof a.getLengthSync == "function" && (a._lengthRetrievers && a._lengthRetrievers.length == 0 || // 1.x
   a.hasKnownLength && a.hasKnownLength()) ? a.getLengthSync() : null;
 }
-function N4(e, a) {
+function I4(p, a) {
   const m = a.body;
-  m === null ? e.end() : S1(m) ? m.stream().pipe(e) : Buffer.isBuffer(m) ? (e.write(m), e.end()) : m.pipe(e);
+  m === null ? p.end() : S1(m) ? m.stream().pipe(p) : Buffer.isBuffer(m) ? (p.write(m), p.end()) : m.pipe(p);
 }
-P.Promise = global.Promise;
-const N2 = /[^\^_`a-zA-Z\-0-9!#$%&'*+.|~]/, z1 = /[^\t\x20-\x7e\x80-\xff]/;
-function f1(e) {
-  if (e = `${e}`, N2.test(e) || e === "")
-    throw new TypeError(`${e} is not a legal HTTP header name`);
+R.Promise = global.Promise;
+const N2 = /[^\^_`a-zA-Z\-0-9!#$%&'*+.|~]/, H1 = /[^\t\x20-\x7e\x80-\xff]/;
+function f1(p) {
+  if (p = `${p}`, N2.test(p) || p === "")
+    throw new TypeError(`${p} is not a legal HTTP header name`);
 }
-function ye(e) {
-  if (e = `${e}`, z1.test(e))
-    throw new TypeError(`${e} is not a legal HTTP header value`);
+function ye(p) {
+  if (p = `${p}`, H1.test(p))
+    throw new TypeError(`${p} is not a legal HTTP header value`);
 }
-function s1(e, a) {
+function s1(p, a) {
   a = a.toLowerCase();
-  for (const m in e)
+  for (const m in p)
     if (m.toLowerCase() === a)
       return m;
 }
@@ -79184,11 +79238,11 @@ class U {
    * @return  Void
    */
   forEach(a) {
-    let m = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : void 0, i = H1(this), d = 0;
+    let m = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : void 0, i = z1(this), d = 0;
     for (; d < i.length; ) {
       var r = i[d];
       const o = r[0], n = r[1];
-      a.call(m, n, o, this), i = H1(this), d++;
+      a.call(m, n, o, this), i = z1(this), d++;
     }
   }
   /**
@@ -79249,7 +79303,7 @@ class U {
    * @return  Iterator
    */
   keys() {
-    return B1(this, "key");
+    return F1(this, "key");
   }
   /**
    * Get an iterator on values.
@@ -79257,7 +79311,7 @@ class U {
    * @return  Iterator
    */
   values() {
-    return B1(this, "value");
+    return F1(this, "value");
   }
   /**
    * Get an iterator on entries.
@@ -79267,7 +79321,7 @@ class U {
    * @return  Iterator
    */
   [Symbol.iterator]() {
-    return B1(this, "key+value");
+    return F1(this, "key+value");
   }
 }
 U.prototype.entries = U.prototype[Symbol.iterator];
@@ -79288,21 +79342,21 @@ Object.defineProperties(U.prototype, {
   values: { enumerable: !0 },
   entries: { enumerable: !0 }
 });
-function H1(e) {
+function z1(p) {
   let a = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : "key+value";
-  return Object.keys(e[A]).sort().map(a === "key" ? function(i) {
+  return Object.keys(p[A]).sort().map(a === "key" ? function(i) {
     return i.toLowerCase();
   } : a === "value" ? function(i) {
-    return e[A][i].join(", ");
+    return p[A][i].join(", ");
   } : function(i) {
-    return [i.toLowerCase(), e[A][i].join(", ")];
+    return [i.toLowerCase(), p[A][i].join(", ")];
   });
 }
 const G1 = Symbol("internal");
-function B1(e, a) {
+function F1(p, a) {
   const m = Object.create(de);
   return m[G1] = {
-    target: e,
+    target: p,
     kind: a,
     index: 0
   }, m;
@@ -79311,8 +79365,8 @@ const de = Object.setPrototypeOf({
   next() {
     if (!this || Object.getPrototypeOf(this) !== de)
       throw new TypeError("Value of `this` is not a HeadersIterator");
-    var e = this[G1];
-    const a = e.target, m = e.kind, i = e.index, d = H1(a, m), r = d.length;
+    var p = this[G1];
+    const a = p.target, m = p.kind, i = p.index, d = z1(a, m), r = d.length;
     return i >= r ? {
       value: void 0,
       done: !0
@@ -79328,59 +79382,59 @@ Object.defineProperty(de, Symbol.toStringTag, {
   enumerable: !1,
   configurable: !0
 });
-function D4(e) {
-  const a = Object.assign({ __proto__: null }, e[A]), m = s1(e[A], "Host");
+function R4(p) {
+  const a = Object.assign({ __proto__: null }, p[A]), m = s1(p[A], "Host");
   return m !== void 0 && (a[m] = a[m][0]), a;
 }
-function T4(e) {
+function P4(p) {
   const a = new U();
-  for (const m of Object.keys(e))
+  for (const m of Object.keys(p))
     if (!N2.test(m))
-      if (Array.isArray(e[m]))
-        for (const i of e[m])
-          z1.test(i) || (a[A][m] === void 0 ? a[A][m] = [i] : a[A][m].push(i));
+      if (Array.isArray(p[m]))
+        for (const i of p[m])
+          H1.test(i) || (a[A][m] === void 0 ? a[A][m] = [i] : a[A][m].push(i));
       else
-        z1.test(e[m]) || (a[A][m] = [e[m]]);
+        H1.test(p[m]) || (a[A][m] = [p[m]]);
   return a;
 }
-const J = Symbol("Response internals"), y4 = Ie.STATUS_CODES;
+const Q = Symbol("Response internals"), C4 = Pe.STATUS_CODES;
 class L {
   constructor() {
     let a = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : null, m = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
-    P.call(this, a, m);
+    R.call(this, a, m);
     const i = m.status || 200, d = new U(m.headers);
     if (a != null && !d.has("Content-Type")) {
       const r = b2(a);
       r && d.append("Content-Type", r);
     }
-    this[J] = {
+    this[Q] = {
       url: m.url,
       status: i,
-      statusText: m.statusText || y4[i],
+      statusText: m.statusText || C4[i],
       headers: d,
       counter: m.counter
     };
   }
   get url() {
-    return this[J].url || "";
+    return this[Q].url || "";
   }
   get status() {
-    return this[J].status;
+    return this[Q].status;
   }
   /**
    * Convenience property representing if the request ended normally
    */
   get ok() {
-    return this[J].status >= 200 && this[J].status < 300;
+    return this[Q].status >= 200 && this[Q].status < 300;
   }
   get redirected() {
-    return this[J].counter > 0;
+    return this[Q].counter > 0;
   }
   get statusText() {
-    return this[J].statusText;
+    return this[Q].statusText;
   }
   get headers() {
-    return this[J].headers;
+    return this[Q].headers;
   }
   /**
    * Clone this response
@@ -79398,7 +79452,7 @@ class L {
     });
   }
 }
-P.mixIn(L.prototype);
+R.mixIn(L.prototype);
 Object.defineProperties(L.prototype, {
   url: { enumerable: !0 },
   status: { enumerable: !0 },
@@ -79414,27 +79468,27 @@ Object.defineProperty(L.prototype, Symbol.toStringTag, {
   enumerable: !1,
   configurable: !0
 });
-const H = Symbol("Request internals"), V4 = V1.URL || j.URL, A4 = V1.parse, E4 = V1.format;
-function F1(e) {
-  return /^[a-zA-Z][a-zA-Z\d+\-.]*:/.exec(e) && (e = new V4(e).toString()), A4(e);
+const z = Symbol("Request internals"), x4 = V1.URL || j.URL, O4 = V1.parse, L4 = V1.format;
+function B1(p) {
+  return /^[a-zA-Z][a-zA-Z\d+\-.]*:/.exec(p) && (p = new x4(p).toString()), O4(p);
 }
-const R4 = "destroy" in B.Readable.prototype;
-function T1(e) {
-  return typeof e == "object" && typeof e[H] == "object";
+const F4 = "destroy" in F.Readable.prototype;
+function D1(p) {
+  return typeof p == "object" && typeof p[z] == "object";
 }
-function P4(e) {
-  const a = e && typeof e == "object" && Object.getPrototypeOf(e);
+function B4(p) {
+  const a = p && typeof p == "object" && Object.getPrototypeOf(p);
   return !!(a && a.constructor.name === "AbortSignal");
 }
 class l1 {
   constructor(a) {
     let m = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, i;
-    T1(a) ? i = F1(a.url) : (a && a.href ? i = F1(a.href) : i = F1(`${a}`), a = {});
+    D1(a) ? i = B1(a.url) : (a && a.href ? i = B1(a.href) : i = B1(`${a}`), a = {});
     let d = m.method || a.method || "GET";
-    if (d = d.toUpperCase(), (m.body != null || T1(a) && a.body !== null) && (d === "GET" || d === "HEAD"))
+    if (d = d.toUpperCase(), (m.body != null || D1(a) && a.body !== null) && (d === "GET" || d === "HEAD"))
       throw new TypeError("Request with GET/HEAD method cannot have body");
-    let r = m.body != null ? m.body : T1(a) && a.body !== null ? _2(a) : null;
-    P.call(this, r, {
+    let r = m.body != null ? m.body : D1(a) && a.body !== null ? _2(a) : null;
+    R.call(this, r, {
       timeout: m.timeout || a.timeout || 0,
       size: m.size || a.size || 0
     });
@@ -79443,10 +79497,10 @@ class l1 {
       const s = b2(r);
       s && o.append("Content-Type", s);
     }
-    let n = T1(a) ? a.signal : null;
-    if ("signal" in m && (n = m.signal), n != null && !P4(n))
+    let n = D1(a) ? a.signal : null;
+    if ("signal" in m && (n = m.signal), n != null && !B4(n))
       throw new TypeError("Expected signal to be an instanceof AbortSignal");
-    this[H] = {
+    this[z] = {
       method: d,
       redirect: m.redirect || a.redirect || "follow",
       headers: o,
@@ -79455,19 +79509,19 @@ class l1 {
     }, this.follow = m.follow !== void 0 ? m.follow : a.follow !== void 0 ? a.follow : 20, this.compress = m.compress !== void 0 ? m.compress : a.compress !== void 0 ? a.compress : !0, this.counter = m.counter || a.counter || 0, this.agent = m.agent || a.agent;
   }
   get method() {
-    return this[H].method;
+    return this[z].method;
   }
   get url() {
-    return E4(this[H].parsedURL);
+    return L4(this[z].parsedURL);
   }
   get headers() {
-    return this[H].headers;
+    return this[z].headers;
   }
   get redirect() {
-    return this[H].redirect;
+    return this[z].redirect;
   }
   get signal() {
-    return this[H].signal;
+    return this[z].signal;
   }
   /**
    * Clone this request
@@ -79478,7 +79532,7 @@ class l1 {
     return new l1(this);
   }
 }
-P.mixIn(l1.prototype);
+R.mixIn(l1.prototype);
 Object.defineProperty(l1.prototype, Symbol.toStringTag, {
   value: "Request",
   writable: !1,
@@ -79493,49 +79547,49 @@ Object.defineProperties(l1.prototype, {
   clone: { enumerable: !0 },
   signal: { enumerable: !0 }
 });
-function I4(e) {
-  const a = e[H].parsedURL, m = new U(e[H].headers);
+function U4(p) {
+  const a = p[z].parsedURL, m = new U(p[z].headers);
   if (m.has("Accept") || m.set("Accept", "*/*"), !a.protocol || !a.hostname)
     throw new TypeError("Only absolute URLs are supported");
   if (!/^https?:$/.test(a.protocol))
     throw new TypeError("Only HTTP(S) protocols are supported");
-  if (e.signal && e.body instanceof B.Readable && !R4)
+  if (p.signal && p.body instanceof F.Readable && !F4)
     throw new Error("Cancellation of streamed requests with AbortSignal is not supported in node < 8");
   let i = null;
-  if (e.body == null && /^(POST|PUT)$/i.test(e.method) && (i = "0"), e.body != null) {
-    const r = S2(e);
+  if (p.body == null && /^(POST|PUT)$/i.test(p.method) && (i = "0"), p.body != null) {
+    const r = S2(p);
     typeof r == "number" && (i = String(r));
   }
-  i && m.set("Content-Length", i), m.has("User-Agent") || m.set("User-Agent", "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"), e.compress && !m.has("Accept-Encoding") && m.set("Accept-Encoding", "gzip,deflate");
-  let d = e.agent;
+  i && m.set("Content-Length", i), m.has("User-Agent") || m.set("User-Agent", "node-fetch/1.0 (+https://github.com/bitinn/node-fetch)"), p.compress && !m.has("Accept-Encoding") && m.set("Accept-Encoding", "gzip,deflate");
+  let d = p.agent;
   return typeof d == "function" && (d = d(a)), !m.has("Connection") && !d && m.set("Connection", "close"), Object.assign({}, a, {
-    method: e.method,
-    headers: D4(m),
+    method: p.method,
+    headers: R4(m),
     agent: d
   });
 }
-function _1(e) {
-  Error.call(this, e), this.type = "aborted", this.message = e, Error.captureStackTrace(this, this.constructor);
+function _1(p) {
+  Error.call(this, p), this.type = "aborted", this.message = p, Error.captureStackTrace(this, this.constructor);
 }
 _1.prototype = Object.create(Error.prototype);
 _1.prototype.constructor = _1;
 _1.prototype.name = "AbortError";
-const b1 = V1.URL || j.URL, Ve = B.PassThrough, C4 = function(a, m) {
+const b1 = V1.URL || j.URL, Ve = F.PassThrough, j4 = function(a, m) {
   const i = new b1(m).hostname, d = new b1(a).hostname;
   return i === d || i[i.length - d.length - 1] === "." && i.endsWith(d);
-}, x4 = function(a, m) {
+}, k4 = function(a, m) {
   const i = new b1(m).protocol, d = new b1(a).protocol;
   return i === d;
 };
-function Q(e, a) {
-  if (!Q.Promise)
+function e1(p, a) {
+  if (!e1.Promise)
     throw new Error("native promise missing, set fetch.Promise to your favorite alternative");
-  return P.Promise = Q.Promise, new Q.Promise(function(m, i) {
-    const d = new l1(e, a), r = I4(d), o = (r.protocol === "https:" ? H2 : Ie).request, n = d.signal;
+  return R.Promise = e1.Promise, new e1.Promise(function(m, i) {
+    const d = new l1(p, a), r = U4(d), o = (r.protocol === "https:" ? M2 : Pe).request, n = d.signal;
     let s = null;
     const w = function() {
       let N = new _1("The user aborted a request.");
-      i(N), d.body && d.body instanceof B.Readable && U1(d.body, N), !(!s || !s.body) && s.body.emit("error", N);
+      i(N), d.body && d.body instanceof F.Readable && U1(d.body, N), !(!s || !s.body) && s.body.emit("error", N);
     };
     if (n && n.aborted) {
       w();
@@ -79551,11 +79605,11 @@ function Q(e, a) {
     }
     d.timeout && _.once("socket", function(f) {
       S = setTimeout(function() {
-        i(new I(`network timeout at: ${d.url}`, "request-timeout")), b();
+        i(new P(`network timeout at: ${d.url}`, "request-timeout")), b();
       }, d.timeout);
     }), _.on("error", function(f) {
-      i(new I(`request to ${d.url} failed, reason: ${f.message}`, "system", f)), s && s.body && U1(s.body, f), b();
-    }), O4(_, function(f) {
+      i(new P(`request to ${d.url} failed, reason: ${f.message}`, "system", f)), s && s.body && U1(s.body, f), b();
+    }), $4(_, function(f) {
       n && n.aborted || s && s.body && U1(s.body, f);
     }), parseInt(process.version.substring(1)) < 14 && _.on("socket", function(f) {
       f.addListener("close", function(N) {
@@ -79567,21 +79621,21 @@ function Q(e, a) {
       });
     }), _.on("response", function(f) {
       clearTimeout(S);
-      const N = T4(f.headers);
-      if (Q.isRedirect(f.statusCode)) {
-        const W = N.get("Location");
+      const N = P4(f.headers);
+      if (e1.isRedirect(f.statusCode)) {
+        const Z = N.get("Location");
         let C = null;
         try {
-          C = W === null ? null : new b1(W, d.url).toString();
+          C = Z === null ? null : new b1(Z, d.url).toString();
         } catch {
           if (d.redirect !== "manual") {
-            i(new I(`uri requested responds with an invalid redirect URL: ${W}`, "invalid-redirect")), b();
+            i(new P(`uri requested responds with an invalid redirect URL: ${Z}`, "invalid-redirect")), b();
             return;
           }
         }
         switch (d.redirect) {
           case "error":
-            i(new I(`uri requested responds with a redirect, redirect mode is set to error: ${d.url}`, "no-redirect")), b();
+            i(new P(`uri requested responds with a redirect, redirect mode is set to error: ${d.url}`, "no-redirect")), b();
             return;
           case "manual":
             if (C !== null)
@@ -79595,10 +79649,10 @@ function Q(e, a) {
             if (C === null)
               break;
             if (d.counter >= d.follow) {
-              i(new I(`maximum redirect reached at: ${d.url}`, "max-redirect")), b();
+              i(new P(`maximum redirect reached at: ${d.url}`, "max-redirect")), b();
               return;
             }
-            const K = {
+            const J = {
               headers: new U(d.headers),
               follow: d.follow,
               counter: d.counter + 1,
@@ -79610,14 +79664,14 @@ function Q(e, a) {
               timeout: d.timeout,
               size: d.size
             };
-            if (!C4(d.url, C) || !x4(d.url, C))
+            if (!j4(d.url, C) || !k4(d.url, C))
               for (const v1 of ["authorization", "www-authenticate", "cookie", "cookie2"])
-                K.headers.delete(v1);
+                J.headers.delete(v1);
             if (f.statusCode !== 303 && d.body && S2(d) === null) {
-              i(new I("Cannot follow redirect with body being a readable stream", "unsupported-redirect")), b();
+              i(new P("Cannot follow redirect with body being a readable stream", "unsupported-redirect")), b();
               return;
             }
-            (f.statusCode === 303 || (f.statusCode === 301 || f.statusCode === 302) && d.method === "POST") && (K.method = "GET", K.body = void 0, K.headers.delete("content-length")), m(Q(new l1(C, K))), b();
+            (f.statusCode === 303 || (f.statusCode === 301 || f.statusCode === 302) && d.method === "POST") && (J.method = "GET", J.body = void 0, J.headers.delete("content-length")), m(e1(new l1(C, J))), b();
             return;
         }
       }
@@ -79647,10 +79701,10 @@ function Q(e, a) {
         return;
       }
       if (k == "deflate" || k == "x-deflate") {
-        const W = f.pipe(new Ve());
-        W.once("data", function(C) {
+        const Z = f.pipe(new Ve());
+        Z.once("data", function(C) {
           (C[0] & 15) === 8 ? E = E.pipe(m1.createInflate()) : E = E.pipe(m1.createInflateRaw()), s = new L(E, O), m(s);
-        }), W.on("end", function() {
+        }), Z.on("end", function() {
           s || (s = new L(E, O), m(s));
         });
         return;
@@ -79660,14 +79714,14 @@ function Q(e, a) {
         return;
       }
       s = new L(E, O), m(s);
-    }), N4(_, d);
+    }), I4(_, d);
   });
 }
-function O4(e, a) {
+function $4(p, a) {
   let m;
-  e.on("socket", function(i) {
+  p.on("socket", function(i) {
     m = i;
-  }), e.on("response", function(i) {
+  }), p.on("response", function(i) {
     const d = i.headers;
     d["transfer-encoding"] === "chunked" && !d["content-length"] && i.once("close", function(r) {
       if (m.listenerCount("data") > 0 && !r) {
@@ -79677,243 +79731,243 @@ function O4(e, a) {
     });
   });
 }
-function U1(e, a) {
-  e.destroy ? e.destroy(a) : (e.emit("error", a), e.end());
+function U1(p, a) {
+  p.destroy ? p.destroy(a) : (p.emit("error", a), p.end());
 }
-Q.isRedirect = function(e) {
-  return e === 301 || e === 302 || e === 303 || e === 307 || e === 308;
+e1.isRedirect = function(p) {
+  return p === 301 || p === 302 || p === 303 || p === 307 || p === 308;
 };
-Q.Promise = global.Promise;
-const L4 = p.object({
-  shippingDocumentType: p.enum(Q1).optional(),
-  orderList: p.array(
-    p.object({
-      orderSn: p.string(),
-      packageNumber: p.string().optional().nullable()
+e1.Promise = global.Promise;
+const q4 = e.object({
+  shippingDocumentType: e.enum(Q1).optional(),
+  orderList: e.array(
+    e.object({
+      orderSn: e.string(),
+      packageNumber: e.string().optional().nullable()
     })
   ).max(50)
 });
-p.object({
-  data: p.string()
+e.object({
+  data: e.string()
 });
-async function B4(e) {
-  const a = await L4.safeParseAsync(
-    e
+async function M4(p) {
+  const a = await q4.safeParseAsync(
+    p
   );
   if (!a.success)
     throw new Error(
       `parse request parameters error: ${a.error.message}`
     );
-  const i = X.getInstance().value, d = await Z1({
+  const i = W.getInstance().value, d = await Z1({
     ...i,
-    path: Z6,
+    path: a4,
     params: {}
   }), r = i1(
     a.data,
     (n) => Y1(n.toString())
-  ), o = await Q(d, {
+  ), o = await e1(d, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(r)
   });
-  return z2.from(o.body);
+  return q2.from(o.body);
 }
-const F4 = p.object({
-  orderList: p.array(
-    p.object({
-      orderSn: p.string(),
-      packageNumber: p.number().optional()
+const H4 = e.object({
+  orderList: e.array(
+    e.object({
+      orderSn: e.string(),
+      packageNumber: e.number().optional()
     })
   ).min(1).max(50)
-}), U4 = p.object({
-  error: p.string().optional(),
-  message: p.string().optional(),
-  warning: p.object({
-    orderSn: p.string(),
-    packageNumber: p.number().optional()
+}), z4 = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  warning: e.object({
+    orderSn: e.string(),
+    packageNumber: e.number().optional()
   }).optional(),
-  response: p.object({
-    orderSn: p.string(),
-    packageNumber: p.number().optional(),
-    suggestShippingDocumentType: p.string(),
-    selectableShippingDocumentType: p.array(p.string()),
-    failError: p.string(),
-    failMessage: p.string()
+  response: e.object({
+    orderSn: e.string(),
+    packageNumber: e.number().optional(),
+    suggestShippingDocumentType: e.string(),
+    selectableShippingDocumentType: e.array(e.string()),
+    failError: e.string(),
+    failMessage: e.string()
   }).optional(),
-  requestId: p.string()
-}), j4 = p1({
-  path: G6,
-  requestParameterSchema: F4,
-  responseSchema: U4
-}), k4 = p.object({
-  orderList: p.array(
-    p.object({
-      orderSn: p.string(),
-      packageNumber: p.string().optional(),
-      shippingDocumentType: p.enum(Q1).optional()
+  requestId: e.string()
+}), G4 = K({
+  path: X6,
+  requestParameterSchema: H4,
+  responseSchema: z4
+}), W4 = e.object({
+  orderList: e.array(
+    e.object({
+      orderSn: e.string(),
+      packageNumber: e.string().optional(),
+      shippingDocumentType: e.enum(Q1).optional()
     })
   ).max(50)
-}), $4 = p.object({
-  error: p.string().optional(),
-  message: p.string().optional(),
-  warning: p.object({
-    orderSn: p.string(),
-    packageNumber: p.number().optional()
+}), K4 = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  warning: e.object({
+    orderSn: e.string(),
+    packageNumber: e.number().optional()
   }).optional(),
-  response: p.object({
-    orderSn: p.string(),
-    packageNumber: p.string(),
-    status: p.enum(J6),
-    failError: p.string(),
-    failMessage: p.string()
+  response: e.object({
+    orderSn: e.string(),
+    packageNumber: e.string(),
+    status: e.enum(d4),
+    failError: e.string(),
+    failMessage: e.string()
   }).optional(),
-  requestId: p.string()
-}), q4 = p1({
-  path: K6,
-  requestParameterSchema: k4,
-  responseSchema: $4
-}), Ae = p.object({
-  orderSn: p.string(),
-  packageNumber: p.string().optional(),
-  responseOptionalFields: p.array(p.enum(d2)).optional()
-}), M4 = p.object({
-  error: p.string().optional(),
-  message: p.string().optional(),
-  response: p.object({
-    firstMileTrackingNumber: p.string().nullable().optional(),
-    hint: p.string().optional(),
-    lastMileTrackingNumber: p.string().nullable().optional(),
-    plpNumber: p.string().nullable().optional(),
-    trackingNumber: p.string().nullable()
+  requestId: e.string()
+}), Z4 = K({
+  path: p4,
+  requestParameterSchema: W4,
+  responseSchema: K4
+}), Ae = e.object({
+  orderSn: e.string(),
+  packageNumber: e.string().optional(),
+  responseOptionalFields: e.array(e.enum(d2)).optional()
+}), J4 = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  response: e.object({
+    firstMileTrackingNumber: e.string().nullable().optional(),
+    hint: e.string().optional(),
+    lastMileTrackingNumber: e.string().nullable().optional(),
+    plpNumber: e.string().nullable().optional(),
+    trackingNumber: e.string().nullable()
   }).optional(),
-  requestId: p.string()
-}), z4 = e1({
-  path: H6,
+  requestId: e.string()
+}), Y4 = p1({
+  path: Q6,
   requestParameterSchema: Ae,
-  responseSchema: M4,
+  responseSchema: J4,
   transformRequestParameterSchema: Ae.extend({
-    responseOptionalFields: p.string().optional()
+    responseOptionalFields: e.string().optional()
   }),
-  transformRequestParameter(e) {
+  transformRequestParameter(p) {
     var a;
     return {
-      ...e,
-      responseOptionalFields: (a = e.responseOptionalFields) == null ? void 0 : a.join(",")
+      ...p,
+      responseOptionalFields: (a = p.responseOptionalFields) == null ? void 0 : a.join(",")
     };
   }
-}), H4 = p.object({
-  orderSn: p.string(),
-  packageNumber: p.string().optional()
-}), G4 = p.object({
-  error: p.string().optional(),
-  message: p.string().optional(),
-  response: p.object({
-    infoNeeded: p.object({
-      dropoff: p.array(p.string()),
-      pickup: p.array(p.string()),
-      nonIntegrated: p.array(p.string()).nullable().optional()
+}), Q4 = e.object({
+  orderSn: e.string(),
+  packageNumber: e.string().optional()
+}), X4 = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  response: e.object({
+    infoNeeded: e.object({
+      dropoff: e.array(e.string()),
+      pickup: e.array(e.string()),
+      nonIntegrated: e.array(e.string()).nullable().optional()
     }),
-    dropoff: p.object({
-      branchList: p.array(
-        p.object({
-          branch_id: p.number(),
-          region: p.string(),
-          state: p.string(),
-          city: p.string(),
-          address: p.string(),
-          zipcode: p.string(),
-          district: p.string(),
-          town: p.string()
+    dropoff: e.object({
+      branchList: e.array(
+        e.object({
+          branch_id: e.number(),
+          region: e.string(),
+          state: e.string(),
+          city: e.string(),
+          address: e.string(),
+          zipcode: e.string(),
+          district: e.string(),
+          town: e.string()
         })
       ).nullable().optional(),
-      slugList: p.array(
-        p.object({
-          slug: p.string(),
-          slugName: p.string()
+      slugList: e.array(
+        e.object({
+          slug: e.string(),
+          slugName: e.string()
         })
       ).nullable()
     }),
-    pickup: p.object({
-      addressList: p.array(
-        p.object({
-          addressId: p.number(),
-          region: p.string(),
-          state: p.string(),
-          city: p.string(),
-          district: p.string(),
-          town: p.string(),
-          address: p.string(),
-          zipcode: p.string(),
-          addressFlag: p.array(p.string()),
-          timeSlotList: p.array(
-            p.object({
-              date: p.number(),
-              timeText: p.string(),
-              pickupTimeId: p.string()
+    pickup: e.object({
+      addressList: e.array(
+        e.object({
+          addressId: e.number(),
+          region: e.string(),
+          state: e.string(),
+          city: e.string(),
+          district: e.string(),
+          town: e.string(),
+          address: e.string(),
+          zipcode: e.string(),
+          addressFlag: e.array(e.string()),
+          timeSlotList: e.array(
+            e.object({
+              date: e.number(),
+              timeText: e.string(),
+              pickupTimeId: e.string()
             })
           ).optional().nullable()
         })
       )
     })
   }).optional(),
-  requestId: p.string()
-}), W4 = e1({
-  path: q6,
-  requestParameterSchema: H4,
-  responseSchema: G4
-}), K4 = p.object({
-  orderSn: p.string(),
-  packageNumber: p.string().optional(),
-  pickup: p.object({
-    addressId: p.number().optional(),
-    pickupTimeId: p.string().optional(),
-    trackingNumber: p.string().optional().nullable().default(null)
+  requestId: e.string()
+}), e0 = p1({
+  path: Z6,
+  requestParameterSchema: Q4,
+  responseSchema: X4
+}), p0 = e.object({
+  orderSn: e.string(),
+  packageNumber: e.string().optional(),
+  pickup: e.object({
+    addressId: e.number().optional(),
+    pickupTimeId: e.string().optional(),
+    trackingNumber: e.string().optional().nullable().default(null)
   }).optional(),
-  dropoff: p.object({
-    branchId: p.number().optional(),
-    senderRealName: p.string().optional(),
-    trackingNumber: p.string().optional().nullable().default(null),
-    slug: p.string().optional()
+  dropoff: e.object({
+    branchId: e.number().optional(),
+    senderRealName: e.string().optional(),
+    trackingNumber: e.string().optional().nullable().default(null),
+    slug: e.string().optional()
   }).optional(),
-  nonIntegrated: p.object({
-    trackingNumber: p.string().optional()
+  nonIntegrated: e.object({
+    trackingNumber: e.string().optional()
   }).optional()
-}), Z4 = p.object({
-  error: p.string().optional(),
-  message: p.string().optional(),
-  requestId: p.string()
-}), J4 = p1({
-  path: M6,
-  requestParameterSchema: K4,
-  responseSchema: Z4
-}), Y4 = p.object({
-  orderSn: p.string(),
-  packageNumber: p.string().optional().nullable().default(null),
-  pickup: p.object({
-    addressId: p.number(),
-    pickupTimeId: p.string()
+}), a0 = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  requestId: e.string()
+}), d0 = K({
+  path: J6,
+  requestParameterSchema: p0,
+  responseSchema: a0
+}), m0 = e.object({
+  orderSn: e.string(),
+  packageNumber: e.string().optional().nullable().default(null),
+  pickup: e.object({
+    addressId: e.number(),
+    pickupTimeId: e.string()
   })
-}), Q4 = p.object({
-  error: p.string().optional(),
-  message: p.string().optional(),
-  requestId: p.string()
-}), X4 = p1({
-  path: z6,
-  requestParameterSchema: Y4,
-  responseSchema: Q4
-}), e0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), i0 = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  requestId: e.string()
+}), l0 = K({
+  path: Y6,
+  requestParameterSchema: m0,
+  responseSchema: i0
+}), t0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  createShippingDocument: X6,
-  downloadShippingDocument: B4,
-  getShippingDocumentParameter: j4,
-  getShippingDocumentResult: q4,
-  getShippingParameter: W4,
-  getTrackingNumber: z4,
-  shipOrder: J4,
-  updateShipOrder: X4
-}, Symbol.toStringTag, { value: "Module" })), p0 = "/api/v2/order/get_order_list", a0 = "/api/v2/order/get_order_detail", d0 = "/api/v2/order/cancel_order", m0 = "/api/v2/order/handle_buyer_cancellation", me = [
+  createShippingDocument: l4,
+  downloadShippingDocument: M4,
+  getShippingDocumentParameter: G4,
+  getShippingDocumentResult: Z4,
+  getShippingParameter: e0,
+  getTrackingNumber: Y4,
+  shipOrder: d0,
+  updateShipOrder: l0
+}, Symbol.toStringTag, { value: "Module" })), r0 = "/api/v2/order/get_order_list", s0 = "/api/v2/order/get_order_detail", o0 = "/api/v2/order/cancel_order", n0 = "/api/v2/order/handle_buyer_cancellation", me = [
   "UNPAID",
   "READY_TO_SHIP",
   "RETRY_SHIP",
@@ -79924,7 +79978,7 @@ const F4 = p.object({
   "TO_RETURN",
   "TO_CONFIRM_RECEIVE",
   "COMPLETED"
-], Y0 = K1(me), D2 = [
+], ad = K1(me), T2 = [
   "buyer_user_id",
   "buyer_username",
   "estimated_shipping_fee",
@@ -79957,303 +80011,303 @@ const F4 = p.object({
   "edt",
   "prescription_images",
   "prescription_check_status"
-], Q0 = K1(
-  D2
-), i0 = [
+], dd = K1(
+  T2
+), u0 = [
   "OUT_OF_STOCK",
   "UNDELIVERABLE_AREA"
-], l0 = p.object({
-  orderSn: p.string(),
-  cancelReason: p.literal(i0[0]),
-  itemList: p.array(
-    p.object({
-      itemId: p.number(),
-      modelId: p.number()
+], v0 = e.object({
+  orderSn: e.string(),
+  cancelReason: e.literal(u0[0]),
+  itemList: e.array(
+    e.object({
+      itemId: e.number(),
+      modelId: e.number()
     })
   )
-}), t0 = p.object({
-  error: p.string().optional(),
-  message: p.string().optional(),
-  response: p.object({
-    updateTime: p.number()
+}), c0 = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  response: e.object({
+    updateTime: e.number()
   }),
-  requestId: p.string()
-}), r0 = p1({
-  path: d0,
-  requestParameterSchema: l0,
-  responseSchema: t0
-}), Ee = p.object({
-  orderSnList: p.array(p.string()),
-  responseOptionalFields: p.array(p.enum(D2)).optional()
-}), s0 = p.object({
-  error: p.string().optional(),
-  message: p.string().optional(),
-  response: p.object({
-    orderList: p.array(
-      p.object({
-        checkoutShippingCarrier: p.string().nullable(),
-        reverseShippingFee: p.number().nullable(),
-        actualShippingFee: p.number().nullable(),
-        actualShippingFeeConfirmed: p.boolean(),
-        buyerCancelReason: p.string(),
-        buyerCpfId: p.string().nullable(),
-        buyerUserId: p.number(),
-        buyerUsername: p.string(),
-        cancelBy: p.string(),
-        cancelReason: p.string(),
-        cod: p.boolean(),
-        createTime: p.number(),
-        currency: p.string(),
-        daysToShip: p.number(),
-        dropshipper: p.string(),
-        dropshipperPhone: p.string(),
-        estimatedShippingFee: p.number(),
-        fulfillmentFlag: p.string(),
-        goodsToDeclare: p.boolean(),
-        invoiceData: p.object({
-          number: p.string(),
-          seriesNumber: p.string(),
-          accessKey: p.string(),
-          issueDate: p.number(),
-          totalValue: p.number(),
-          productsTotalValue: p.number(),
-          taxCode: p.string()
+  requestId: e.string()
+}), f0 = K({
+  path: o0,
+  requestParameterSchema: v0,
+  responseSchema: c0
+}), Ee = e.object({
+  orderSnList: e.array(e.string()),
+  responseOptionalFields: e.array(e.enum(T2)).optional()
+}), h0 = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  response: e.object({
+    orderList: e.array(
+      e.object({
+        checkoutShippingCarrier: e.string().nullable(),
+        reverseShippingFee: e.number().nullable(),
+        actualShippingFee: e.number().nullable(),
+        actualShippingFeeConfirmed: e.boolean(),
+        buyerCancelReason: e.string(),
+        buyerCpfId: e.string().nullable(),
+        buyerUserId: e.number(),
+        buyerUsername: e.string(),
+        cancelBy: e.string(),
+        cancelReason: e.string(),
+        cod: e.boolean(),
+        createTime: e.number(),
+        currency: e.string(),
+        daysToShip: e.number(),
+        dropshipper: e.string(),
+        dropshipperPhone: e.string(),
+        estimatedShippingFee: e.number(),
+        fulfillmentFlag: e.string(),
+        goodsToDeclare: e.boolean(),
+        invoiceData: e.object({
+          number: e.string(),
+          seriesNumber: e.string(),
+          accessKey: e.string(),
+          issueDate: e.number(),
+          totalValue: e.number(),
+          productsTotalValue: e.number(),
+          taxCode: e.string()
         }).nullable(),
-        itemList: p.array(
-          p.object({
-            itemId: p.number(),
-            itemName: p.string(),
-            itemSku: p.string(),
-            modelId: p.number(),
-            modelName: p.string(),
-            modelSku: p.string(),
-            modelQuantityPurchased: p.number(),
-            modelOriginalPrice: p.number(),
-            modelDiscountedPrice: p.number(),
-            wholesale: p.boolean(),
-            weight: p.number(),
-            addOnDeal: p.boolean(),
-            mainItem: p.boolean(),
-            addOnDealId: p.number(),
-            promotionType: p.string(),
-            promotionId: p.number(),
-            orderItemId: p.number(),
-            promotionGroupId: p.number(),
-            imageInfo: p.object({
-              imageUrl: p.string()
+        itemList: e.array(
+          e.object({
+            itemId: e.number(),
+            itemName: e.string(),
+            itemSku: e.string(),
+            modelId: e.number(),
+            modelName: e.string(),
+            modelSku: e.string(),
+            modelQuantityPurchased: e.number(),
+            modelOriginalPrice: e.number(),
+            modelDiscountedPrice: e.number(),
+            wholesale: e.boolean(),
+            weight: e.number(),
+            addOnDeal: e.boolean(),
+            mainItem: e.boolean(),
+            addOnDealId: e.number(),
+            promotionType: e.string(),
+            promotionId: e.number(),
+            orderItemId: e.number(),
+            promotionGroupId: e.number(),
+            imageInfo: e.object({
+              imageUrl: e.string()
             }),
-            productLocationId: p.array(p.string())
+            productLocationId: e.array(e.string())
           })
         ),
-        prescriptionImages: p.array(p.string()).nullable(),
-        prescriptionCheckStatus: p.number().nullable(),
-        edtFrom: p.number().optional(),
-        edtTo: p.number().optional(),
-        orderChargeableWeightGram: p.number(),
-        messageToSeller: p.string(),
-        note: p.string(),
-        noteUpdateTime: p.number(),
-        orderSn: p.string(),
-        orderStatus: p.enum(me),
-        packageList: p.array(
-          p.object({
-            packageNumber: p.string(),
-            logisticsStatus: p.string(),
-            shippingCarrier: p.string(),
-            itemList: p.array(
-              p.object({
-                itemId: p.number(),
-                modelId: p.number(),
-                modelQuantity: p.number()
+        prescriptionImages: e.array(e.string()).nullable(),
+        prescriptionCheckStatus: e.number().nullable(),
+        edtFrom: e.number().optional(),
+        edtTo: e.number().optional(),
+        orderChargeableWeightGram: e.number(),
+        messageToSeller: e.string(),
+        note: e.string(),
+        noteUpdateTime: e.number(),
+        orderSn: e.string(),
+        orderStatus: e.enum(me),
+        packageList: e.array(
+          e.object({
+            packageNumber: e.string(),
+            logisticsStatus: e.string(),
+            shippingCarrier: e.string(),
+            itemList: e.array(
+              e.object({
+                itemId: e.number(),
+                modelId: e.number(),
+                modelQuantity: e.number()
               })
             ),
-            parcelChargeableWeightGram: p.number()
+            parcelChargeableWeightGram: e.number()
           })
         ),
-        payTime: p.number().nullable(),
-        paymentMethod: p.string(),
-        pickupDoneTime: p.number(),
-        recipientAddress: p.object({
-          name: p.string(),
-          phone: p.string(),
-          town: p.string(),
-          district: p.string(),
-          city: p.string(),
-          state: p.string(),
-          region: p.string(),
-          zipcode: p.string(),
-          fullAddress: p.string()
+        payTime: e.number().nullable(),
+        paymentMethod: e.string(),
+        pickupDoneTime: e.number(),
+        recipientAddress: e.object({
+          name: e.string(),
+          phone: e.string(),
+          town: e.string(),
+          district: e.string(),
+          city: e.string(),
+          state: e.string(),
+          region: e.string(),
+          zipcode: e.string(),
+          fullAddress: e.string()
         }),
-        region: p.string(),
-        shipByDate: p.number(),
-        shippingCarrier: p.string(),
-        splitUp: p.boolean(),
-        totalAmount: p.number(),
-        updateTime: p.number()
+        region: e.string(),
+        shipByDate: e.number(),
+        shippingCarrier: e.string(),
+        splitUp: e.boolean(),
+        totalAmount: e.number(),
+        updateTime: e.number()
       })
     )
   }).optional(),
-  requestId: p.string()
-}), o0 = e1({
-  path: a0,
+  requestId: e.string()
+}), w0 = p1({
+  path: s0,
   requestParameterSchema: Ee,
   transformRequestParameterSchema: Ee.extend(
-    { responseOptionalFields: p.string().optional() }
+    { responseOptionalFields: e.string().optional() }
   ),
-  transformRequestParameter(e) {
+  transformRequestParameter(p) {
     var a;
     return {
-      ...e,
-      responseOptionalFields: (a = e.responseOptionalFields) == null ? void 0 : a.join(",")
+      ...p,
+      responseOptionalFields: (a = p.responseOptionalFields) == null ? void 0 : a.join(",")
     };
   },
-  responseSchema: s0
-}), n0 = p.object({
-  timeRangeField: p.enum(["create_time", "update_time"]),
-  timeFrom: p.date(),
-  timeTo: p.date(),
-  pageSize: p.number().min(1).max(100),
-  cursor: p.string().optional(),
-  orderStatus: p.enum(me).optional(),
-  responseOptionalFields: p.enum(["order_status"]).optional().default("order_status")
-}), u0 = p.object({
-  error: p.string().optional(),
-  message: p.string().optional(),
-  response: p.object({
-    more: p.boolean(),
-    nextCursor: p.string(),
-    orderList: p.array(
-      p.object({
-        orderSn: p.string()
+  responseSchema: h0
+}), g0 = e.object({
+  timeRangeField: e.enum(["create_time", "update_time"]),
+  timeFrom: e.date(),
+  timeTo: e.date(),
+  pageSize: e.number().min(1).max(100),
+  cursor: e.string().optional(),
+  orderStatus: e.enum(me).optional(),
+  responseOptionalFields: e.enum(["order_status"]).optional().default("order_status")
+}), _0 = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  response: e.object({
+    more: e.boolean(),
+    nextCursor: e.string(),
+    orderList: e.array(
+      e.object({
+        orderSn: e.string()
       })
     )
   }).optional(),
-  requestId: p.string()
-}), v0 = e1({
-  path: p0,
-  requestParameterSchema: n0,
-  responseSchema: u0
-}), c0 = p.object({
-  orderSn: p.string(),
-  operation: p.enum(["ACCEPT", "REJECT"])
-}), f0 = p.object({
-  error: p.string().optional(),
-  message: p.string().optional(),
-  response: p.object({
-    updateTime: p.number()
+  requestId: e.string()
+}), b0 = p1({
+  path: r0,
+  requestParameterSchema: g0,
+  responseSchema: _0
+}), S0 = e.object({
+  orderSn: e.string(),
+  operation: e.enum(["ACCEPT", "REJECT"])
+}), N0 = e.object({
+  error: e.string().optional(),
+  message: e.string().optional(),
+  response: e.object({
+    updateTime: e.number()
   }),
-  requestId: p.string()
-}), h0 = p1({
-  path: m0,
-  requestParameterSchema: c0,
-  responseSchema: f0
-}), w0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  requestId: e.string()
+}), T0 = K({
+  path: n0,
+  requestParameterSchema: S0,
+  responseSchema: N0
+}), D0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  cancelOrder: r0,
-  getOrderDetail: o0,
-  getOrderList: v0,
-  handleBuyerCancellation: h0
-}, Symbol.toStringTag, { value: "Module" })), g0 = "/api/v2/product/get_item_base_info", _0 = "/api/v2/product/get_item_extra_info", b0 = "/api/v2/product/get_item_list", S0 = "/api/v2/product/get_model_list", T2 = ["NORMAL", "DELETED", "UNLIST", "BANNED"], N0 = p.object({
-  itemIdList: p.string(),
-  needTaxInfo: p.coerce.boolean().optional(),
-  needComplaintPolicy: p.coerce.boolean().optional()
-}), D0 = p.object({
-  error: p.string(),
-  message: p.string(),
-  warning: p.string(),
-  requestId: p.string(),
-  response: p.object({
-    itemList: p.array(
-      p.object({
-        itemId: p.number(),
-        categoryId: p.number(),
-        itemName: p.string(),
-        itemSku: p.string(),
-        createTime: p.number(),
-        updateTime: p.number(),
-        attributeList: p.array(
-          p.object({
-            attributeId: p.number(),
-            originalAttributeName: p.string(),
-            isMandatory: p.boolean(),
-            attributeValueList: p.array(
-              p.object({
-                valueId: p.number(),
-                originalValueName: p.string(),
-                valueUnit: p.string()
+  cancelOrder: f0,
+  getOrderDetail: w0,
+  getOrderList: b0,
+  handleBuyerCancellation: T0
+}, Symbol.toStringTag, { value: "Module" })), y0 = "/api/v2/product/get_item_base_info", V0 = "/api/v2/product/get_item_extra_info", A0 = "/api/v2/product/get_item_list", E0 = "/api/v2/product/get_model_list", D2 = ["NORMAL", "DELETED", "UNLIST", "BANNED"], I0 = e.object({
+  itemIdList: e.string(),
+  needTaxInfo: e.coerce.boolean().optional(),
+  needComplaintPolicy: e.coerce.boolean().optional()
+}), R0 = e.object({
+  error: e.string(),
+  message: e.string(),
+  warning: e.string(),
+  requestId: e.string(),
+  response: e.object({
+    itemList: e.array(
+      e.object({
+        itemId: e.number(),
+        categoryId: e.number(),
+        itemName: e.string(),
+        itemSku: e.string(),
+        createTime: e.number(),
+        updateTime: e.number(),
+        attributeList: e.array(
+          e.object({
+            attributeId: e.number(),
+            originalAttributeName: e.string(),
+            isMandatory: e.boolean(),
+            attributeValueList: e.array(
+              e.object({
+                valueId: e.number(),
+                originalValueName: e.string(),
+                valueUnit: e.string()
               })
             )
           })
         ).optional(),
-        priceInfo: p.array(
-          p.object({
-            currency: p.string(),
-            originalPrice: p.number(),
-            currentPrice: p.number()
+        priceInfo: e.array(
+          e.object({
+            currency: e.string(),
+            originalPrice: e.number(),
+            currentPrice: e.number()
           })
         ).optional(),
-        stockInfoV2: p.object({
-          summaryInfo: p.object({
-            totalReservedStock: p.number(),
-            totalAvailableStock: p.number()
+        stockInfoV2: e.object({
+          summaryInfo: e.object({
+            totalReservedStock: e.number(),
+            totalAvailableStock: e.number()
           }),
-          sellerStock: p.array(
-            p.object({
-              locationId: p.string(),
-              stock: p.number()
+          sellerStock: e.array(
+            e.object({
+              locationId: e.string(),
+              stock: e.number()
             })
           ).optional()
         }).optional(),
-        image: p.object({
-          imageUrlList: p.array(p.string()),
-          imageIdList: p.array(p.string())
+        image: e.object({
+          imageUrlList: e.array(e.string()),
+          imageIdList: e.array(e.string())
         }),
-        weight: p.string(),
-        dimension: p.object({
-          packageLength: p.number(),
-          packageWidth: p.number(),
-          packageHeight: p.number()
+        weight: e.string(),
+        dimension: e.object({
+          packageLength: e.number(),
+          packageWidth: e.number(),
+          packageHeight: e.number()
         }),
-        logisticInfo: p.array(
-          p.object({
-            logisticId: p.number(),
-            logisticName: p.string(),
-            enabled: p.boolean(),
-            shippingFee: p.number().optional(),
-            isFree: p.boolean(),
-            estimatedShippingFee: p.number().optional()
+        logisticInfo: e.array(
+          e.object({
+            logisticId: e.number(),
+            logisticName: e.string(),
+            enabled: e.boolean(),
+            shippingFee: e.number().optional(),
+            isFree: e.boolean(),
+            estimatedShippingFee: e.number().optional()
           })
         ).optional(),
-        preOrder: p.object({
-          isPreOrder: p.boolean(),
-          daysToShip: p.number()
+        preOrder: e.object({
+          isPreOrder: e.boolean(),
+          daysToShip: e.number()
         }),
-        condition: p.string(),
-        sizeChart: p.string(),
-        itemStatus: p.string(),
-        hasModel: p.boolean(),
-        promotionId: p.number().optional(),
-        brand: p.object({
-          brandId: p.number(),
-          originalBrandName: p.string()
+        condition: e.string(),
+        sizeChart: e.string(),
+        itemStatus: e.string(),
+        hasModel: e.boolean(),
+        promotionId: e.number().optional(),
+        brand: e.object({
+          brandId: e.number(),
+          originalBrandName: e.string()
         }),
-        taxInfo: p.object({
-          ncm: p.number(),
-          sameStateCfop: p.number(),
-          diffStateCfop: p.number(),
-          csosn: p.number(),
-          origin: p.number()
+        taxInfo: e.object({
+          ncm: e.number(),
+          sameStateCfop: e.number(),
+          diffStateCfop: e.number(),
+          csosn: e.number(),
+          origin: e.number()
         }).optional(),
-        descriptionType: p.string(),
-        descriptionInfo: p.object({
-          extendedDescription: p.object({
-            fieldList: p.array(
-              p.object({
-                fieldType: p.string(),
-                text: p.string().optional(),
-                imageInfo: p.object({
-                  imageId: p.string(),
-                  imageUrl: p.string()
+        descriptionType: e.string(),
+        descriptionInfo: e.object({
+          extendedDescription: e.object({
+            fieldList: e.array(
+              e.object({
+                fieldType: e.string(),
+                text: e.string().optional(),
+                imageInfo: e.object({
+                  imageId: e.string(),
+                  imageUrl: e.string()
                 }).optional()
               })
             )
@@ -80262,198 +80316,174 @@ const F4 = p.object({
       })
     ).optional()
   })
-}), T0 = e1({
-  path: g0,
-  requestParameterSchema: N0,
-  responseSchema: D0,
-  transformRequestParameter(e) {
-    return e.needTaxInfo = !!e.needTaxInfo, e.needComplaintPolicy = !!e.needComplaintPolicy, e;
+}), P0 = p1({
+  path: y0,
+  requestParameterSchema: I0,
+  responseSchema: R0,
+  transformRequestParameter(p) {
+    return p.needTaxInfo = !!p.needTaxInfo, p.needComplaintPolicy = !!p.needComplaintPolicy, p;
   }
-}), y0 = p.object({
-  itemIdList: p.string()
-}), V0 = p.object({
-  error: p.string(),
-  message: p.string(),
-  warning: p.string().optional(),
-  requestId: p.string(),
-  response: p.object({
-    itemList: p.array(
-      p.object({
-        itemId: p.number(),
-        sale: p.number(),
-        views: p.number(),
-        likes: p.number(),
-        ratingStar: p.number(),
-        commentCount: p.number()
+}), C0 = e.object({
+  itemIdList: e.string()
+}), x0 = e.object({
+  error: e.string(),
+  message: e.string(),
+  warning: e.string().optional(),
+  requestId: e.string(),
+  response: e.object({
+    itemList: e.array(
+      e.object({
+        itemId: e.number(),
+        sale: e.number(),
+        views: e.number(),
+        likes: e.number(),
+        ratingStar: e.number(),
+        commentCount: e.number()
       })
     ).optional()
   }).optional()
-}), A0 = e1({
-  path: _0,
-  requestParameterSchema: y0,
-  responseSchema: V0
-}), Re = p.object({
-  offset: p.number().int().min(0).optional(),
-  pageSize: p.number().int().positive().max(100).optional(),
-  updateTimeFrom: p.date().optional(),
-  updateTimeTo: p.date().optional(),
-  itemStatus: p.array(p.enum(T2))
-}), E0 = p.object({
-  error: p.string().optional(),
-  message: p.string().nullable().optional(),
-  warning: p.string().nullable().optional(),
-  requestId: p.string(),
-  response: p.object({
-    item: p.array(
-      p.object({
-        itemId: p.number().int(),
-        itemStatus: p.enum(T2),
-        updateTime: p.number().int().optional()
+}), O0 = p1({
+  path: V0,
+  requestParameterSchema: C0,
+  responseSchema: x0
+}), Ie = e.object({
+  offset: e.number().int().min(0).optional(),
+  pageSize: e.number().int().positive().max(100).optional(),
+  updateTimeFrom: e.date().optional(),
+  updateTimeTo: e.date().optional(),
+  itemStatus: e.array(e.enum(D2))
+}), L0 = e.object({
+  error: e.string().optional(),
+  message: e.string().nullable().optional(),
+  warning: e.string().nullable().optional(),
+  requestId: e.string(),
+  response: e.object({
+    item: e.array(
+      e.object({
+        itemId: e.number().int(),
+        itemStatus: e.enum(D2),
+        updateTime: e.number().int().optional()
       })
     ).optional()
   }).optional(),
-  totalCount: p.number().int().optional(),
-  hasNextPage: p.boolean().optional(),
-  nextOffset: p.number().int().optional()
-}), R0 = e1({
-  path: b0,
-  requestParameterSchema: Re,
-  transformRequestParameterSchema: Re.extend({
-    updateTimeFrom: p.string(),
-    updateTimeTo: p.string()
+  totalCount: e.number().int().optional(),
+  hasNextPage: e.boolean().optional(),
+  nextOffset: e.number().int().optional()
+}), F0 = p1({
+  path: A0,
+  requestParameterSchema: Ie,
+  transformRequestParameterSchema: Ie.extend({
+    updateTimeFrom: e.string(),
+    updateTimeTo: e.string()
   }),
-  transformRequestParameter(e) {
+  transformRequestParameter(p) {
     return {
-      ...e,
+      ...p,
       updateTimeFrom: w1(
-        e.updateTimeFrom ?? /* @__PURE__ */ new Date("01/01/2022")
+        p.updateTimeFrom ?? /* @__PURE__ */ new Date("01/01/2022")
       ),
-      updateTimeTo: w1(e.updateTimeTo ?? /* @__PURE__ */ new Date())
+      updateTimeTo: w1(p.updateTimeTo ?? /* @__PURE__ */ new Date())
     };
   },
-  responseSchema: E0
-}), P0 = p.object({
-  item_id: p.string()
-}), I0 = p.object({
-  error: p.string(),
-  message: p.string(),
-  warning: p.string(),
-  requestId: p.string(),
+  responseSchema: L0
+}), B0 = e.object({
+  item_id: e.string()
+}), U0 = e.object({
+  error: e.string(),
+  message: e.string(),
+  warning: e.string(),
+  requestId: e.string(),
   // changed from request_id
-  response: p.object({
-    tierVariation: p.array(
+  response: e.object({
+    tierVariation: e.array(
       // changed from tier_variation
-      p.object({
-        name: p.string(),
-        optionList: p.array(
+      e.object({
+        name: e.string(),
+        optionList: e.array(
           // changed from option_list
-          p.object({
-            option: p.string()
+          e.object({
+            option: e.string()
           })
         )
       })
     ),
-    model: p.array(
-      p.object({
-        modelId: p.number(),
+    model: e.array(
+      e.object({
+        modelId: e.number(),
         // changed from model_id
-        modelStatus: p.string(),
+        modelStatus: e.string(),
         // changed from model_status
-        promotionId: p.number(),
+        promotionId: e.number(),
         // changed from promotion_id
-        tierIndex: p.array(p.number()),
+        tierIndex: e.array(e.number()),
         // changed from tier_index
-        priceInfo: p.array(
+        priceInfo: e.array(
           // changed from price_info
-          p.object({
-            currentPrice: p.number(),
+          e.object({
+            currentPrice: e.number(),
             // changed from current_price
-            originalPrice: p.number(),
+            originalPrice: e.number(),
             // changed from original_price
-            inflatedPriceOfCurrentPrice: p.number(),
+            inflatedPriceOfCurrentPrice: e.number(),
             // changed from inflated_price_of_current_price
-            inflatedPriceOfOriginalPrice: p.number()
+            inflatedPriceOfOriginalPrice: e.number()
             // changed from inflated_price_of_original_price
           })
         ),
-        modelSku: p.string(),
+        modelSku: e.string(),
         // changed from model_sku
-        preOrder: p.object({
+        preOrder: e.object({
           // changed from pre_order
-          isPreOrder: p.boolean(),
+          isPreOrder: e.boolean(),
           // changed from is_pre_order
-          daysToShip: p.number()
+          daysToShip: e.number()
           // changed from days_to_ship
         }),
-        stockInfoV2: p.object({
+        stockInfoV2: e.object({
           // changed from stock_info_v2
-          summaryInfo: p.object({
+          summaryInfo: e.object({
             // changed from summary_info
-            totalReservedStock: p.number(),
+            totalReservedStock: e.number(),
             // changed from total_reserved_stock
-            totalAvailableStock: p.number()
+            totalAvailableStock: e.number()
             // changed from total_available_stock
           }),
-          sellerStock: p.array(
+          sellerStock: e.array(
             // changed from seller_stock
-            p.object({
-              locationId: p.string(),
+            e.object({
+              locationId: e.string(),
               // changed from location_id
-              stock: p.number()
+              stock: e.number()
             })
           )
         })
       })
     )
   })
-}), C0 = e1({
-  path: S0,
-  requestParameterSchema: P0,
-  responseSchema: I0
-}), x0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+}), j0 = p1({
+  path: E0,
+  requestParameterSchema: B0,
+  responseSchema: U0
+}), k0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getItemBaseInfo: T0,
-  getItemExtraInfo: A0,
-  getItemList: R0,
-  getModelList: C0
-}, Symbol.toStringTag, { value: "Module" })), O0 = "/api/v2/auth/token/get", y2 = p.object({
-  code: p.string(),
-  partnerId: p.number().optional(),
-  shopId: p.number().optional(),
-  mainAccountId: p.number().optional()
-}), V2 = p.object({
-  accessToken: p.string(),
-  error: p.string(),
-  expireIn: p.number(),
-  message: p.string(),
-  refreshToken: p.string(),
-  requestId: p.string(),
-  merchantIdList: p.array(p.number()).optional(),
-  shopIdList: p.array(p.number()).optional()
-}), L0 = p1({
-  path: O0,
-  requestParameterSchema: y2,
-  responseSchema: V2,
-  transformRequestParameter(e) {
-    return {
-      ...e,
-      partnerId: X.getInstance().partnerId
-    };
-  }
-}), Pe = "/api/v2/shop/auth_partner";
-async function B0({
-  redirectURL: e,
+  getItemBaseInfo: P0,
+  getItemExtraInfo: O0,
+  getItemList: F0,
+  getModelList: j0
+}, Symbol.toStringTag, { value: "Module" })), Re = "/api/v2/shop/auth_partner";
+async function $0({
+  redirectURL: p,
   redirectSign: a
 }) {
-  const { baseURL: m, partnerId: i, partnerKey: d } = X.getInstance();
+  const { baseURL: m, partnerId: i, partnerKey: d } = W.getInstance();
   if (!d || !i)
     throw new Error("partnerKey is undefined");
-  const r = new URL(Pe, m), o = w1(/* @__PURE__ */ new Date()), n = await Ce(
+  const r = new URL(Re, m), o = w1(/* @__PURE__ */ new Date()), n = await Ce(
     d,
     i.toString(),
-    Pe,
+    Re,
     o
-  ), s = new URL(e);
+  ), s = new URL(p);
   return s.searchParams.append("sign", a), r.search = new URLSearchParams({
     partner_id: i.toString(),
     redirect: s.toString(),
@@ -80461,13 +80491,13 @@ async function B0({
     sign: n
   }).toString(), r.toString();
 }
-const F0 = p.object({
-  code: p.string(),
-  shop_id: p.string(),
-  sign: p.string()
+const q0 = e.object({
+  code: e.string(),
+  shop_id: e.string(),
+  sign: e.string()
 });
-async function U0(e) {
-  const a = await F0.safeParseAsync(e);
+async function M0(p) {
+  const a = await q0.safeParseAsync(p);
   if (!a.success)
     throw new Error(
       `parse request parameters error: ${a.error.message}`
@@ -80479,26 +80509,24 @@ async function U0(e) {
     sign: d
   };
 }
-const j0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+const H0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  authPartner: B0,
-  verifyCallback: U0
-}, Symbol.toStringTag, { value: "Module" })), k0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
+  authPartner: $0,
+  verifyCallback: M0
+}, Symbol.toStringTag, { value: "Module" })), z0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  getAccessToken: L0,
-  getAccessTokenRequestParametersSchema: y2,
-  getAccessTokenResponseSchema: V2,
-  logistic: e0,
-  order: w0,
-  product: x0,
-  shop: j0
-}, Symbol.toStringTag, { value: "Module" })), $0 = p.object({
-  partnerId: p.coerce.number().optional(),
-  partnerKey: p.coerce.string().optional(),
-  baseURL: p.coerce.string().url().optional(),
-  accessToken: p.coerce.string().optional(),
-  shopId: p.coerce.number().optional()
-}), W1 = $0.safeParse({
+  auth: K6,
+  logistic: t0,
+  order: D0,
+  product: k0,
+  shop: H0
+}, Symbol.toStringTag, { value: "Module" })), G0 = e.object({
+  partnerId: e.coerce.number().optional(),
+  partnerKey: e.coerce.string().optional(),
+  baseURL: e.coerce.string().url().optional(),
+  accessToken: e.coerce.string().optional(),
+  shopId: e.coerce.number().optional()
+}), W1 = G0.safeParse({
   partnerId: process.env.SHOPEE_SDK_PARTNER_ID,
   partnerKey: process.env.SHOPEE_SDK_PARTNER_KEY,
   baseURL: process.env.SHOPEE_SDK_BASE_URL,
@@ -80507,8 +80535,8 @@ const j0 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
 });
 if (!W1.success)
   throw new Error(W1.error.message);
-const h1 = W1.data, x = X.getInstance();
-class X0 {
+const h1 = W1.data, x = W.getInstance();
+class md {
   constructor(a = {}) {
     x.accessToken = a.accessToken ?? h1.accessToken, x.baseURL = a.baseURL ?? h1.baseURL, x.partnerId = a.partnerId ?? h1.partnerId, x.partnerKey = a.partnerKey ?? h1.partnerKey, x.shopId = a.shopId ?? h1.shopId, x.isLogEnabled = a.isLogEnabled ?? !1;
   }
@@ -80531,39 +80559,40 @@ class X0 {
     return x.isLogEnabled = a, this;
   }
   get v2() {
-    return k0;
+    return z0;
   }
 }
 export {
-  W6 as API_V2_LOGISTIC_CREATE_SHIPPING_DOCUMENT,
-  Z6 as API_V2_LOGISTIC_DOWNLOAD_SHIPPING_DOCUMENT,
-  G6 as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_PARAMETER,
-  K6 as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_RESULT,
-  q6 as API_V2_LOGISTIC_GET_SHIPPING_PARAMETER,
-  H6 as API_V2_LOGISTIC_GET_TRACKING_NUMBER,
-  M6 as API_V2_LOGISTIC_SHIP_ORDER,
-  z6 as API_V2_LOGISTIC_UPDATE_SHIP_ORDER,
-  d0 as API_V2_ORDER_CANCEL_ORDER_PATH,
-  a0 as API_V2_ORDER_GET_ORDER_DETAIL_PATH,
-  p0 as API_V2_ORDER_GET_ORDER_LIST_PATH,
-  m0 as API_V2_ORDER_HANDLE_BUYER_CANCELLATION_PATH,
-  g0 as API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH,
-  _0 as API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH,
-  b0 as API_V2_PRODUCT_GET_ITEM_LIST_PATH,
-  S0 as API_V2_PRODUCT_GET_MODEL_LIST_PATH,
-  O0 as API_V2_PUBLIC_GET_ACCESS_TOKEN_PATH,
-  Pe as API_V2_SHOP_AUTH_PARTNER,
-  T2 as ITEM_STATUS,
-  i0 as SELLER_CANCEL_REASONS,
-  X0 as ShopeeSdk,
+  k6 as API_V2_AUTH_GET_ACCESS_TOKEN_PATH,
+  $6 as API_V2_AUTH_REFRESH_ACCESS_TOKEN_PATH,
+  e4 as API_V2_LOGISTIC_CREATE_SHIPPING_DOCUMENT,
+  a4 as API_V2_LOGISTIC_DOWNLOAD_SHIPPING_DOCUMENT,
+  X6 as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_PARAMETER,
+  p4 as API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_RESULT,
+  Z6 as API_V2_LOGISTIC_GET_SHIPPING_PARAMETER,
+  Q6 as API_V2_LOGISTIC_GET_TRACKING_NUMBER,
+  J6 as API_V2_LOGISTIC_SHIP_ORDER,
+  Y6 as API_V2_LOGISTIC_UPDATE_SHIP_ORDER,
+  o0 as API_V2_ORDER_CANCEL_ORDER_PATH,
+  s0 as API_V2_ORDER_GET_ORDER_DETAIL_PATH,
+  r0 as API_V2_ORDER_GET_ORDER_LIST_PATH,
+  n0 as API_V2_ORDER_HANDLE_BUYER_CANCELLATION_PATH,
+  y0 as API_V2_PRODUCT_GET_ITEM_BASE_INFO_PATH,
+  V0 as API_V2_PRODUCT_GET_ITEM_EXTRA_INFO_PATH,
+  A0 as API_V2_PRODUCT_GET_ITEM_LIST_PATH,
+  E0 as API_V2_PRODUCT_GET_MODEL_LIST_PATH,
+  Re as API_V2_SHOP_AUTH_PARTNER,
+  D2 as ITEM_STATUS,
+  u0 as SELLER_CANCEL_REASONS,
+  md as ShopeeSdk,
   d2 as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS,
-  Z0 as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP,
+  ed as V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS_MAP,
   Q1 as V2_LOGISTIC_SHIPPING_DOCUMENT_TYPES,
-  J6 as V2_LOGISTIC_SHIPPING_STATUSES,
-  D2 as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS,
-  Q0 as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS_MAP,
+  d4 as V2_LOGISTIC_SHIPPING_STATUSES,
+  T2 as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS,
+  dd as V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS_MAP,
   me as V2_ORDER_STATUS,
-  Y0 as V2_ORDER_STATUS_MAP,
+  ad as V2_ORDER_STATUS_MAP,
   K1 as createConstantsMap,
   Ce as generateHmac,
   Z1 as signURL,

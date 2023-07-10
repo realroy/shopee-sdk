@@ -703,9 +703,9 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             } | undefined;
         }[] | undefined;
     };
+    requestId: string;
     error: string;
     warning: string;
-    requestId: string;
 }, {
     message: string;
     response: {
@@ -794,9 +794,9 @@ export declare const getItemBaseInfoResponseSchema: z.ZodObject<{
             } | undefined;
         }[] | undefined;
     };
+    requestId: string;
     error: string;
     warning: string;
-    requestId: string;
 }>;
 export declare const getItemBaseInfo: (requestParameters: {
     itemIdList: string;
@@ -890,8 +890,8 @@ export declare const getItemBaseInfo: (requestParameters: {
             } | undefined;
         }[] | undefined;
     };
+    requestId: string;
     error: string;
     warning: string;
-    requestId: string;
 }>;
 //# sourceMappingURL=v2-product-get-item-base-info.d.ts.map

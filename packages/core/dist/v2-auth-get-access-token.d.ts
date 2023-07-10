@@ -16,30 +16,30 @@ export declare const getAccessTokenRequestParametersSchema: z.ZodObject<{
     mainAccountId?: number | undefined;
 }>;
 export declare const getAccessTokenResponseSchema: z.ZodObject<{
-    accessToken: z.ZodString;
-    error: z.ZodString;
-    expireIn: z.ZodNumber;
-    message: z.ZodString;
     refreshToken: z.ZodString;
+    accessToken: z.ZodString;
+    expireIn: z.ZodNumber;
     requestId: z.ZodString;
+    error: z.ZodString;
+    message: z.ZodString;
     merchantIdList: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
     shopIdList: z.ZodOptional<z.ZodArray<z.ZodNumber, "many">>;
 }, "strip", z.ZodTypeAny, {
     accessToken: string;
     message: string;
-    error: string;
-    requestId: string;
-    expireIn: number;
     refreshToken: string;
+    expireIn: number;
+    requestId: string;
+    error: string;
     merchantIdList?: number[] | undefined;
     shopIdList?: number[] | undefined;
 }, {
     accessToken: string;
     message: string;
-    error: string;
-    requestId: string;
-    expireIn: number;
     refreshToken: string;
+    expireIn: number;
+    requestId: string;
+    error: string;
     merchantIdList?: number[] | undefined;
     shopIdList?: number[] | undefined;
 }>;
@@ -51,11 +51,11 @@ export declare const getAccessToken: (requestParameters: {
 }) => Promise<{
     accessToken: string;
     message: string;
-    error: string;
-    requestId: string;
-    expireIn: number;
     refreshToken: string;
+    expireIn: number;
+    requestId: string;
+    error: string;
     merchantIdList?: number[] | undefined;
     shopIdList?: number[] | undefined;
 }>;
-//# sourceMappingURL=v2-public-get-access-token.d.ts.map
+//# sourceMappingURL=v2-auth-get-access-token.d.ts.map

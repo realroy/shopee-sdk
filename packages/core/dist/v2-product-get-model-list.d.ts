@@ -263,9 +263,9 @@ export declare const getModelListResponseSchema: z.ZodObject<{
             tierIndex: number[];
         }[];
     };
+    requestId: string;
     error: string;
     warning: string;
-    requestId: string;
 }, {
     message: string;
     response: {
@@ -303,9 +303,9 @@ export declare const getModelListResponseSchema: z.ZodObject<{
             tierIndex: number[];
         }[];
     };
+    requestId: string;
     error: string;
     warning: string;
-    requestId: string;
 }>;
 export declare const getModelList: (requestParameters: {
     item_id: string;
@@ -346,8 +346,8 @@ export declare const getModelList: (requestParameters: {
             tierIndex: number[];
         }[];
     };
+    requestId: string;
     error: string;
     warning: string;
-    requestId: string;
 }>;
 //# sourceMappingURL=v2-product-get-model-list.d.ts.map
