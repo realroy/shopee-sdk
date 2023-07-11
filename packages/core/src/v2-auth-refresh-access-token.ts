@@ -19,7 +19,7 @@ export const refreshAccessTokenResponseSchema = z.object({
   error: z.string(),
   message: z.string(),
   shopId: z.number(),
-  merchantId: z.number(),
+  merchantId: z.number().optional(),
 });
 
 export const refreshAccessToken = buildMutation({
