@@ -24,7 +24,7 @@ export declare const refreshAccessTokenResponseSchema: z.ZodObject<{
     error: z.ZodString;
     message: z.ZodString;
     shopId: z.ZodNumber;
-    merchantId: z.ZodNumber;
+    merchantId: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     partnerId: number;
     accessToken: string;
@@ -34,7 +34,7 @@ export declare const refreshAccessTokenResponseSchema: z.ZodObject<{
     expireIn: number;
     requestId: string;
     error: string;
-    merchantId: number;
+    merchantId?: number | undefined;
 }, {
     partnerId: number;
     accessToken: string;
@@ -44,7 +44,7 @@ export declare const refreshAccessTokenResponseSchema: z.ZodObject<{
     expireIn: number;
     requestId: string;
     error: string;
-    merchantId: number;
+    merchantId?: number | undefined;
 }>;
 export declare const refreshAccessToken: (requestParameters: {
     refreshToken: string;
@@ -60,6 +60,6 @@ export declare const refreshAccessToken: (requestParameters: {
     expireIn: number;
     requestId: string;
     error: string;
-    merchantId: number;
+    merchantId?: number | undefined;
 }>;
 //# sourceMappingURL=v2-auth-refresh-access-token.d.ts.map

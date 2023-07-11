@@ -625,7 +625,7 @@ const k6 = "/api/v2/auth/token/get", $6 = "/api/v2/auth/access_token/get", q6 = 
   error: e.string(),
   message: e.string(),
   shopId: e.number(),
-  merchantId: e.number()
+  merchantId: e.number().optional()
 }), W6 = K({
   path: $6,
   requestParameterSchema: z6,
