@@ -28,8 +28,8 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             createTime: z.ZodNumber;
             currency: z.ZodString;
             daysToShip: z.ZodNumber;
-            dropshipper: z.ZodString;
-            dropshipperPhone: z.ZodString;
+            dropshipper: z.ZodNullable<z.ZodString>;
+            dropshipperPhone: z.ZodNullable<z.ZodString>;
             estimatedShippingFee: z.ZodNumber;
             fulfillmentFlag: z.ZodString;
             goodsToDeclare: z.ZodBoolean;
@@ -225,7 +225,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             orderSn: string;
             region: string;
             note: string;
-            dropshipper: string;
+            dropshipper: string | null;
             cancelReason: string;
             itemList: {
                 itemId: number;
@@ -265,7 +265,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             createTime: number;
             currency: string;
             daysToShip: number;
-            dropshipperPhone: string;
+            dropshipperPhone: string | null;
             estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
@@ -319,7 +319,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             orderSn: string;
             region: string;
             note: string;
-            dropshipper: string;
+            dropshipper: string | null;
             cancelReason: string;
             itemList: {
                 itemId: number;
@@ -359,7 +359,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             createTime: number;
             currency: string;
             daysToShip: number;
-            dropshipperPhone: string;
+            dropshipperPhone: string | null;
             estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
@@ -415,7 +415,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             orderSn: string;
             region: string;
             note: string;
-            dropshipper: string;
+            dropshipper: string | null;
             cancelReason: string;
             itemList: {
                 itemId: number;
@@ -455,7 +455,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             createTime: number;
             currency: string;
             daysToShip: number;
-            dropshipperPhone: string;
+            dropshipperPhone: string | null;
             estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
@@ -511,7 +511,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             orderSn: string;
             region: string;
             note: string;
-            dropshipper: string;
+            dropshipper: string | null;
             cancelReason: string;
             itemList: {
                 itemId: number;
@@ -551,7 +551,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             createTime: number;
             currency: string;
             daysToShip: number;
-            dropshipperPhone: string;
+            dropshipperPhone: string | null;
             estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
@@ -613,7 +613,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             orderSn: string;
             region: string;
             note: string;
-            dropshipper: string;
+            dropshipper: string | null;
             cancelReason: string;
             itemList: {
                 itemId: number;
@@ -653,7 +653,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             createTime: number;
             currency: string;
             daysToShip: number;
-            dropshipperPhone: string;
+            dropshipperPhone: string | null;
             estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
@@ -714,7 +714,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             orderSn: string;
             region: string;
             note: string;
-            dropshipper: string;
+            dropshipper: string | null;
             cancelReason: string;
             itemList: {
                 itemId: number;
@@ -754,7 +754,7 @@ export declare const getOrderDetailResponseSchema: z.ZodObject<{
             createTime: number;
             currency: string;
             daysToShip: number;
-            dropshipperPhone: string;
+            dropshipperPhone: string | null;
             estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
@@ -819,7 +819,7 @@ export declare const getOrderDetail: (requestParameters: {
             orderSn: string;
             region: string;
             note: string;
-            dropshipper: string;
+            dropshipper: string | null;
             cancelReason: string;
             itemList: {
                 itemId: number;
@@ -859,7 +859,7 @@ export declare const getOrderDetail: (requestParameters: {
             createTime: number;
             currency: string;
             daysToShip: number;
-            dropshipperPhone: string;
+            dropshipperPhone: string | null;
             estimatedShippingFee: number;
             fulfillmentFlag: string;
             goodsToDeclare: boolean;
