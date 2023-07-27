@@ -22,6 +22,7 @@ export const getItemListResponseSchema = z.object({
   requestId: z.string(),
   response: z
     .object({
+      hasNextPage: z.boolean().optional(),
       item: z
         .array(
           z.object({
@@ -31,11 +32,11 @@ export const getItemListResponseSchema = z.object({
           })
         )
         .optional(),
+      next: z.string().optional(),
+      totalCount: z.number().int().optional(),
+      nextOffset: z.number().int().optional(),
     })
     .optional(),
-  totalCount: z.number().int().optional(),
-  hasNextPage: z.boolean().optional(),
-  nextOffset: z.number().int().optional(),
 });
 
 export const getItemList = buildQuery({
