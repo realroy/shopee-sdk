@@ -24,6 +24,7 @@ export declare const getItemListResponseSchema: z.ZodObject<{
     warning: z.ZodOptional<z.ZodNullable<z.ZodString>>;
     requestId: z.ZodString;
     response: z.ZodOptional<z.ZodObject<{
+        hasNextPage: z.ZodOptional<z.ZodBoolean>;
         item: z.ZodOptional<z.ZodArray<z.ZodObject<{
             itemId: z.ZodNumber;
             itemStatus: z.ZodEnum<["NORMAL", "DELETED", "UNLIST", "BANNED"]>;
@@ -37,52 +38,62 @@ export declare const getItemListResponseSchema: z.ZodObject<{
             itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
             updateTime?: number | undefined;
         }>, "many">>;
+        next: z.ZodOptional<z.ZodString>;
+        totalCount: z.ZodOptional<z.ZodNumber>;
+        nextOffset: z.ZodOptional<z.ZodNumber>;
     }, "strip", z.ZodTypeAny, {
+        hasNextPage?: boolean | undefined;
         item?: {
             itemId: number;
             itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
             updateTime?: number | undefined;
         }[] | undefined;
+        next?: string | undefined;
+        totalCount?: number | undefined;
+        nextOffset?: number | undefined;
     }, {
+        hasNextPage?: boolean | undefined;
         item?: {
             itemId: number;
             itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
             updateTime?: number | undefined;
         }[] | undefined;
+        next?: string | undefined;
+        totalCount?: number | undefined;
+        nextOffset?: number | undefined;
     }>>;
-    totalCount: z.ZodOptional<z.ZodNumber>;
-    hasNextPage: z.ZodOptional<z.ZodBoolean>;
-    nextOffset: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
     requestId: string;
     error?: string | undefined;
     message?: string | null | undefined;
     warning?: string | null | undefined;
     response?: {
+        hasNextPage?: boolean | undefined;
         item?: {
             itemId: number;
             itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
             updateTime?: number | undefined;
         }[] | undefined;
+        next?: string | undefined;
+        totalCount?: number | undefined;
+        nextOffset?: number | undefined;
     } | undefined;
-    totalCount?: number | undefined;
-    hasNextPage?: boolean | undefined;
-    nextOffset?: number | undefined;
 }, {
     requestId: string;
     error?: string | undefined;
     message?: string | null | undefined;
     warning?: string | null | undefined;
     response?: {
+        hasNextPage?: boolean | undefined;
         item?: {
             itemId: number;
             itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
             updateTime?: number | undefined;
         }[] | undefined;
+        next?: string | undefined;
+        totalCount?: number | undefined;
+        nextOffset?: number | undefined;
     } | undefined;
-    totalCount?: number | undefined;
-    hasNextPage?: boolean | undefined;
-    nextOffset?: number | undefined;
 }>;
 export declare const getItemList: (requestParameters: {
     itemStatus: ("NORMAL" | "DELETED" | "UNLIST" | "BANNED")[];
@@ -96,14 +107,15 @@ export declare const getItemList: (requestParameters: {
     message?: string | null | undefined;
     warning?: string | null | undefined;
     response?: {
+        hasNextPage?: boolean | undefined;
         item?: {
             itemId: number;
             itemStatus: "NORMAL" | "DELETED" | "UNLIST" | "BANNED";
             updateTime?: number | undefined;
         }[] | undefined;
+        next?: string | undefined;
+        totalCount?: number | undefined;
+        nextOffset?: number | undefined;
     } | undefined;
-    totalCount?: number | undefined;
-    hasNextPage?: boolean | undefined;
-    nextOffset?: number | undefined;
 }>;
 //# sourceMappingURL=v2-product-get-item-list.d.ts.map

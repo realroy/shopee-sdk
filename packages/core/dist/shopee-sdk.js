@@ -80357,17 +80357,18 @@ const H4 = e.object({
   warning: e.string().nullable().optional(),
   requestId: e.string(),
   response: e.object({
+    hasNextPage: e.boolean().optional(),
     item: e.array(
       e.object({
         itemId: e.number().int(),
         itemStatus: e.enum(D2),
         updateTime: e.number().int().optional()
       })
-    ).optional()
-  }).optional(),
-  totalCount: e.number().int().optional(),
-  hasNextPage: e.boolean().optional(),
-  nextOffset: e.number().int().optional()
+    ).optional(),
+    next: e.string().optional(),
+    totalCount: e.number().int().optional(),
+    nextOffset: e.number().int().optional()
+  }).optional()
 }), F0 = p1({
   path: A0,
   requestParameterSchema: Ie,
