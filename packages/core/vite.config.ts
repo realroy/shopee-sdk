@@ -1,6 +1,5 @@
 import { resolve } from "path";
 import { defineConfig } from "vite";
-import nodePolyfills from "rollup-plugin-polyfill-node";
 
 export default defineConfig({
   build: {
@@ -12,7 +11,6 @@ export default defineConfig({
       fileName: "shopee-sdk",
     },
     rollupOptions: {
-      plugins: [nodePolyfills()],
       external: [
         "zod",
         "axios",
