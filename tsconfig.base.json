@@ -19,7 +19,7 @@
     "baseUrl": ".",
     "paths": {
       "@shopee-sdk/core": ["packages/core/src/index.ts"],
-      "@shopee-sdk/mock-server": ["packages/mock-server/src/index.ts"],
+      "@shopee-sdk/mock-server": ["packages/mock-server/src/index.ts"]
     }
   }
 }

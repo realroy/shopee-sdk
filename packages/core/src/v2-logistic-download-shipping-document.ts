@@ -1,15 +1,15 @@
 import { z } from "zod";
-import _snakeCase from "lodash/snakeCase";
+import _snakeCase from "lodash.snakecase";
 import { Readable } from "stream";
 import nodeFetch from "node-fetch";
 
-import { signURL, transformObjectKeys } from "./utils";
-import { ShopeeContext } from "./libs";
+import { signURL, transformObjectKeys } from "./utils/index.js";
+import { ShopeeContext } from "./libs/index.js";
 
 import {
   API_V2_LOGISTIC_DOWNLOAD_SHIPPING_DOCUMENT,
   V2_LOGISTIC_SHIPPING_DOCUMENT_TYPES,
-} from "./v2-logistic.constant";
+} from "./v2-logistic.constant.js";
 
 export const logisticDownloadShippingDocumentRequestParameterSchema = z.object({
   shippingDocumentType: z.enum(V2_LOGISTIC_SHIPPING_DOCUMENT_TYPES).optional(),
@@ -63,6 +63,10 @@ export async function downloadShippingDocument(
     },
     body: JSON.stringify(body),
   });
+
+  if (res.body === null) {
+    return res.body;
+  }
 
   return Readable.from(res.body);
 }

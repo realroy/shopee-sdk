@@ -5,6 +5,12 @@
     "apps/*",
     "packages/*"
   ],
+  "exports": {
+    "/core": {
+      "types": "./packages/core/dist/index.d.ts",
+      "import": "./packages/core/dist/shopee-sdk.js"
+    }
+  },
   "types": "./core.d.ts",
   "version": "1.0.5",
   "description": "",

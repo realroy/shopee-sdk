@@ -1,5 +1,5 @@
-import * as v2 from "./v2";
-import { env } from "./env";
+import * as v2 from "./v2.js";
+import { env } from "./env.js";
 export type ShopeeSdkArgs = typeof env & {
     isLogEnabled?: boolean;
 };

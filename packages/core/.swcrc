@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json.schemastore.org/swcrc",
+  "sourceMaps": "inline",
+  "jsc": {
+    "parser": {
+      "syntax": "typescript",
+      "tsx": false,
+      "decorators": true,
+      "dynamicImport": true
+    },
+    "transform": {
+      "legacyDecorator": true,
+      "decoratorMetadata": true
+    },
+    "target": "esnext"
+  },
+  "module": {
+    "type": "es6"
+  },
+  "minify": true
+}

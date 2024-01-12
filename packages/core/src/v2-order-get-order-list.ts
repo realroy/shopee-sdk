@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-import { buildQuery } from "./libs";
+import { buildQuery } from "./libs/index.js";
 import {
   API_V2_ORDER_GET_ORDER_LIST_PATH,
   V2_ORDER_STATUS,
-} from "./v2-order.constant";
+} from "./v2-order.constant.js";
 
 export const getOrderListRequestParametersSchema = z.object({
   timeRangeField: z.enum(["create_time", "update_time"]),

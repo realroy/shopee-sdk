@@ -1,1 +1,1 @@
-{"version":3,"file":"v2-shop.d.ts","sourceRoot":"","sources":["../../../../core/src/v2-shop.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,wBAAwB,CAAC"}
+{"version":3,"file":"v2-shop.d.ts","sourceRoot":"","sources":["../../../../core/src/v2-shop.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,2BAA2B,CAAC;AACxD,OAAO,EAAE,cAAc,EAAE,MAAM,8BAA8B,CAAC"}

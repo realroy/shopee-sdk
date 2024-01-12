@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { buildMutation } from "./libs";
-import { API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_PARAMETER } from "./v2-logistic.constant";
+import { buildMutation } from "./libs/index.js";
+import { API_V2_LOGISTIC_GET_SHIPPING_DOCUMENT_PARAMETER } from "./v2-logistic.constant.js";
 
 export const logisticGetShippingDocumentParameterRequestParameterSchema =
   z.object({

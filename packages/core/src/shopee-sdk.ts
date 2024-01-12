@@ -1,6 +1,6 @@
-import { ShopeeContext } from "./libs";
-import * as v2 from "./v2";
-import { env } from "./env";
+import { ShopeeContext } from "./libs/index.js";
+import * as v2 from "./v2.js";
+import { env } from "./env.js";
 
 const shopeeContext = ShopeeContext.getInstance();
 

@@ -1,7 +1,7 @@
-import { ShopeeContext } from "../libs";
+import { ShopeeContext } from "../libs/index.js";
 
-import { generateHmac } from "./generate-hmac";
-import { toTimestamp } from "./to-timestamp";
+import { generateHmac } from "./generate-hmac.js";
+import { toTimestamp } from "./to-timestamp.js";
 
 export type SignURLArgs = ShopeeContext["value"] & {
   path: string;

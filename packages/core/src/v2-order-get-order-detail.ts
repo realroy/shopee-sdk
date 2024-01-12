@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-import { buildQuery } from "./libs";
+import { buildQuery } from "./libs/index.js";
 import {
   API_V2_ORDER_GET_ORDER_DETAIL_PATH,
   V2_ORDER_DETAIL_RESPONSE_OPTIONAL_FIELDS,
   V2_ORDER_STATUS,
-} from "./v2-order.constant";
+} from "./v2-order.constant.js";
 
 export const getOrderDetailRequestParametersSchema = z.object({
   orderSnList: z.array(z.string()),

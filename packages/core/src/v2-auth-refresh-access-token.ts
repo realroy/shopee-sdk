@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { ShopeeContext, buildMutation } from "./libs";
-import { API_V2_AUTH_REFRESH_ACCESS_TOKEN_PATH } from "./v2-auth.constant";
+import { ShopeeContext, buildMutation } from "./libs/index.js";
+import { API_V2_AUTH_REFRESH_ACCESS_TOKEN_PATH } from "./v2-auth.constant.js";
 
 export const refreshAccessTokenRequestParametersSchema = z.object({
   refreshToken: z.string(),

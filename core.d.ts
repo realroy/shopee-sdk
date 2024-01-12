@@ -1,1 +1,1 @@
-export * from './packages/core/src'
+export * from "./packages/core/dist/index.js";

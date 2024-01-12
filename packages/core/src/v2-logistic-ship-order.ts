@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { buildMutation } from "./libs";
-import { API_V2_LOGISTIC_SHIP_ORDER } from "./v2-logistic.constant";
+import { buildMutation } from "./libs/index.js";
+import { API_V2_LOGISTIC_SHIP_ORDER } from "./v2-logistic.constant.js";
 
 export const logisticShipOrderRequestParameterSchema = z.object({
   orderSn: z.string(),

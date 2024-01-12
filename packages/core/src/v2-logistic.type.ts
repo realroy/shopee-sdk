@@ -3,37 +3,37 @@ import { z } from "zod";
 import {
   logisticCreateShippingDocumentResponseSchema,
   logisticCreateShippingDocumentRequestParameterSchema,
-} from "./v2-logistic-create-shipping-document";
+} from "./v2-logistic-create-shipping-document.js";
 import {
   logisticDownloadShippingDocumentResponseSchema,
   logisticDownloadShippingDocumentRequestParameterSchema,
-} from "./v2-logistic-download-shipping-document";
+} from "./v2-logistic-download-shipping-document.js";
 import {
   logisticGetShippingDocumentParameterRequestParameterSchema,
   logisticGetShippingDocumentParameterResponseSchema,
-} from "./v2-logistic-get-shipping-document-parameter";
+} from "./v2-logistic-get-shipping-document-parameter.js";
 import {
   logisticGetShippingDocumentResultResponseSchema,
   logisticGetShippingDocumentResultRequestParameterSchema,
-} from "./v2-logistic-get-shipping-document-result";
+} from "./v2-logistic-get-shipping-document-result.js";
 import {
   logisticGetShippingParameterRequestParameterSchema,
   logisticGetShippingParameterResponseSchema,
-} from "./v2-logistic-get-shipping-parameter";
+} from "./v2-logistic-get-shipping-parameter.js";
 import {
   logisticGetTrackingNumberRequestParameterSchema,
   logisticGetTrackingNumberResponseSchema,
-} from "./v2-logistic-get-tracking-number";
+} from "./v2-logistic-get-tracking-number.js";
 import {
   logisticShipOrderRequestParameterSchema,
   logisticShipOrderResponseSchema,
-} from "./v2-logistic-ship-order";
+} from "./v2-logistic-ship-order.js";
 import {
   logisticUpdateShipOrderRequestParameterSchema,
   logisticUpdateShipOrderResponseSchema,
-} from "./v2-logistic-update-ship-order";
+} from "./v2-logistic-update-ship-order.js";
 
-import { V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS } from "./v2-logistic.constant";
+import { V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS } from "./v2-logistic.constant.js";
 
 export type LogisticCreateShippingDocumentResponseSchema = z.infer<
   typeof logisticCreateShippingDocumentResponseSchema

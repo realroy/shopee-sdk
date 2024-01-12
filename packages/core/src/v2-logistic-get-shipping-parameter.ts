@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { buildQuery } from "./libs";
-import { API_V2_LOGISTIC_GET_SHIPPING_PARAMETER } from "./v2-logistic.constant";
+import { buildQuery } from "./libs/index.js";
+import { API_V2_LOGISTIC_GET_SHIPPING_PARAMETER } from "./v2-logistic.constant.js";
 
 export const logisticGetShippingParameterRequestParameterSchema = z.object({
   orderSn: z.string(),

@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { buildMutation } from "./libs";
-import { API_V2_ORDER_HANDLE_BUYER_CANCELLATION_PATH } from "./v2-order.constant";
+import { buildMutation } from "./libs/index.js";
+import { API_V2_ORDER_HANDLE_BUYER_CANCELLATION_PATH } from "./v2-order.constant.js";
 
 export const handleBuyerCancellationRequestParametersSchema = z.object({
   orderSn: z.string(),

@@ -1,13 +1,14 @@
-import { createConstantsMap } from "./utils";
+import { createConstantsMap } from "./utils/index.js";
 
-export const API_V2_ORDER_GET_ORDER_LIST_PATH = "/api/v2/order/get_order_list";
+export const API_V2_ORDER_GET_ORDER_LIST_PATH =
+  "/api/v2/order/get_order_list.js";
 
 export const API_V2_ORDER_GET_ORDER_DETAIL_PATH =
-  "/api/v2/order/get_order_detail";
+  "/api/v2/order/get_order_detail.js";
 
-export const API_V2_ORDER_CANCEL_ORDER_PATH = "/api/v2/order/cancel_order";
+export const API_V2_ORDER_CANCEL_ORDER_PATH = "/api/v2/order/cancel_order.js";
 export const API_V2_ORDER_HANDLE_BUYER_CANCELLATION_PATH =
-  "/api/v2/order/handle_buyer_cancellation";
+  "/api/v2/order/handle_buyer_cancellation.js";
 
 export const V2_ORDER_STATUS = [
   "UNPAID",

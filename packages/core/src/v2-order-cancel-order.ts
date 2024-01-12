@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-import { buildMutation } from "./libs";
+import { buildMutation } from "./libs/index.js";
 import {
   API_V2_ORDER_CANCEL_ORDER_PATH,
   SELLER_CANCEL_REASONS,
-} from "./v2-order.constant";
+} from "./v2-order.constant.js";
 
 export const cancelOrderRequestParametersSchema = z.object({
   orderSn: z.string(),

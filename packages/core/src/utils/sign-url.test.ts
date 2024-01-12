@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { signURL } from "./sign-url";
-import { ShopeeContext } from "../libs";
+import { signURL } from "./sign-url.js";
+import { ShopeeContext } from "../libs/index.js";
 
 describe("signURL", () => {
   const context = ShopeeContext.getInstance();

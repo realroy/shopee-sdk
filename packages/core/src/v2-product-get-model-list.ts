@@ -1,7 +1,7 @@
 import { z } from "zod";
 
-import { buildQuery } from "./libs";
-import { API_V2_PRODUCT_GET_MODEL_LIST_PATH } from "./v2-product.constant";
+import { buildQuery } from "./libs/index.js";
+import { API_V2_PRODUCT_GET_MODEL_LIST_PATH } from "./v2-product.constant.js";
 
 export const getModelListRequestParametersSchema = z.object({
   item_id: z.string(),

@@ -1,11 +1,12 @@
 import { z } from "zod";
-import _snakeCase from "lodash/snakeCase";
-import _camelCase from "lodash/camelCase";
+import _snakeCase from "lodash.snakecase";
+import _camelCase from "lodash.camelcase";
 
-import { HttpClient } from "./http-client";
-import { ShopeeContext } from "./shopee-context";
+import { HttpClient } from "./http-client.js";
+import { ShopeeContext } from "./shopee-context.js";
 
-import { signURL, transformObjectKeys } from "../utils";
+import { signURL, transformObjectKeys } from "../utils/index.js";
+
 import type { ResponseType } from "axios";
 
 const httpClient = HttpClient.getInstance();

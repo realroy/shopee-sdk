@@ -1,4 +1,4 @@
-import { createConstantsMap } from "./utils";
+import { createConstantsMap } from "./utils/index.js";
 
 export const API_V2_LOGISTIC_GET_SHIPPING_PARAMETER =
   "/api/v2/logistics/get_shipping_parameter";

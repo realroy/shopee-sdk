@@ -22,18 +22,21 @@
   ],
   "packageManager": "pnpm@8.1.1",
   "scripts": {
-    "build": "run-s clean build-vite build-ts",
+    "build": "run-s clean build-swc build-ts",
     "build-vite": "vite build",
+    "build-swc": "swc ./src --out-dir ./dist",
     "build-ts": "tsc --project ./tsconfig.build.json && tsc-alias",
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "clean": "rm -rf ./dist"
   },
   "devDependencies": {
+    "@swc/cli": "^0.1.63",
+    "@swc/core": "^1.3.102",
     "@tsconfig/node-lts": "18.12.1",
-    "@types/lodash": "^4.14.195",
     "@types/node": "20.0.0",
-    "@types/node-fetch": "2",
+    "@types/lodash.camelcase": "4.3.9",
+    "@types/lodash.snakecase": "4.1.9",
     "hotscript": "^1.0.12",
     "npm-run-all": "4.1.5",
     "rollup-plugin-polyfill-node": "0.12.0",
@@ -45,8 +48,9 @@
   "peerDependencies": {
     "axios": "1.3.6",
     "dotenv": "16.0.3",
-    "lodash": "^4.17.21",
-    "node-fetch": "2.6.11",
+    "lodash.camelcase": "4.3.0",
+    "lodash.snakecase": "4.1.1",
+    "node-fetch": "3.3.2",
     "zod": "3.22.4"
   }
 }

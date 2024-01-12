@@ -3,21 +3,21 @@ import { z } from "zod";
 import {
   getOrderListRequestParametersSchema,
   getOrderListResponseSchema,
-} from "./v2-order-get-order-list";
+} from "./v2-order-get-order-list.js";
 import {
   getOrderDetailRequestParametersSchema,
   getOrderDetailResponseSchema,
-} from "./v2-order-get-order-detail";
+} from "./v2-order-get-order-detail.js";
 
-import { SELLER_CANCEL_REASONS } from "./v2-order.constant";
+import { SELLER_CANCEL_REASONS } from "./v2-order.constant.js";
 import {
   cancelOrderRequestParametersSchema,
   cancelOrderResponseSchema,
-} from "./v2-order-cancel-order";
+} from "./v2-order-cancel-order.js";
 import {
   handleBuyerCancellationRequestParametersSchema,
   handleBuyerCancellationResponseSchema,
-} from "./v2-order-handle-buyer-cancellation";
+} from "./v2-order-handle-buyer-cancellation.js";
 
 export type GetOrderListRequestParameters = z.infer<
   typeof getOrderListRequestParametersSchema

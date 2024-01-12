@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-import { buildQuery } from "./libs";
+import { buildQuery } from "./libs/index.js";
 import {
   API_V2_LOGISTIC_GET_TRACKING_NUMBER,
   V2_LOGISTIC_GET_TRACKING_NUMBER_RESPONSE_OPTIONAL_FIELDS,
-} from "./v2-logistic.constant";
+} from "./v2-logistic.constant.js";
 
 export const logisticGetTrackingNumberRequestParameterSchema = z.object({
   orderSn: z.string(),

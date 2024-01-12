@@ -1,5 +1,5 @@
-export * from "./build-query";
-export * from "./build-mutation";
-export * from "./http-client";
-export * from "./shopee-context";
+export * from "./build-query.js";
+export * from "./build-mutation.js";
+export * from "./http-client.js";
+export * from "./shopee-context.js";
 //# sourceMappingURL=index.d.ts.map

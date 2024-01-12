@@ -33,5 +33,5 @@ export declare const logisticDownloadShippingDocumentResponseSchema: z.ZodObject
 }, {
     data: string;
 }>;
-export declare function downloadShippingDocument(requestParameter: z.infer<typeof logisticDownloadShippingDocumentRequestParameterSchema>): Promise<Readable>;
+export declare function downloadShippingDocument(requestParameter: z.infer<typeof logisticDownloadShippingDocumentRequestParameterSchema>): Promise<Readable | null>;
 //# sourceMappingURL=v2-logistic-download-shipping-document.d.ts.map

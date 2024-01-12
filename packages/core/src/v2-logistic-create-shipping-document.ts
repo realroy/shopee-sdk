@@ -1,10 +1,10 @@
 import { z } from "zod";
 
-import { buildMutation } from "./libs";
+import { buildMutation } from "./libs/index.js";
 import {
   API_V2_LOGISTIC_CREATE_SHIPPING_DOCUMENT,
   V2_LOGISTIC_SHIPPING_DOCUMENT_TYPES,
-} from "./v2-logistic.constant";
+} from "./v2-logistic.constant.js";
 
 export const logisticCreateShippingDocumentRequestParameterSchema = z.object({
   orderList: z

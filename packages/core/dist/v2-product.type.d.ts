@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { getItemExtraInfoRequestParametersSchema, getItemExtraInfoResponseSchema } from "./v2-product-get-item-extra-info";
-import { getItemBaseInfoRequestParametersSchema, getItemBaseInfoResponseSchema } from "./v2-product-get-item-base-info";
-import { getItemListRequestParametersSchema, getItemListResponseSchema } from "./v2-product-get-item-list";
-import { getModelListResponseSchema } from "./v2-product-get-model-list";
+import { getItemExtraInfoRequestParametersSchema, getItemExtraInfoResponseSchema } from "./v2-product-get-item-extra-info.js";
+import { getItemBaseInfoRequestParametersSchema, getItemBaseInfoResponseSchema } from "./v2-product-get-item-base-info.js";
+import { getItemListRequestParametersSchema, getItemListResponseSchema } from "./v2-product-get-item-list.js";
+import { getModelListResponseSchema } from "./v2-product-get-model-list.js";
 export type GetItemExtraInfoResponse = z.infer<typeof getItemExtraInfoResponseSchema>;
 export type GetItemExtraInfoResponseItem = NonNullable<NonNullable<GetItemExtraInfoResponse["response"]>["itemList"]>[number];
 export type GetItemExtraInfoRequestParameters = z.infer<typeof getItemExtraInfoRequestParametersSchema>;

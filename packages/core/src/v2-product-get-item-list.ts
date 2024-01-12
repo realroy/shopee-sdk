@@ -1,11 +1,11 @@
 import { z } from "zod";
 
-import { buildQuery } from "./libs";
+import { buildQuery } from "./libs/build-query.js";
 import {
   API_V2_PRODUCT_GET_ITEM_LIST_PATH,
   ITEM_STATUS,
-} from "./v2-product.constant";
-import { toTimestamp } from "./utils";
+} from "./v2-product.constant.js";
+import { toTimestamp } from "./utils/to-timestamp.js";
 
 export const getItemListRequestParametersSchema = z.object({
   offset: z.number().int().min(0).optional(),
